@@ -33,6 +33,7 @@
 ## Forensics
 
 * [Memory](forensics/forensics-mem.md)
+* [Disk Images](forensics/disk-images.md)
 
 ## Reversing
 
