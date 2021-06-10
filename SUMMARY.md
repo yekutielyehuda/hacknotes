@@ -29,6 +29,7 @@
 * [XSS](web-security/xss.md)
 * [OS Command Injection](web-security/os-command-injection.md)
 * [Authentication Bruteforcing](web-security/authentication-bruteforcing.md)
+* [XXE Injection](web-security/xxe-injection.md)
 
 ## Forensics
 
