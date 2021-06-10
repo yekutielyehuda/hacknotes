@@ -42,4 +42,5 @@
 ## Exploit Development
 
 * [Linux Stack Buffer Overflow](exploit-development/linux-stack-bof.md)
+* [Windows Stack Buffer Overflow](exploit-development/windows-stack-buffer-overflow.md)
 
