@@ -30,6 +30,7 @@
 * [XXE Injection](web-security/xxe-injection.md)
 * [OS Command Injection](web-security/os-command-injection.md)
 * [Authentication Bruteforcing](web-security/authentication-bruteforcing.md)
+* [CSRF](web-security/csrf.md)
 
 ## Forensics
 
