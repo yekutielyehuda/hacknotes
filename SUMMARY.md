@@ -26,6 +26,7 @@
 * [Local File Inclusion \(LFI\)](web-security/local-file-inclusion-lfi.md)
 * [Remote File Inclusion \(RFI\)](web-security/remote-file-inclusion-rfi.md)
 * [SQL Injection](web-security/sql-injection.md)
+* [XSS](web-security/xss.md)
 
 ## Forensics
 
