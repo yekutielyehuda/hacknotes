@@ -5,15 +5,15 @@
 
 ## Linux/Unix
 
-* [Linux Privilege Escalation](linux-unix/untitled.md)
+* [Linux Privilege Escalation](linux-unix/linux-privesc.md)
 
 ## Windows
 
-* [Windows Privilege Escalation](windows/untitled.md)
+* [Windows Privilege Escalation](windows/windows-privesc.md)
 
 ## Pentesting
 
-* [Pentesting SSH - 22](pentesting/untitled.md)
+* [Pentesting SSH - 22](pentesting/pentesting-ssh.md)
 
 ## Web Security
 
@@ -22,13 +22,13 @@
 
 ## Forensics
 
-* [Memory](forensics/untitled.md)
+* [Memory](forensics/forensics-mem.md)
 
 ## Reversing
 
-* [Debuggers](reversing/untitled.md)
+* [Debuggers](reversing/debuggers.md)
 
 ## Exploit Development
 
-* [Linux Stack Buffer Overflow](exploit-development/untitled.md)
+* [Linux Stack Buffer Overflow](exploit-development/linux-stack-bof.md)
 
