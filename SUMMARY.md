@@ -11,6 +11,11 @@
 
 * [Windows Privilege Escalation](windows/windows-privesc.md)
 
+## File Transfers
+
+* [Windows to Linux](file-transfers/windows-to-nix.md)
+* [Linux to Windows](file-transfers/linux-to-windows.md)
+
 ## Pentesting
 
 * [Pentesting SSH - 22](pentesting/pentesting-ssh.md)
@@ -31,9 +36,4 @@
 ## Exploit Development
 
 * [Linux Stack Buffer Overflow](exploit-development/linux-stack-bof.md)
-
-## File Transfers
-
-* [Windows to Linux](file-transfers/windows-to-nix.md)
-* [Linux to Windows](file-transfers/linux-to-windows.md)
 
