@@ -27,6 +27,7 @@
 * [Remote File Inclusion \(RFI\)](web-security/remote-file-inclusion-rfi.md)
 * [SQL Injection](web-security/sql-injection.md)
 * [XSS](web-security/xss.md)
+* [OS Command Injection](web-security/os-command-injection.md)
 
 ## Forensics
 
