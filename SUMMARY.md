@@ -34,5 +34,6 @@
 
 ## File Transfers
 
-* [Untitled](file-transfers/untitled.md)
+* [Windows to Linux](file-transfers/windows-to-nix.md)
+* [Linux to Windows](file-transfers/linux-to-windows.md)
 
