@@ -5,29 +5,29 @@
 
 ## Linux/Unix
 
-* [Untitled](linux-unix/untitled.md)
+* [Linux Privilege Escalation](linux-unix/untitled.md)
 
 ## Windows
 
-* [Untitled](windows/untitled.md)
+* [Windows Privilege Escalation](windows/untitled.md)
 
 ## Pentesting
 
-* [Untitled](pentesting/untitled.md)
+* [Pentesting SSH - 22](pentesting/untitled.md)
 
 ## Web Security
 
-* [Untitled](web-security/untitled.md)
+* [Local File Inclusion \(LFI\)](web-security/untitled.md)
 
 ## Forensics
 
-* [Untitled](forensics/untitled.md)
+* [Memory](forensics/untitled.md)
 
 ## Reversing
 
-* [Untitled](reversing/untitled.md)
+* [Debuggers](reversing/untitled.md)
 
 ## Exploit Development
 
-* [Untitled](exploit-development/untitled.md)
+* [Linux Stack Buffer Overflow](exploit-development/untitled.md)
 
