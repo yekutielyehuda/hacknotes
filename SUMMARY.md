@@ -23,13 +23,13 @@
 
 ## Web Security
 
+* [Authentication Bruteforcing](web-security/authentication-bruteforcing.md)
 * [Local File Inclusion \(LFI\)](web-security/local-file-inclusion-lfi.md)
 * [Remote File Inclusion \(RFI\)](web-security/remote-file-inclusion-rfi.md)
 * [XSS](web-security/xss.md)
 * [SQL Injection](web-security/sql-injection.md)
 * [XXE Injection](web-security/xxe-injection.md)
 * [OS Command Injection](web-security/os-command-injection.md)
-* [Authentication Bruteforcing](web-security/authentication-bruteforcing.md)
 * [CSRF](web-security/csrf.md)
 * [SSRF](web-security/ssrf.md)
 
