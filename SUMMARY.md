@@ -17,7 +17,7 @@
 
 ## Web Security
 
-* [Local File Inclusion \(LFI\)](web-security/untitled.md)
+* [Local File Inclusion \(LFI\)](web-security/local-file-inclusion-lfi.md)
 * [Remote File Inclusion \(RFI\)](web-security/remote-file-inclusion-rfi.md)
 
 ## Forensics
