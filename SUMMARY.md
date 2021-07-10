@@ -60,6 +60,13 @@
 * [HTTP Headers](web-security/http-headers.md)
 * [HTML Injection](web-security/html-injection.md)
 * [Insecure Deserialization](web-security/insecure-deserialization.md)
+* [OAuth](web-security/oauth.md)
+* [Open Redirection](web-security/open-redirection.md)
+* [Race Condition](web-security/race-condition.md)
+* [Server Side Template Injection \(SSTI\)](web-security/server-side-template-injection-ssti.md)
+* [Web Cache Poisoning](web-security/web-cache-poisoning.md)
+* [XPATH Injection](web-security/xpath-injection.md)
+* [XSLT Injection](web-security/xslt-injection.md)
 
 ## Forensics
 
