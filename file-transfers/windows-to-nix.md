@@ -1,2 +1,2 @@
-# Windows to Linux
+# Windows to Unix/Linux
 

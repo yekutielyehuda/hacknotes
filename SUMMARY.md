@@ -13,8 +13,8 @@
 
 ## File Transfers
 
-* [Windows to Linux](file-transfers/windows-to-nix.md)
-* [Linux to Windows](file-transfers/linux-to-windows.md)
+* [Windows to Unix/Linux](file-transfers/windows-to-nix.md)
+* [Unix/Linux to Windows](file-transfers/linux-to-windows.md)
 * [Same OS File Transfer](file-transfers/same-os-file-transfer.md)
 
 ## Cloud
