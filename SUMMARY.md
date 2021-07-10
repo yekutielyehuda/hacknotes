@@ -56,7 +56,6 @@
 * [Linux Integer Overflow](exploit-development/linux-integer-overflow.md)
 * [Linux Heap Overflow](exploit-development/linux-heap-overflow.md)
 * [Windows Stack Buffer Overflow](exploit-development/windows-stack-buffer-overflow.md)
-* [Windows Pool Overflow](exploit-development/windows-pool-overflow.md)
 * [Windows Heap Overflow](exploit-development/windows-heap-overflow.md)
 * [Windows Integer Overflow](exploit-development/windows-integer-overflow.md)
 
