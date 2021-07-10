@@ -36,6 +36,7 @@
 * [Pentesting Web - 80,443](pentesting/pentesting-web-80-443.md)
 * [Pentesting Kerberos - 88](pentesting/pentesting-kerberos-88.md)
 * [Pentesting POP - 110,995](pentesting/pentesting-pop-110-995.md)
+* [Pentesting Portmapper - 111/TCP/UDP](pentesting/pentesting-portmapper-111-tcp-udp.md)
 
 ## Web Security
 
