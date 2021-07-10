@@ -51,6 +51,15 @@
 * [OS Command Injection](web-security/os-command-injection.md)
 * [CSRF](web-security/csrf.md)
 * [SSRF](web-security/ssrf.md)
+* [CRLF Injection](web-security/crlf-injection.md)
+* [CSV Injection](web-security/csv-injection.md)
+* [Directory Traversal](web-security/directory-traversal.md)
+* [File Upload](web-security/file-upload.md)
+* [Hijacking](web-security/hijacking.md)
+* [SSL Stripping](web-security/ssl-stripping.md)
+* [HTTP Headers](web-security/http-headers.md)
+* [HTML Injection](web-security/html-injection.md)
+* [Insecure Deserialization](web-security/insecure-deserialization.md)
 
 ## Forensics
 
