@@ -93,3 +93,7 @@
 
 * [Hyper-V and VM / sandbox escape](escapes/hyper-v-and-vm-sandbox-escape.md)
 
+## Exploitation
+
+* [Searching for Exploits](exploitation/searching-for-exploits.md)
+
