@@ -32,6 +32,7 @@
 * [Pentesting DNS - 53](pentesting/pentesting-dns-53.md)
 * [Pentesting DHCP - 67,68](pentesting/pentesting-dhcp-67-68.md)
 * [TFTP/Bittorrent-tracker - 69/UDP](pentesting/tftp-bittorrent-tracker-69-udp.md)
+* [Pentesting Finger - 79](pentesting/pentesting-finger-79.md)
 
 ## Web Security
 
