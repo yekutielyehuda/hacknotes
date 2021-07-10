@@ -96,4 +96,5 @@
 ## Exploitation
 
 * [Searching for Exploits](exploitation/searching-for-exploits.md)
+* [Fixing Exploits](exploitation/fixing-exploits.md)
 
