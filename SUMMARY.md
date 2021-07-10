@@ -62,3 +62,7 @@
 * [Windows Integer Overflow](exploit-development/windows-integer-overflow.md)
 * [Windows Kernel GDI Exploitation](exploit-development/windows-kernel-gdi-exploitation.md)
 
+## Escapes
+
+* [Hyper-V and VM / sandbox escape](escapes/hyper-v-and-vm-sandbox-escape.md)
+
