@@ -28,6 +28,7 @@
 * [Pentesting SSH - 22](pentesting/pentesting-ssh.md)
 * [Pentesting Telnet - 23](pentesting/pentesting-telnet-23.md)
 * [Pentesting SMTP/s - 25,465,587](pentesting/pentesting-smtp-s-25-465-587.md)
+* [Pentesting WHOIS - 43](pentesting/pentesting-whois-43.md)
 
 ## Web Security
 
