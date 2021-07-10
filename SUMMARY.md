@@ -5,7 +5,7 @@
 
 ## Linux/Unix
 
-* [Linux Privilege Escalation](linux-unix/linux-privesc.md)
+* [Linux/Unix Privilege Escalation](linux-unix/linux-privesc.md)
 
 ## Windows
 

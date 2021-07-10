@@ -1,2 +1,2 @@
-# Linux Privilege Escalation
+# Linux/Unix Privilege Escalation
 
