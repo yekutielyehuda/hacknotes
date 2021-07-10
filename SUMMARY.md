@@ -53,5 +53,7 @@
 ## Exploit Development
 
 * [Linux Stack Buffer Overflow](exploit-development/linux-stack-bof.md)
+* [Linux Integer Overflow](exploit-development/linux-integer-overflow.md)
+* [Linux Heap Overflow](exploit-development/linux-heap-overflow.md)
 * [Windows Stack Buffer Overflow](exploit-development/windows-stack-buffer-overflow.md)
 
