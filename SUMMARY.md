@@ -17,9 +17,16 @@
 * [Linux to Windows](file-transfers/linux-to-windows.md)
 * [Same OS File Transfer](file-transfers/same-os-file-transfer.md)
 
+## Cloud
+
+* [Azure](cloud/azure.md)
+* [AWS](cloud/aws.md)
+
 ## Pentesting
 
+* [Pentesting FTP - 21](pentesting/pentesting-ftp-21.md)
 * [Pentesting SSH - 22](pentesting/pentesting-ssh.md)
+* [Pentesting Telnet - 23](pentesting/pentesting-telnet-23.md)
 
 ## Web Security
 
