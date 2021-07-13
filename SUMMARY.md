@@ -106,4 +106,5 @@
 ## Active Directory
 
 * [Active Directory Domain Enumeration](active-directory/active-directory-domain-enumeration.md)
+* [Active Directory Lateral Movement](active-directory/active-directory-lateral-movement.md)
 
