@@ -17,6 +17,14 @@
 * [Unix/Linux to Windows](file-transfers/linux-to-windows.md)
 * [Same OS File Transfer](file-transfers/same-os-file-transfer.md)
 
+## Active Directory
+
+* [Active Directory Domain Enumeration](active-directory/active-directory-domain-enumeration.md)
+* [Active Directory Lateral Movement](active-directory/active-directory-lateral-movement.md)
+* [Active Directory Domain Privilege Escalation](active-directory/active-directory-domain-privilege-escalation.md)
+* [Active Directory Domain Persistence](active-directory/active-directory-domain-persistence.md)
+* [Active Directory Cross Forest Attacks](active-directory/active-directory-cross-forest-attacks.md)
+
 ## Cloud
 
 * [Azure](cloud/azure.md)
@@ -102,12 +110,4 @@
 * [Searching for Exploits](exploitation/searching-for-exploits.md)
 * [Fixing Exploits](exploitation/fixing-exploits.md)
 * [Cross-Compiling Exploits](exploitation/cross-compiling-exploits.md)
-
-## Active Directory
-
-* [Active Directory Domain Enumeration](active-directory/active-directory-domain-enumeration.md)
-* [Active Directory Lateral Movement](active-directory/active-directory-lateral-movement.md)
-* [Active Directory Domain Privilege Escalation](active-directory/active-directory-domain-privilege-escalation.md)
-* [Active Directory Domain Persistence](active-directory/active-directory-domain-persistence.md)
-* [Active Directory Cross Forest Attacks](active-directory/active-directory-cross-forest-attacks.md)
 
