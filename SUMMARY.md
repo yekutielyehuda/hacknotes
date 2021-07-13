@@ -23,6 +23,17 @@
 * [Unix/Linux to Windows](file-transfers/linux-to-windows.md)
 * [Same OS File Transfer](file-transfers/same-os-file-transfer.md)
 
+## Port Redirection & Tunneling
+
+* [Port Redirection](port-redirection-and-tunneling/port-redirection.md)
+* [Tunneling](port-redirection-and-tunneling/tunneling.md)
+
+## Pivoting
+
+* [Pivoting in Windows](pivoting/pivoting-in-windows.md)
+* [Pivoting on Unix/Linux](pivoting/pivoting-on-unix-linux.md)
+* [Pivoting Everywhere](pivoting/pivoting-everywhere.md)
+
 ## Active Directory
 
 * [Active Directory Domain Enumeration](active-directory/active-directory-domain-enumeration.md)
@@ -112,9 +123,4 @@
 ## Escapes
 
 * [Hyper-V and VM / sandbox escape](escapes/hyper-v-and-vm-sandbox-escape.md)
-
-## Port Redirection & Tunneling
-
-* [Port Redirection](port-redirection-and-tunneling/port-redirection.md)
-* [Tunneling](port-redirection-and-tunneling/tunneling.md)
 
