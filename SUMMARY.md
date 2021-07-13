@@ -84,6 +84,7 @@
 ## Reversing
 
 * [Debuggers](reversing/debuggers.md)
+* [Deobfuscating](reversing/deobfuscating.md)
 
 ## Exploit Development
 
