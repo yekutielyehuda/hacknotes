@@ -79,10 +79,12 @@
 
 ## Exploit Development
 
+* [Linux Fuzzing Binaries](exploit-development/linux-fuzzing-binaries.md)
 * [Linux Stack Buffer Overflow](exploit-development/linux-stack-bof.md)
 * [Linux Heap Overflow](exploit-development/linux-heap-overflow.md)
 * [Linux Integer Overflow](exploit-development/linux-integer-overflow.md)
 * [Linux Pool Overflow](exploit-development/linux-pool-overflow.md)
+* [Windows Fuzzing Binaries](exploit-development/windows-fuzzing-binaries.md)
 * [Windows Stack Buffer Overflow](exploit-development/windows-stack-buffer-overflow.md)
 * [Windows Heap Overflow](exploit-development/windows-heap-overflow.md)
 * [Windows Pool Overflow](exploit-development/windows-pool-overflow.md)
