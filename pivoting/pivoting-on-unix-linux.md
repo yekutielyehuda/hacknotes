@@ -1,2 +1,2 @@
-# Pivoting on Unix/Linux
+# Pivoting in Unix/Linux
 
