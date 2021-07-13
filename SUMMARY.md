@@ -113,3 +113,7 @@
 
 * [Hyper-V and VM / sandbox escape](escapes/hyper-v-and-vm-sandbox-escape.md)
 
+## Port Redirection & Tunneling
+
+* [Port Redirection](port-redirection-and-tunneling/port-redirection.md)
+
