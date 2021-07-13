@@ -85,6 +85,7 @@
 
 * [Debuggers](reversing/debuggers.md)
 * [Deobfuscating](reversing/deobfuscating.md)
+* [Unpacking](reversing/unpacking.md)
 
 ## Exploit Development
 
