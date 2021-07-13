@@ -33,6 +33,8 @@ Quick explanation
 
 ## Remediation or Mitigation
 
+Steps to remove/fix the vulnerability.
+
 ## References
 
 - [Blog tit
