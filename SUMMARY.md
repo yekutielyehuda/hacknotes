@@ -111,6 +111,7 @@
 * [Linux Heap Overflow](exploit-development/linux-heap-overflow.md)
 * [Linux Integer Overflow](exploit-development/linux-integer-overflow.md)
 * [Linux Pool Overflow](exploit-development/linux-pool-overflow.md)
+* [Linux Bypass Protections](exploit-development/linux-bypass-protections.md)
 * [Windows Fuzzing Binaries](exploit-development/windows-fuzzing-binaries.md)
 * [Windows Stack Buffer Overflow](exploit-development/windows-stack-buffer-overflow.md)
 * [Windows Heap Overflow](exploit-development/windows-heap-overflow.md)
@@ -119,6 +120,7 @@
 * [Windows SEH Overflow](exploit-development/windows-seh-overflow.md)
 * [Windows Kernel GDI Exploitation](exploit-development/windows-kernel-gdi-exploitation.md)
 * [Windows EggHunting](exploit-development/windows-egghunting.md)
+* [Windows Bypass Protections](exploit-development/windows-bypass-protections.md)
 
 ## Escapes
 
