@@ -89,6 +89,7 @@
 * [Windows Heap Overflow](exploit-development/windows-heap-overflow.md)
 * [Windows Pool Overflow](exploit-development/windows-pool-overflow.md)
 * [Windows Integer Overflow](exploit-development/windows-integer-overflow.md)
+* [Windows SEH Overflow](exploit-development/windows-seh-overflow.md)
 * [Windows Kernel GDI Exploitation](exploit-development/windows-kernel-gdi-exploitation.md)
 * [Windows EggHunting](exploit-development/windows-egghunting.md)
 
