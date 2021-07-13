@@ -11,6 +11,12 @@
 
 * [Windows Privilege Escalation](windows/windows-privesc.md)
 
+## Exploitation
+
+* [Searching for Exploits](exploitation/searching-for-exploits.md)
+* [Fixing Exploits](exploitation/fixing-exploits.md)
+* [Cross-Compiling Exploits](exploitation/cross-compiling-exploits.md)
+
 ## File Transfers
 
 * [Windows to Unix/Linux](file-transfers/windows-to-nix.md)
@@ -106,10 +112,4 @@
 ## Escapes
 
 * [Hyper-V and VM / sandbox escape](escapes/hyper-v-and-vm-sandbox-escape.md)
-
-## Exploitation
-
-* [Searching for Exploits](exploitation/searching-for-exploits.md)
-* [Fixing Exploits](exploitation/fixing-exploits.md)
-* [Cross-Compiling Exploits](exploitation/cross-compiling-exploits.md)
 
