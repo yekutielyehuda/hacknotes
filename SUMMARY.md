@@ -47,26 +47,26 @@
 * [Remote File Inclusion \(RFI\)](web-security/remote-file-inclusion-rfi.md)
 * [Cross Site Scripting \(XSS\)](web-security/xss.md)
 * [SQL Injection](web-security/sql-injection.md)
+* [Server Side Template Injection \(SSTI\)](web-security/server-side-template-injection-ssti.md)
 * [XML External Entity \(XXE Injection\)](web-security/xxe-injection.md)
 * [OS Command Injection](web-security/os-command-injection.md)
-* [Cross Site Request Forgery \(CSRF\)](web-security/csrf.md)
-* [Server Side Request Forgery \(SSRF\)](web-security/ssrf.md)
 * [CRLF Injection](web-security/crlf-injection.md)
 * [CSV Injection](web-security/csv-injection.md)
+* [XPATH Injection](web-security/xpath-injection.md)
+* [XSLT Injection](web-security/xslt-injection.md)
+* [HTML Injection](web-security/html-injection.md)
+* [Cross Site Request Forgery \(CSRF\)](web-security/csrf.md)
+* [Server Side Request Forgery \(SSRF\)](web-security/ssrf.md)
 * [Directory Traversal](web-security/directory-traversal.md)
 * [File Upload](web-security/file-upload.md)
 * [Hijacking](web-security/hijacking.md)
 * [SSL Stripping](web-security/ssl-stripping.md)
 * [HTTP Headers](web-security/http-headers.md)
-* [HTML Injection](web-security/html-injection.md)
 * [Insecure Deserialization](web-security/insecure-deserialization.md)
 * [OAuth](web-security/oauth.md)
 * [Open Redirection](web-security/open-redirection.md)
 * [Race Condition](web-security/race-condition.md)
-* [Server Side Template Injection \(SSTI\)](web-security/server-side-template-injection-ssti.md)
 * [Web Cache Poisoning](web-security/web-cache-poisoning.md)
-* [XPATH Injection](web-security/xpath-injection.md)
-* [XSLT Injection](web-security/xslt-injection.md)
 
 ## Forensics
 
@@ -88,6 +88,7 @@
 * [Windows Pool Overflow](exploit-development/windows-pool-overflow.md)
 * [Windows Integer Overflow](exploit-development/windows-integer-overflow.md)
 * [Windows Kernel GDI Exploitation](exploit-development/windows-kernel-gdi-exploitation.md)
+* [Windows EggHunting](exploit-development/windows-egghunting.md)
 
 ## Escapes
 
