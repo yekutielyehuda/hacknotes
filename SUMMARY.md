@@ -67,7 +67,7 @@
 ## Web Security
 
 * [Web Fuzzing](web-security/web-fuzzing.md)
-* [Authentication Bruteforcing](web-security/authentication-bruteforcing.md)
+* [Authentication Attacks](web-security/authentication-attacks.md)
 * [Local File Inclusion \(LFI\)](web-security/local-file-inclusion-lfi.md)
 * [Remote File Inclusion \(RFI\)](web-security/remote-file-inclusion-rfi.md)
 * [Cross Site Scripting \(XSS\)](web-security/xss.md)
