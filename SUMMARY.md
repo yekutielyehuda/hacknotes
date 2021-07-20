@@ -67,6 +67,8 @@
 ## Web Security
 
 * [Web Applications](web-security/web-applications/README.md)
+  * [Jenkins](web-security/web-applications/jenkins.md)
+  * [Apache Tomcat](web-security/web-applications/apache-tomcat.md)
   * [CMS Softwares](web-security/web-applications/cms-softwares/README.md)
     * [Mambo](web-security/web-applications/cms-softwares/mambo.md)
     * [CMS Made Simple](web-security/web-applications/cms-softwares/cms-made-simple.md)
