@@ -106,6 +106,7 @@
 * [Deobfuscating](reversing/deobfuscating.md)
 * [Unpacking](reversing/unpacking.md)
 * [Cracking Binaries](reversing/cracking-binaries.md)
+* [Cracking Protections](reversing/cracking-protections.md)
 
 ## Exploit Development
 
