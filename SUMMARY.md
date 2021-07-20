@@ -67,9 +67,15 @@
 ## Web Security
 
 * [Web Applications](web-security/web-applications/README.md)
+  * [ServiceDesk Plus](web-security/web-applications/servicedesk-plus.md)
+  * [Adobe ColdFusion](web-security/web-applications/adobe-coldfusion.md)
+  * [playSMS](web-security/web-applications/playsms.md)
+  * [PRTG Network Monitor](web-security/web-applications/prtg-network-monitor.md)
+  * [GitLab](web-security/web-applications/gitlab.md)
   * [Jenkins](web-security/web-applications/jenkins.md)
   * [Apache Tomcat](web-security/web-applications/apache-tomcat.md)
   * [CMS Softwares](web-security/web-applications/cms-softwares/README.md)
+    * [Bludit](web-security/web-applications/cms-softwares/bludit.md)
     * [Mambo](web-security/web-applications/cms-softwares/mambo.md)
     * [CMS Made Simple](web-security/web-applications/cms-softwares/cms-made-simple.md)
     * [October](web-security/web-applications/cms-softwares/october.md)
