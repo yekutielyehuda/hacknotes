@@ -67,7 +67,17 @@
 ## Web Security
 
 * [Web Applications](web-security/web-applications/README.md)
-  * [CMS Softwares](web-security/web-applications/cms-softwares.md)
+  * [CMS Softwares](web-security/web-applications/cms-softwares/README.md)
+    * [Mambo](web-security/web-applications/cms-softwares/mambo.md)
+    * [CMS Made Simple](web-security/web-applications/cms-softwares/cms-made-simple.md)
+    * [October](web-security/web-applications/cms-softwares/october.md)
+    * [Bolt](web-security/web-applications/cms-softwares/bolt.md)
+    * [Umbraco](web-security/web-applications/cms-softwares/umbraco.md)
+    * [SharePoint](web-security/web-applications/cms-softwares/sharepoint.md)
+    * [Magento](web-security/web-applications/cms-softwares/magento.md)
+    * [Joomla](web-security/web-applications/cms-softwares/joomla.md)
+    * [Drupal](web-security/web-applications/cms-softwares/drupal.md)
+    * [WordPress](web-security/web-applications/cms-softwares/wordpress.md)
 * [Web Fuzzing](web-security/web-fuzzing.md)
 * [Authentication Attacks](web-security/authentication-attacks.md)
 * [Local File Inclusion \(LFI\)](web-security/local-file-inclusion-lfi.md)
