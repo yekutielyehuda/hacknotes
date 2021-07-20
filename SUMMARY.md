@@ -4,6 +4,12 @@
 * [About the author](about-the-author.md)
 * [Donate](donate.md)
 
+## Shells
+
+* [Windows Shells](shells/windows-shells.md)
+* [Unix/Linux Shells](shells/unix-linux-shells.md)
+* [Web Shells](shells/web-shells.md)
+
 ## Linux/Unix
 
 * [Linux/Unix Privilege Escalation](linux-unix/linux-privesc.md)
@@ -17,6 +23,13 @@
 * [Searching for Exploits](exploitation/searching-for-exploits.md)
 * [Fixing Exploits](exploitation/fixing-exploits.md)
 * [Cross-Compiling Exploits](exploitation/cross-compiling-exploits.md)
+
+## Common Exploits
+
+* [EternalBlue](common-exploits/eternalblue.md)
+* [ShellShock](common-exploits/shellshock.md)
+* [Padding Oracle Attack](common-exploits/padding-oracle-attack.md)
+* [PHP CGI Exploitation](common-exploits/php-cgi-exploitation.md)
 
 ## File Transfers
 
