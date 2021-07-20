@@ -66,6 +66,11 @@
 
 ## Web Security
 
+* [Web Services](web-security/web-services/README.md)
+  * [Apache](web-security/web-services/apache.md)
+  * [Nginx](web-security/web-services/nginx.md)
+  * [IIS](web-security/web-services/iis.md)
+  * [HTTPFileServer HFS](web-security/web-services/httpfileserver-hfs.md)
 * [Web Applications](web-security/web-applications/README.md)
   * [ServiceDesk Plus](web-security/web-applications/servicedesk-plus.md)
   * [Adobe ColdFusion](web-security/web-applications/adobe-coldfusion.md)
