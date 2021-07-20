@@ -83,6 +83,7 @@
 
 * [HTTP Headers](web-security/http-headers.md)
 * [HTTP Headers Attacks](web-security/http-headers-attacks.md)
+* [Web APIs](web-security/web-apis.md)
 * [Web Services](web-security/web-services/README.md)
   * [Apache](web-security/web-services/apache.md)
   * [Nginx](web-security/web-services/nginx.md)
