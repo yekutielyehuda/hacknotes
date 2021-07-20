@@ -105,6 +105,7 @@
 * [Debuggers](reversing/debuggers.md)
 * [Deobfuscating](reversing/deobfuscating.md)
 * [Unpacking](reversing/unpacking.md)
+* [Cracking Binaries](reversing/cracking-binaries.md)
 
 ## Exploit Development
 
