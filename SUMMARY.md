@@ -183,3 +183,7 @@
 * [Escaping Kiosk](escapes/escaping-kiosk.md)
 * [Escaping Restricted Shells](escapes/escaping-restricted-shells.md)
 
+## Cryptography
+
+* [Encryption/Decryption](cryptography/encryption-decryption.md)
+
