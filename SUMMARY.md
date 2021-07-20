@@ -135,6 +135,7 @@
 * [Cracking Binaries](reversing/cracking-binaries.md)
 * [Cracking Protections](reversing/cracking-protections.md)
 * [Keygen & Protections](reversing/keygen-and-protections.md)
+* [Hex Editors](reversing/hex-editors.md)
 
 ## Exploit Development
 
