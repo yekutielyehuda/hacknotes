@@ -186,4 +186,5 @@
 ## Cryptography
 
 * [Encryption/Decryption](cryptography/encryption-decryption.md)
+* [Ciphers and Codes](cryptography/ciphers-and-codes.md)
 
