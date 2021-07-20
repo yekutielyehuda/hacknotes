@@ -66,8 +66,9 @@
 
 ## Web Security
 
+* [Web Applications](web-security/web-applications/README.md)
+  * [CMS Softwares](web-security/web-applications/cms-softwares.md)
 * [Web Fuzzing](web-security/web-fuzzing.md)
-* [Web Applications](web-security/web-applications.md)
 * [Authentication Attacks](web-security/authentication-attacks.md)
 * [Local File Inclusion \(LFI\)](web-security/local-file-inclusion-lfi.md)
 * [Remote File Inclusion \(RFI\)](web-security/remote-file-inclusion-rfi.md)
