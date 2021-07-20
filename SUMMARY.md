@@ -132,6 +132,7 @@
 * [Unpacking](reversing/unpacking.md)
 * [Cracking Binaries](reversing/cracking-binaries.md)
 * [Cracking Protections](reversing/cracking-protections.md)
+* [Keygen & Protections](reversing/keygen-and-protections.md)
 
 ## Exploit Development
 
