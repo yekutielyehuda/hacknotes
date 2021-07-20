@@ -111,6 +111,7 @@
     * [Drupal](web-security/web-applications/cms-softwares/drupal.md)
     * [WordPress](web-security/web-applications/cms-softwares/wordpress.md)
 * [Web Fuzzing](web-security/web-fuzzing.md)
+* [Bypassing WAF](web-security/bypassing-waf.md)
 * [Authentication Attacks](web-security/authentication-attacks.md)
 * [Local File Inclusion \(LFI\)](web-security/local-file-inclusion-lfi.md)
 * [Remote File Inclusion \(RFI\)](web-security/remote-file-inclusion-rfi.md)
