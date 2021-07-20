@@ -73,6 +73,8 @@
   * [IIS](web-security/web-services/iis.md)
   * [HTTPFileServer HFS](web-security/web-services/httpfileserver-hfs.md)
 * [Web Applications](web-security/web-applications/README.md)
+  * [osTicket](web-security/web-applications/osticket.md)
+  * [Nibbleblog](web-security/web-applications/nibbleblog.md)
   * [LiteCart](web-security/web-applications/litecart.md)
   * [ServiceDesk Plus](web-security/web-applications/servicedesk-plus.md)
   * [Adobe ColdFusion](web-security/web-applications/adobe-coldfusion.md)
