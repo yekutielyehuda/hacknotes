@@ -28,6 +28,7 @@
 
 * [EternalBlue](common-exploits/eternalblue.md)
 * [ShellShock](common-exploits/shellshock.md)
+* [Heartbleed](common-exploits/heartbleed.md)
 * [Padding Oracle Attack](common-exploits/padding-oracle-attack.md)
 * [PHP CGI Exploitation](common-exploits/php-cgi-exploitation.md)
 
