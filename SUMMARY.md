@@ -67,6 +67,7 @@
 
 ## Web Security
 
+* [HTTP Headers](web-security/http-headers.md)
 * [HTTP Headers Attacks](web-security/http-headers-attacks.md)
 * [Web Services](web-security/web-services/README.md)
   * [Apache](web-security/web-services/apache.md)
@@ -116,7 +117,6 @@
 * [File Upload](web-security/file-upload.md)
 * [Hijacking](web-security/hijacking.md)
 * [SSL Stripping](web-security/ssl-stripping.md)
-* [HTTP Headers](web-security/http-headers.md)
 * [Insecure Deserialization](web-security/insecure-deserialization.md)
 * [OAuth](web-security/oauth.md)
 * [Open Redirection](web-security/open-redirection.md)
