@@ -97,6 +97,8 @@
 
 * [Memory](forensics/forensics-mem.md)
 * [Disk Images](forensics/disk-images.md)
+* [Metadata](forensics/metadata.md)
+* [Steganography](forensics/steganography.md)
 
 ## Reversing
 
