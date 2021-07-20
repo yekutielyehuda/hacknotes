@@ -129,6 +129,7 @@
 ## Reversing
 
 * [Debuggers](reversing/debuggers.md)
+* [Disassemblers](reversing/disassemblers.md)
 * [Deobfuscating](reversing/deobfuscating.md)
 * [Unpacking](reversing/unpacking.md)
 * [Cracking Binaries](reversing/cracking-binaries.md)
