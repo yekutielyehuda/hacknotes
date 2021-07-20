@@ -88,6 +88,8 @@
   * [IIS](web-security/web-services/iis.md)
   * [HTTPFileServer HFS](web-security/web-services/httpfileserver-hfs.md)
 * [Web Applications](web-security/web-applications/README.md)
+  * [Kibana](web-security/web-applications/kibana.md)
+  * [Webmin](web-security/web-applications/webmin.md)
   * [osTicket](web-security/web-applications/osticket.md)
   * [Nibbleblog](web-security/web-applications/nibbleblog.md)
   * [LiteCart](web-security/web-applications/litecart.md)
