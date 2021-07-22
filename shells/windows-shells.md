@@ -1,5 +1,11 @@
 # Windows Shells
 
+## Shellgen
+
+Shellgen is a tool that generates bind shells and reverse shells, it can help you when choosing a shell:
+
+{% embed url="https://github.com/wixnic/shellgen" %}
+
 ## Bind Shells
 
 ### PowerCat
