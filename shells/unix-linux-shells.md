@@ -2,7 +2,7 @@
 
 ## Shellgen
 
-Shellgen is a tool that generates bind shells and reverse shell it can help you when choosing a shell:
+Shellgen is a tool that generates bind shells and reverse shells, it can help you when choosing a shell:
 
 {% embed url="https://github.com/wixnic/shellgen" %}
 
