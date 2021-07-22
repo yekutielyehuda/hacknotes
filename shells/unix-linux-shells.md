@@ -341,10 +341,14 @@ main() {
 
 We can enable a full TTY/PTY shell with the following commands
 
-In a reverse shell initiate a bash shell:
+In a reverse shell initiate a bash shell \(choose one of the following, the idea is to spawn a bash shell\):
 
 ```text
 script /dev/null -c bash
+python -c 'import pty; pty.spawn("/bin/bash")'
+echo os.system('/bin/bash')
+/bin/bash -i
+perl —e 'exec "/bin/bash";'
 ```
 
 Hit Ctrl+Z to get out of the shell and leave it running in the background, then in your console set TTY.
