@@ -10,6 +10,7 @@
 * [Unix/Linux Shells](shells/unix-linux-shells.md)
 * [Web Shells](shells/web-shells.md)
 * [Netcat Tips](shells/netcat-tips.md)
+* [Msfvenom](shells/msfvenom.md)
 
 ## Linux/Unix
 
