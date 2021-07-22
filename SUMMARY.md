@@ -9,6 +9,7 @@
 * [Windows Shells](shells/windows-shells.md)
 * [Unix/Linux Shells](shells/unix-linux-shells.md)
 * [Web Shells](shells/web-shells.md)
+* [Netcat Tips](shells/netcat-tips.md)
 
 ## Linux/Unix
 
