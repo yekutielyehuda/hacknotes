@@ -1,6 +1,6 @@
 # Bypassing AV
 
-### Veil Framework: <a id="veil-framework"></a>
+### Veil Framework <a id="veil-framework"></a>
 
 Install on Kali:
 
