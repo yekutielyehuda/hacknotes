@@ -20,6 +20,10 @@
 
 * [Windows Privilege Escalation](windows/windows-privesc.md)
 
+## Bypass AV/IDS/IPS
+
+* [Bypassing AV](bypass-av-ids-ips/bypassing-av.md)
+
 ## Exploitation
 
 * [Searching for Exploits](exploitation/searching-for-exploits.md)
