@@ -78,6 +78,7 @@
 * [Pentesting POP - 110,995](pentesting/pentesting-pop-110-995.md)
 * [Pentesting Portmapper - 111/TCP/UDP](pentesting/pentesting-portmapper-111-tcp-udp.md)
 * [Pentesting Ident - 113](pentesting/pentesting-ident-113.md)
+* [Pentesting SMB - 139/445](pentesting/pentesting-smb-139-445.md)
 
 ## Web Security
 
