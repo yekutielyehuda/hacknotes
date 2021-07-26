@@ -8,9 +8,12 @@ I do not own every content of this book, some of the information here was copied
 
 I'm just a tech who likes sharing, researching, pentesting, playing CTFs and pretty much everything that keeps me hooked for hours like skateboarding.
 
-* I have a Bachelor's Degree in **Information Technology, Networks and Security**
-* Certifications: Linux+, Network+, and working on getting the **OSCP**.
+* Bachelor's Degree in **Information Technology, Networks and Security**
 * I'm bilingual, I speak **Spanish** and **English**.
+* Certifications: 
+  * OSCP \(Soon\)
+  * Linux+
+  * Network+
 
 
 
