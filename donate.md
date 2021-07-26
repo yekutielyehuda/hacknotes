@@ -1,6 +1,6 @@
 # Donate
 
-## Donate with coins
+## Donate with cryptocurrency
 
 If you want to donate with coins, I have these options:
 
