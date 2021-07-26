@@ -1,5 +1,7 @@
 # About the author
 
+## Introduction
+
 My name is **Yadiel Reyes**.
 
 I do not own every content of this book, some of the information here was copied from other resources that's why I always make reference to them to give them credits to the original author's. 
@@ -14,6 +16,20 @@ I'm just a tech who likes sharing, researching, pentesting, playing CTFs and pre
   * OSCP \(Soon\)
   * Linux+
   * Network+
+
+## Hobbies
+
+I enjoy doing different things besides IT stuff.
+
+**Indoor:**
+
+* Video Editing
+* Blogging
+* Content Creation 
+
+**Outdoor:**
+
+* Skateboarding
 
 
 
