@@ -2,7 +2,7 @@
 
 ## Donate with cryptocurrency
 
-If you want to donate with coins, I have these options:
+If you want to donate with crypto, I have these options:
 
 * Ethereum:
 * Bitcoin:
