@@ -16,7 +16,7 @@ We can use emails to convince users to do an action for us like clicking on a ma
 
 Swaks - Swiss Army Knife for SMTP
 
-We can emails with [swaks ](https://github.com/jetmore/swaks)like this:
+We can email with [swaks ](https://github.com/jetmore/swaks)like this:
 
 ```text
 swaks --to $(cat emails.txt | tr '\n' ',' | less) --from test@sneakymailer.htb --header "Subject: test" --body "please click here http://10.10.14.42/" --server 10.10.10.197
