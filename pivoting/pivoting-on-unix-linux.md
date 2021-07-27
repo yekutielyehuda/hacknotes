@@ -169,6 +169,17 @@ ssh -R [bindaddr]:[port]:[localhost]:[localport] [user]@[host]
 ssh -R 3389:10.1.1.224:3389 root@10.11.0.32
 ```
 
+### Proxychains
+
+**Config file**: /etc/proxychains.conf
+
+```text
+[ProxyList]
+socks4 localhost 8080
+```
+
+Set the SOCKS4 proxy then `proxychains nmap -sT 192.168.5.6`
+
 
 
 
