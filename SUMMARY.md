@@ -57,7 +57,6 @@
 
 * [Pivoting in Windows](pivoting/pivoting-in-windows.md)
 * [Pivoting in Unix/Linux](pivoting/pivoting-on-unix-linux.md)
-* [Pivoting Everywhere](pivoting/pivoting-everywhere.md)
 
 ## Active Directory
 
