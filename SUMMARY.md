@@ -50,8 +50,7 @@
 
 ## Port Redirection & Tunneling
 
-* [Port Redirection](port-redirection-and-tunneling/port-redirection.md)
-* [Tunneling](port-redirection-and-tunneling/tunneling.md)
+* [Port Redirection & Tunneling](port-redirection-and-tunneling/port-redirection.md)
 
 ## Pivoting
 
