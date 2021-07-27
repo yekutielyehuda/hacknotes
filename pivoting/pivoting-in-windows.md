@@ -15,7 +15,7 @@ Get-NetIPConfiguration
 
 ## Pivoting with netsh
 
-Netsh is a command-line scripting utility that allows you to display or modify the network configuration of a computer that is currently running. Netsh commands can be run by typing commands at the netsh prompt and they can be used in batch files or scripts. Remote computers and the local computer can be configured by using netsh commands.
+[Netsh ](https://docs.microsoft.com/en-us/windows-server/networking/technologies/netsh/netsh-contexts#:~:text=Netsh%20is%20a%20command%2Dline,in%20batch%20files%20or%20scripts.)is a command-line scripting utility that allows you to display or modify the network configuration of a computer that is currently running. Netsh commands can be run by typing commands at the netsh prompt and they can be used in batch files or scripts. Remote computers and the local computer can be configured by using netsh commands.
 
  We can use netsh to forward ports:
 
