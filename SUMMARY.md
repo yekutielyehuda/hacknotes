@@ -72,6 +72,7 @@
 
 ## Pentesting
 
+* [Pentesting Echo - 7/TCP/UDP](pentesting/pentesting-echo-7-tcp-udp.md)
 * [Pentesting FTP - 21](pentesting/pentesting-ftp-21.md)
 * [Pentesting SSH/SFTP - 22](pentesting/pentesting-ssh.md)
 * [Pentesting Telnet - 23](pentesting/pentesting-telnet-23.md)
