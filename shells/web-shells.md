@@ -2,16 +2,16 @@
 
 ## WebShells
 
-WebShells are simply shells that the user can interact with on a web interface, however we can build our own malicious shells to gain remote code execution or access to the target system.
+WebShells are simply shells that the user can interact with on a web interface, however, we can build our own malicious shells to gain remote code execution or access to the target system.
 
 ### PHP WebShells
 
-We can use some built-in functions to execute a shell, however you may want to [read this](https://stackoverflow.com/questions/1924939/among-request-get-and-post-which-one-is-the-fastest) first if you're not sure which request method to use.
+We can use some built-in functions to execute a shell, however, you may want to [read this](https://stackoverflow.com/questions/1924939/among-request-get-and-post-which-one-is-the-fastest) first if you're not sure which request method to use.
 
 Basically:
 
-* You should use `$_GET` when someone is requesting data **from** the application.
-* You should use `$_POST` when someone is pushing _\(inserting or updating ; or deleting\)_ data **to** the application.
+* You should use the method `$_GET` when someone is requesting data **from** the application.
+* You should use the method `$_POST` when someone is pushing _\(inserting or updating ; or deleting\)_ data **to** the application.
 
 system\(\):
 

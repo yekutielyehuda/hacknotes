@@ -2,7 +2,7 @@
 
 ## rlwrap
 
-We can use rlwrap to enable better movement in a nc shell:
+We can use rlwrap to enable better movement in an nc shell:
 
 Linux:
 

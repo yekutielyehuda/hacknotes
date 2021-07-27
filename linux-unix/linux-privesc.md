@@ -29,7 +29,7 @@ find / -name base64
 
 ### Operating System 
 
-Enumerate the system distribution type and it's version:
+Enumerate the system distribution type and its version:
 
 ```text
 (cat /proc/version || uname -a ) 2>/dev/null
@@ -123,15 +123,15 @@ rpm -qa | grep program_name #Redhat
 
 ### Process Monitoring
 
-We can use [pspy ](https://github.com/DominicBreuker/pspy)to dynamically monitor the processes are running in the system. Pspy is designed to snoop on processes without need for root permissions. It allows you to see commands run by other users, cron jobs, etc. as they execute. 
+We can use [pspy ](https://github.com/DominicBreuker/pspy)to dynamically monitor the processes are running in the system. Pspy is designed to snoop on processes without the need for root permissions. It allows you to see commands run by other users, cron jobs, etc. as they execute. 
 
 ### Process Memory
 
-Some services store credentials in plaintext in memory. Since the standard behaviour is that low privileged users cannot read data from other users, this technique is most likely to be used when you're a root user but when your current user own the process that contains the sensitive information then you can read it since your user own it.
+Some services store credentials in plaintext in memory. Since the standard behavior is that low privileged users cannot read data from other users, this technique is most likely to be used when you're a root user but when your current user owns the process that contains the sensitive information then you can read since your user owns it.
 
 #### Credentials in Memory
 
-We can lookup for case insensitive strings in a process as follows:
+We can look up for case insensitive strings in a process as follows:
 
 ```text
 strings process_name | grep -i password
@@ -185,7 +185,7 @@ cat /opt/lampp/etc/httpd.conf
 
 ### Writable .service files
 
-Enumerate if you have `.service` files that you could modify so it executes a shell when the service is started, restarted or stopped. Sometimes you may need to reboot the machine. 
+Enumerate if you have `.service` files that you could modify so it executes a shell when the service is started, restarted, or stopped. Sometimes you may need to reboot the machine. 
 
 Enumerating `.service` files in the host:
 
@@ -247,7 +247,7 @@ Some things to take into consideration are:
 
 If a cron job program/script does **not use an absolute path**, and one of the PATH directories is **writable** by our user, we may be able to create a script with the same name as the cron job.
 
-One way we can take exploit this by doing a SUID bit on bash:
+One way we can take exploit this is by doing a SUID bit on bash:
 
 ```text
 #!/bin/bash
@@ -282,17 +282,17 @@ Enumerate wildcards `*` in a file/script:
 cat /path/to/cronjob_script.sh
 ```
 
-If inside the script there's a line using a a wildcard `*` like the following:
+If inside the script there's a line using a wildcard `*` like the following:
 
 ```text
 tar czf /tmp/filename.tar.gz *
 ```
 
-With wildcards we can execute anything and since that's the case then we can search in [GTFOBins](https://gtfobins.github.io/) for program, in this scenario `tar` and see what we can do, for example executing a shell.
+With wildcards, we can execute anything and since that's the case then we can search in [GTFOBins](https://gtfobins.github.io/) for a program, in this scenario `tar` and see what we can do, for example executing a shell.
 
 ### Cron Script Overwrite
 
-If you have **permissions to modify a cron script executed by root**, then you can elevate privileges easily:
+If you have **permission to modify a cron script executed by root**, then you can elevate privileges easily:
 
 ```bash
 echo 'cp /bin/bash /tmp/rootbash; chmod +s /tmp/rootbash' > /path/to/cron/script
