@@ -41,7 +41,7 @@ SharpShooter.py --payload vbs --delivery both --output foo --web http://www.foo.
 
 Reference: [https://github.com/mdsecactivebreach/SharpShooter](https://github.com/mdsecactivebreach/SharpShooter)
 
-### Donut: <a id="donut"></a>
+### Donut <a id="donut"></a>
 
 Source: [https://github.com/TheWover/donut](https://github.com/TheWover/donut)
 
