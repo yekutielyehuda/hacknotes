@@ -38,6 +38,10 @@
 * [Padding Oracle Attack](common-exploits/padding-oracle-attack.md)
 * [PHP CGI Exploitation](common-exploits/php-cgi-exploitation.md)
 
+## Client-Side Attacks
+
+* [Phishing](client-side-attacks/phishing.md)
+
 ## File Transfers
 
 * [Windows to Unix/Linux](file-transfers/windows-to-nix.md)
