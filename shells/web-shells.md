@@ -13,6 +13,8 @@ Basically:
 * You should use the method `$_GET` when someone is requesting data **from** the application.
 * You should use the method `$_POST` when someone is pushing _\(inserting or updating ; or deleting\)_ data **to** the application.
 
+In order for these functions to work, they must be enabled in the `php.ini` configuration file.
+
 system\(\):
 
 ```php
