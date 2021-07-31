@@ -172,6 +172,7 @@
   * [phpMyAdmin](web-security/web-control-panels/phpmyadmin.md)
   * [Adminer](web-security/web-control-panels/adminer.md)
 * [Web Applications](web-security/web-applications/README.md)
+  * [HelpdeskZ](web-security/web-applications/helpdeskz.md)
   * [Node-RED](web-security/web-applications/node-red.md)
   * [Centreon](web-security/web-applications/centreon.md)
   * [Pi-hole](web-security/web-applications/pi-hole.md)
