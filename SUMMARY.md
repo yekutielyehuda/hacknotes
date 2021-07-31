@@ -42,6 +42,7 @@
 
 * [Phishing](client-side-attacks/phishing.md)
 * [Macros](client-side-attacks/macros.md)
+* [OLE](client-side-attacks/ole.md)
 
 ## File Transfers
 
