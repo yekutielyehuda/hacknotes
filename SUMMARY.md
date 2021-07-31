@@ -46,8 +46,7 @@
 
 ## File Transfers
 
-* [Windows to Unix/Linux](file-transfers/windows-to-nix.md)
-* [Unix/Linux to Windows](file-transfers/linux-to-windows.md)
+* [File Transfers \| Exfiltration](file-transfers/windows-to-nix.md)
 
 ## Port Redirection & Tunneling
 
