@@ -397,14 +397,22 @@ rsync -avz /home server:/backups/
 ## Transfer via Base32 Encoding
 
 ```text
-# Windows
+# Unix/Linux
+cat filename | base32 -w0 | xclip -selection clipboard
+
+
+# Unix/Linux to Windows
 cat filename | iconv -t UTF-16LE | base32 -w0 | xclip -selection clipboard
 ```
 
 ## Transfer via Base64 Encoding
 
 ```text
-# Windows
+# Unix/Linux
+cat filename | base64 -w0 | xclip -selection clipboard
+
+
+# Unix/Linux to Windows
 cat filename | iconv -t UTF-16LE | base64 -w0 | xclip -selection clipboard
 ```
 
