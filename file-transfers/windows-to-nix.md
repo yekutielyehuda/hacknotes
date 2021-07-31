@@ -24,6 +24,12 @@ grep Ox0020 data.dmp I cut -c21- I tr -d " " I tr -d "\
 " I xxd -r -p
 ```
 
+Alternatively, use this tool:
+
+{% embed url="https://github.com/Vidimensional/Icmp-File-Transfer" %}
+
+
+
 ## Transfer via FTP
 
 The below method can be used to transfer files from Linux to Windows. A similar technique can also be used to transfer files from Windows to Linux but with a little trick.
@@ -453,5 +459,21 @@ On the host that has the file that you want to send:
 
 ```text
 nc -nv 192.168.1.2 4444 < /usr/inputfile.exe
+```
+
+## Encrypted File Transfers
+
+### Ncat Encrypted
+
+Ncat can create a secure, encrypted connection over SSL/TLS. You can set up a listener on the target with:
+
+```text
+ncat -nvlp port --ssl > out-file
+```
+
+ __Then connect to the listener from the attacking machine with:
+
+```text
+ncat -nv target-ip port --ssl < file-to-send
 ```
 
