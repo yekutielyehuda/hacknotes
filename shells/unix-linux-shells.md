@@ -446,6 +446,7 @@ Enable clear screen and movement with `xterm`:
 
 ```text
 export TERM=xterm
+export SHELL=bash
 ```
 
 In another console from your host get the rows and columns of the terminal:

