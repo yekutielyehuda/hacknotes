@@ -1,54 +1,54 @@
 # Ciphers and Codes
 
-Affine
+## Affine
 
-Atbash
+## Atbash
 
-Baconian
+## Baconian
 
-Base32
+## Base32
 
-Base64
+## Base64
 
-Bifid
+## Bifid
 
-Caesarian Shift
+## Caesarian Shift
 
-Keyed Caesar
+## Keyed Caesar
 
-Columnar Transposition
+## Columnar Transposition
 
-Double Transposition
+## Double Transposition
 
-Cryptogram Solver
+## Cryptogram Solver
 
-Gronsfeld
+## Gronsfeld
 
-Morse Code
+## Morse Code
 
-Letter Numbers
+## Letter Numbers
 
-One Time Pad
+## One Time Pad
 
-Playfair
+## Playfair
 
-Railfence
+## Railfence
 
-ROT13
+## ROT13
 
-Rotate
+## Rotate
 
-Skip
+## Skip
 
-Substitution
+## Substitution
 
-Übchi
+## Übchi
 
-Vigenere
+## Vigenere
 
-Keyed Vigenere
+## Keyed Vigenere
 
-Vigenere Autokey
+## Vigenere Autokey
 
 
 

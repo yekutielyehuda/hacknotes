@@ -280,8 +280,6 @@
 
 ## Escapes
 
-* [Hyper-V and VM / sandbox escape](escapes/hyper-v-and-vm-sandbox-escape.md)
-* [Escaping Kiosk](escapes/escaping-kiosk.md)
 * [Escaping Restricted Shells](escapes/escaping-restricted-shells.md)
 
 ## Cryptography
