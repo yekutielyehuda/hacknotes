@@ -442,7 +442,7 @@ Define the terminal type, `xterm` works 99% of the time:
 > Terminal Type? xterm
 ```
 
-Enable clear screen and movement with `xterm`:
+Enable clear screen and movement with `xterm`and enable bash:
 
 ```text
 export TERM=xterm
