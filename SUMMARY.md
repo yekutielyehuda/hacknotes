@@ -289,3 +289,8 @@
 * [Ciphers and Codes](cryptography/ciphers-and-codes.md)
 * [OpenSSL](cryptography/openssl.md)
 
+## Shells-Fu
+
+* [Shell-Fu](shells-fu/shell-fu.md)
+* [PowerShell-Fu](shells-fu/powershell-fu.md)
+
