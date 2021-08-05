@@ -249,7 +249,7 @@
 ## Reversing
 
 * [Inspecting Binaries](reversing/inspecting-binaries.md)
-* [Debuggers](reversing/debuggers.md)
+* [Debuggers & Decompilers](reversing/debuggers.md)
 * [Disassemblers](reversing/disassemblers.md)
 * [Deobfuscating](reversing/deobfuscating.md)
 * [Crypters](reversing/crypters.md)

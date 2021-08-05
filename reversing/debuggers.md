@@ -1,4 +1,4 @@
-# Debuggers
+# Debuggers & Decompilers
 
 ## Wasm decompiler / Wat compiler
 
