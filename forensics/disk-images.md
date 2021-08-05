@@ -70,11 +70,11 @@ Foremost is a forensic program to recover lost files based on their headers, foo
 Search for a selection of file types **\(-t doc,jpg,pdf,xls\)** in the given image file **\(-i image.dd\)**:
 
 ```text
-root@kali:~# foremost -t doc,jpg,pdf,xls -i image.dd
- Processing: image.dd
- |*|
- root@kali:~# ls output/
- audit.txt  jpg  pdf
+wixnic@kali:~# foremost -t doc,jpg,pdf,xls -i image.dd
+Processing: image.dd
+|*|
+wixnic@kali:~# ls output/
+audit.txt  jpg  pdf
 ```
 
 
