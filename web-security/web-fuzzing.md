@@ -523,6 +523,18 @@ ________________________________________________
 
 We see that we get a hit right away. 
 
+## Web Fuzzing Tools
+
+You may want to use other tools besides fuff:
+
+{% embed url="https://tools.kali.org/web-applications/dirb" %}
+
+{% embed url="https://github.com/OJ/gobuster" %}
+
+{% embed url="https://github.com/maurosoria/dirsearch" %}
+
+{% embed url="https://wfuzz.readthedocs.io/en/latest/user/installation.html" %}
+
 ## Reference
 
 This page is **heavily** based on HackTheBox Academy Web Fuzzing:
