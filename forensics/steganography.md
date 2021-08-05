@@ -12,7 +12,7 @@ The text above was extracted from [Wikipedia](https://en.wikipedia.org/wiki/Steg
 
 ### Summary
 
-In short, if want to hide or extract hidden data from a file, we should steganography techniques.
+In short, if want to hide or extract hidden data from a file, we should use steganography techniques.
 
 ## Image Steganography
 
