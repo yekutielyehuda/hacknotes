@@ -29,6 +29,7 @@
 * [Searching for Exploits](exploitation/searching-for-exploits.md)
 * [Fixing Exploits](exploitation/fixing-exploits.md)
 * [Cross-Compiling Exploits](exploitation/cross-compiling-exploits.md)
+* [Adapt Python2 with Virtual Environment](exploitation/adapt-python2-with-virtual-environment.md)
 
 ## Common Exploits
 
