@@ -30,7 +30,7 @@ Find directories whose name is Test in / directory
 find / -type d -name Test 2>/dev/null
 ```
 
-Find all php files in current working directory
+Find all php files in the current working directory
 
 ```text
 find . -type f -name "*.php" 2>/dev/null
@@ -104,7 +104,7 @@ find / -size 50M 2>/dev/null
 
 ### awk
 
-Gawk is the GNU Project's implementation of the AWK programming language. It conforms to the definition of the language in the POSIX 1003.1 Standard. This version in turn is based on the description in The AWK Programming Language, by Aho, Kernighan, and Weinberger, with the additional features found in the System V Release 4 version of UNIX awk. Gawk also provides more recent Bell Laboratories awk extensions, and a number of GNU -specific extensions. This text was extracted from [here](https://linux.die.net/man/1/awk).
+Gawk is the GNU Project's implementation of the AWK programming language. It conforms to the definition of the language in the POSIX 1003.1 Standard. This version in turn is based on the description in The AWK Programming Language, by Aho, Kernighan, and Weinberger, with the additional features found in the System V Release 4 version of UNIX awk. Gawk also provides more recent Bell Laboratories awk extensions and a number of GNU-specific extensions. This text was extracted from [here](https://linux.die.net/man/1/awk).
 
 Print every line in a file
 
@@ -112,7 +112,7 @@ Print every line in a file
 awk '{print}' test.txt
 ```
 
-Print the lines which contains the given pattern.
+Print the lines which contain the given pattern.
 
 ```text
 awk '/test/ {print}' test.txt
@@ -124,7 +124,7 @@ Print the fields 1 and 4 with delimeter whitespace
 awk '{print $1,$4}' test.txt
 ```
 
-Display a block of test starts with the word start and ends with the word end
+Display a block of the test starts with the word start and ends with the word end
 
 ```text
 awk '/start/,/stop/' file.txt
@@ -154,7 +154,7 @@ Display characters starting from 3rd character to the end of each line of a file
 cut -c3- test.txt
 ```
 
-Display first 8 character of from each line of a file
+Display first 8 characters of from each line of a file
 
 ```text
 cut -c-8 test.txt
@@ -172,7 +172,7 @@ Display 1st and 6th fields when : is used as a delimeter
 cut -d':' -f1,6 test.txt
 ```
 
-Display all fileds except 7th field when : is used as a delimeter
+Display all fields except 7th field when : is used as a delimeter
 
 ```text
 cut -d':' –complement -s -f7 test.txt
