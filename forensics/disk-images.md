@@ -18,7 +18,7 @@ You want to recover a hidden file under `/dev/sdb/` you can by doing the followi
 sudo dcfldd if=/dev/sdb of=/home/pi/usb.dd
 ```
 
-### autospy
+### Autospy
 
 Autopsy is the premier end-to-end open-source digital forensics platform. Built by Basis Technology with the core features you expect in commercial forensic tools, Autopsy is a fast, thorough, and efficient hard drive investigation solution that evolves with your needs. This text was extracted from here:
 
