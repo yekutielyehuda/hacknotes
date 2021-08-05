@@ -519,5 +519,11 @@ Show unique lines case-insensitive
 uniq -i test.txt
 ```
 
+## References
+
+{% embed url="https://github.com/areyou1or0/Bash-Fu" %}
+
+
+
 
 
