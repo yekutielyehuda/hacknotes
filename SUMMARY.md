@@ -286,7 +286,7 @@
 ## Cryptography
 
 * [Encryption/Decryption](cryptography/encryption-decryption.md)
-* [Ciphers and Codes](cryptography/ciphers-and-codes.md)
+* [Ciphers and Encodings](cryptography/ciphers-and-codes.md)
 * [OpenSSL](cryptography/openssl.md)
 
 ## Shells-Fu
