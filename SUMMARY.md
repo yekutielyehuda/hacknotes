@@ -30,6 +30,7 @@
 * [Fixing Exploits](exploitation/fixing-exploits.md)
 * [Cross-Compiling Exploits](exploitation/cross-compiling-exploits.md)
 * [Adapt Python2 with Virtual Environment](exploitation/adapt-python2-with-virtual-environment.md)
+* [Chaining Exploits](exploitation/chaining-exploits.md)
 
 ## Common Exploits
 
@@ -159,6 +160,7 @@
 * [PHP Type Juggling](web-security/php-type-juggling.md)
 * [WebDAV](web-security/webdav.md)
 * [WebSockets](web-security/websockets.md)
+* [Web Certificates](web-security/web-certificates.md)
 * [Web APIs Query](web-security/web-apis-query/README.md)
   * [GraphQL](web-security/web-apis-query/graphql.md)
 * [Web Services](web-security/web-services/README.md)

@@ -29,3 +29,7 @@ We can generate a private key as follows:
 openssl genrsa -out priv.key 2048
 ```
 
+## Certificates
+
+
+
