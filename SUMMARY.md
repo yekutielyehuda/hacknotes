@@ -39,6 +39,7 @@
 * [Heartbleed](common-exploits/heartbleed.md)
 * [Padding Oracle Attack](common-exploits/padding-oracle-attack.md)
 * [PHP CGI Exploitation](common-exploits/php-cgi-exploitation.md)
+* [WMI Exploitation](common-exploits/wmi-exploitation.md)
 
 ## Client-Side Attacks
 
