@@ -234,6 +234,42 @@ Connect to ssh using ICMP from server to client using tun interface
 ssh username@10.0.0.1
 ```
 
+## VNC Tunneling via SSH
+
+VNC is an interactive GUI program. We can use ssh tunneling and proxychains to connect to the local listener.
+
+```text
+root@kali:~/hackthebox/poison-10.10.10.84# tail /etc/proxychains.conf
+#
+#       proxy types: http, socks4, socks5
+#        ( auth types supported: "basic"-http  "user/pass"-socks )
+#
+[ProxyList]
+# add proxy here ...
+# meanwile
+# defaults set to "tor"
+socks4  127.0.0.1 8081
+root@kali:~/hackthebox/poison-10.10.10.84# ssh charix@10.10.10.84 -D 8081
+
+root@kali:~/hackthebox/poison-10.10.10.84# proxychains vncviewer 127.0.0.1:5901 -passwd secret
+ProxyChains-3.1 (http://proxychains.sf.net)
+|S-chain|-<>-127.0.0.1:8081-<><>-127.0.0.1:5901-<><>-OK
+Connected to RFB server, using protocol version 3.8
+Enabling TightVNC protocol extensions
+Performing standard VNC authentication
+Authentication successful
+Desktop name "root's X desktop (Poison:1)"
+VNC server default format:
+  32 bits per pixel.
+  Least significant byte first in each pixel.
+  True colour: max red 255 green 255 blue 255, shift red 16 green 8 blue 0
+Using default colormap which is TrueColor.  Pixel format:
+  32 bits per pixel.
+  Least significant byte first in each pixel.
+  True colour: max red 255 green 255 blue 255, shift red 16 green 8 blue 0
+Same machine: preferring raw encoding
+```
+
 ## References
 
 Most of the tunneling techniques covered here were extracted from here:
