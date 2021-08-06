@@ -12,6 +12,14 @@ The text above was extracted from [Wikipedia](https://en.wikipedia.org/wiki/WebD
 
 ## Enumeration
 
+### cadaver
+
+ cadaver is a command-line [WebDAV](http://www.webdav.org/) client for Unix. It supports file upload, download, on-screen display, namespace operations \(move/copy\), collection creation and deletion, and locking operations. This text was extracted from [here](http://www.webdav.org/cadaver/).
+
+```text
+cadaver http://$ip
+```
+
 ### davtest
 
 {% embed url="https://github.com/cldrn/davtest" %}
