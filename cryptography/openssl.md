@@ -4,7 +4,7 @@
 
 OpenSSL is a cryptography toolkit implementing the Secure Sockets Layer \( SSL v2/v3\) and Transport Layer Security \( TLS v1\) network protocols and related cryptography standards required by them.
 
-The **penssl** program is a command-line tool for using the various cryptography functions of OpenSSL's **crypto** library from the shell. It can be used for
+The **openssl** program is a command-line tool for using the various cryptography functions of OpenSSL's **crypto** library from the shell. It can be used for
 
 ```text
 o  Creation and management of private keys, public keys and parameters
