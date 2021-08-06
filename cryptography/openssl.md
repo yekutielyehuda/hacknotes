@@ -2,7 +2,13 @@
 
 ## Open SSL Information
 
-OpenSSL is a cryptography toolkit implementing the Secure Sockets Layer \( SSL v2/v3\) and Transport Layer Security \( TLS v1\) network protocols and related cryptography standards required by them.
+OpenSSL is a robust, commercial-grade, and full-featured toolkit for the Transport Layer Security \(TLS\) and Secure Sockets Layer \(SSL\) protocols. It is also a general-purpose cryptography library. For more information about the team and community around the project, or to start making your own contributions, start with the [community](https://www.openssl.org/community) page. To get the latest news, download the source, and so on, please see the sidebar or the buttons at the top of every page.
+
+OpenSSL is licensed under an Apache-style license, which basically means that you are free to get and use it for commercial and non-commercial purposes subject to some simple license conditions.
+
+The text above was extracted from here:
+
+{% embed url="https://www.openssl.org/" %}
 
 The **openssl** program is a command-line tool for using the various cryptography functions of OpenSSL's **crypto** library from the shell. It can be used for
 
