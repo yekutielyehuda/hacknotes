@@ -306,6 +306,20 @@ echo 'cp /bin/bash /tmp/rootbash; chmod +s /tmp/rootbash' > /path/to/cron/script
 
 ## Timers
 
+## Misc
+
+### Decode VNC Password
+
+VNC Passwords in a file are stored obfuscated, but they can be broken. There’s a bunch of scripts out there to return the plain text. We can use [this one](https://github.com/trinitronx/vncpasswd.py), running the python and using `-d` for decrypt, and `-f secret` to point it at our file.
+
+```text
+root@kali:~/hackthebox/poison-10.10.10.84# python /opt/vncpasswd.py/vncpasswd.py -d -f secret
+Cannot read from Windows Registry on a Linux system
+Cannot write to Windows Registry on a Linux system
+Decrypted Bin Pass= 'VNCP@$$!'
+Decrypted Hex Pass= '564e435040242421'
+```
+
 
 
 
