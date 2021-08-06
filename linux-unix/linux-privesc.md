@@ -1,5 +1,9 @@
 # Linux/Unix Privilege Escalation
 
+## Linux Privilege Escalation
+
+Our ultimate goal is to escalate from a low privileged user to a user that runs as an administrator user or as the root user. Privilege escalation may not always be based on a single misconfiguration, but rather on your ability to conceptualize and integrate many misconfigurations. Many privilege escalations vectors might be considered access control violations. User authorization and access control are inextricably related. Understanding how Unix/Linux manages permissions is critical when focusing on privilege escalations in Unix/Linux systems.
+
 ## Preparation & Finding Compilers and/or Tools
 
 Enumerate tools/languages that are installed:
