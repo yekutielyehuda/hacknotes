@@ -293,4 +293,5 @@
 
 * [Shell-Fu](shells-fu/shell-fu.md)
 * [PowerShell-Fu](shells-fu/powershell-fu.md)
+* [8.3 Format](shells-fu/8.3-format.md)
 
