@@ -662,6 +662,24 @@ One way to get hints can be by locating a script or log file that indicates a sc
 
 ## Juicy Potato
 
+## Common Exploits
+
+[Juicy Potato](https://github.com/ohpe/juicy-potato) Abuse SeImpersonate or SeAssignPrimaryToken Privileges for System Impersonation
+
+⚠️ Works only until Windows Server 2016 and Windows 10 until patch 1803
+
+[Lovely Potato](https://github.com/TsukiCTF/Lovely-Potato) Automated Juicy Potato
+
+⚠️ Works only until Windows Server 2016 and Windows 10 until patch 1803
+
+[PrintSpoofer](https://github.com/itm4n/PrintSpoofer) Exploit the PrinterBug for System Impersonation
+
+🙏 Works for Windows Server 2019 and Windows 10
+
+[RoguePotato](https://github.com/antonioCoco/RoguePotato) Upgraded Juicy Potato
+
+🙏 Works for Windows Server 2019 and Windows 10
+
 ## Network
 
 ### Port Forwarding
