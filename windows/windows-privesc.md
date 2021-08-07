@@ -1,4 +1,4 @@
-# Windows Privilege Escalation
+# Windows Local Privilege Escalation
 
 ## Windows Privilege Escalation
 

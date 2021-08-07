@@ -23,7 +23,7 @@
 
 ## Windows
 
-* [Windows Privilege Escalation](windows/windows-privesc.md)
+* [Windows Local Privilege Escalation](windows/windows-privesc.md)
 
 ## Bypass AV/IDS/IPS
 
