@@ -6,7 +6,7 @@
 
 ### BloodHound
 
-When we have to enumerate an Active Directory environment we should use the correct collector
+When we have to enumerate an Active Directory environment we should use the correct collector:
 
 * AzureHound for Azure Active Directory
 * SharpHound for local Active Directory
