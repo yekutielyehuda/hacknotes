@@ -51,19 +51,19 @@ ping -c 1 <IP>
 After confirming that ICMP is enabled \(if disabled use -Pn\), I like to start up with an SYN Stealth scan on all ports scan with a high packet rate \(the min-rate can be high for a testing environment, **not** for a production environment\):
 
 ```text
-nmap -sS -p- --min-rate 10000 -n -Pn -oG scans/nmap-alltcp 10.10.10.13
+nmap -sS -p- --min-rate 10000 -n -Pn -oG scans/nmap-alltcp 10.10.10.10
 ```
 
 Then, I extract the open ports and scan those ports:
 
 ```text
-nmap -sC -sV -n -Pn -p 22,135,139,445 -oA scans/nmap-tcpscripts 10.10.10.134
+nmap -sC -sV -n -Pn -p 22,135,139,445 -oA scans/nmap-tcpscripts 10.10.10.10
 ```
 
 Second, I start UDP scan on the top 20 most common ports:
 
 ```text
-nmap -sU --top-ports 20 -oG scans/nmap-udp-top20 10.10.10.116
+nmap -sU --top-ports 20 -oG scans/nmap-udp-top20 10.10.10.10
 ```
 
 ### TCP Scanning
