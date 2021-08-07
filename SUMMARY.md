@@ -12,6 +12,11 @@
 * [Rlwrap](shells/netcat-tips.md)
 * [Msfvenom](shells/msfvenom.md)
 
+## Discovery and Scanning
+
+* [Port Scanning](discovery-and-scanning/port-scanning.md)
+* [Name Resolution](discovery-and-scanning/name-resolution.md)
+
 ## Linux/Unix
 
 * [Linux/Unix Privilege Escalation](linux-unix/linux-privesc.md)
@@ -29,8 +34,9 @@
 * [Searching for Exploits](exploitation/searching-for-exploits.md)
 * [Fixing Exploits](exploitation/fixing-exploits.md)
 * [Cross-Compiling Exploits](exploitation/cross-compiling-exploits.md)
-* [Adapt Python2 with Virtual Environment](exploitation/adapt-python2-with-virtual-environment.md)
 * [Chaining Exploits](exploitation/chaining-exploits.md)
+* [Practical Exploitation](exploitation/practical-exploitation.md)
+* [Adapt Python2 with Virtual Environment](exploitation/adapt-python2-with-virtual-environment.md)
 
 ## Common Exploits
 
@@ -39,7 +45,6 @@
 * [Heartbleed](common-exploits/heartbleed.md)
 * [Padding Oracle Attack](common-exploits/padding-oracle-attack.md)
 * [PHP CGI Exploitation](common-exploits/php-cgi-exploitation.md)
-* [WMI Exploitation](common-exploits/wmi-exploitation.md)
 
 ## Client-Side Attacks
 
@@ -297,4 +302,8 @@
 * [Shell-Fu](shells-fu/shell-fu.md)
 * [PowerShell-Fu](shells-fu/powershell-fu.md)
 * [8.3 Format](shells-fu/8.3-format.md)
+
+## MISC
+
+* [Regular Expressions](misc/regular-expressions.md)
 

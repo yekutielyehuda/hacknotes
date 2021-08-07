@@ -306,6 +306,17 @@ echo 'cp /bin/bash /tmp/rootbash; chmod +s /tmp/rootbash' > /path/to/cron/script
 
 ## Timers
 
+## Sticky Bits and SUID/SGID 
+
+### Sticky Bits and SUID/SGID Enumeration
+
+```text
+find / -perm -1000 -type d 2>/dev/null   # Sticky bit - Only the owner of the directory or the owner of a file can delete or rename here.
+find / -perm -g=s -type f 2>/dev/null    # SGID (chmod 2000) - run as the group, not the user who started it.
+find / -perm -u=s -type f 2>/dev/null    # SUID (chmod 4000) - run as the owner, not the user who started it.
+find / -perm -g=s -o -perm -u=s -type f 2>/dev/null    # SGID or SUID
+```
+
 ## Misc
 
 ### Decode VNC Password

