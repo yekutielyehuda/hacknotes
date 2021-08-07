@@ -119,6 +119,8 @@ Detailed Articles:
 
 ## References
 
+This page content was extracted from here:
+
 {% embed url="https://github.com/S1ckB0y1337/Active-Directory-Exploitation-Cheat-Sheet/blob/master/README.md\#domain-persistence" %}
 
 
