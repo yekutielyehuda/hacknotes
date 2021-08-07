@@ -387,7 +387,9 @@ Get-AppLockerPolicy -Effective | select -ExpandProperty RuleCollections
 * [ACLight](https://github.com/cyberark/ACLight) Advanced Discovery of Privileged Accounts
 * [ADRecon](https://github.com/sense-of-security/ADRecon) Detailed Active Directory Recon Tool
 
-## Useful Repos
+## References
+
+{% embed url="https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Methodology%20and%20Resources/Active%20Directory%20Attack.md" %}
 
 {% embed url="https://github.com/S1ckB0y1337/Active-Directory-Exploitation-Cheat-Sheet\#domain-enumeration" %}
 
