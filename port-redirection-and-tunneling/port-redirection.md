@@ -30,13 +30,13 @@ username@kali: ssh –L 3306:<IP>:3306 user@$target_ip
 On Kali verify that the port is listening:
 
 ```text
-ss -antp | grep "3306"
+username@kali: ss -antp | grep "3306"
 ```
 
 Scan the port:
 
 ```text
-sudo nmap -sS -sV 127.0.0.1 -p 3306
+username@kali: sudo nmap -sS -sV 127.0.0.1 -p 3306
 ```
 
 ### SSH Remote Port Forwarding
