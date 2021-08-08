@@ -557,7 +557,7 @@ Virtual Host Fuzzing \(hide responses with --hw / hide words\):
 wfuzz -c -t 200 --hw=12 -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -H "Host: FUZZ.sneakycorp.htb" http://10.10.10.197
 ```
 
-GET Parameter Fuzzing \(hide responses with --hw / hide words\):
+GET Request Parameter Fuzzing \(hide responses with --hw / hide words\):
 
 ```text
 wfuzz -c -t 200 --hc=404 --hw=0 -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt http://sec03.rentahacker.htb/shell.php?FUZZ=whoami
