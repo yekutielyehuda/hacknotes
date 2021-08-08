@@ -461,6 +461,60 @@ On the host that has the file that you want to send:
 nc -nv 192.168.1.2 4444 < /usr/inputfile.exe
 ```
 
+## Transfer Binaries
+
+### Transfer Binaries from Linux to Windows
+
+#### exe2hex method
+
+1. Find or Locate the Binary
+
+   ```text
+   locate nc.exe  | grep binaries
+   ```
+
+2. Copy the binary to your working path
+
+   ```text
+   cp  /path/to/nc.exe .
+   ```
+
+3. Review the size of the binary
+
+   ```text
+   ls -lh nc.exe
+   ```
+
+4. Reduce/Compress the size of the binary
+
+   ```text
+   upx -9 nc.exe
+   ```
+
+5. Convert exe to a Windows Script
+
+   ```text
+   exe2hex -x nc.exe -p nc.cmd
+   ```
+
+6. Review the converted file
+
+   ```text
+   less nc.cmd
+   ```
+
+7. Copy the script into the clipboard
+
+   ```text
+   cat nc.cmd | xclip -selection clipboard
+   ```
+
+8. Paste the script into the target shell
+
+   ```text
+   Ctrl+Shift+V or Ctrl+V or Right Click (if availabe)
+   ```
+
 ## Encrypted File Transfers
 
 ### Ncat Encrypted
