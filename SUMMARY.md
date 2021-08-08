@@ -20,6 +20,7 @@
 ## Linux/Unix
 
 * [Linux/Unix Privilege Escalation](linux-unix/linux-privesc.md)
+* [Linux/Unix Persistence](linux-unix/linux-unix-persistence.md)
 
 ## Windows
 
