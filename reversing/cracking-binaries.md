@@ -264,5 +264,11 @@ Si se cambia este valor hexadecimal pues va terminar saltando a el valor que est
 
 ### Changing the Logic
 
+### Changing Hex Code
+
+### Preventing the Logic from Uncracking
+
+### Patching
+
 
 
