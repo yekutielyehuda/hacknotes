@@ -303,6 +303,10 @@
 * [Ciphers and Encodings](cryptography/ciphers-and-codes.md)
 * [OpenSSL](cryptography/openssl.md)
 
+## Password Cracking
+
+* [Password Cracking](password-cracking/password-cracking.md)
+
 ## Shells-Fu
 
 * [Shell-Fu](shells-fu/shell-fu.md)
