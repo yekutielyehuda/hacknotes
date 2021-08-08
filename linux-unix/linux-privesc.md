@@ -322,7 +322,7 @@ find \-type f 2>/dev/null | grep "config" | xargs grep -i -E "username|password|
 
 ### Sticky Bits and SUID/SGID Enumeration
 
-```text
+```bash
 find / -perm -1000 -type d 2>/dev/null   # Sticky bit - Only the owner of the directory or the owner of a file can delete or rename here.
 find / -perm -g=s -type f 2>/dev/null    # SGID (chmod 2000) - run as the group, not the user who started it.
 find / -perm -u=s -type f 2>/dev/null    # SUID (chmod 4000) - run as the owner, not the user who started it.
@@ -333,7 +333,7 @@ find / -perm -g=s -o -perm -u=s -type f 2>/dev/null    # SGID or SUID
 
 Enumerate capabilities in general with:
 
-```text
+```bash
 getcap -r / 2>/dev/null
 ```
 
