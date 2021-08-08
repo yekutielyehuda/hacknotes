@@ -1,5 +1,7 @@
 # HTTP Headers
 
+## HTTP Headers
+
 MDN Web Docs HTTP Headers:
 
 {% embed url="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers" %}
@@ -1287,4 +1289,14 @@ The text below is completely from [Wikipedia](https://en.wikipedia.org/wiki/List
     </tr>
   </tbody>
 </table>
+
+## HTTP Headers Enumeration
+
+We can enumerate headers with curl, DevTools, BurpSuite or anything that get process headers:
+
+Example with curl:
+
+```text
+curl -X GET -s "http://10.10.10.83/" -I
+```
 
