@@ -313,9 +313,9 @@ We can enumerate possible files that may contain credentials.
 Enumerate configuration files:
 
 ```bash
-find \-type f 2>/dev/null | grep "config" | xargs grep "password" 2>/dev/null
-find \-type f 2>/dev/null | grep "config" | xargs grep -E "username|password|key|database" 2>/dev/null
-find \-type f 2>/dev/null | grep "config" | xargs grep -E "username|password|key|database" 2>/dev/null | grep -v -E "debconf|keyboard"
+find \-type f 2>/dev/null | grep "config" | xargs grep -i "password" 2>/dev/null
+find \-type f 2>/dev/null | grep "config" | xargs grep -i -E "username|password|key|database" 2>/dev/null
+find \-type f 2>/dev/null | grep "config" | xargs grep -i -E "username|password|key|database" 2>/dev/null | grep -v -E "debconf|keyboard"
 ```
 
 ## Sticky Bits and SUID/SGID 
