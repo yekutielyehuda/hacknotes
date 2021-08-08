@@ -452,6 +452,14 @@ TypedURLs       #IE
 
 ### Credentials in Recycle Bin
 
+###  Emails
+
+#### Thunderbird
+
+```text
+C:\Users\username\AppData\Roaming\Thunderbird\Profiles\hahaha.default-release\Mail\mail.sandbox.local\Inbox.
+```
+
 ### Registry
 
 The Windows Registry is used by many apps to store configuration options. Passwords are sometimes stored in plaintext in the Registry.
