@@ -2,6 +2,12 @@
 
 ## John
 
+A simple way to crack password hashes with a dictionary attack:
+
+```text
+john --wordlist=/usr/share/wordlists/rockyou.txt passwords.txt
+```
+
 ### Converting Formats for John
 
 ```text
