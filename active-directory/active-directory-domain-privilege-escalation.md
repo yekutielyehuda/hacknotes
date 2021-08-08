@@ -451,7 +451,7 @@ sc \\DNSServer start dns
 
   **Abusing Backup Operators Group**
 
-_What is this?: If we manage to compromise a user account that is member of the Backup Operators group, we can then abuse it's SeBackupPrivilege to create a shadow copy of the current state of the DC, extract the ntds.dit database file, dump the hashes and escalate our privileges to DA._
+_What is this?: If we manage to compromise a user account that is a member of the Backup Operators group, we can then abuse its SeBackupPrivilege to create a shadow copy of the current state of the DC, extract the ntds.dit database file, dump the hashes and escalate our privileges to DA._
 
 1\) Once we have access on an account that has the SeBackupPrivilege we can access the DC and create a shadow copy using the signed binary diskshadow:
 
