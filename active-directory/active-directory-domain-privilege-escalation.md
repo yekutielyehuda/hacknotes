@@ -622,6 +622,8 @@ Detailed Articles:
 
 ## References and Up-to-Date Repos
 
+Most of the text here was extracted from this links:
+
 {% embed url="https://github.com/S1ckB0y1337/Active-Directory-Exploitation-Cheat-Sheet/blob/master/README.md\#domain-privilege-escalation" %}
 
 {% embed url="https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Methodology%20and%20Resources/Active%20Directory%20Attack.md" %}
