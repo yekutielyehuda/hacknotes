@@ -32,6 +32,6 @@ Now on Kali, we can use the ssh client to connect to the victim directly.
 kali@kali:~$ ssh root@10.10.10.10
 Welcome to Ubuntu 16.04 LTS (GNU/Linux 4.4.0-21-generic x86_64)
 ...<snip>...
-root@username:~#
+root@victim:~#
 ```
 
