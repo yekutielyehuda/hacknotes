@@ -622,7 +622,7 @@ Detailed Articles:
 
 ## References and Up-to-Date Repos
 
-Most of the text here was extracted from this links:
+Most of the text here was extracted from these links:
 
 {% embed url="https://github.com/S1ckB0y1337/Active-Directory-Exploitation-Cheat-Sheet/blob/master/README.md\#domain-privilege-escalation" %}
 
