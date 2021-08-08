@@ -551,6 +551,20 @@ Files and Extensions Fuzzing
 wfuzz -c -t 200 --hc=404 -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -w extensions http://10.10.10.83/FUZZ.FUZ2Z
 ```
 
+Virtual Host Fuzzing \(hide responses with --hw / hide words\):
+
+```text
+wfuzz -c -t 200 --hw=12 -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -H "Host: FUZZ.sneakycorp.htb" http://10.10.10.197
+```
+
+### gobuster
+
+Virtual Host Fuzzing:
+
+```text
+gobuster vhost -u http://sneakycorp.htb -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt
+```
+
 
 
 ## Reference
