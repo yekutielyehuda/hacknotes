@@ -57,6 +57,7 @@
 * [Macros](client-side-attacks/macros.md)
 * [OLE](client-side-attacks/ole.md)
 * [Microsoft Office Bypass Protections](client-side-attacks/microsoft-office-bypass-protections.md)
+* [Analyzing Documents](client-side-attacks/analyzing-documents.md)
 
 ## File Transfers
 
