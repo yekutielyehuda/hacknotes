@@ -446,7 +446,7 @@ Remember that we set a listener on port 443 and we should get a reverse shell as
 nc -nlvp 443
 ```
 
-See the new user:
+After we receive a reverse shell, see the new user:
 
 ```text
 whoami
