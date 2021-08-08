@@ -171,14 +171,34 @@ ssh -R 3389:10.1.1.224:3389 root@10.11.0.32
 
 ### Proxychains
 
-**Config file**: /etc/proxychains.conf
+### SSH Dynamic Port Forwarding
+
+If the target has more than one NIC and more than one network subnet than we can use proxychains.
+
+In Kali edit the proxychains configuration file:
+
+```text
+sudo vim /etc/proxychains.conf
+```
+
+Add this lines:
 
 ```text
 [ProxyList]
-socks4 localhost 8080
+socks4 127.0.0.1 8080
 ```
 
-Set the SOCKS4 proxy then `proxychains nmap -sT 192.168.5.6`
+Perform a dynamic port forwarding to our port 8080
+
+```text
+sudo ssh -N -D 127.0.0.1:8080 username@<target-IP>
+```
+
+Then scan with nmap and specify a TCP scan with `-sT` and don't use `ICMP` with `-Pn`.
+
+```text
+proxychains nmap -p- -sT -Pn <target-Second-Interface-IP>
+```
 
 
 

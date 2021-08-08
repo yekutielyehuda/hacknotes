@@ -66,7 +66,7 @@ username@kali: mysql -u username -p -h 127.0.0.1 -P 3306
 
 ### SSH Dynamic Port Forwarding
 
-If the target has more than one NIC and more than one network subnet than we can user proxychains.
+If the target has more than one NIC and more than one network subnet than we can use proxychains.
 
 In Kali edit the **proxychains** configuration file:
 
@@ -100,7 +100,7 @@ proxychains firefox
 proxychains nmap -sT -Pn -p139,445 $ip
 ```
 
-#### SOCKS Proxy
+#### SOCKS4 Proxy
 
 ```text
 ssh -D8080 [user]@[host]
