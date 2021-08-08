@@ -535,6 +535,24 @@ You may want to use other tools besides fuff:
 
 {% embed url="https://wfuzz.readthedocs.io/en/latest/user/installation.html" %}
 
+## Fuzzing Cheatsheet
+
+### wfuzz
+
+Directory Fuzzing:
+
+```text
+wfuzz -c -t 200 --hc=404 -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt http://10.10.10.83/FUZZ
+```
+
+Files and Extensions Fuzzing
+
+```text
+wfuzz -c -t 200 --hc=404 -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -w extensions http://10.10.10.83/FUZZ.FUZ2Z
+```
+
+
+
 ## Reference
 
 This page is **heavily** based on HackTheBox Academy Web Fuzzing:
