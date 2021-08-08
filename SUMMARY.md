@@ -12,6 +12,10 @@
 * [Rlwrap](shells/netcat-tips.md)
 * [Msfvenom](shells/msfvenom.md)
 
+## Escapes
+
+* [Escaping Restricted Shells](escapes/escaping-restricted-shells.md)
+
 ## Discovery and Scanning
 
 * [Port Scanning](discovery-and-scanning/port-scanning.md)
@@ -287,10 +291,6 @@
 * [Windows Kernel GDI Exploitation](exploit-development/windows-kernel-gdi-exploitation.md)
 * [Windows EggHunting](exploit-development/windows-egghunting.md)
 * [Windows Bypass Protections](exploit-development/windows-bypass-protections.md)
-
-## Escapes
-
-* [Escaping Restricted Shells](escapes/escaping-restricted-shells.md)
 
 ## Cryptography
 
