@@ -174,6 +174,7 @@
 * [WebDAV](web-security/webdav.md)
 * [WebSockets](web-security/websockets.md)
 * [Web Certificates](web-security/web-certificates.md)
+* [Web Sitemaps](web-security/web-sitemaps.md)
 * [Web APIs Query](web-security/web-apis-query/README.md)
   * [GraphQL](web-security/web-apis-query/graphql.md)
 * [Web Services](web-security/web-services/README.md)
