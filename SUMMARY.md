@@ -210,6 +210,7 @@
   * [Jenkins](web-security/web-applications/jenkins.md)
   * [Apache Tomcat](web-security/web-applications/apache-tomcat.md)
   * [CMS Softwares](web-security/web-applications/cms-softwares/README.md)
+    * [CuppaCMS](web-security/web-applications/cms-softwares/cuppacms.md)
     * [Monstra](web-security/web-applications/cms-softwares/monstra.md)
     * [Bludit](web-security/web-applications/cms-softwares/bludit.md)
     * [Mambo](web-security/web-applications/cms-softwares/mambo.md)
