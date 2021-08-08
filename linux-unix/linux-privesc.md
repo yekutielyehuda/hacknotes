@@ -327,6 +327,26 @@ getcap -r / 2>/dev/null
 
 ## Misc
 
+### Git Repositories
+
+We can find git repositories with:
+
+```text
+find \-type f 2>/dev/null | grep ".git"
+```
+
+Sometimes, you will be able to see folders that contain a `.git` folder in them. That means that the folder is a git repository. **GIT** saves all the history of defiles changes, as an attacker, we can enumerate and see if developers have made mistakes.
+
+```text
+git log
+```
+
+We can use the parameter `-p` to look at the differences made in a commit:
+
+```text
+git log -p <ID>
+```
+
 ### Decode VNC Password
 
 VNC Passwords in a file are stored obfuscated, but they can be broken. There’s a bunch of scripts out there to return the plain text. We can use [this one](https://github.com/trinitronx/vncpasswd.py), running the python and using `-d` for decrypt, and `-f secret` to point it at our file.
