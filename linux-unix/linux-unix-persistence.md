@@ -15,7 +15,7 @@ Enter same passphrase again:
 Your identification has been saved in /home/kali/.ssh/id_rsa.
 Your public key has been saved in /home/kali/.ssh/id_rsa.pub.
 ...<snip>...
-kali@kali:~$ cat:~/.ssh/id_rsa.pub
+kali@kali:~$ cat ~/.ssh/id_rsa.pub
 ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQD... kali@kali
 ```
 
