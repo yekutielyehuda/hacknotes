@@ -22,8 +22,6 @@ A software-only solution will have to store the key in an accessible place, easi
 
 * Obfuscation, dead code, etc, **won't** slow them down for long because they don't crack by starting at the beginning and working through your code. They are far more clever than that. 
 
-Do some about cracking on the net to see how to find the security detection code and crack from there.
-
 Extracted from here:
 
 {% embed url="https://stackoverflow.com/questions/5551016/how-to-make-a-good-anti-crack-protection" %}
