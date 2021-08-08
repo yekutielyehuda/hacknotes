@@ -306,6 +306,18 @@ echo 'cp /bin/bash /tmp/rootbash; chmod +s /tmp/rootbash' > /path/to/cron/script
 
 ## Timers
 
+## Passwords, Hashes, and Credentials
+
+We can enumerate possible files that may contain credentials.
+
+Enumerate configuration files:
+
+```bash
+find \-type f 2>/dev/null | grep "config" | xargs grep "password" 2>/dev/null
+find \-type f 2>/dev/null | grep "config" | xargs grep -E "username|password|key|database" 2>/dev/null
+find \-type f 2>/dev/null | grep "config" | xargs grep -E "username|password|key|database" 2>/dev/null | grep -v -E "debconf|keyboard"
+```
+
 ## Sticky Bits and SUID/SGID 
 
 ### Sticky Bits and SUID/SGID Enumeration
