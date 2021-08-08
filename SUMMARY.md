@@ -313,3 +313,9 @@
 
 * [Regular Expressions](misc/regular-expressions.md)
 
+## Scripting
+
+* [Pentesting with Python3](scripting/pentesting-with-python3.md)
+* [Pentesting with Go](scripting/pentesting-with-go.md)
+* [Pentesting with Bash](scripting/pentesting-with-bash.md)
+
