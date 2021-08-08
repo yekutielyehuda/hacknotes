@@ -317,6 +317,14 @@ find / -perm -u=s -type f 2>/dev/null    # SUID (chmod 4000) - run as the owner,
 find / -perm -g=s -o -perm -u=s -type f 2>/dev/null    # SGID or SUID
 ```
 
+## Capabilities
+
+Enumerate capabilities in general with:
+
+```text
+getcap -r / 2>/dev/null
+```
+
 ## Misc
 
 ### Decode VNC Password
