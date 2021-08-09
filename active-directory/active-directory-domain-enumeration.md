@@ -41,6 +41,7 @@ Alternatively, run the collector on the machine using Powershell
 # https://github.com/BloodHoundAD/BloodHound/blob/master/Collectors/SharpHound.ps1
 # /usr/lib/bloodhound/resources/app/Collectors/SharpHound.ps1
 Invoke-BloodHound -SearchForest -CSVFolder C:\Users\Public
+Invoke-BloodHound -CollectionMethod All
 Invoke-BloodHound -CollectionMethod All  -LDAPUser <UserName> -LDAPPass <Password> -OutputDirectory <PathToFile>
 ```
 
@@ -49,9 +50,12 @@ Alternatively, remotely via BloodHound Python [https://github.com/fox-it/BloodHo
 ```text
 pip install bloodhound
 bloodhound-python -d lab.local -u rsmith -p Winter2017 -gc LAB2008DC01.lab.local -c all
+bloodhound-python -d victim.local -u username -p "Password" -gc machine.victim.local -c all -ns 10.10.10.11
 ```
 
 Then import the zip/json files into the Neo4J database and query them.
+
+Alternatively, we can install bloodhound with the APT package manager:
 
 ```text
 root@payload$ apt install bloodhound
