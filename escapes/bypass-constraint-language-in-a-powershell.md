@@ -1,4 +1,4 @@
-# Bypass Constraint Language in a PowerShell
+# Bypass Constraint Language in PowerShell
 
 It’s possible that sometimes when you gain access to a Windows machine and you have a PowerShell, that this is in a constraint language context. In the victim machine, you can check that with the `$ExecutionContext.SessionState.LanguageMode` command. PSByPassCLM can bypass this by creating a new reverse shell, you can bypass this context.
 
