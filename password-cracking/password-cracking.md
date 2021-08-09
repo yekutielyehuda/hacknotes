@@ -20,7 +20,7 @@ This GitHub repo has more converters:
 
 ## Misc
 
-### Crack an SSL Password
+### Crack an OpenSSL Password
 
 Bruteforce an OpenSSL encrypted file:
 
