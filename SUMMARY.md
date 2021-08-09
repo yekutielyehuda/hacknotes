@@ -161,7 +161,6 @@
 * [FastCGI - 9000](services/fastcgi-9000.md)
 * [HSQLDB - 9001](services/hsqldb-9001.md)
 * [Cassandra - 9042,9160](services/cassandra-9042-9160.md)
-* [Raw Printing \(JetDirect,AppSocket,PDL-datastream\) - 9100](services/raw-printing-jetdirect-appsocket-pdl-datastream-9100.md)
 * [Elasticsearch - 9200](services/elasticsearch-9200.md)
 * [Network Data Management Protocol \(ndmp\) - 10000](services/network-data-management-protocol-ndmp-10000.md)
 * [Memcache - 11211](services/memcache-11211.md)
