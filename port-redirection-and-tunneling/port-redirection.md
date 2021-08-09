@@ -163,6 +163,14 @@ Chisel can be downloaded here: [https://github.com/jpillora/chisel](https://gith
 
  You need to use the **same version for the client and the server**.
 
+```text
+git clone https://github.com/jpillora/chisel
+cd chisel
+go build -ldflags "-w -s" .
+upx chisel
+chmod +x chisel
+```
+
 ### Windows Port Forwarding <a id="socks"></a>
 
 ```text
