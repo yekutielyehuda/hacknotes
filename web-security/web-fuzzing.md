@@ -539,6 +539,14 @@ You may want to use other tools besides fuff:
 
 ### wfuzz
 
+Common Flags:
+
+* -c= for colorized mode
+* –hc=404 for omitting routes where the response is 404
+* -t 200= is for giving threads number
+* –hw= for not taking care of word number return
+* –hh=73 for not taking care of characters with 73 as return number
+
 Directory Fuzzing:
 
 ```text
@@ -554,7 +562,8 @@ wfuzz -c -t 200 --hc=404 -w /usr/share/wordlists/dirbuster/directory-list-2.3-me
 Virtual Host Fuzzing \(hide responses with --hw / hide words\):
 
 ```text
-wfuzz -c -t 200 --hw=12 -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -H "Host: FUZZ.sneakycorp.htb" http://10.10.10.197
+wfuzz -c -t 200 --hc=404 --hw=12 -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -H "Host: FUZZ.sneakycorp.htb" http://10.10.10.197
+wfuzz -c -t 200 --hc=404 --hw=28,73 -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -H "Host: FUZZ.localhost.com http://loalhost.com
 ```
 
 GET Request Parameter Fuzzing \(hide responses with --hw / hide words\):
