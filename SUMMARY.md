@@ -14,6 +14,7 @@
 
 ## Escapes
 
+* [Bypass Constraint Language in a PowerShell](escapes/bypass-constraint-language-in-a-powershell.md)
 * [Escaping Restricted Shells](escapes/escaping-restricted-shells.md)
 
 ## Discovery and Scanning
