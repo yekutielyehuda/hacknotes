@@ -115,7 +115,6 @@
 * [IMAP - 143,993](services/imap-143-993.md)
 * [SNMP - 161,162,10161,1062](services/snmp-161-162-10161-1062.md)
 * [IRC - 194,6667,6660,7000](services/irc-194-6667-6660-7000.md)
-* [Check Point FireWall-1 - 264](services/check-point-firewall-1-264.md)
 * [LDAP - 389,636,3268,3269](services/ldap-389-636-3268-3269.md)
 * [IPsec/IKE VPN - 500](services/ipsec-ike-vpn-500.md)
 * [Modbus - 502](services/modbus-502.md)
