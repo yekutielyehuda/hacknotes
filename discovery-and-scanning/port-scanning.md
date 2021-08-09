@@ -46,12 +46,26 @@ TTL -&gt; 64
 ping -c 1 <IP>
 ```
 
+### ICMP over IPv6
+
+**Windows**
+
+```text
+ping -6 -n 1 dead:beef::0250:56ff:feb9:dbf3
+```
+
+**Nix**
+
+```text
+ping -6 -c 1 dead:beef::0250:56ff:feb9:dbf3
+```
+
 ### Nmap Recon Methodology
 
 After confirming that ICMP is enabled \(if disabled use -Pn\), I like to start up with an SYN Stealth scan on all ports scan with a high packet rate \(the min-rate can be high for a testing environment, **not** for a production environment\):
 
 ```text
-nmap -sS -p- --min-rate 10000 -n -Pn -oG scans/nmap-alltcp 10.10.10.10
+nmap -sS -p- --open --min-rate 5000 -n -Pn -oG scans/nmap-alltcp 10.10.10.10
 ```
 
 Then, I extract the open ports and scan those ports:
@@ -64,6 +78,14 @@ Second, I start UDP scan on the top 20 most common ports:
 
 ```text
 nmap -sU --top-ports 20 -oG scans/nmap-udp-top20 10.10.10.10
+```
+
+### Nmap IPv6
+
+Use `-6` to scan an IPv6 address:
+
+```text
+nmap -sS -p- --open --min-rate 5000 -vvv -n -Pn -6 dead:beef::0250:56ff:feb9:dbf3
 ```
 
 ### TCP Scanning
