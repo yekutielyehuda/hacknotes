@@ -251,7 +251,6 @@
 * [Server Side Request Forgery \(SSRF\)](web-security/ssrf.md)
 * [Directory Traversal](web-security/directory-traversal.md)
 * [File Upload](web-security/file-upload.md)
-* [Hijacking](web-security/hijacking.md)
 * [SSL Stripping](web-security/ssl-stripping.md)
 * [Insecure Deserialization](web-security/insecure-deserialization.md)
 * [OAuth](web-security/oauth.md)
