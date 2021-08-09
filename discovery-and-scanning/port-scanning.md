@@ -74,7 +74,7 @@ Then, I extract the open ports and scan those ports:
 nmap -sC -sV -n -Pn -p 22,135,139,445 -oA scans/nmap-tcpscripts 10.10.10.10
 ```
 
-Second, I start UDP scan on the top 20 most common ports:
+Second, I start a UDP scan on the top 20 most common ports:
 
 ```text
 nmap -sU --top-ports 20 -oG scans/nmap-udp-top20 10.10.10.10
