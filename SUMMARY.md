@@ -50,6 +50,7 @@
 * [Heartbleed](common-exploits/heartbleed.md)
 * [Padding Oracle Attack](common-exploits/padding-oracle-attack.md)
 * [PHP CGI Exploitation](common-exploits/php-cgi-exploitation.md)
+* [Samba Symlink Directory Traversal](common-exploits/samba-symlink-directory-traversal.md)
 
 ## Client-Side Attacks
 
