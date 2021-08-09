@@ -696,6 +696,14 @@ One way to get hints can be by locating a script or log file that indicates a sc
 
 ### Firewall Rules
 
+PowerShell One-Liner for allowing an inbound port:
+
+```text
+$user = 'minion\administrator'; $pw = '1234test'; $secpw = ConvertTo-SecureString $pw - AsPlainText -Force; $cred = New-Object \
+System.Management.Automation.PSCredential $user, $secpw; Invoke-Command -ComputerName localhost -Credential $cred -ScriptBlock \
+{New-NetFirewallRule -DisplayName setenso -RemoteAddress 10.10.14.8 -Direction inbound -Action Allow}
+```
+
 ## Users & Groups 
 
 ### Privileged Groups
