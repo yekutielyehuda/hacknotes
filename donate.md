@@ -11,7 +11,10 @@ If you want to donate with crypto, I have these options:
 
 ## Donate with cash
 
-If you want to donate with cash, you can use PayPal:
+If you want to donate with cash:
+
+* PayPal:
+* Buy Me a Coffee:
 
 
 
