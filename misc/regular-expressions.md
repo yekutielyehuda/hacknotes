@@ -41,27 +41,31 @@ Of course, you can exclude charsets, not just single characters.
 **Note 2**: When specifying charsets, you should type the letters in the same order they appear in the questions, to avoid typing something correct that is not the right answer.
 
 **Note 3: Answering some of these questions is going to be tricky.** Often times there are many different patterns that match specific strings. That means \(as stated in the previous note\) that you may find a proper solution that isn't the right answer for this room \(because there can only be one\). The right answer is typically the most efficient regex for that question. Efficient in this context means 2 things:  
+
+
 **1. Be specific.** Here's an example: you could match any character from a to c using the `[a-z]` charset. But if the question only requires you to match characters from `a` to `c`, you should use the `[a-c]` charset, not `[a-z]`.  
+
+
 **2. Don't be too specific.** In contrast to the previous example, if a question requires you to match `a`, `c`, `f`, `r`, `s`, `z`, at that point, the expression that matches those specific characters would get longer and more complicated. So, it would make more sense to use `[a-z]`, because it is short and simple.
 
 To reiterate, **there cannot be one single correct solution**. So if you've tested your solution and it works, you can take a break and come back to it later, or ask for a hint in discord, but try not to get frustrated
 
-Match all of the following characters: c, o, g
+Match all of the following characters: x, v, e
 
 ```text
-[cog]
+[xve]
 ```
 
-Match all of the following words: cat, fat, hat
+Match all of the following words: cat, bat, hat
 
 ```text
-[cfh]at
+[cbh]at
 ```
 
-Match all of the following words: Cat, cat, Hat, hat
+Match all of the following words: Cat, cat, Kat, kat
 
 ```text
-[CcHh]at
+[CcKk]at
 ```
 
 Match all of the following filenames: File1, File2, file3, file4, file5, File7, file9
@@ -82,9 +86,7 @@ The wildcard that is used to match any single character \(except the line break\
 
 Also, you can set a character as optional in your pattern using the `?` question mark. That means that `abc?` will match `ab` and `abc`, since the `c` is optional.
 
-Note: If you want to search for `.` a literal dot, you have to **escape it** with a `\` reverse slash. That means that `a.c` will match `a.c`, but also `abc`, `a@c`, and so on. But `a\.c` will match **just** `a.c`.
-
-Answer the questions below
+> Note: If you want to search for `.` a literal dot, you have to **escape it** with a `\` reverse slash. That means that `a.c` will match `a.c`, but also `abc`, `a@c`, and so on. But `a\.c` will match **just** `a.c`.
 
 Match all of the following words: Cat, fat, hat, rat
 
@@ -125,7 +127,8 @@ Match bat, bats, hat, hats, but not rat or rats \(use the hat symbol\)
 
 ### Metacharacters and repetitions
 
-There are easier ways to match bigger charsets. For example, `\d` is used to match any **single** digit. Here's a reference:  
+There are easier ways to match bigger charsets:
+
 `\d` matches a digit, like `9`  
 `\D` matches a non-digit, like `A` or `@`  
 `\w` matches an alphanumeric character, like `a` or `3`  
@@ -133,13 +136,13 @@ There are easier ways to match bigger charsets. For example, `\d` is used to mat
 `\s` matches a whitespace character \(spaces, tabs, and line breaks\)  
 `\S` matches everything else \(alphanumeric characters and symbols\)
 
-Note: Underscores `_` are included in the `\w` metacharacter and not in `\W`. That means that `\w` will match every single character in `test_file`.
+> Note: Underscores `_` are included in the `\w` metacharacter and not in `\W`. That means that `\w` will match every single character in `test_file`.
 
 Often we want a pattern that matches many characters of a single type in a row, and we can do that with repetitions. For example, `{2}` is used to match the preceding character \(or metacharacter, or charset\) two times in a row. That means that `z{2}` will match exactly `zz`.
 
 Here's a reference for each repetition along with how many times it matches the preceding pattern:
 
-`{12}` - **exactly 12** times.  
+`{15}` - **exactly 15** times.  
 `{1,5}` - **1 to 5** times.  
 `{2,}` - **2 or more** times.  
 `*` - **0 or more** times.  
@@ -212,14 +215,12 @@ Sometimes it's very useful to specify that we want to search by a certain patter
 So for example, if you want to search for a line that **starts with** `abc`, you can use `^abc`.  
 If you want to search for a line that **ends with** `xyz`, you can use `xyz$`.
 
-Note: The `^` hat symbol is used to exclude a charset when enclosed in `[`square brackets`]`, but when it is not, it is used to specify the beginning of a word.
+> Note: The `^` hat symbol is used to exclude a charset when enclosed in `[`square brackets`]`, but when it is not, it is used to specify the beginning of a word.
 
 You can also define groups by enclosing a pattern in `(`parentheses`)`. This function can be used for many ways that are not in the scope of this tutorial. We will use it to define an **either/ or** pattern, and also to repeat patterns. To say "or" in Regex, we use the `|` pipe.
 
 For an "either/or" pattern example, the pattern `during the (day|night)` will match both of these sentences: `during the day` and `during the night`.  
 For a repetition example, the pattern `(no){5}` will match the sentence `nonononono`.
-
-Answer the questions below
 
 Match every string that starts with "Password:" followed by any 10 characters excluding "0"
 
