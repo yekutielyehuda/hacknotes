@@ -6,6 +6,18 @@
 
 The text above was extracted from [Wikipedia](https://en.wikipedia.org/wiki/WordPress).
 
+## Enumerating WordPress
+
+### Enumerating Plugins
+
+SecLists has a good wordlist for fuzzing for plugins called `wp-plugins.fuzz.txt`
+
+```text
+wfuzz -c -t 200 --hc=404 -w wp-plugins.fuzz.txt http://10.10.10.88/webservices/wp/FUZZ
+```
+
+## Attacking WordPress
+
 ### Plugins WebShell
 
 First, find a webshell and compress it into a zip file:
