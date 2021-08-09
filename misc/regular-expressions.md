@@ -8,7 +8,7 @@ Extracted from here:
 
 {% embed url="https://www.regular-expressions.info/" %}
 
-## Charsets
+### Charsets
 
 When searching for a specific string in a file or block of text, you can search for it as is, with `grep 'string' <file>` . But what happens if you want to search for **patterns of text**? For example, you could be looking for a word that starts with a specific letter, or any words that end with numbers. That's where Regular Expressions come in.
 
@@ -76,7 +76,7 @@ Match all of the filenames of question 4, except "File7" \(use the hat symbol\)
 [Ff]ile[^7]
 ```
 
-## Wildcards and optional characters
+### Wildcards and optional characters
 
 The wildcard that is used to match any single character \(except the line break\) is the `.` dot. That means that `a.c` will match `aac`, `abc`, `a0c`, `a!c`, and so on.
 
@@ -123,7 +123,7 @@ Match bat, bats, hat, hats, but not rat or rats \(use the hat symbol\)
 [^r]ats?
 ```
 
-## Metacharacters and repetitions
+### Metacharacters and repetitions
 
 There are easier ways to match bigger charsets. For example, `\d` is used to match any **single** digit. Here's a reference:  
 `\d` matches a digit, like `9`  
