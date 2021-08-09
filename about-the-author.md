@@ -12,10 +12,6 @@ I'm just a tech who likes sharing, researching, pen-testing, playing CTFs, and p
 
 * Bachelor's Degree in **Information Technology, Networks and Security**
 * I'm bilingual, I speak **Spanish** and **English**.
-* Certifications: 
-  * OSCP \(Soon\)
-  * Linux+
-  * Network+
 
 ## Hobbies
 
