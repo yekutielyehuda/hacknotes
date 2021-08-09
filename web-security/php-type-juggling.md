@@ -6,7 +6,7 @@
 
 ### strcmp
 
-**strcmp** compares two strings, it is bad when it is used to compare user entries because it’s not taking care of the entry type:
+**strcmp** compares two data types, it is bad when it is used to compare user entries because it’s not taking care of the entry type:
 
 ```http
 # Doesn't work
