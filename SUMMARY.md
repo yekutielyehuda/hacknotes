@@ -86,10 +86,10 @@
 * [Active Directory Domain Persistence](active-directory/active-directory-domain-persistence.md)
 * [Active Directory Cross Forest Attacks](active-directory/active-directory-cross-forest-attacks.md)
 
-## Cloud
+## Cloud Security
 
-* [Azure](cloud/azure.md)
-* [AWS](cloud/aws.md)
+* [Azure](cloud-security/azure.md)
+* [AWS](cloud-security/aws.md)
 
 ## Services
 
