@@ -8,6 +8,28 @@ The text above was extracted from [Wikipedia](https://en.wikipedia.org/wiki/Word
 
 ## Enumerating WordPress
 
+### WPScan
+
+To startup, we can use the “non-intrusive” default scan using only the `--url` parameter to determine the WordPress version installed and some other information about the installation including PHP version, potential vulnerabilities, and interesting files, such as robots.txt files which could contain interesting directory or file references
+
+```text
+wpscan --url http://target
+```
+
+Enumerate users:
+
+```text
+wpscan --url http://target --enumerate u
+```
+
+### Curl
+
+We can enumerate users with curl and if the HTTP status code from the response is 301 then it means that the user exists:
+
+```text
+ curl -s -o /dev/null -w "%{http_code}\n" http://target/author/username
+```
+
 ### Enumerating Plugins
 
 SecLists has a good wordlist for fuzzing for plugins called `wp-plugins.fuzz.txt`
