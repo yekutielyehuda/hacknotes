@@ -10,6 +10,12 @@ The text above was extracted from [Wikipedia](https://en.wikipedia.org/wiki/Word
 
 ### WPScan
 
+Before starting a wpscan you should update it:
+
+```text
+wpscan --update
+```
+
 To startup, we can use the “non-intrusive” default scan using only the `--url` parameter to determine the WordPress version installed and some other information about the installation including PHP version, potential vulnerabilities, and interesting files, such as robots.txt files which could contain interesting directory or file references
 
 ```text
@@ -22,6 +28,12 @@ Enumerate users:
 wpscan --url http://target --enumerate u
 ```
 
+Enumerate plugins:
+
+```text
+wpscan --url http://target --enumerate p
+```
+
 ### Curl
 
 We can enumerate users with curl and if the HTTP status code from the response is 301 then it means that the user exists:
@@ -29,6 +41,20 @@ We can enumerate users with curl and if the HTTP status code from the response i
 ```text
  curl -s -o /dev/null -w "%{http_code}\n" http://target/author/username
 ```
+
+To automate this process we can create a loop:
+
+```bash
+for i in $(cat users.txt); \ do curl -s -o /dev/null -w "%{http_code}:$i\n" \ http://target/author/$i; done
+```
+
+An alternative method to enumerate users without a wordlist can be the following \(author=1,author=2, etc\):
+
+```bash
+ for i in {1..5}; \ do curl -L -s http://target/?author=$i \ | grep -iPo '(?<=<title>)(.*)(?=</title>)' \ | cut -f1 -d" " |grep -v "Page"; done
+```
+
+
 
 ### Enumerating Plugins
 
