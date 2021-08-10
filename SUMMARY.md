@@ -250,6 +250,7 @@
 * [ORM Injection](web-security/orm-injection.md)
 * [LDAP Injection](web-security/ldap-injection.md)
 * [HTML Injection](web-security/html-injection.md)
+* [SAML Injection](web-security/saml-injection.md)
 * [Cross Site Request Forgery \(CSRF\)](web-security/csrf.md)
 * [Server Side Request Forgery \(SSRF\)](web-security/ssrf.md)
 * [Directory Traversal](web-security/directory-traversal.md)
