@@ -90,6 +90,7 @@
 * [Active Directory Domain Privilege Escalation](active-directory/active-directory-domain-privilege-escalation.md)
 * [Active Directory Domain Persistence](active-directory/active-directory-domain-persistence.md)
 * [Active Directory Cross Forest Attacks](active-directory/active-directory-cross-forest-attacks.md)
+* [Mimikatz](active-directory/mimikatz.md)
 
 ## Cloud Security
 
