@@ -24,13 +24,37 @@ XPath \(XML Path Language\) is a standard language used to query and navigate XM
 
 ### XPATH Vulnerable Code
 
+This is a very simple example of a plaintext password insecure XML database that contains user credentials:
+
+```markup
+<?xml version="1.0" encoding="ISO-8859-1"?> 
+<users> 
+    <user id='1'> 
+        <username>wixnic</username> <!-- Comment --> 
+        <password>soVulnerable</password> 
+    </user> 
+    <user id='2'> 
+        <username>wixnic_admin</username> 
+        <password>really?</password> 
+    </user> 
+</users>
+```
+
+The XML declaration appears on the first line of the document. The current version number \(in our example, 1.0\) and the encoding type are normally defined in the XML declaration.
+
+> Note that all elements must have a closing tag and must be properly nested.
+
+The document's root element is described in the following line. XML elements define the document's structure and designate named sections of data. It's vital to remember that elements create a document tree and that `<users>` is the parent of all other elements in this case. A child element is described in the following line. Elements, like HTML tags, can have attributes \(name="value"\) that help define the qualities of the element. It's crucial to remember that attributes must be quoted and can only be used in start tags. The id attribute on the user element has a value of 1 in our example.
+
+This text can be regarded as the element's value. Wixnic would be the text included in the table users, column user with id=1 in a database schema.
+
 An example of an XPath query to look for a node user based on the inserted credentials can be this:
 
 ```markup
 //user[username/text()='<USERNAME>' and password/text()='<PASSWORD>']
 ```
 
-Where USERNMAE&gt; and PASSWORD&gt; are user-supplied input values, they should be sanitized before use.
+Where `<USERNMAE>` and `<PASSWORD>` are user-supplied input values, they should be sanitized before use.
 
 
 
