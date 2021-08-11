@@ -18,7 +18,7 @@ Post exploitation commands must be executed from SYSTEM level privileges.
 
 * mimikatz \# kerberos::ptt 
 
-### Generating a silver ticket
+### Generating a Silver Ticket
 
 AES 256 Key:
 
