@@ -77,9 +77,9 @@ nmap -sC -sV -n -Pn -p 22,135,139,445 -oA scans/nmap-tcpscripts 10.10.10.10
 Second, I start a UDP scan on the top 20 most common ports:
 
 ```text
+nmap -sU --top-ports 20 -oG scans/nmap-udp-top20 10.10.10.10
 nmap -sU -p- --min-rate 5000 --max-retries 1 -oG scans/nmap-alludp 10.10.10.74
 nmap -sU -p- --max-retries 1 -oG scans/nmap-alludp 10.10.10.74
-nmap -sU --top-ports 20 -oG scans/nmap-udp-top20 10.10.10.10
 ```
 
 ### Nmap IPv6
