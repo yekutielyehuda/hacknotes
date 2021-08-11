@@ -1,4 +1,4 @@
-# Learn-What-You-Don't-Know
+# Search for Information
 
 On this page, you will find some searching methods you can use to find information that you may need.
 
