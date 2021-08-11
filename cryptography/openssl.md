@@ -37,5 +37,15 @@ openssl genrsa -out priv.key 2048
 
 ## Certificates
 
+```text
+openssl genrsa -out filename.key 2048
+
+openssl req -new -key filename.key -out filename.csr
+
+openssl x509 -req -in filename.csr -CA <target>.cert -CAKey <target>.key -CAcreateserial -out filename.pem -days 1024 -sha256
+
+openssl pkcs12 -export -out filename.pfx -inkey filename.key -in filename.pem -certfile filename.cert
+```
+
 
 
