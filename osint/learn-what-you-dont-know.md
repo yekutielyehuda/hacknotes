@@ -17,7 +17,7 @@ These are some of the methods that you can use:
 
 ### Use Different Search Engines
 
-Google is usually really good but in some cases, I have found that DuckDuckGo finds things that I didn't found with Google, here are some images that I left as proof:
+Google is usually really good but in some cases, I have found that DuckDuckGo finds things that I didn't found with Google, here are some images that I left as proof \(8/11/2021\):
 
 Google Image
 
