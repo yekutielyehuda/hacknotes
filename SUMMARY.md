@@ -259,6 +259,7 @@
 * [File Upload](web-security/file-upload.md)
 * [SSL Stripping](web-security/ssl-stripping.md)
 * [Insecure Deserialization](web-security/insecure-deserialization.md)
+* [Insecure Direct Object References](web-security/insecure-direct-object-references.md)
 * [OAuth](web-security/oauth.md)
 * [Open Redirection](web-security/open-redirection.md)
 * [Race Condition](web-security/race-condition.md)
