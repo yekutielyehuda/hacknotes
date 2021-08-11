@@ -2,7 +2,7 @@
 
 ## Web Backups
 
-Sometimes people forget or they intentionally leave backup on the web server. Here is a list of common web backups name conventions:
+Sometimes people forget or they intentionally leave backup files on the web server. Here is a list of common web backups name conventions:
 
 ```text
 file.ext~
