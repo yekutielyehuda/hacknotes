@@ -26,6 +26,22 @@ Connect to MSSQL Server:
 sqsh -S server_address -U sa -P password
 ```
 
+### sqsh <a id="sqsh"></a>
+
+Connect to MSSQL with valid credentials:
+
+```text
+sqsh -S <ip> -U username -P password
+```
+
+### mssqlclient.py <a id="mssqlclientpy"></a>
+
+Authenticate to MSSQL with Windows Authentication:
+
+```text
+mssqlclient.py mssql-svc@<ip> -windows-auth
+```
+
 ## Execute Shell Commands
 
 Enable xp\_cmdshell:
