@@ -94,6 +94,7 @@
 
 ## Services
 
+* [Banner Grabbing](services/banner-grabbing.md)
 * [Echo - 7/TCP/UDP](services/pentesting-echo-7-tcp-udp.md)
 * [FTP - 21](services/pentesting-ftp-21.md)
 * [SSH/SFTP - 22](services/pentesting-ssh.md)
