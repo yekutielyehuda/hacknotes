@@ -7,7 +7,7 @@
 
 ## OSINT
 
-* [Search for Information](osint/learn-what-you-dont-know.md)
+* [Search for Information](osint/search-for-information.md)
 
 ## Shells
 
