@@ -241,6 +241,7 @@
 * [Web Templates](web-security/web-templates/README.md)
   * [TemplateMag](web-security/web-templates/templatemag.md)
 * [Web Fuzzing](web-security/web-fuzzing.md)
+* [Web Backups](web-security/web-backups.md)
 * [Web Fingerprinting](web-security/web-fingerprinting.md)
 * [Bypassing WAF](web-security/bypassing-waf.md)
 * [Authentication Attacks](web-security/authentication-attacks.md)
