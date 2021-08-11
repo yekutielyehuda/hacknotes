@@ -33,6 +33,7 @@
 ## Windows
 
 * [Windows Local Privilege Escalation](windows/windows-privesc.md)
+* [Windows Migrating Process](windows/windows-migrating-process.md)
 
 ## Bypass AV/IDS/IPS
 
