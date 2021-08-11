@@ -29,6 +29,15 @@ find / -name nfs
 find / -name base64
 ```
 
+## File Transfers Locations
+
+These are the directories that we usually have write access to:
+
+```text
+/dev/shm
+/tmp
+```
+
 ## System Information
 
 ### Operating System 
