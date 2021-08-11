@@ -127,6 +127,71 @@ echo "append to the same file" | tee -a hello.sh
 
 [SANS](https://www.sans.org/blog/escaping-restricted-linux-shells/) [Hacking Articles](https://www.hackingarticles.in/multiple-methods-to-bypass-restricted-shell/) [Escape From SHELLcatraz](https://speakerdeck.com/knaps/escape-from-shellcatraz-breaking-out-of-restricted-unix-shells)
 
+### rbash \(Restricted Bash\) Escape
+
+The most simple scenario in which we can escape rbash can be the following.
+
+Let's startup by creating a user with a rbash shell:
+
+```text
+root@ubuntu:/home# pwd
+/home
+root@ubuntu:/home# mkdir ruser
+root@ubuntu:/home# useradd ruser -d /home/ruser -s /bin/rbash
+root@ubuntu:/home# passwd ruser
+New password: 
+Retype new password: 
+passwd: password updated successfully
+root@ubuntu:/home# chown ruser:ruser /home/ruser
+```
+
+Next, we should inspect the SHELL environment variable, and we should see rbash:
+
+```text
+root@ubuntu:/home# su ruser
+ruser@ubuntu:/home$ id
+uid=1001(ruser) gid=1001(ruser) groups=1001(ruser)
+ruser@ubuntu:/home$ export | grep SHELL
+declare -rx SHELL="/bin/rbash"
+```
+
+We can see that the user is using restricted bash \(rbash\). Which restricts some commands and movement:
+
+```text
+ruser@ubuntu:/home$ pwd
+/home
+ruser@ubuntu:/home$ cd
+rbash: cd: restricted
+ruser@ubuntu:/home$ cd ..
+rbash: cd: restricted
+ruser@ubuntu:/home$ cd /
+rbash: cd: restricted
+ruser@ubuntu:/home$ cat
+^C
+ruser@ubuntu:/home$ touch file
+touch: cannot touch 'file': Permission denied
+ruser@ubuntu:/home$ makedir folder
+rbash: /usr/lib/command-not-found: restricted: cannot specify `/' in command names
+ruser@ubuntu:/home$ 
+```
+
+However, this can be easily bypassed by simply executing bash \(yes, literally\):
+
+```text
+ruser@ubuntu:/home$ bash
+ruser@ubuntu:/home$ cd ..
+ruser@ubuntu:/$ pwd
+/
+ruser@ubuntu:/tmp$ cd /tmp
+ruser@ubuntu:/tmp$ pwd
+/tmp
+ruser@ubuntu:/tmp$ touch test
+ruser@ubuntu:/tmp$ ls test
+test
+```
+
+As we can see above, I was able to move around.
+
 ### cgroups Escape
 
 [This post](https://blog.trailofbits.com/2019/07/19/understanding-docker-container-escapes/) has a nice POC that works to execute a command on the host from a privileged container. It runs `ps`, but we can modify that to run the same reverse shell from earlier:
