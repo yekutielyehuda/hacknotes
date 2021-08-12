@@ -2,6 +2,10 @@
 
 ## Certificate Authority
 
+ In [cryptography](https://en.wikipedia.org/wiki/Cryptography), a **certificate authority** or **certification authority** \(**CA**\) is an entity that issues [digital certificates](https://en.wikipedia.org/wiki/Public_key_certificate). A digital certificate certifies the ownership of a public key by the named subject of the certificate. This allows others \(relying parties\) to rely upon signatures or on assertions made about the private key that corresponds to the certified public key. A CA acts as a trusted third party—trusted both by the subject \(owner\) of the certificate and by the party relying upon the certificate. The format of these certificates is specified by the [X.509](https://en.wikipedia.org/wiki/X.509) or [EMV](https://en.wikipedia.org/wiki/EMV) standard.
+
+The text above was extracted from [Wikipedia](https://en.wikipedia.org/wiki/Certificate_authority).
+
 ## Microsoft Active Directory Certificate Services
 
 ### Request a Certificate
