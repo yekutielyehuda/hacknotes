@@ -182,6 +182,7 @@
 ## Web Security
 
 * [HTTP IPv6](web-security/http-ipv6.md)
+* [HTTP Versions](web-security/http-versions.md)
 * [HTTP Headers](web-security/http-headers.md)
 * [HTTP Headers Attacks](web-security/http-headers-attacks.md)
 * [HTTP Request Smuggling](web-security/http-request-smuggling.md)
