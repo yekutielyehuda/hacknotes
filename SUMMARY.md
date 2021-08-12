@@ -47,6 +47,7 @@
 
 * [Searching for Exploits](exploitation/searching-for-exploits.md)
 * [Fixing Exploits](exploitation/fixing-exploits.md)
+* [Compiling Exploits](exploitation/compiling-exploits.md)
 * [Cross-Compiling Exploits](exploitation/cross-compiling-exploits.md)
 * [Chaining Exploits](exploitation/chaining-exploits.md)
 * [Practical Exploitation](exploitation/practical-exploitation.md)

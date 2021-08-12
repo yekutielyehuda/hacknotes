@@ -192,6 +192,12 @@ test
 
 As we can see above, I was able to move around.
 
+We can change the user shell with:
+
+```text
+echo <password> | su -c 'usermod -s /bin/bash <username>'
+```
+
 ### cgroups Escape
 
 [This post](https://blog.trailofbits.com/2019/07/19/understanding-docker-container-escapes/) has a nice POC that works to execute a command on the host from a privileged container. It runs `ps`, but we can modify that to run the same reverse shell from earlier:
