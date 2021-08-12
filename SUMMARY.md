@@ -321,6 +321,7 @@
 * [Ciphers and Encodings](cryptography/ciphers-and-codes.md)
 * [OpenSSL](cryptography/openssl.md)
 * [Certificates](cryptography/certificates.md)
+* [Encrypted File Systems](cryptography/encrypted-file-systems.md)
 
 ## Password Cracking
 
