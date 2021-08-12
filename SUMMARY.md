@@ -318,6 +318,7 @@
 
 ## Cryptography
 
+* [CyberChef](cryptography/cyberchef.md)
 * [Encryption/Decryption](cryptography/encryption-decryption.md)
 * [Ciphers and Encodings](cryptography/ciphers-and-codes.md)
 * [OpenSSL](cryptography/openssl.md)
