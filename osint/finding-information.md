@@ -28,6 +28,8 @@ Here are some examples of what we can search for:
 <topic> upload file
 <topic> exploit
 <topic> attack
+<topic> pentesting
+pentesting <topic>
 <topic> github
 github <topic>
 <topic> <command> 
