@@ -185,6 +185,19 @@ username@kali: ./chisel_1.7.6_linux_amd64 server -p 12312 --reverse
 victim_username@victim: ./chisel_1.7.6_linux_amd64 client 10.10.14.20:12312 R:4505:127.0.0.1:4505
 ```
 
+## HTTP Tunnel: SSH over HTTP
+
+```text
+# Server - open port 80. Redirect all incoming traffic to localhost:80 to localhost:22
+hts -F localhost:22 80
+
+# Client - open port 8080. Redirect all incoming traffic to localhost:8080 to 192.168.1.10:80
+htc -F 8080 192.168.1.10:80
+
+# Client - connect to localhost:8080 -> get tunneled to 192.168.1.10:80 -> get redirected to 192.168.1.10:22
+ssh localhost -p 8080
+```
+
 ## DNS Tunneling
 
 ### Detection
