@@ -12,9 +12,9 @@ proxychains nc <IP> <PORT>
 
 It's worth noting that the command above does not include a proxy port. Because proxychains read their parameters from a config file, this is the case. /etc/proxychains.conf is the master configuration file. By default, proxychains will look here; nevertheless, this is the last place that proxychains will look. The following are the locations \(in order\):
 
-1. The current directory \(i.e. ./proxychains.conf\) 
-2. ~/.proxychains/proxychains.conf 
-3.  /etc/proxychains.conf
+1. The current directory \(i.e. `./proxychains.conf`\) 
+2. `~/.proxychains/proxychains.conf` 
+3.  `/etc/proxychains.conf`
 
 Simply run `cp /etc/proxychains.conf .` and make any necessary modifications to the config file in a copy in your current directory. If you're going to be moving directories a lot, you can put it in a proxychains directory under your home directory and get the same results. If the original master copy of the proxychains config is lost or destroyed, a replacement file can be found [here](https://raw.githubusercontent.com/haad/proxychains/master/src/proxychains.conf).
 
