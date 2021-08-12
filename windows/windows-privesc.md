@@ -737,6 +737,8 @@ powershell -command "Get-Clipboard"
 
 ## Misc
 
+### ExploitCapcom
+
 ### SeLoadDriverPrivilege
 
 
