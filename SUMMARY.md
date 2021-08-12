@@ -79,6 +79,7 @@
 ## Port Redirection & Tunneling
 
 * [Port Redirection & Tunneling](port-redirection-and-tunneling/port-redirection.md)
+* [Proxychains](port-redirection-and-tunneling/proxychains.md)
 
 ## Pivoting
 
