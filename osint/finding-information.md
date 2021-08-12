@@ -2,7 +2,7 @@
 
 ## Finding Information
 
-Before reading this page I recommend that you take a look at the search for information which will I have written some advice there:
+Before reading this page I recommend that you take a look at the search for information page, which I have written some advice there:
 
 {% embed url="https://wixnic.gitbook.io/hacknotes/osint/search-for-information" %}
 
