@@ -12,9 +12,25 @@ Create a proxy type connection through a compromised machine in order to route a
 
 Create a connection between a local port and a single port on a target.
 
+## Pivoting Enumeration
 
+### Enumerate the ARP Table
 
-## Enumerating Network Interface Cards \(NICs\)
+The ARP table contains IP addresses of hosts that the target has interacted with recently. We can enumerate it with:
+
+```text
+arp -a
+```
+
+### Enumerate Name Resolution
+
+On Windows systems, we can find the name resolution mappings in:
+
+```text
+C:\Windows\System32\drivers\etc\hosts
+```
+
+### Enumerating Network Interface Cards \(NICs\)
 
 First, we must determine which subnets are on the operating system to do that we can enumerate the system network interface cards with DOS/Batch or PowerShell:
 

@@ -4,7 +4,32 @@
 
 We may be in a situation where we are in an operating system that has more than one network interface, this could be physical, virtual, or even a container environment. 
 
-## Enumerating Network Interface Cards \(NICs\)
+## Pivoting Enumeration
+
+### Enumerating the ARP Table
+
+The ARP table contains IP addresses of hosts that the target has interacted with recently. We can enumerate it with:
+
+```text
+arp -a
+```
+
+### Enumerating Name Resolution
+
+On Unix/Linux systems, we can find the name resolution mappings in:
+
+```text
+/etc/hosts
+```
+
+On Unix/Linux there is a file that identifies local DNS servers:
+
+```text
+/etc/resolv.conf
+nmcli dev show
+```
+
+### Enumerating Network Interface Cards \(NICs\)
 
 First, we must enumerate the subnets that are on the operating system, we can do this with **ipconfig** or **ip** commands:
 
@@ -39,10 +64,14 @@ enp0s20f2: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
 
 In this example we see more than one network interface, however, we don't have access to the other network \`20.20.0.10\`. On the victim machine, we can perform a ping sweep to use ICMP and see which hosts are up and running. 
 
+### Enumerating Hosts
+
 ```text
 fping -a -g 20.20.20.0/24 2>/dev/null
 nmap -sn 20.20.20.0/24
 for i in {1..254} ;do (ping 20.20.20.$i -c 1 -w 5  >/dev/null && echo "20.20.20.$i" &) ;done
+for i in {1..255}; do (ping -c 1 20.20.20.${i} | grep "bytes from" &); done
+
 ```
 
 Another host has been found \`20.20.20.15\` and has ports 80 and 22 open, but because we can not access this machine, we have to use the machine 10.10.10.10 to make a reverse port forwarding of the 20.20.20.20:80 and 20.20.20.20:22 to the ports of the attacker machine. This is where pivoting comes into place.
@@ -53,7 +82,7 @@ Here for the notes, we will have this special nomenclature:
 * 10.10.10.10 -&gt; **pivoting machine**
 * attacker -&gt; **attacker machine**
 
-### Pivoting with chisel
+## Pivoting with chisel
 
 Get chisel and build it.
 
@@ -96,7 +125,7 @@ chmod +x chisel
 
 Now the attacker can check the web app on `localhost:80` or use `ssh 127.0.0.1 -p 222`
 
-### Pivoting with socat
+## Pivoting with socat
 
 Get socat static binary:
 
@@ -137,7 +166,7 @@ Tunnel TCP data for a reverse shell from the victim to the attacker:
 
 We should have a reverse shell.
 
-### Pivoting with SSH
+## Pivoting with SSH
 
 #### SOCKS Proxy
 
@@ -169,7 +198,7 @@ ssh -R [bindaddr]:[port]:[localhost]:[localport] [user]@[host]
 ssh -R 3389:10.1.1.224:3389 root@10.11.0.32
 ```
 
-### Proxychains
+## Proxychains
 
 ### SSH Dynamic Port Forwarding
 
