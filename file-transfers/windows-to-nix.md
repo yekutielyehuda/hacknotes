@@ -399,8 +399,16 @@ xcopy \\<YOUR_IP>\<ShareName>\filename.exe
 
 ## Transfer via SCP
 
+Copy a file:
+
 ```text
-scp file.txt kali@192.168.1.6:/tmp
+scp /path/to/source/file.ext username@192.168.1.10:/path/to/destination/file.ext
+```
+
+Copy a directory:
+
+```text
+scp -r /path/to/source/dir username@192.168.1.10:/path/to/destination
 ```
 
 ### Alternative pscp
