@@ -4,6 +4,16 @@
 
 We may be in a situation where we are in an operating system that has more than one network interface, this could be physical, virtual, or even a container environment. 
 
+### Tunneling/Proxying
+
+Create a proxy type connection through a compromised machine in order to route all traffic into the targeted network.
+
+### Port Forwarding
+
+Create a connection between a local port and a single port on a target.
+
+
+
 ## Enumerating Network Interface Cards \(NICs\)
 
 First, we must determine which subnets are on the operating system to do that we can enumerate the system network interface cards with DOS/Batch or PowerShell:

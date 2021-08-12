@@ -735,6 +735,10 @@ We may be able to dump information that's on the clipboard, however, this method
 powershell -command "Get-Clipboard"
 ```
 
+## Misc
+
+### SeLoadDriverPrivilege
+
 
 
 
