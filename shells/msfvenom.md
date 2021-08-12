@@ -137,3 +137,74 @@ You can list the payloads that use DLLs with the following command:
 msfvenom --list payloads | grep -i DLL
 ```
 
+## List Formats
+
+```text
+❯ msfvenom --list formats
+
+Framework Executable Formats [--format <value>]
+===============================================
+
+    Name
+    ----
+    asp
+    aspx
+    aspx-exe
+    axis2
+    dll
+    elf
+    elf-so
+    exe
+    exe-only
+    exe-service
+    exe-small
+    hta-psh
+    jar
+    jsp
+    loop-vbs
+    macho
+    msi
+    msi-nouac
+    osx-app
+    psh
+    psh-cmd
+    psh-net
+    psh-reflection
+    python-reflection
+    vba
+    vba-exe
+    vba-psh
+    vbs
+    war
+
+Framework Transform Formats [--format <value>]
+==============================================
+
+    Name
+    ----
+    base32
+    base64
+    bash
+    c
+    csharp
+    dw
+    dword
+    hex
+    java
+    js_be
+    js_le
+    num
+    perl
+    pl
+    powershell
+    ps1
+    py
+    python
+    raw
+    rb
+    ruby
+    sh
+    vbapplication
+    vbscript
+```
+
