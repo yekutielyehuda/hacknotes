@@ -9,6 +9,7 @@
 
 * [Search for Information](osint/search-for-information.md)
 * [Finding Information](osint/finding-information.md)
+* [Dorks](osint/dorks.md)
 
 ## Shells
 
