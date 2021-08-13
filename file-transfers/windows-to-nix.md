@@ -473,7 +473,7 @@ In your attacker host:
 socat TCP4-LISTEN:443,fork file:file.txt
 ```
 
-* fork = create a child process once the connection is made, allow multiple connections
+* fork = create a child process once the connection is made, it allows multiple connections.
 * file: = specify the file to transfer
 
 In Windows execute this:
