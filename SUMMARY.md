@@ -40,6 +40,7 @@
 
 * [Windows Local Privilege Escalation](windows/windows-privesc.md)
 * [Windows Migrating Process](windows/windows-migrating-process.md)
+* [Pass-The-Hash](windows/pass-the-hash.md)
 
 ## Bypass AV/IDS/IPS
 
