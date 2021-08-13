@@ -56,7 +56,6 @@ Copy to the `encoded_rev_shell.ps1`  contents to the clipboard, paste it in the 
 
 ```text
 powershell.exe -E asjdfasdfsdfaf
-
 ```
 
 Hit Enter again to execute the encoded command.
