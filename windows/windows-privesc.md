@@ -998,6 +998,8 @@ Decrypt the password cipher text:
 python3 mremoteng_decrypt.py -s CIPHER
 ```
 
+{% embed url="https://github.com/haseebT/mRemoteNG-Decrypt/blob/master/mremoteng\_decrypt.py" %}
+
 ### Groups.xml
 
 We can use GPP decrypt to get the password:
