@@ -35,6 +35,7 @@
 
 * [Linux/Unix Privilege Escalation](linux-unix/linux-privesc.md)
 * [Linux/Unix Persistence](linux-unix/linux-unix-persistence.md)
+* [Linux/Unix Cover Your Tracks](linux-unix/linux-unix-cover-your-tracks.md)
 
 ## Windows
 
