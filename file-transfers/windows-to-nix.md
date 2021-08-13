@@ -493,6 +493,24 @@ On the host that has the file that you want to send:
 nc -nv 192.168.1.2 4444 < /usr/inputfile.exe
 ```
 
+## Transfer via Powercat
+
+Send a file:
+
+```text
+powercat -c IP -p PORT -i C:\Users\name\file.ps1
+```
+
+* -c = client mode
+* -p = port
+* -i = indicate file
+
+Receive a file:
+
+```text
+sudo nc -lvnp PORT > received_file.ps1
+```
+
 ## Transfer Binaries
 
 ### Transfer Binaries from Linux to Windows
