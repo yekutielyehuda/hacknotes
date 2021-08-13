@@ -92,6 +92,58 @@ Wiki of ODAT:
 
 {% embed url="https://github.com/quentinhardy/odat/wiki" %}
 
+### Install ODAT
+
+We can install ODAT with the following commands:
+
+```text
+git clone https://github.com/quentinhardy/odat
+cd odat
+git submodule init
+git submodule update
+sudo apt-get install libaio1 python3-dev alien python3-pip
+pip3 install cx_Oracle
+```
+
+As the victim machine is 64 bits, we downloaded the client basic SDK and SQLPlus from the Oracle website
+
+```text
+mkdir isolation
+cd isolation
+wget https://download.oracle.com/otn_software/linux/instantclient/211000/oracle-instantclient-basic-21.1.0.0.0-1.x86_64.rpm
+wget https://download.oracle.com/otn_software/linux/instantclient/211000/oracle-instantclient-sqlplus-21.1.0.0.0-1.x86_64.rpm
+wget https://download.oracle.com/otn_software/linux/instantclient/211000/oracle-instantclient-devel-21.1.0.0.0-1.x86_64.rpm
+```
+
+Now we convert the `.rpm` files into `.deb` files and install them:
+
+```text
+alien --to-deb *.rpm
+dpkg -i *.deb
+```
+
+We add the environment variables to the `.zshrc`:
+
+```text
+ls /usr/lib/oracle
+
+#Output
+21
+
+vi ~/.zshrc
+
+export ORACLE_HOME=/usr/lib/oracle/21/client64/
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$ORACLE_HOME/lib
+export PATH=${ORACLE_HOME}bin:$PATH
+```
+
+Let's check that everything has been installed well:
+
+```text
+sqlplus64
+python3 odat.py --help
+```
+
 ### Find Valid Credentials
 
 You can do SID guessing attack with the following command:
