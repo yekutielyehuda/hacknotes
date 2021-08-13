@@ -831,7 +831,7 @@ PS C:\> tasklist | findstr /i 'TeamViewer'
 TeamViewer_Service.exe        3048                            0     18,404 K
 ```
 
-TeamViewer is an remote management software. Since this is the server, it will have credentials used for others to connect to it.
+TeamViewer is a remote management software. Since this is the server, it will have credentials used for others to connect to it.
 
 I can get the version by looking in the `\Program Files (x86)\TeamViewer`:
 
@@ -928,7 +928,7 @@ PS HKLM:\software\wow6432node\teamviewer\version7> (get-itemproperty -path .).Se
 
 {% embed url="https://github.com/rapid7/metasploit-framework/blob/master/modules/post/windows/gather/credentials/teamviewer\_passwords.rb" %}
 
-After some research I found that it’s using AES128 in CBC mode with a static key and iv. I can easily recreate this in a few lines of Python but we need a library which is this one:
+After some research, I found that it’s using AES128 in CBC mode with a static key and iv. We can easily recreate this in a few lines of Python but we need a library which is this one:
 
 ```text
 ❯ pip3 install pycrypto
