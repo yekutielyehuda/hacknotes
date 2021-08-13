@@ -2,7 +2,7 @@
 
 ## Active Directory Domain Enumeration
 
-When enumerating an AD server from a client make sure the user you are logged in as a member of the AD.
+When enumerating an AD server from a client make sure the user you are logged in as is a member of the AD.
 
 ## Active Directory Enumeration
 
