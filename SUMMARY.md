@@ -208,6 +208,7 @@
   * [phpMyAdmin](web-security/web-control-panels/phpmyadmin.md)
   * [Adminer](web-security/web-control-panels/adminer.md)
 * [Web Applications](web-security/web-applications/README.md)
+  * [CGI](web-security/web-applications/cgi.md)
   * [OWA](web-security/web-applications/owa.md)
   * [HelpdeskZ](web-security/web-applications/helpdeskz.md)
   * [Node-RED](web-security/web-applications/node-red.md)
