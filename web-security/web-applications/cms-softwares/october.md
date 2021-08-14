@@ -6,9 +6,9 @@
 
 ### Administration Panel
 
-![Upload](../../../.gitbook/assets/image%20%2817%29.png)
+![Upload](../../../.gitbook/assets/image%20%2818%29.png)
 
-![Uploaded Reverse Shell](../../../.gitbook/assets/image%20%2816%29.png)
+![Uploaded Reverse Shell](../../../.gitbook/assets/image%20%2817%29.png)
 
 ![Netcat Reverse Shell from OctoberCMS](../../../.gitbook/assets/image%20%2810%29.png)
 

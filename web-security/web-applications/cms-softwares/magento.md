@@ -8,7 +8,7 @@
 
 ### Admin Panel
 
-![Magento Admin Panel](../../../.gitbook/assets/image%20%2811%29.png)
+![Magento Admin Panel](../../../.gitbook/assets/image%20%2812%29.png)
 
 Default Credentials:
 
@@ -16,17 +16,17 @@ Default Credentials:
 
 ### Symlink
 
-![Template Symlink](../../../.gitbook/assets/image%20%2815%29.png)
+![Template Symlink](../../../.gitbook/assets/image%20%2816%29.png)
 
 ### Reverse Shell
 
-![Upload Reverse Shell](../../../.gitbook/assets/image%20%2814%29.png)
+![Upload Reverse Shell](../../../.gitbook/assets/image%20%2815%29.png)
 
-![Mouse Hovering on Reverse Shell File](../../../.gitbook/assets/image%20%2813%29.png)
+![Mouse Hovering on Reverse Shell File](../../../.gitbook/assets/image%20%2814%29.png)
 
-![New Template with Directory Traversal ](../../../.gitbook/assets/image%20%2812%29.png)
+![New Template with Directory Traversal ](../../../.gitbook/assets/image%20%2813%29.png)
 
-![Preview Template to Excute Reverse Shell File](../../../.gitbook/assets/image%20%2818%29.png)
+![Preview Template to Excute Reverse Shell File](../../../.gitbook/assets/image%20%2819%29.png)
 
 ### Exploits
 
