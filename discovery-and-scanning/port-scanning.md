@@ -65,7 +65,7 @@ ping -6 -c 1 dead:beef::0250:56ff:feb9:dbf3
 After confirming that ICMP is enabled \(if disabled use -Pn\), I like to start up with an SYN Stealth scan on all ports scan with a high packet rate \(the min-rate can be high for a testing environment, **not** for a production environment\):
 
 ```text
-nmap -sS -p- --open --min-rate 5000 -n -Pn -oG scans/nmap-alltcp 10.10.10.10
+nmap -sS -vvv -p- --open --min-rate 5000 -n -Pn -oG scans/nmap-alltcp 10.10.10.10
 ```
 
 Then, I extract the open ports and scan those ports:
@@ -77,9 +77,9 @@ nmap -sC -sV -n -Pn -p 22,135,139,445 -oA scans/nmap-tcpscripts 10.10.10.10
 Second, I start a UDP scan on the top 20 most common ports:
 
 ```text
-nmap -sU --top-ports 20 -oG scans/nmap-udp-top20 10.10.10.10
-nmap -sU -p- --min-rate 5000 --max-retries 1 -oG scans/nmap-alludp 10.10.10.74
-nmap -sU -p- --max-retries 1 -oG scans/nmap-alludp-slow 10.10.10.74
+nmap -sU -vvv --top-ports 20 -oG scans/nmap-udp-top20 10.10.10.10
+nmap -sU -vvv -p- --min-rate 5000 --max-retries 1 -oG scans/nmap-alludp 10.10.10.74
+nmap -sU -vvv -p- --max-retries 1 -oG scans/nmap-alludp-slow 10.10.10.74
 ```
 
 ### Nmap IPv6
