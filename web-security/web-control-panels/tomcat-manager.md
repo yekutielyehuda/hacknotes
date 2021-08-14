@@ -125,7 +125,7 @@ When we visit another manager directory the authorization header is automaticall
 
 ![](../../.gitbook/assets/authorization-header-prepend.png)
 
-After removing the Authorization header we will be promped with HTTP Basic Authentication prompt:
+After removing the Authorization header we will be prompted with HTTP Basic Authentication prompt:
 
 ![](../../.gitbook/assets/http-basic-after-remove-authorization-header.png)
 
