@@ -256,6 +256,7 @@
 * [Remote File Inclusion \(RFI\)](web-security/remote-file-inclusion-rfi.md)
 * [Cross Site Scripting \(XSS\)](web-security/xss.md)
 * [SQL Injection](web-security/sql-injection.md)
+* [NoSQL Injection](web-security/nosql-injection.md)
 * [Server Side Template Injection \(SSTI\)](web-security/server-side-template-injection-ssti.md)
 * [XML External Entity \(XXE Injection\)](web-security/xxe-injection.md)
 * [OS Command Injection](web-security/os-command-injection.md)
