@@ -184,6 +184,7 @@
 
 ## Web Security
 
+* [BurpSuite](web-security/burpsuite.md)
 * [HTTP IPv6](web-security/http-ipv6.md)
 * [HTTP Versions](web-security/http-versions.md)
 * [HTTP Headers](web-security/http-headers.md)
