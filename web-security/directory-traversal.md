@@ -1,6 +1,6 @@
 # Directory Traversal
 
-### Directory Traversal Information <a id="what-is-directory-traversal"></a>
+## Directory Traversal Information
 
 Directory traversal \(sometimes called file path traversal\) is a web security flaw that allows an attacker to access arbitrary files on a server that is hosting an application. This could comprise application code and data, back-end system credentials, and critical operating system files, among other things. An attacker may be able to write to arbitrary files on the server in some instances, allowing them to change application data or behavior and eventually gain complete control of the server.
 
