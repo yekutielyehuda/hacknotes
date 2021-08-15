@@ -19,6 +19,14 @@ External XML entities are a form of custom XML entity whose defined values are l
 
 ## XXE Enumeration
 
+Manually testing for XXE vulnerabilities generally involves:
+
+* Testing for file retrieval by defining an external entity based on a well-known operating system file and using that entity in data that is returned in the application's response.
+* Testing for blind XXE vulnerabilities by defining an external entity based on a URL to a system that you control, and monitoring for interactions with that system.
+* Testing for vulnerable inclusion of user-supplied non-XML data within a server-side XML document by using an XInclude attack to try to retrieve a well-known operating system file.
+
+### XXE Example
+
 If the web reports the content of an XML field, the attackers may be able to use an ENTITY to replace the reported field with the content of an internal file of the machine.
 
 First, we must consider if we can upload files to the remote server, if yes. Then we may continue with a payload like the following:
