@@ -1,5 +1,11 @@
 # Web Enumeration
 
+## Inspecting Operating System
+
+## Inspecting Certificate 
+
+## Inspecting Virtual Hosting
+
 ## HTTP Headers
 
 ### User-Agent
@@ -27,6 +33,12 @@
 ## Inspecting Page Content
 
 ## Inspecting URLs
+
+## Inspecting Database
+
+## Inspecting Frameworks
+
+## Inspecting Software or Applications
 
 
 
