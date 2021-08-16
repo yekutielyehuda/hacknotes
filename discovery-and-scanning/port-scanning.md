@@ -114,6 +114,29 @@ During a UDP scan \(-Su\) -sV will send protocol-specific probes, also known as 
 sudo nmap -sU -sV --version-intensity 0 -n 10.10.10.10
 ```
 
+### Netcat Verify TCP/UDP Ports
+
+We can verify if a **TCP** port is really open with nc:
+
+```text
+nc -nvv -w 1 -z IP 3389-3390
+
+-nvv = connect and verbose
+-w = timout in seconds
+-z = zero I/O mode (send no data, it is used for scanning)
+```
+
+We can verify if a **UDP** port is really open with nc:
+
+```text
+nc -nv -u -w 1 -z IP 3389-3390
+
+-nv = connect and verbose 
+-u = UDP 
+-w = timeout in seconds
+-z = zero I/O modes (send no data, it is used for scanning)
+```
+
 ### Nmap Extract Ports
 
 I have zsh function which extracts ports from a grep file, thanks to [S4vitar](https://www.youtube.com/channel/UCNHWpNqiM8yOQcHXtsluD7Q) for sharing this function.
