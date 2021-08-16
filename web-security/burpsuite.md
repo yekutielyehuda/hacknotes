@@ -1,5 +1,11 @@
 # BurpSuite
 
+## FoxyProxy
+
+A common proxy extension that we can use in Firefox is this one:
+
+{% embed url="https://addons.mozilla.org/en-GB/firefox/addon/foxyproxy-standard/" %}
+
 ## Scope
 
 Define a scope:
