@@ -10,6 +10,7 @@
 * [Search for Information](osint/search-for-information.md)
 * [Finding Information](osint/finding-information.md)
 * [Dorks](osint/dorks.md)
+* [Passive Information Gathering](osint/passive-information-gathering.md)
 
 ## Shells
 
