@@ -42,6 +42,12 @@ Enumerate plugins:
 wpscan --url http://target --enumerate p
 ```
 
+Enumerate credentails with random-user-agent header:
+
+```text
+wpscan --url http://target --usernames users.txt -P rockyou.txt random-user-agent
+```
+
 ### Curl
 
 We can enumerate users with curl and if the HTTP status code from the response is 301 then it means that the user exists:
@@ -94,6 +100,12 @@ We can supply a wordlist of passwords, and the “--username” parameter with a
 
 ```text
 wpscan --url http://target --wordlist /usr/share/wordlists/rockyou.txt --username admin
+```
+
+General Bruteforce with random-user-agent:
+
+```text
+wpscan --url http://target --usernames users.txt -P rockyou.txt random-user-agent
 ```
 
 #### **wpbf**

