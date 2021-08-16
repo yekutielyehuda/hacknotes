@@ -254,6 +254,7 @@
 * [Web Fuzzing](web-security/web-fuzzing.md)
 * [Web Backups](web-security/web-backups.md)
 * [Web Fingerprinting](web-security/web-fingerprinting.md)
+* [Web Enumeration](web-security/web-enumeration.md)
 * [Bypassing WAF](web-security/bypassing-waf.md)
 * [Authentication Attacks](web-security/authentication-attacks.md)
 * [Local File Inclusion \(LFI\)](web-security/local-file-inclusion-lfi.md)
