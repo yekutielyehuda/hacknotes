@@ -437,8 +437,6 @@ My simple cheatsheet:
 /evil.php?cmd=dir
 ```
 
-
-
 This cheat sheet is from [here](https://github.com/areyou1or0/OSCP/blob/master/Web).
 
 ```text
