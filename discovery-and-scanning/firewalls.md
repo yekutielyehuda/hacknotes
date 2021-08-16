@@ -107,7 +107,7 @@ Windows Defender Firewall -&gt; Customise Settings
 
 ## Network
 
-### FortiGate
+### FortiGate - UTM
 
 Visit the FortiGate documentation for detailed information:
 
