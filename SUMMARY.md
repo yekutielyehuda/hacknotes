@@ -28,6 +28,7 @@
 ## Discovery and Scanning
 
 * [Port Scanning](discovery-and-scanning/port-scanning.md)
+* [Firewalls](discovery-and-scanning/firewalls.md)
 * [Name Resolution](discovery-and-scanning/name-resolution.md)
 * [MAC to IPv6](discovery-and-scanning/mac-to-ipv6.md)
 * [IPv6 Considerations](discovery-and-scanning/ipv6-considerations.md)
