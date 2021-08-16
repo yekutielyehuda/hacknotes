@@ -6,6 +6,12 @@ Look up information from almost everywhere:
 
 {% embed url="https://osintframework.com/" %}
 
+## Maltego
+
+Collect information and create diagrams as you go:
+
+{% embed url="https://www.maltego.com/" %}
+
 ## theHarverster
 
 Gather information from a public domain using all available search engines:
@@ -47,6 +53,22 @@ Google Chrome Extension
 Firefox Extension
 
 {% embed url="https://addons.mozilla.org/en-GB/firefox/addon/netcraft-toolbar/?utm\_source=addons.mozilla.org&utm\_medium=referral&utm\_content=search" %}
+
+## Site Specific Tools
+
+### Social Media
+
+Search for information from social media sites:
+
+{% embed url="https://www.social-searcher.com/" %}
+
+Twitter Information:
+
+{% embed url="https://digi.ninja/projects/twofi.php" %}
+
+LinkedIn Information:
+
+{% embed url="https://github.com/initstring/linkedin2username" %}
 
 
 
