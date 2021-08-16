@@ -40,6 +40,12 @@ We can search for possible GitHub repositories of the target:
 <service> site:github.com
 ```
 
+### GitHub/GitLab Leaks
+
+{% embed url="https://github.com/michenriksen/gitrob" %}
+
+{% embed url="https://github.com/zricethezav/gitleaks" %}
+
 ## Site Information
 
 ### Netcraft
@@ -53,6 +59,24 @@ Google Chrome Extension
 Firefox Extension
 
 {% embed url="https://addons.mozilla.org/en-GB/firefox/addon/netcraft-toolbar/?utm\_source=addons.mozilla.org&utm\_medium=referral&utm\_content=search" %}
+
+### Security Headers
+
+Analyze HTTP Headers:
+
+{% embed url="https://securityheaders.com/" %}
+
+### SSL/TLS
+
+Analyze SSL/TLS settings:
+
+{% embed url="https://www.ssllabs.com/ssltest/" %}
+
+
+
+
+
+
 
 ## Site Specific Tools
 
@@ -70,5 +94,13 @@ LinkedIn Information:
 
 {% embed url="https://github.com/initstring/linkedin2username" %}
 
+## Code Leaks
 
+### Pastebin
+
+Some people share sensitive codes for the public:
+
+```text
+<topic> site:pastebin.com
+```
 
