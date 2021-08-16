@@ -417,6 +417,8 @@ My simple cheatsheet:
 
 # Error
 ?id=1 order by 4
+
+# Perform a union selection
 ?id=1 union all select 1, 2, 3
 
 # Determine the DBMS
