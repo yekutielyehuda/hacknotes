@@ -181,6 +181,14 @@ PS C:\> dir | group extension | sort
 PS C:\> Get-Service dhcp | StopService -PassThru | Set-Service -StartupType Disabled
 ```
 
+### Import Scripts
+
+We can import scripts as follows:
+
+```text
+PS C:\> . .\script.ps1
+```
+
 ## PowerShell Common Cmdlets
 
 ### Get a directory listing \(ls, dir, gci\)
