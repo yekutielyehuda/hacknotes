@@ -324,6 +324,11 @@
 * [Windows EggHunting](exploit-development/windows-egghunting.md)
 * [Windows Bypass Protections](exploit-development/windows-bypass-protections.md)
 
+## Kernel
+
+* [Windows Kernel](kernel/windows-kernel.md)
+* [Unix/Linux Kernel](kernel/unix-linux-kernel.md)
+
 ## Cryptography
 
 * [CyberChef](cryptography/cyberchef.md)
