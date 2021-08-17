@@ -25,6 +25,12 @@ There is only one section of significant interest to us at this time: the proxy'
 socks4    127.0.0.1    8080
 ```
 
+Alternatively, you can place another sock in the ProxyList with:
+
+```
+sudo bash -c 'echo "socks4 127.0.0.1 8004" >> /etc/proxychains.conf'
+```
+
 There's one more line in the Proxychains setup that's worth noting, and that has to do with the Proxy DNS settings:
 
 ```text

