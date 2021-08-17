@@ -38,6 +38,24 @@ We can create a wordlist based on a web page:
 cewl http://target/
 ```
 
+## Hash Identification
+
+### Hash Identifier
+
+We can use `hash-identifier` to identify a hash:
+
+```text
+hash-identifier hash_here
+```
+
+### Hashid
+
+We can `hashid` to identify a hash:
+
+```text
+hashid hash_here
+```
+
 ## John
 
 A simple way to crack password hashes with a dictionary attack:
