@@ -111,6 +111,16 @@ sudo -v
 sudo -V | grep "Sudo ver" | grep "1\.[01234567]\.[0-9]\+\|1\.8\.1[0-9]\*\|1\.8\.2[01234567]"
 ```
 
+## Un/Mounted File Systems
+
+We enumerate mounted or unmounted file systems with:
+
+```text
+mount
+cat /etc/fstab # (not all drives are listed here, depends on the configuration)
+/bin/lsblk # (list all available disk)
+```
+
 ## Applications & Services
 
 Enumerate the services that are running and their privilege:
