@@ -335,7 +335,7 @@ Get-ChildItem "C:\Program Files" -Recurse | Get-ACL | ?{$_.AccessToString -match
 accesschk.exe -uws "Everyone" "C:\Program Files"
 ```
 
-* -u = supress errors
+* -u = suppress errors
 * -w = write access permissions
 * -s = recursive search
 
