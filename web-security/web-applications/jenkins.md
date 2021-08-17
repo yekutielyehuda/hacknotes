@@ -1,6 +1,10 @@
 # Jenkins
 
-### Exploiting Jenkins Server
+### Execute Commands
+
+Navigate to `Jenkins > Access > Configure > Command` and type a malicious command.
+
+### Script Console
 
 Navigate to `Manage Jenkins>>Script Console` and edit this code for a reverse connection:
 
