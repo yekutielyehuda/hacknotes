@@ -440,7 +440,7 @@ We can also use `icacls` to enumerate permissions:
 icacls "filename.exe"
 ```
 
-Do BUILTIN\Users have F, M or R or W?
+Do BUILTIN\Users have F, M or R, or W?
 
 * F = Full Access
 * M = Modify Access
