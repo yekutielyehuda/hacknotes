@@ -48,5 +48,15 @@
 
 ## Inspecting Software or Applications
 
+## Web Fuzzing \| Find Directories, Files, Subdomains, Virtual Hosting, Parameters, and Values
+
+Check out this page:
+
+{% embed url="https://wixnic.gitbook.io/hacknotes/web-security/web-fuzzing" %}
+
+
+
+
+
 
 
