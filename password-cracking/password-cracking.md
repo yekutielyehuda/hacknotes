@@ -30,6 +30,14 @@ An example of predefined characters set:
 crunch 5 5 -f /usr/share/crunch/charset.lst mixalpha -o filename-crunch.txt
 ```
 
+### Cewl
+
+We can create a wordlist based on a web page:
+
+```text
+cewl http://target/
+```
+
 ## John
 
 A simple way to crack password hashes with a dictionary attack:
