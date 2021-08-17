@@ -132,6 +132,24 @@ We can add a low privileged user to the Local Administrators group with the foll
 net localgroup administrators <username> /add
 ```
 
+## Automated Enumeration Tools
+
+### **windows-privesc-check**
+
+{% embed url="https://github.com/pentestmonkey/windows-privesc-check" %}
+
+Display Help:
+
+```text
+windows-privesc-check2.exe -h
+```
+
+Dump groups:
+
+```text
+windows-privesc-check2.exe --dump -G
+```
+
 ## System Information
 
 ### Version information enumeration

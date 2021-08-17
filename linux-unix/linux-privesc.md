@@ -38,6 +38,24 @@ These are the directories that we usually have write access to:
 /tmp
 ```
 
+## Automated Enumeration Tools
+
+### unix-privesc-check
+
+{% embed url="http://pentestmonkey.net/tools/audit/unix-privesc-check" %}
+
+Display Help:
+
+```text
+./unix-privesc-check
+```
+
+Speed Check:
+
+```text
+./unix-privesc-check standard > filename.txt
+```
+
 ## System Information
 
 ### Operating System 
