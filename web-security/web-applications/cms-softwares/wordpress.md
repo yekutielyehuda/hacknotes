@@ -8,6 +8,13 @@ The text above was extracted from [Wikipedia](https://en.wikipedia.org/wiki/Word
 
 ## Enumerating WordPress
 
+WordPress Key Points:
+
+* Tools &gt; Site Health &gt; Info &gt; Server
+* Tools &gt; Site Health &gt; Info &gt; Database
+* Plugins are written in PHP
+* Upload Plugins with PHP Reverse Shell
+
 ### Nmap
 
 We can nmap nse scripts:
