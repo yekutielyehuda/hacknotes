@@ -1,5 +1,35 @@
 # Password Cracking
 
+## Creating Wordlists
+
+### Crunch
+
+Crunch basic syntax:
+
+```text
+crunch min max
+```
+
+Crunch example of a complete wordlist:
+
+```text
+crunch 8 8 -t ,@@^^%%%
+```
+
+Placeholders:
+
+* -t = pattern
+* , = uppercase
+* @ = lowercase
+* % = numeric
+* ^ = special characters
+
+An example of predefined characters set:
+
+```text
+crunch 5 5 -f /usr/share/crunch/charset.lst mixalpha -o filename-crunch.txt
+```
+
 ## John
 
 A simple way to crack password hashes with a dictionary attack:
