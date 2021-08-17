@@ -54,6 +54,25 @@ Get-NetIPConfiguration
 netsh interface portproxy add v4tov4 listenaddress=localaddress listenport=localport connectaddress=destaddress connectport=destport
 ```
 
+_**Example below:**_
+
+First, establish a connection:
+
+```text
+# Syntax Simplified
+netsh interface portproxy add v4tov4 listenport=1234 listenadress=compromised_IP connectport=second_target_PORT connectaddress=second_target_IP
+netsh interface portproxy add v4tov4 listenport=1234 listenaddress=target_ip connectport=445 connectaddress=other_machine_ip
+
+# Example
+netsh interface portproxy add v4tov4 listenport=1234 listenaddress=192.168.134.10 connectport=445 connectaddress=172.16.1.50
+```
+
+Then verify that the connection has been made with:
+
+```text
+C:\Users\first_victim> netstat -anp TCP | find "1234"
+```
+
 ## Pivoting with chisel
 
 [Chisel ](https://github.com/jpillora/chisel)is a fast TCP/UDP tunnel, transported over HTTP, secured via SSH. Single executable including both client and server. Written in Go \(golang\). Chisel is mainly useful for passing through firewalls, though it can also be used to provide a secure endpoint into your network.
