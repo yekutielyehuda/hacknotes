@@ -157,6 +157,14 @@ If we have harvested some passwords by compromising a user account, we can use t
 
   \*\*\*\*
 
+{% embed url="https://github.com/ZilentJack/Spray-Passwords/blob/master/Spray-Passwords.ps1" %}
+
+We can use this PoC script to do a password spray attack:
+
+```text
+.\Spray-Passwords.ps1 -Pass password -Admin
+```
+
 ### **Force Set SPN**
 
 _What is this?: If we have enough permissions -&gt; GenericAll/GenericWrite we can set an SPN on a target account, request a TGS, then grab its blob and brute force it._
