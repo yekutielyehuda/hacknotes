@@ -482,7 +482,7 @@ move filename.exe "c:\program files\service\filename.exe"
 
 ### AutoRuns
 
-Windows may be set up to run commands with elevated rights when it boots up. The Registry is used to set up these "AutoRuns." It might be possible to escalate privileges if you can write to an AutoRun executable and restart the system \(or wait for it to restart\).
+When Windows starts up, it may be configured to perform commands with elevated privileges. These "AutoRuns" are set up via the Registry. If you can write to an AutoRun executable and restart the system, you might be able to elevate privileges \(or wait for it to restart\).
 
 #### AutoRuns Privilege Escalation Methodology
 
@@ -516,7 +516,7 @@ Windows may be set up to run commands with elevated rights when it boots up. The
    copy /Y C:\Users\Public\reverse.exe "C:\Program Files\Autorun Program\program.exe"
    ```
 
-5. Start a listener on your host, and then restart the target to trigger the exploit. Note that on Windows 10, the exploit appears to run with the privileges of the last logged-on user, so log out of the “user” account and log in as the “admin” account first.
+5. Start a listener on your host, and then restart the target to trigger the exploit. 
 
 ### AlwaysInstallElevated
 
