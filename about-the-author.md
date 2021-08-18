@@ -4,7 +4,7 @@
 
 My name is **Yadiel Reyes**.
 
-I do not own every content of this book, some of the information here was copied from other resources, there are references to them to give them credits to the original authors. 
+I do **NOT** own every content of this book, some of the information here was copied from other resources, there are references to them to give them credits to the original authors. 
 
 ### Biography
 

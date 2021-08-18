@@ -21,7 +21,7 @@ Cloning this GitBook and presenting it as your own is illegal and strictly forbi
 This GitBook is constantly being updated so expect some changes.
 
 {% hint style="info" %}
-* Expect mistakes on the notes
+* Expect mistakes on the notes.
 * Not all the notes are from me. There are resources to the original authors.
 * Some of the commands in the notes must be altered or edited to work.
 {% endhint %}
