@@ -4,6 +4,35 @@
 
 Our ultimate goal is to escalate from a low privileged user to a user that runs as an Administrator or the SYSTEM user. Privilege escalation may not always be based on a single misconfiguration, but rather on your ability to conceptualize and integrate many misconfigurations. Many privilege escalations vectors might be considered access control violations. User authorization and access control are inextricably related. Understanding how Windows manages permissions is critical when focusing on privilege escalations in Windows.
 
+## Preparation & Finding Tools
+
+Enumerate the tools that are installed:
+
+```text
+netsh /?
+icacls /?
+copy /?
+xcopy /?
+wmic /?
+powershell.exe -c wget
+powershell.exe -c curl
+powershell.exe -c python
+powershell.exe -c ssh
+```
+
+## File Transfers Locations
+
+These are the directories that we usually have write access to:
+
+```text
+C:\Users\Public
+C:\Users\your_user\
+C:\Users\your_user\AppData\Local\Temp
+
+# Find writable directories
+dir /a-r-d /s /b C:\
+```
+
 ## General Concepts
 
 ### User Accounts
