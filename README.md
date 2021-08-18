@@ -22,6 +22,7 @@ This GitBook is constantly being updated so expect some changes.
 
 {% hint style="info" %}
 * Expect mistakes on the notes.
+* Empty pages, lines, or headers that are missing means that are in progress.
 * Not all the notes are from me. There are resources to the original authors.
 * Some of the commands in the notes must be altered or edited to work.
 {% endhint %}
