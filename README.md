@@ -15,10 +15,8 @@ This book contains information about most of the things that I have encountered,
 
 HackNotes was created by [@wixnic](https://twitter.com/wixnic).
 
-Cloning this GitBook and presenting it as your own is illegal and strictly forbidden, don't do it.
-{% endhint %}
-
 This GitBook is constantly being updated so expect some changes.
+{% endhint %}
 
 {% hint style="info" %}
 * Expect mistakes on the notes.

