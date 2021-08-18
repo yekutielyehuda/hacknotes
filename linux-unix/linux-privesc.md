@@ -364,6 +364,43 @@ echo 'cp /bin/bash /tmp/rootbash; chmod +s /tmp/rootbash' > /path/to/cron/script
 
 ## Service Exploits
 
+Exploiting vulnerable services that are executing as root can result in command execution as root.
+
+### Services Running as Root
+
+The following command will show all processes that are running as root:
+
+```text
+$ ps aux | grep "^root"
+```
+
+### Enumerating Program Versions
+
+Running the program with the --version/-v command-line option shows the version number:
+
+```text
+<program> --version
+<program> -v
+dpkg -l | grep <program>
+rpm –qa | grep <program>
+```
+
+#### Service Privilege Escalation
+
+1. Enumerate the processes running as root:
+
+   ```text
+   ps aux | grep "^root”
+   ```
+
+2. Enumerate the version of the program or process that's running:
+
+   ```text
+   <program> --version
+   ```
+
+3. Search for exploits.
+
 ## Passwords, Hashes, and Credentials
 
 We can enumerate possible files that may contain credentials.
