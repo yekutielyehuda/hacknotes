@@ -397,16 +397,6 @@ Users' commands are recorded in history files when they are using specific progr
    history
    ```
 
-### Configuration Files
-
-Configuration \(config\) files are used by many services and programs to store settings. If a service needs to authenticate to something, the credentials may be saved in a configuration file. We may be able to log in as that user if these config files are open and the passwords they record are repeated by privileged users.
-
-1. The following is a list of the contents of the user's home directory:
-
-   ```text
-   ls -la
-   ```
-
 ### SSH Keys
 
 To authenticate users using SSH, SSH keys can be used instead of passwords. SSH keys are split into two parts: a private key and a public key. The private key should be kept hidden at all times. If a user's private key is stored insecurely, anyone who has access to it may be able to authenticate to the server/target.
