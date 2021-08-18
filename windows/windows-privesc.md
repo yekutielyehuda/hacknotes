@@ -343,6 +343,18 @@ accesschk.exe -uws "Everyone" "C:\Program Files"
 
 ## Drivers and Kernel Vulnerabilities
 
+Windows Exploit Suggester: 
+
+{% embed url="https://github.com/bitsadmin/wesng" %}
+
+Precompiled Kernel Exploits: 
+
+{% embed url="https://github.com/SecWiki/windows-kernel-exploits" %}
+
+Watson: 
+
+{% embed url="https://github.com/rasta-mouse/Watson" %}
+
 Enumerate the operating system with:
 
 ```text
@@ -1098,7 +1110,7 @@ nc -lvnp <PORT>
 
 In 2016, the original Rotten Potato flaw was discovered. A SYSTEM ticket could be intercepted by a service account and used to impersonate the SYSTEM user. Because service accounts typically have the “SeImpersonatePrivilege” ability enabled, this was conceivable.
 
-### Juicy Potato
+### Juicy Potato Privilege Escalation
 
 The exploit Rotten Potato was relatively restricted. Juicy Potato works in the same manner that Rotten Potato does, but the authors performed a lot of research and came up with a lot of new ways to use it.
 
