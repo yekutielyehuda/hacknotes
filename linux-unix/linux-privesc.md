@@ -977,6 +977,15 @@ uid=0(root) gid=0(root) groups=0(root)
 
 ## Sticky Bits and SUID/SGID 
 
+### Sticky Bits and SUID/SGID Enumeration
+
+```bash
+find / -perm -1000 -type d 2>/dev/null   # Sticky bit - Only the owner of the directory or the owner of a file can delete or rename here.
+find / -perm -g=s -type f 2>/dev/null    # SGID (chmod 2000) - run as the group, not the user who started it.
+find / -perm -u=s -type f 2>/dev/null    # SUID (chmod 4000) - run as the owner, not the user who started it.
+find / -perm -g=s -o -perm -u=s -type f 2>/dev/null    # SGID or SUID
+```
+
 ### Known Exploits
 
 SUID files are used by several programs to facilitate their operation. These SUID files, run as root, and can contain vulnerabilities that we can exploit for a root shell. 
@@ -1234,15 +1243,6 @@ It is possible to define user functions with an absolute pathname.
    rootbash-4.1# id
    uid=1000(user) gid=1000(user) euid=0(root) egid=0(root) ...
    ```
-
-### Sticky Bits and SUID/SGID Enumeration
-
-```bash
-find / -perm -1000 -type d 2>/dev/null   # Sticky bit - Only the owner of the directory or the owner of a file can delete or rename here.
-find / -perm -g=s -type f 2>/dev/null    # SGID (chmod 2000) - run as the group, not the user who started it.
-find / -perm -u=s -type f 2>/dev/null    # SUID (chmod 4000) - run as the owner, not the user who started it.
-find / -perm -g=s -o -perm -u=s -type f 2>/dev/null    # SGID or SUID
-```
 
 ## Capabilities
 
