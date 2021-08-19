@@ -56,6 +56,18 @@ Speed Check:
 ./unix-privesc-check standard > filename.txt
 ```
 
+### LinEnum
+
+{% embed url="https://github.com/rebootuser/LinEnum" %}
+
+### **LSE**
+
+{% embed url="https://github.com/diego-treitos/linux-smart-enumeration" %}
+
+### linPEAS
+
+{% embed url="https://github.com/carlospolop/PEASS-ng/tree/master/linPEAS" %}
+
 ## Spawning Root Shells
 
 This is used in situations where commands can be executed as root. We can create our own executable and execute it as root.
