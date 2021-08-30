@@ -1,6 +1,8 @@
 # Local File Inclusion \(LFI\)
 
-### Wrappers
+## Local File Inclusion
+
+Local File Inclusion is a vulnerability that allows us to include files that are on the target server. Server-side languages such as PHP or JSP can dynamically include external scripts, reducing the script's overall size and simplifying the code. Attackers can include both local and remote files if this inclusion logic isn't checked, which could lead to source code leakage, sensitive data exposure, and code execution under some circumstances.
 
 ## LFI Examples
 
