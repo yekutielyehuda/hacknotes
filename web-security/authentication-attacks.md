@@ -4,6 +4,16 @@
 
 
 
+## HTTP Create User via POST
+
+We can create a user with curl:
+
+```text
+curl -X POST -d 'username=testing123&password=test123&confirm=test123' http://victim/
+```
+
+
+
 ### HTTP Basic Authentication
 
 HTTP Basic Authentication with Hydra:

