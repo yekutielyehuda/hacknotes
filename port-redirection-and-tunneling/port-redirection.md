@@ -175,7 +175,7 @@ chmod +x chisel
 
 ```text
 username@kali: ./chisel server -p 1234 --reverse
-C:\Users\victim> ./chisel-x64.exe client 10.10.14.3:8080 R:8082:127.0.0.1:8082
+C:\Users\victim> ./chisel-x64.exe client 10.10.14.3:1234 R:8082:127.0.0.1:8082
 ```
 
 ### Linux Port forwarding <a id="port-forwarding"></a>
