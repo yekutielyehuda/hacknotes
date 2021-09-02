@@ -69,8 +69,14 @@ In this example we see more than one network interface, however, we don't have a
 ```text
 fping -a -g 20.20.20.0/24 2>/dev/null
 nmap -sn 20.20.20.0/24
+
+
+# You can use either {1..255} or `seq 1 255`
+
 for i in {1..254} ;do (ping 20.20.20.$i -c 1 -w 5  >/dev/null && echo "20.20.20.$i" &) ;done
 for i in {1..255}; do (ping -c 1 20.20.20.${i} | grep "bytes from" &); done
+for i in {1..255}; do ping -c 1 172.20.0.$i; done | grep 'ttl='
+for i in `seq 1 255`; do (ping -c 1 172.20.0.$i > /dev/null && echo "172.20.0.$i is up" &); done
 
 ```
 
@@ -81,6 +87,31 @@ Here for the notes, we will have this special nomenclature:
 * 20.20.20.15 -&gt; **victim machine**
 * 10.10.10.10 -&gt; **pivoting machine**
 * attacker -&gt; **attacker machine**
+
+### **Enumerating Ports**
+
+If you found a host, you may want to do a port scan:
+
+```text
+for port in {1..30}; do echo > /dev/tcp/10.10.10.101/$port && echo "port $port is open";done 2>/dev/null
+for port in `seq 1 30`; do echo > /dev/tcp/10.10.10.101/$port && echo "port $port is open";done 2>/dev/null
+```
+
+## Pivoting Example
+
+127.0.0.1:3000 &lt;- Aogiri\(10.10.10.101\):3000 &lt;- Kaneki\_pc\(172.20.0.150\):3000 &lt;- Gogs\(172.18.0.2\):3000
+
+Let’s try that, first SSH into 10.10.10.101 then forward port 3000 from 172.18.0.2 through kaneki-pc.
+
+```bash
+kaneki@Aogiri:~$ ssh -L 3000:172.18.0.2:3000 kaneki_pub@172.20.0.150
+```
+
+Then forward from Aogiri to our host \(127.0.0.1\):
+
+```bash
+kali@kali:~$ ssh -L 3000:127.0.0.1:3000 -i kaneki.backup kaneki@10.10.10.101
+```
 
 ## Pivoting with chisel
 

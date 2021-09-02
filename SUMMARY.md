@@ -19,6 +19,7 @@
 * [Web Shells](shells/web-shells.md)
 * [Rlwrap](shells/netcat-tips.md)
 * [Msfvenom](shells/msfvenom.md)
+* [Testing Connection](shells/testing-connection.md)
 
 ## Escapes
 

@@ -224,3 +224,11 @@ nt authority\system
 C:\apache-tomcat-7.0.88>
 ```
 
+## Tomcat Credentials
+
+The default tomcat credentials location is the following:
+
+```text
+cat /usr/share/tomcat*/conf/tomcat-users.xml
+```
+

