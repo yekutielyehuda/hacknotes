@@ -49,5 +49,13 @@ x86_64:/ $ su
 uid=0(root) gid=0(root) groups=0(root) context=u:r:su:s0
 ```
 
+### scrcpy
+
+ This application provides display and control of Android devices connected on USB \(or [over TCP/IP](https://www.genymotion.com/blog/open-source-project-scrcpy-now-works-wirelessly/)\). It does not require any _root_ access. It works on _GNU/Linux_, _Windows_ and _macOS_.
+
+{% embed url="https://github.com/Genymobile/scrcpy" %}
+
+
+
 
 
