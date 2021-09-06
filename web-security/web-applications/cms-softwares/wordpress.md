@@ -55,6 +55,12 @@ Enumerate credentails with random-user-agent header:
 wpscan --url http://target --usernames users.txt -P rockyou.txt random-user-agent
 ```
 
+Enumerate and store the output:
+
+```text
+wpscan -u http://10.10.10.88/webservices/wp/ --enumerate p,t,u | tee wpscan.log
+```
+
 ### Curl
 
 We can enumerate users with curl and if the HTTP status code from the response is 301 then it means that the user exists:
