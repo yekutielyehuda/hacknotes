@@ -1421,6 +1421,21 @@ A root process may be tied to a port listening only on localhost. If an attack c
 
 ## Misc
 
+### tmux
+
+If there's a session running as root, then we may be able to escalate our privileges:
+
+```text
+hype@Valentine:~$ ps -ef | grep tmux
+root       1022      1  0 Jul25 ?        00:00:54 /usr/bin/tmux -S /.devs/dev_sess
+```
+
+Connect to the session:
+
+```text
+tmux -S /.devs/dev_sess
+```
+
 ### PyPi
 
 If the service pypi has an external connection we can follow the steps below in our host \(kali\):
