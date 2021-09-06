@@ -780,6 +780,13 @@ rpm –qa | grep <program>oftenoften
 
 ## Malicious Service
 
+To create a malicious service, the systemctl utility must executable by our current user or group:
+
+```text
+SUID files:
+-rwsr-x--- 1 root pepper 174520 Feb 19 05:18 /bin/systemctl       
+```
+
 A service is defined by a `.service` file. The `systemctl` is used to link it to `systemd`, and then used again to start the service. What the service does is defined by the `.service` file.
 
  [gtfobins](https://gtfobins.github.io/gtfobins/systemctl/) has a page for `systemctl`, and it gives an example where a single command is executed and output to a file in `tmp`.
