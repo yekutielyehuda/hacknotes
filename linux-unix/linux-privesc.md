@@ -154,6 +154,32 @@ sudo -v
 sudo -V | grep "Sudo ver" | grep "1\.[01234567]\.[0-9]\+\|1\.8\.1[0-9]\*\|1\.8\.2[01234567]"
 ```
 
+## Users & Groups
+
+Enumerate users with:
+
+```text
+cat /etc/passwd
+
+# Find users with a shell (bash,sh,zsh,fish,others)
+cat /etc/passwd | grep sh$
+```
+
+### Groups
+
+Enumerate your group:
+
+```text
+id
+groups
+```
+
+Find files with a particular group:
+
+```text
+find / -group admin -ls 2>/dev/null 
+```
+
 ## Un/Mounted File Systems
 
 We enumerate mounted or unmounted file systems with:
