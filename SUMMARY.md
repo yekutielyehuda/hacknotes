@@ -285,6 +285,7 @@
 * [Directory Traversal](web-security/directory-traversal.md)
 * [File Upload](web-security/file-upload.md)
 * [SSL Stripping](web-security/ssl-stripping.md)
+* [SSL Enumeration](web-security/ssl-enumeration.md)
 * [Insecure Deserialization](web-security/insecure-deserialization.md)
 * [Insecure Direct Object References](web-security/insecure-direct-object-references.md)
 * [OAuth](web-security/oauth.md)
