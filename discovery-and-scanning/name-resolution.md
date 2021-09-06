@@ -20,3 +20,9 @@ In Unix based operating systems, the name resolution file is located here:
 /etc/hosts
 ```
 
+Add a hostname:
+
+```bash
+sudo sh -c 'echo "SERVER_IP hostname.htb" >> /etc/hosts'
+```
+

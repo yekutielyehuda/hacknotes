@@ -580,6 +580,10 @@ Virtual Host Fuzzing:
 gobuster vhost -u http://sneakycorp.htb -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt
 ```
 
+### ffuf
+
+
+
 
 
 ## Reference
