@@ -1436,6 +1436,10 @@ Connect to the session:
 tmux -S /.devs/dev_sess
 ```
 
+### Python Path Hijacking
+
+{% embed url="https://rastating.github.io/privilege-escalation-via-python-library-hijacking/" %}
+
 ### PyPi
 
 If the service pypi has an external connection we can follow the steps below in our host \(kali\):
