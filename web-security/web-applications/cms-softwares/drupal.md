@@ -2,6 +2,14 @@
 
 ## Drupal
 
+### Drupal Enumeration
+
+We can use droopescan:
+
+```bash
+droopescan scan drupal -u http://10.10.10.102
+```
+
 ### Drupal RCE
 
 First: Modules -&gt; Enable PHP filter 
