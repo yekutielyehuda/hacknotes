@@ -411,6 +411,28 @@ Copy a directory:
 scp -r /path/to/source/dir username@192.168.1.10:/path/to/destination
 ```
 
+### Downloading a Directory
+
+Here is an example of using `scp` to download a directory:
+
+```text
+$ scp -r user@ssh.example.com:/path/to/remote/source /path/to/local/destination
+```
+
+The `-r` flag is the only difference between downloading a single file and downloading an entire directory with `-r` specified, the directory tree is recursively traversed and each file encountered is downloaded.
+
+> Note: `scp` _does_ follow **symbolic links** within directories, so just be aware in case this matters for your purposes.
+
+### Uploading a Directory
+
+Here is an example of using `scp` to upload a folder:
+
+```text
+$ scp -r /path/to/local/source user@ssh.example.com:/path/to/remote/destination 
+```
+
+When the source path comes first, like in the example above, it is assumed to be referring to a directory on your local machine, which is then recursively transferred to the destination machine thanks to the `-r` flag, as before.
+
 ### Alternative pscp
 
 ```text
