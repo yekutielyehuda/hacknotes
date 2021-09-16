@@ -6,6 +6,16 @@
 
 {% embed url="https://magento.com/" %}
 
+### Enumeration
+
+We scan this using Magescan. Download the phar file for the latest release from here and then scan the box using it.
+
+```bash
+wget https://github.com/steverobbins/magescan/releases/download/v1.12.9/magescan.phar
+# Scan
+php magescan.phar scan:all http:// 10.10.10.140
+```
+
 ### Admin Panel
 
 ![Magento Admin Panel](../../../.gitbook/assets/image%20%2812%29.png)

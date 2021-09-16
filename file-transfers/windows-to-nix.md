@@ -411,6 +411,12 @@ Copy a directory:
 scp -r /path/to/source/dir username@192.168.1.10:/path/to/destination
 ```
 
+Using a specific port:
+
+```text
+scp -P 7777 username@10.10.10.10:/home/username/filename.gpg .
+```
+
 ### Downloading a Directory
 
 Here is an example of using `scp` to download a directory:

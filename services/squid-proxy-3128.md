@@ -27,3 +27,23 @@ Then run nmap with proxychains to **scan the host from local**:
 proxychains nmap -sT -n -Pn -p- localhost
 ```
 
+### Curl
+
+Using curl with proxy:
+
+```bash
+curl --proxy http://10.10.10.224:3128 http://wpad.realcorp.htb/wpad.dat
+```
+
+Use source addresses that are in an ACL, to do this configure `/etc/proxychains.conf` file:
+
+```bash
+http 10.10.10.224 3128
+http 127.0.0.1 3128
+http 10.197.243.77 3128
+```
+
+```bash
+proxychains curl http://domain.htb/
+```
+

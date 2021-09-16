@@ -26,6 +26,14 @@ ntpdc -c sysinfo <IP_ADDRESS>
 nmap -sU -sV --script "ntp* and (discovery or vuln) and not (dos or brute)" -p 123 <IP>
 ```
 
+## Synchronization
+
+To make sure our local time is synchronized with the time of the KDC, we can run ntpdate:
+
+```bash
+ntpdate 10.10.10.224
+```
+
 ## Examine configuration files <a id="examine-configuration-files"></a>
 
 * ntp.conf

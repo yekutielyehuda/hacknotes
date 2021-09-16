@@ -26,3 +26,9 @@ Add a hostname:
 sudo sh -c 'echo "SERVER_IP hostname.htb" >> /etc/hosts'
 ```
 
+Alternatively, you can also add a hostname with:
+
+```bash
+echo '10.197.243.31 wpad.realcorp.htb' >> /etc/hosts
+```
+

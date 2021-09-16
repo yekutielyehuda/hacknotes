@@ -76,6 +76,7 @@
 ## Client-Side Attacks
 
 * [Phishing](client-side-attacks/phishing.md)
+* [CHM Files](client-side-attacks/chm-files.md)
 * [Macros](client-side-attacks/macros.md)
 * [OLE](client-side-attacks/ole.md)
 * [Microsoft Office Bypass Protections](client-side-attacks/microsoft-office-bypass-protections.md)
@@ -344,6 +345,7 @@
 * [CyberChef](cryptography/cyberchef.md)
 * [Encryption/Decryption](cryptography/encryption-decryption.md)
 * [Ciphers and Encodings](cryptography/ciphers-and-codes.md)
+* [PGP & GPG](cryptography/pgp-and-gpg.md)
 * [OpenSSL](cryptography/openssl.md)
 * [Certificates](cryptography/certificates.md)
 * [Encrypted File Systems](cryptography/encrypted-file-systems.md)

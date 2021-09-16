@@ -203,6 +203,7 @@ We can generate an openssl private key with:
 
 ```text
 openssl genrsa -aes256 -out filename.key 2048
+openssl genrsa -des3 -out amanda.key 2048
 ```
 
 ## Sign a Certificate
