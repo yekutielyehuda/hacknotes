@@ -374,4 +374,5 @@
 ## Swiss Army Knife Tools
 
 * [CrackMapExec](swiss-army-knife-tools/crackmapexec.md)
+* [SWAKS](swiss-army-knife-tools/swaks.md)
 
