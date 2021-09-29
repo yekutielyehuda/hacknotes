@@ -371,3 +371,7 @@
 * [Pentesting with Go](scripting/pentesting-with-go.md)
 * [Pentesting with Bash](scripting/pentesting-with-bash.md)
 
+## Swiss Army Knife Tools
+
+* [CrackMapExec](swiss-army-knife-tools/crackmapexec.md)
+
