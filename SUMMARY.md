@@ -396,3 +396,7 @@
 
 * [Untitled](vulnerability-research/untitled.md)
 
+## Methodology
+
+* [Pentesting Methodology](methodology/pentesting-methodology.md)
+
