@@ -376,3 +376,23 @@
 * [CrackMapExec](swiss-army-knife-tools/crackmapexec.md)
 * [SWAKS](swiss-army-knife-tools/swaks.md)
 
+## Incident Response
+
+* [Untitled](incident-response/untitled.md)
+
+## Threat Emulation
+
+* [Untitled](threat-emulation/untitled.md)
+
+## Security Operations & Monitoring
+
+* [Untitled](security-operations-and-monitoring/untitled.md)
+
+## Malware Analysis
+
+* [Untitled](malware-analysis/untitled.md)
+
+## Vulnerability Research
+
+* [Untitled](vulnerability-research/untitled.md)
+
