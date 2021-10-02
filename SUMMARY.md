@@ -5,6 +5,10 @@
 * [Donate](donate.md)
 * [Courses](courses.md)
 
+## Methodology
+
+* [Pentesting Methodology](methodology/pentesting-methodology.md)
+
 ## OSINT
 
 * [Passive Information Gathering](osint/passive-information-gathering.md)
@@ -395,8 +399,4 @@
 ## Vulnerability Research
 
 * [Untitled](vulnerability-research/untitled.md)
-
-## Methodology
-
-* [Pentesting Methodology](methodology/pentesting-methodology.md)
 
