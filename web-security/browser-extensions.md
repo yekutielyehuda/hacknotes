@@ -8,7 +8,7 @@ Pick colors from a webpage:
 
 Visit blocked or censored websites.
 
-{% embed url="https://addons.mozilla.org/en-GB/firefox/addon/anonymox/?utm\_source=addons.mozilla.org&utm\_medium=referral&utm\_content=search" %}
+{% embed url="https://addons.mozilla.org/en-GB/firefox/addon/anonymox/?utm_source=addons.mozilla.org&utm_medium=referral&utm_content=search" %}
 
 Web Fingerprinting:
 
@@ -17,8 +17,6 @@ Web Fingerprinting:
 Foxy Proxy:
 
 {% embed url="https://addons.mozilla.org/en-GB/firefox/addon/foxyproxy-standard/" %}
-
-
 
 
 

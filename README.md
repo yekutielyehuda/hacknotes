@@ -29,5 +29,4 @@ This GitBook is constantly being updated so expect some changes.
 
 You can contact me on [Twitter](https://twitter.com/wixnic).
 
-\*\*\*\*
-
+****

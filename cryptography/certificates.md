@@ -2,17 +2,17 @@
 
 ## Certificate Authority
 
- In [cryptography](https://en.wikipedia.org/wiki/Cryptography), a **certificate authority** or **certification authority** \(**CA**\) is an entity that issues [digital certificates](https://en.wikipedia.org/wiki/Public_key_certificate). A digital certificate certifies the ownership of a public key by the named subject of the certificate. This allows others \(relying parties\) to rely upon signatures or on assertions made about the private key that corresponds to the certified public key. A CA acts as a trusted third party—trusted both by the subject \(owner\) of the certificate and by the party relying upon the certificate. The format of these certificates is specified by the [X.509](https://en.wikipedia.org/wiki/X.509) or [EMV](https://en.wikipedia.org/wiki/EMV) standard.
+&#x20;In [cryptography](https://en.wikipedia.org/wiki/Cryptography), a **certificate authority** or **certification authority** (**CA**) is an entity that issues [digital certificates](https://en.wikipedia.org/wiki/Public\_key\_certificate). A digital certificate certifies the ownership of a public key by the named subject of the certificate. This allows others (relying parties) to rely upon signatures or on assertions made about the private key that corresponds to the certified public key. A CA acts as a trusted third party—trusted both by the subject (owner) of the certificate and by the party relying upon the certificate. The format of these certificates is specified by the [X.509](https://en.wikipedia.org/wiki/X.509) or [EMV](https://en.wikipedia.org/wiki/EMV) standard.
 
-The text above was extracted from [Wikipedia](https://en.wikipedia.org/wiki/Certificate_authority).
+The text above was extracted from [Wikipedia](https://en.wikipedia.org/wiki/Certificate\_authority).
 
 ## Microsoft Active Directory Certificate Services
 
 ### Request a Certificate
 
-This webpage will allow **us** to generate a certificate that we can use to authenticate as a user. There are two ways to get the two files we need, a key \(.key\) and a certificate \(.crt or .cer, they are interchangeable\).
+This webpage will allow **us **to generate a certificate that we can use to authenticate as a user. There are two ways to get the two files we need, a key (.key) and a certificate (.crt or .cer, they are interchangeable).
 
-![](../.gitbook/assets/image%20%289%29.png)
+![](<../.gitbook/assets/image (9).png>)
 
 Alternatively and the MOST recommended way is to create our own certificate:
 
@@ -69,21 +69,21 @@ VMe0Q0Zmsk9LD9w3q9jLeztiMQqgH7FrQAQAejKw
 
 We'll click on advanced certificate request:
 
-![](../.gitbook/assets/image%20%283%29.png)
+![](<../.gitbook/assets/image (3).png>)
 
 Then we'll paste the `filename.csr` certificate request into the text box:
 
-![](../.gitbook/assets/image%20%285%29.png)
+![](<../.gitbook/assets/image (5).png>)
 
 Click submit and wait.
 
-![](../.gitbook/assets/image%20%284%29.png)
+![](<../.gitbook/assets/image (4).png>)
 
-After the certificate is issued, we can download it in one of the encodings above. Click on Download certificate. 
+After the certificate is issued, we can download it in one of the encodings above. Click on Download certificate.&#x20;
 
 Now we have our certificate:
 
-```text
+```
 ❯ openssl x509 -in /home/kali/Downloads/certnew.cer -text
 Certificate:
     Data:
@@ -201,7 +201,7 @@ NtaUKyqupiy0hmbNTzHTGXxiKFyzGKG6f4A=
 
 We can generate an openssl private key with:
 
-```text
+```
 openssl genrsa -aes256 -out filename.key 2048
 openssl genrsa -des3 -out amanda.key 2048
 ```
@@ -210,9 +210,7 @@ openssl genrsa -des3 -out amanda.key 2048
 
 We can do a certificate signing request with:
 
-```text
+```
 openssl req -new -key filename.key -out filename.csr
 ```
-
-
 

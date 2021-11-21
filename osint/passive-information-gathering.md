@@ -16,19 +16,19 @@ Collect information and create diagrams as you go:
 
 Gather information from a public domain using all available search engines:
 
-```text
+```
 theHarvester -d domain.com -b all
 ```
 
 Gather information from a public domain using multiple search engines:
 
-```text
+```
 theHarvester -d domain.com -b google,trello,bing,dogpile
 ```
 
 Gather information from a public domain using google:
 
-```text
+```
 theHarvester -d domain.com -b google
 ```
 
@@ -36,7 +36,7 @@ theHarvester -d domain.com -b google
 
 We can search for possible GitHub repositories of the target:
 
-```text
+```
 <service> site:github.com
 ```
 
@@ -58,7 +58,7 @@ Google Chrome Extension
 
 Firefox Extension
 
-{% embed url="https://addons.mozilla.org/en-GB/firefox/addon/netcraft-toolbar/?utm\_source=addons.mozilla.org&utm\_medium=referral&utm\_content=search" %}
+{% embed url="https://addons.mozilla.org/en-GB/firefox/addon/netcraft-toolbar/?utm_source=addons.mozilla.org&utm_medium=referral&utm_content=search" %}
 
 ### Security Headers
 
@@ -100,7 +100,6 @@ LinkedIn Information:
 
 Some people share sensitive codes for the public:
 
-```text
+```
 <topic> site:pastebin.com
 ```
-

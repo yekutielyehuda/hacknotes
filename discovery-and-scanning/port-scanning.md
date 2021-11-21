@@ -6,7 +6,7 @@ Here is my simple but effective port scanning methodology.
 
 ### Proxy
 
-If you are scanning through a proxy you must use -Pn and -sT flags since the TCP Handshake is not received by us. 
+If you are scanning through a proxy you must use -Pn and -sT flags since the TCP Handshake is not received by us.&#x20;
 
 `-sT` will do a full TCP connect scan, rather than the default `-sS` SYN scan. An SYN scan won’t work because the proxy won't be passing the TCP handshake packets back to us, so an SYN scan, which sends the SYN packet, sees the ACK, and then ends the connection, won’t be passed back over the proxy. `-Pn` also necessary because the typical host detection `nmap` does involves sending ICMP and TCP on 80 and 443. ICMP won’t go over the proxy, and 80 and 443 are likely, not going to be open, so it just returns that the host is down. `-Pn` tells `nmap` to continue scanning without that check.
 
@@ -16,7 +16,7 @@ TL;DR: proxy support is limited right now but there are also theoretical limits 
 
 nmap can do only CONNECT and SOCKS4 and these protocols can do only TCP. Apart from that using any kind of proxy means that nmap communicates with the IP stack of the proxy and not of the target. This means:
 
-* ICMP ping can not be done to see if a host is alive, since ICMP is not TCP. So you might need to skip the host discovery step if your targets are only accessible through the proxy \(`-Pn`\). Since \(the unsupported\) SOCKS5 ICMP does not support ICMP either this will not change in the future.
+* ICMP ping can not be done to see if a host is alive, since ICMP is not TCP. So you might need to skip the host discovery step if your targets are only accessible through the proxy (`-Pn`). Since (the unsupported) SOCKS5 ICMP does not support ICMP either this will not change in the future.
 * Service discovery can be done for TCP based services only. With SOCKS5 support this could be extended to UDP.
 * OS fingerprinting based on features of the IP stack is not possible because nmap does not speak with the targets IP stack when using a proxy, but instead with the proxies IP stack. This is a theoretical limit you have with any kind of proxy protocol.
 
@@ -30,9 +30,9 @@ Extracted from here:
 
 ICMP may not always be enabled in Windows, in such case you will need to use `-Pn` in your nmap scans.
 
-TTL -&gt; 127/8
+TTL -> 127/8
 
-```text
+```
 ping -n 1 <IP>
 ```
 
@@ -40,9 +40,9 @@ ping -n 1 <IP>
 
 ICMP is enabled by default in Unix/Linux systems, in the case that is disabled, you will need to use `-Pn` in your nmap scans.
 
-TTL -&gt; 64
+TTL -> 64
 
-```text
+```
 ping -c 1 <IP>
 ```
 
@@ -50,33 +50,33 @@ ping -c 1 <IP>
 
 **Windows**
 
-```text
+```
 ping -6 -n 1 dead:beef::0250:56ff:feb9:dbf3
 ```
 
 **Nix**
 
-```text
+```
 ping -6 -c 1 dead:beef::0250:56ff:feb9:dbf3
 ```
 
 ### Nmap Recon Methodology
 
-After confirming that ICMP is enabled \(if disabled use -Pn\), I like to start up with an SYN Stealth scan on all ports scan with a high packet rate \(the min-rate can be high for a testing environment, **not** for a production environment\):
+After confirming that ICMP is enabled (if disabled use -Pn), I like to start up with an SYN Stealth scan on all ports scan with a high packet rate (the min-rate can be high for a testing environment, **not** for a production environment):
 
-```text
+```
 nmap -sS -vvv -p- --open --min-rate 5000 -n -Pn -oG scans/nmap-alltcp 10.10.10.10
 ```
 
 Then, I extract the open ports and scan those ports:
 
-```text
+```
 nmap -sC -sV -n -Pn -p 22,135,139,445 -oA scans/nmap-tcpscripts 10.10.10.10
 ```
 
 Second, I start a UDP scan on the top 20 most common ports:
 
-```text
+```
 nmap -sU -vvv --top-ports 20 -oG scans/nmap-udp-top20 10.10.10.10
 nmap -sU -vvv -p- --min-rate 5000 --max-retries 1 -oG scans/nmap-alludp 10.10.10.74
 nmap -sU -vvv -p- --max-retries 1 -oG scans/nmap-alludp-slow 10.10.10.74
@@ -86,39 +86,39 @@ nmap -sU -vvv -p- --max-retries 1 -oG scans/nmap-alludp-slow 10.10.10.74
 
 Use `-6` to scan an IPv6 address:
 
-```text
+```
 nmap -sS -p- --open --min-rate 5000 -vvv -n -Pn -6 dead:beef::0250:56ff:feb9:dbf3
 ```
 
 ### TCP Scanning
 
-This is a good all-purpose initial scan. Scans the most common 1000 ports with service information \(-sV\), default scripts \(-sC\), and OS detection with \(-O\).
+This is a good all-purpose initial scan. Scans the most common 1000 ports with service information (-sV), default scripts (-sC), and OS detection with (-O).
 
-> Note: Verbose mode \(-v\) not only provides the estimated time for each host, but it also prints the results as it goes letting you continue with the reconnaissance while scanning.
+> Note: Verbose mode (-v) not only provides the estimated time for each host, but it also prints the results as it goes letting you continue with the reconnaissance while scanning.
 
-```text
+```
 sudo nmap -v -sV -sC -O -T4 -n -Pn -oA nmap_scan 10.10.10.10
 ```
 
 Similar scan but scans all ports, from 1 through 65535.
 
-```text
+```
 sudo nmap -v -sV -sC -O -T4 -n -Pn -p- -oA nmap_fullscan 10.10.10.10
 ```
 
 ### UDP Scanning
 
-During a UDP scan \(-Su\) -sV will send protocol-specific probes, also known as nmap-service-probes, to every open\|filtered port. In case of response the state change to open. 
+During a UDP scan (-Su) -sV will send protocol-specific probes, also known as nmap-service-probes, to every open|filtered port. In case of response the state change to open.&#x20;
 
-```text
+```
 sudo nmap -sU -sV --version-intensity 0 -n 10.10.10.10
 ```
 
 ### Netcat Verify TCP/UDP Ports
 
-We can verify if a **TCP** port is really open with nc:
+We can verify if a **TCP **port is really open with nc:
 
-```text
+```
 nc -nvv -w 1 -z IP 3389-3390
 
 -nvv = connect and verbose
@@ -126,9 +126,9 @@ nc -nvv -w 1 -z IP 3389-3390
 -z = zero I/O mode (send no data, it is used for scanning)
 ```
 
-We can verify if a **UDP** port is really open with nc:
+We can verify if a **UDP **port is really open with nc:
 
-```text
+```
 nc -nv -u -w 1 -z IP 3389-3390
 
 -nv = connect and verbose 
@@ -156,7 +156,7 @@ xp4 () {
 
 Alternatively, we can extract ports like this:
 
-```text
+```
 cat filename.nmap | grep open | awk -F/ '{print $1}' ORS=','; echo
 nmap -p 80,443,3389 -sC -sV 10.10.10.111
 ```
@@ -165,13 +165,13 @@ nmap -p 80,443,3389 -sC -sV 10.10.10.111
 
 List all Nmap scripts categories:
 
-```text
+```
 grep -r categories /usr/share/nmap/scripts/.nse | grep -oP '".?"' | sort -u
 ```
 
 List scripts under the **default** category:
 
-```text
+```
 grep -r categories /usr/share/nmap/scripts/*.nse | grep default | cut -d: -f1
 ```
 
@@ -179,7 +179,7 @@ grep -r categories /usr/share/nmap/scripts/*.nse | grep default | cut -d: -f1
 
 Vulnerability scan with **vuln** scripts:
 
-```text
+```
 nmap -sV --script vuln -oA vuln-scan 10.10.10.10
 ```
 
@@ -193,7 +193,7 @@ One of the good tools out there for automatic recon is AutoRecon:
 
 ### reconnoitre
 
-```text
+```
 reconnoitre -t ip -o output_directorry --services
 reconnoitre -t ip --services --quick -o output_directory
 reconnoitre -t ip -o output_directory
@@ -201,7 +201,7 @@ reconnoitre -t ip -o output_directory
 
 ### onetwopunch
 
-```text
+```
 ./onetwopunch.sh -t targets -p all -n "-sV -O --version-intensity=9"
 ```
 
@@ -209,7 +209,7 @@ reconnoitre -t ip -o output_directory
 
 [https://github.com/21y4d/nmapAutomator](https://github.com/21y4d/nmapAutomator)
 
-```text
+```
 ./nmapAutomator.sh <TARGET-IP> <TYPE>
 ./nmapAutomator.sh 10.1.1.1 All 
 ./nmapAutomator.sh 10.1.1.1 Basic  
@@ -218,7 +218,7 @@ reconnoitre -t ip -o output_directory
 
 If you want to use it anywhere on the system, create a shortcut using:
 
-```text
+```
 ln -s /PATH-TO-FOLDER/nmapAutomator.sh /usr/local/bin/
 ```
 
@@ -236,8 +236,6 @@ ln -s /PATH-TO-FOLDER/nmapAutomator.sh /usr/local/bin/
 ```bash
 for x in 4000 5000 6000; do nmap -Pn --host_timeout 201 --max-retries 0 -p $x server_ip_address; done
 ```
-
-
 
 
 

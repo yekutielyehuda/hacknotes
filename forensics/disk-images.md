@@ -6,15 +6,15 @@ As a forensic investigator, security analyst, threat hunter, or incident respond
 
 ### dcfldd
 
-dcfldd is a modified version of GNU dd. The major features added are hashing, fast disk wiping \(through patterns\) and status output.
+dcfldd is a modified version of GNU dd. The major features added are hashing, fast disk wiping (through patterns) and status output.
 
-dcfldd was originally created by Nicholas Harbour from the DoD Computer Forensics Laboratory \(DCFL\). Nick Harbour still maintains the package, although he is no longer affiliated with the DCFL.
+dcfldd was originally created by Nicholas Harbour from the DoD Computer Forensics Laboratory (DCFL). Nick Harbour still maintains the package, although he is no longer affiliated with the DCFL.
 
 {% embed url="https://github.com/adulau/dcfldd" %}
 
 You want to recover a hidden file under `/dev/sdb/` you can by doing the following:
 
-```text
+```
 sudo dcfldd if=/dev/sdb of=/home/pi/usb.dd
 ```
 
@@ -24,7 +24,7 @@ Autopsy is the premier end-to-end open-source digital forensics platform. Built 
 
 {% embed url="https://www.autopsy.com/" %}
 
-You may download **Autospy** here:
+You may download **Autospy **here:
 
 {% embed url="https://www.autopsy.com/download/" %}
 
@@ -32,7 +32,7 @@ You may download **Autospy** here:
 
 bulk\_extractor is a program that extracts features such as email addresses, credit card numbers, URLs, and other types of information from digital evidence files. It is a useful forensic investigation tool for many tasks such as malware and intrusion investigations, identity investigations and cyber investigations, as well as analyzing imagery and pass-word cracking. The program provides several unusual capabilities including:
 
-* It finds email addresses, URLs and credit card numbers that other tools miss because it can process compressed data \(like ZIP, PDF and GZIP ﬁles\) and incomplete or partially corrupted data. It can carve JPEGs, office documents and other kinds of files out of fragments of compressed data. It will detect and carve encrypted RAR files.
+* It finds email addresses, URLs and credit card numbers that other tools miss because it can process compressed data (like ZIP, PDF and GZIP ﬁles) and incomplete or partially corrupted data. It can carve JPEGs, office documents and other kinds of files out of fragments of compressed data. It will detect and carve encrypted RAR files.
 * It builds word lists based on all of the words found within the data, even those in compressed files that are in unallocated space. Those word lists can be useful for password cracking.
 * It is multi-threaded; running bulk\_extractor on a computer with twice the number of cores typically makes it complete a run in half the time.
 * It creates histograms showing the most common email addresses, URLs, domains, search terms and other kinds of information on the drive.
@@ -41,15 +41,15 @@ The text above was extracted from here:
 
 {% embed url="https://tools.kali.org/forensics/bulk-extractor" %}
 
-Extract files to the output directory **\(-o bulk-out\)** after analyzing the image file **\(filename.img\):**
+Extract files to the output directory **(-o bulk-out)** after analyzing the image file **(filename.img):**
 
-```text
+```
 wixnic@kali:~# bulk_extractor -o bulk-out filename.img
 ```
 
 ### EnCase
 
-OpenText EnCase™ Forensic is a court-proven solution for finding, decrypting, collecting and preserving forensic data from a wide variety of devices, while ensuring evidence integrity and seamlessly integrating investigation workflows. 
+OpenText EnCase™ Forensic is a court-proven solution for finding, decrypting, collecting and preserving forensic data from a wide variety of devices, while ensuring evidence integrity and seamlessly integrating investigation workflows.&#x20;
 
 {% embed url="https://security.opentext.com/encase-forensic" %}
 
@@ -67,15 +67,13 @@ Foremost is a forensic program to recover lost files based on their headers, foo
 
 {% embed url="https://tools.kali.org/forensics/foremost" %}
 
-Search for a selection of file types **\(-t doc,jpg,pdf,xls\)** in the given image file **\(-i image.dd\)**:
+Search for a selection of file types **(-t doc,jpg,pdf,xls)** in the given image file **(-i image.dd)**:
 
-```text
+```
 wixnic@kali:~# foremost -t doc,jpg,pdf,xls -i image.dd
 Processing: image.dd
 |*|
 wixnic@kali:~# ls output/
 audit.txt  jpg  pdf
 ```
-
-
 

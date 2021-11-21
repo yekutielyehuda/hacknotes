@@ -8,19 +8,19 @@ We should be able to use ffuf to locate website directories now that we grasp th
 
 To refer to a wordlist where we wish to fuzz, we can give it a keyword. For instance, we can take our wordlist and add the keyword FUZZ to it by appending `:FUZZ` to the end of it.
 
-```text
+```
 wixnic@htb[/htb]$ ffuf -w /opt/useful/SecLists/Discovery/Web-Content/directory-list-2.3-small.txt:FUZZ
 ```
 
 Next, because we want to fuzz for web directories, we may use the FUZZ term in our URL where the directory would be:
 
-```text
+```
 wixnic@htb[/htb]$ ffuf -w <SNIP> -u http://SERVER_IP:PORT/FUZZ
 ```
 
 Let's now begin our objective in the question below and execute our last command.
 
-```text
+```
 wixnic@htb[/htb]$ ffuf -w /opt/useful/SecLists/Discovery/Web-Content/directory-list-2.3-small.txt:FUZZ -u http://SERVER_IP:PORT/FUZZ
 
        /'___\  /'___\           /'___\       
@@ -68,19 +68,19 @@ However, this strategy is not particularly practical. So, similarly to how we fu
 
 For extensions, we can use the following wordlist in SecLists:
 
-```text
+```
 wixnic@htb[/htb]$ ffuf -w /opt/useful/SecLists/Discovery/Web-Content/web-extensions.txt:FUZZ <SNIP>
 ```
 
 We must first indicate which file that extension will be at the end of before we begin fuzzing!
 
-We can always use two wordlists, each with its own unique keyword, and then fuzz both with `FUZZEXT`. 
+We can always use two wordlists, each with its own unique keyword, and then fuzz both with `FUZZEXT`.&#x20;
 
 The `index.*` is a file that we can always locate on most websites, so we'll use it as our file and add fuzz extensions to it.
 
 Now, we can rerun our command, carefully placing our `FUZZ` keyword where the extension would be after `index`:
 
-```text
+```
 wixnic@htb[/htb]$ ffuf -w /opt/useful/SecLists/Discovery/Web-Content/web-extensions.txt:FUZZ -u http://SERVER_IP:PORT/dir/indexFUZZ
 
        /'___\  /'___\           /'___\       
@@ -114,7 +114,7 @@ We do get a couple of hits, but only `.php` gives us a response with code `200`.
 
 We will now use the same concept of keywords we've been using with `ffuf`, use `.php` as the extension, place our `FUZZ` keyword where the filename should be, and use the same wordlist we used for fuzzing directories:
 
-```text
+```
 wixnic@htb[/htb]$ ffuf -w /opt/useful/SecLists/Discovery/Web-Content/directory-list-2.3-small.txt:FUZZ -u http://SERVER_IP:PORT/dir/FUZZ.php
 
        /'___\  /'___\           /'___\       
@@ -156,19 +156,19 @@ When we scan recursively, it automatically starts another scan under any newly i
 
 Some websites may contain a large tree of sub-directories, such as /login/user/content/uploads/...etc, which may grow the scanning tree and make scanning them all take a long time. To prevent this, we must give a depth for our recursive scan, which will prevent it from scanning directories further than that depth. We may then pick the most intriguing direct after we've fuzzed the initial directories.
 
-With the -recursion flag in **ffuf**, we may enable recursive scanning and specify the depth with the -recursion-depth parameter. Only the main directories and their direct sub-directories will be fuzzed if we use `-recursion-depth 1`. It will not fuzz any sub-sub-directories discovered, such as `/login/user`, for pages.
+With the -recursion flag in **ffuf**, we may enable recursive scanning and specify the depth with the -recursion-depth parameter. Only the main directories and their direct sub-directories will be fuzzed if we use` -recursion-depth 1`. It will not fuzz any sub-sub-directories discovered, such as `/login/user`, for pages.
 
-We can define our extension with **-e**  _****_**.php** while utilizing recursion in ffuf.
+We can define our extension with **-e**_**  **_**.php** while utilizing recursion in ffuf.
 
 _Note: we can still use `.php` as our page extension, as these extensions are usually site-wide._
 
-Finally, we will also add the flag `-v` to output the full URLs. 
+Finally, we will also add the flag `-v` to output the full URLs.&#x20;
 
 ### Recursive Scanning
 
 Let's run the first command again, this time adding the recursion flags and specifying.php as our extension, and see what happens:
 
-```text
+```
 wixnic@htb[/htb]$ ffuf -w /opt/useful/SecLists/Discovery/Web-Content/directory-list-2.3-small.txt:FUZZ -u http://SERVER_IP:PORT/FUZZ -recursion -recursion-depth 1 -e .php -v
 
        /'___\  /'___\           /'___\       
@@ -212,21 +212,21 @@ ________________________________________________
 <...SNIP...>
 ```
 
-As we can see, the scan took far longer this time, sending about six times as many requests, and the wordlist nearly doubled in size once with `.php` and once without. 
+As we can see, the scan took far longer this time, sending about six times as many requests, and the wordlist nearly doubled in size once with `.php` and once without.&#x20;
 
 Despite this, we were able to obtain a significant number of results, including all of the ones we had previously recognized, all with a single command.
 
 ## Sub-domain Fuzzing
 
-We'll learn how to use ffuf to find sub-domains \(i.e., \*.website.com\) for any website in this part.
+We'll learn how to use ffuf to find sub-domains (i.e., \*.website.com) for any website in this part.
 
 ### Sub-domains
 
-Fortunately, there is a section in the SecLists repo dedicated to sub-domain wordlists, which contains often used words for sub-domains. It's located in the directory `/opt/SecLists/Discovery/DNS/`. In our situation, we'll use `subdomains-top1million-5000.txt`, which is a shorter wordlist. We can choose a longer list if we want to extend our scan.
+Fortunately, there is a section in the SecLists repo dedicated to sub-domain wordlists, which contains often used words for sub-domains. It's located in the directory` /opt/SecLists/Discovery/DNS/`. In our situation, we'll use `subdomains-top1million-5000.txt`, which is a shorter wordlist. We can choose a longer list if we want to extend our scan.
 
-In terms of our target, we'll use &lt;domain\_name&gt; and execute our scan on it. Let's try ffuf with the `FUZZ` keyword instead of sub-domains to see if we get any results:
+In terms of our target, we'll use \<domain\_name> and execute our scan on it. Let's try ffuf with the `FUZZ `keyword instead of sub-domains to see if we get any results:
 
-```text
+```
 wixnic@htb[/htb]$ ffuf -w /opt/useful/SecLists/Discovery/DNS/subdomains-top1million-5000.txt:FUZZ -u https://FUZZ.domain.test/
 
         /'___\  /'___\           /'___\       
@@ -259,7 +259,7 @@ We see that we do get a few hits back. We can verify that these are actual sub-d
 
 We see that indeed these are working sub-domains. Now, we can try running the same thing on `subdomain.test` and see if we get any hits back:
 
-```text
+```
 wixnic@htb[/htb]$ ffuf -w /opt/useful/SecLists/Discovery/DNS/subdomains-top1million-5000.txt:FUZZ -u http://FUZZ.subdomain.test/
 
        /'___\  /'___\           /'___\       
@@ -305,7 +305,7 @@ This is where we use VHosts Fuzzing on an IP address that we already own. We'll 
 
 We will fuzz HTTP headers, specifically the `Host:` header, to scan for VHosts without manually adding the complete wordlist to our /etc/hosts. To do so, we'll define a header using the `-H` flag and utilize the FUZZ keyword within it, as shown below:
 
-```text
+```
 wixnic@htb[/htb]$ ffuf -w /opt/useful/SecLists/Discovery/DNS/subdomains-top1million-5000.txt:FUZZ -u http://subdomain.test:PORT/ -H 'Host: FUZZ.subdomain.test'
 
        /'___\  /'___\           /'___\       
@@ -341,7 +341,7 @@ www1                    [Status: 200, Size: 900, Words: 423, Lines: 56]
 <...SNIP...>
 ```
 
-We can see that all of the terms in the wordlist return 200 OK. This is to be expected, given that we are merely modifying the header when visiting [http://subdomain.test:PORT/](http://subdomain.test2:PORT/). As a result, we know we'll always receive 200 OK. However, if the VHost exists and we send the proper one in the header, we should get a different response size because we'd be getting the page from that VHost, which is most likely to show a distinguished page.
+We can see that all of the terms in the wordlist return 200 OK. This is to be expected, given that we are merely modifying the header when visiting [http://subdomain.test:PORT/](http://subdomain.test2/:PORT/). As a result, we know we'll always receive 200 OK. However, if the VHost exists and we send the proper one in the header, we should get a different response size because we'd be getting the page from that VHost, which is most likely to show a distinguished page.
 
 ## Filtering Results
 
@@ -351,7 +351,7 @@ We haven't applied any filtering to our ffuf yet, and the results are filtered b
 
 Ffuf allows you to match or filter out specific HTTP codes, response sizes, or word counts. With ffuf -h, we may see this:
 
-```text
+```
 wixnic@htb[/htb]$ ffuf -h
 ...SNIP...
 MATCHER OPTIONS:
@@ -370,9 +370,9 @@ FILTER OPTIONS:
 <...SNIP...>
 ```
 
-We can't utilize matching in this scenario since we don't know how big the responses from other VHosts will be. We know the response size of the wrong results, which is 900 in this case \(as seen in the test above\), and we can filter it out using -fs 900. Now, let's run the same command again, but this time with the above flag added, and see what we get:
+We can't utilize matching in this scenario since we don't know how big the responses from other VHosts will be. We know the response size of the wrong results, which is 900 in this case (as seen in the test above), and we can filter it out using -fs 900. Now, let's run the same command again, but this time with the above flag added, and see what we get:
 
-```text
+```
 wixnic@htb[/htb]$ ffuf -w /opt/useful/SecLists/Discovery/DNS/subdomains-top1million-5000.txt:FUZZ -u http://subdomain.test2:PORT/ -H 'Host: FUZZ.subdomain.test' -fs 900
 
        /'___\  /'___\           /'___\       
@@ -418,7 +418,7 @@ SecLists has a file called burp-parameter-names.txt in /opt/SecLists/Discovery/W
 
 We're going to get a lot of results this time, so we'll filter out the default response size.
 
-```text
+```
 wixnic@htb[/htb]$ ffuf -w /opt/useful/SecLists/Discovery/Web-Content/burp-parameter-names.txt:FUZZ -u http://admin.subdomain.test:PORT/dir/filename.php?FUZZ=key -fs xxx
 
        /'___\  /'___\           /'___\       
@@ -449,15 +449,15 @@ We do get a hit back, with this information we can try to visit the page and add
 
 ### POST Request Fuzzing
 
-The key distinction between POST and GET requests is that POST requests do not include the URL and cannot be appended after a `?` sign. 
+The key distinction between POST and GET requests is that POST requests do not include the URL and cannot be appended after a `?` sign.&#x20;
 
-The data field in an HTTP request is used to pass POST requests. We may use the `-d` flag with ffuf to fuzz the data field. To send POST requests, we must also include `-X POST`.
+The data field in an HTTP request is used to pass POST requests. We may use the `-d` flag with ffuf to fuzz the data field. To send POST requests, we must also include` -X POST`.
 
 > Tip: In PHP, "POST" data "content-type" can only accept "application/x-www-form-urlencoded". So, we can set that in "ffuf" with "-H 'Content-Type: application/x-www-form-urlencoded'".
 
 So, let us repeat what we did earlier, but place our `FUZZ` keyword after the `-d` flag:
 
-```text
+```
 wixnic@htb[/htb]$ ffuf -w /opt/useful/SecLists/Discovery/Web-Content/burp-parameter-names.txt:FUZZ -u http://admin.subdomain.test:PORT/dir/filename.php -X POST -d 'FUZZ=key' -H 'Content-Type: application/x-www-form-urlencoded' -fs xxx
 
        /'___\  /'___\           /'___\       
@@ -487,13 +487,13 @@ id                      [Status: xxx, Size: xxx, Words: xxx, Lines: xxx]
 <...SNIP...>
 ```
 
-As we can see this time, we got a couple of hits, the same one we got when fuzzing `GET` and another parameter, which is `id`. 
+As we can see this time, we got a couple of hits, the same one we got when fuzzing `GET` and another parameter, which is `id`.&#x20;
 
 ## Value Fuzzing
 
 Our command should be similar to the POST command we used to fuzz for parameters, with the exception that the FUZZ keyword should be placed where the parameter value would be, and we'll use a wordlist we just created:
 
-```text
+```
 wixnic@htb[/htb]$ ffuf -w wordlist.txt:FUZZ -u http://admin.subdomain.test:PORT/dir/filename.php -X POST -d 'id=FUZZ' -H 'Content-Type: application/x-www-form-urlencoded' -fs xxx
 
        /'___\  /'___\           /'___\
@@ -521,7 +521,7 @@ ________________________________________________
 <...SNIP...>                      [Status: xxx, Size: xxx, Words: xxx, Lines: xxx]
 ```
 
-We see that we get a hit right away. 
+We see that we get a hit right away.&#x20;
 
 ## Web Fuzzing Tools
 
@@ -537,12 +537,12 @@ You may want to use other tools besides fuff:
 
 ## Common Wordlists
 
-| **Command** | **Description** |
-| :--- | :--- |
+| **Command**                                                               | **Description**         |
+| ------------------------------------------------------------------------- | ----------------------- |
 | `/opt/useful/SecLists/Discovery/Web-Content/directory-list-2.3-small.txt` | Directory/Page Wordlist |
-| `/opt/useful/SecLists/Discovery/Web-Content/web-extensions.txt` | Extensions Wordlist |
-| `/opt/useful/SecLists/Discovery/DNS/subdomains-top1million-5000.txt` | Domain Wordlist |
-| `/opt/useful/SecLists/Discovery/Web-Content/burp-parameter-names.txt` | Parameters Wordlist |
+| `/opt/useful/SecLists/Discovery/Web-Content/web-extensions.txt`           | Extensions Wordlist     |
+| `/opt/useful/SecLists/Discovery/DNS/subdomains-top1million-5000.txt`      | Domain Wordlist         |
+| `/opt/useful/SecLists/Discovery/Web-Content/burp-parameter-names.txt`     | Parameters Wordlist     |
 
 ## Fuzzing Cheatsheet
 
@@ -550,34 +550,34 @@ You may want to use other tools besides fuff:
 
 Common Flags:
 
-* -c= for colorized mode
+* \-c= for colorized mode
 * –hc=404 for omitting routes where the response is 404
-* -t 200= is for giving threads number
+* \-t 200= is for giving threads number
 * –hw= for not taking care of word number return
 * –hh=73 for not taking care of characters with 73 as return number
 
 Directory Fuzzing:
 
-```text
+```
 wfuzz -c -t 200 --hc=404 -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt http://10.10.10.83/FUZZ
 ```
 
 Files and Extensions Fuzzing
 
-```text
+```
 wfuzz -c -t 200 --hc=404 -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -w extensions http://10.10.10.83/FUZZ.FUZ2Z
 ```
 
-Virtual Host Fuzzing \(hide responses with --hw / hide words\):
+Virtual Host Fuzzing (hide responses with --hw / hide words):
 
-```text
+```
 wfuzz -c -t 200 --hc=404 --hw=12 -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -H "Host: FUZZ.sneakycorp.htb" http://10.10.10.197
 wfuzz -c -t 200 --hc=404 --hw=28,73 -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -H "Host: FUZZ.localhost.com http://loalhost.com
 ```
 
-GET Request Parameter Fuzzing \(hide responses with --hw / hide words\):
+GET Request Parameter Fuzzing (hide responses with --hw / hide words):
 
-```text
+```
 wfuzz -c -t 200 --hc=404 --hw=0 -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt http://sec03.rentahacker.htb/shell.php?FUZZ=whoami
 ```
 
@@ -585,7 +585,7 @@ wfuzz -c -t 200 --hc=404 --hw=0 -w /usr/share/wordlists/dirbuster/directory-list
 
 Virtual Host Fuzzing:
 
-```text
+```
 gobuster vhost -u http://sneakycorp.htb -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt
 ```
 
@@ -599,59 +599,57 @@ ffuf -w wordlist.txt:FUZZ -u http://SERVER_IP:PORT/FUZZ
 
 Extension Fuzzing
 
-```text
+```
 ffuf -w wordlist.txt:FUZZ -u http://SERVER_IP:PORT/indexFUZZ
 ```
 
 Page Fuzzing
 
-```text
+```
 ffuf -w wordlist.txt:FUZZ -u http://SERVER_IP:PORT/blog/FUZZ.php
 ```
 
 Recursive Fuzzing
 
-```text
+```
 ffuf -w wordlist.txt:FUZZ -u http://SERVER_IP:PORT/FUZZ -recursion -recursion-depth 1 -e .php -v
 ```
 
 Sub-domain Fuzzing
 
-```text
+```
 ffuf -w wordlist.txt:FUZZ -u https://FUZZ.hackthebox.eu/
 ```
 
 VHost Fuzzing
 
-```text
+```
 ffuf -w wordlist.txt:FUZZ -u http://academy.htb:PORT/ -H 'Host: FUZZ.academy.htb' -fs xxx
 ```
 
 Parameter Fuzzing - GET
 
-```text
+```
 ffuf -w wordlist.txt:FUZZ -u http://admin.academy.htb:PORT/admin/admin.php?FUZZ=key -fs xxx
 ```
 
 Parameter Fuzzing - POST
 
-```text
+```
 ffuf -w wordlist.txt:FUZZ -u http://admin.academy.htb:PORT/admin/admin.php -X POST -d 'FUZZ=key' -H 'Content-Type: application/x-www-form-urlencoded' -fs xxx
 ```
 
 Value Fuzzing
 
-```text
+```
 ffuf -w ids.txt:FUZZ -u http://admin.academy.htb:PORT/admin/admin.php -X POST -d 'id=FUZZ' -H 'Content-Type: application/x-www-form-urlencoded' -fs xxx
 ```
 
 ## Reference
 
-This page is **heavily** based on HackTheBox Academy Web Fuzzing:
+This page is **heavily **based on HackTheBox Academy Web Fuzzing:
 
 {% embed url="https://academy.hackthebox.eu/catalogue" %}
-
-
 
 
 

