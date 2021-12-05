@@ -10,7 +10,7 @@ Look up information from almost everywhere:
 
 The internet is scary... you can find a history about a person if there are traces of him/her on the internet.&#x20;
 
-Here is a list of websites that you can use to perform AI Facial Recognition:
+Here is a list of websites or search engines that you can use to perform AI Facial Recognition:
 
 {% embed url="https://pimeyes.com/en" %}
 

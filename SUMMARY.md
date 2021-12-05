@@ -24,6 +24,7 @@
 * [Rlwrap](shells/netcat-tips.md)
 * [Msfvenom](shells/msfvenom.md)
 * [Testing Connection](shells/testing-connection.md)
+* [Troubleshooting Shells](shells/troubleshooting-shells.md)
 
 ## Escapes
 
@@ -61,6 +62,7 @@
 
 ## Exploitation
 
+* [Finding Public Exploits](exploitation/finding-public-exploits.md)
 * [Searching for Exploits](exploitation/searching-for-exploits.md)
 * [Fixing Exploits](exploitation/fixing-exploits.md)
 * [Compiling Exploits](exploitation/compiling-exploits.md)
@@ -264,11 +266,11 @@
     * [WordPress](web-security/web-applications/cms-softwares/wordpress.md)
 * [Web Templates](web-security/web-templates/README.md)
   * [TemplateMag](web-security/web-templates/templatemag.md)
+* [Web Enumeration](web-security/web-enumeration.md)
 * [Web Fuzzing](web-security/web-fuzzing.md)
 * [Web Backups](web-security/web-backups.md)
 * [Web Fingerprinting](web-security/web-fingerprinting.md)
 * [Handling Web Requests](web-security/handling-web-requests.md)
-* [Web Enumeration](web-security/web-enumeration.md)
 * [Bypassing WAF](web-security/bypassing-waf.md)
 * [Authentication Attacks](web-security/authentication-attacks.md)
 * [Local File Inclusion (LFI)](web-security/local-file-inclusion-lfi.md)
@@ -345,6 +347,8 @@
 * [Windows Kernel GDI Exploitation](exploit-development/windows-kernel-gdi-exploitation.md)
 * [Windows EggHunting](exploit-development/windows-egghunting.md)
 * [Windows Bypass Protections](exploit-development/windows-bypass-protections.md)
+* [Heap Grooming](exploit-development/heap-grooming.md)
+* [Type Confusion](exploit-development/type-confusion.md)
 
 ## Kernel
 
