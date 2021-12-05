@@ -20,7 +20,19 @@ Make sure that there are no firewall outbound rules or inbound rules for the por
 
 Try to listen on ports that are open on the target, for example, if the target has port 80 open and you want to receive a reverse shell try to setup a listener on port 80, instead of a random port.
 
-I have wasted hours setting up listeners on random ports and I just couldn't catch a shell... but when I tried a port that's already open on the machine. For example, you did a port scan and found out that port 22 is open. Well setup a listener on port 22 on you attacker host, and probably you will catch a reverse shell.
+I have wasted hours setting up listeners on random ports and I just couldn't catch a shell... but when I tried a port that's already open on the machine. For example, you did a port scan and found out that port 22 is open. Well setup a listener on port 22 on your attacker host, and probably you will catch a reverse shell.
+
+### Step 4
+
+Avoid badchars, some vulnerabilites that achieve remote command execution may have bad characters, meaning characters that can interrupt the exploit. Fuzz every character and see which ones are allowed.
+
+### Step 5
+
+Use encodings, like base64 to bypass blacklists or whitelists.&#x20;
+
+### Step 6
+
+If all the previous steps fail, make sure that you have a connection to the machine. Enumerate for more devices or technologies that may be interrupting the exploit.&#x20;
 
 
 
