@@ -156,9 +156,9 @@ When we scan recursively, it automatically starts another scan under any newly i
 
 Some websites may contain a large tree of sub-directories, such as /login/user/content/uploads/...etc, which may grow the scanning tree and make scanning them all take a long time. To prevent this, we must give a depth for our recursive scan, which will prevent it from scanning directories further than that depth. We may then pick the most intriguing direct after we've fuzzed the initial directories.
 
-With the -recursion flag in **ffuf**, we may enable recursive scanning and specify the depth with the -recursion-depth parameter. Only the main directories and their direct sub-directories will be fuzzed if we use` -recursion-depth 1`. It will not fuzz any sub-sub-directories discovered, such as `/login/user`, for pages.
+With the -recursion flag in **ffuf**, we may enable recursive scanning and specify the depth with the -recursion-depth parameter. Only the main directories and their direct sub-directories will be fuzzed if we use `-recursion-depth 1`. It will not fuzz any sub-sub-directories discovered, such as `/login/user`, for pages.
 
-We can define our extension with **-e**_**  **_**.php** while utilizing recursion in ffuf.
+We can define our extension with **-e  **_****_**  .php** while utilizing recursion in ffuf.
 
 _Note: we can still use `.php` as our page extension, as these extensions are usually site-wide._
 
@@ -222,9 +222,9 @@ We'll learn how to use ffuf to find sub-domains (i.e., \*.website.com) for any w
 
 ### Sub-domains
 
-Fortunately, there is a section in the SecLists repo dedicated to sub-domain wordlists, which contains often used words for sub-domains. It's located in the directory` /opt/SecLists/Discovery/DNS/`. In our situation, we'll use `subdomains-top1million-5000.txt`, which is a shorter wordlist. We can choose a longer list if we want to extend our scan.
+Fortunately, there is a section in the SecLists repo dedicated to sub-domain wordlists, which contains often used words for sub-domains. It's located in the directory `/opt/SecLists/Discovery/DNS/`. In our situation, we'll use `subdomains-top1million-5000.txt`, which is a shorter wordlist. We can choose a longer list if we want to extend our scan.
 
-In terms of our target, we'll use \<domain\_name> and execute our scan on it. Let's try ffuf with the `FUZZ `keyword instead of sub-domains to see if we get any results:
+In terms of our target, we'll use \<domain\_name> and execute our scan on it. Let's try ffuf with the `FUZZ` keyword instead of sub-domains to see if we get any results:
 
 ```
 wixnic@htb[/htb]$ ffuf -w /opt/useful/SecLists/Discovery/DNS/subdomains-top1million-5000.txt:FUZZ -u https://FUZZ.domain.test/
@@ -451,7 +451,7 @@ We do get a hit back, with this information we can try to visit the page and add
 
 The key distinction between POST and GET requests is that POST requests do not include the URL and cannot be appended after a `?` sign.&#x20;
 
-The data field in an HTTP request is used to pass POST requests. We may use the `-d` flag with ffuf to fuzz the data field. To send POST requests, we must also include` -X POST`.
+The data field in an HTTP request is used to pass POST requests. We may use the `-d` flag with ffuf to fuzz the data field. To send POST requests, we must also include `-X POST`.
 
 > Tip: In PHP, "POST" data "content-type" can only accept "application/x-www-form-urlencoded". So, we can set that in "ffuf" with "-H 'Content-Type: application/x-www-form-urlencoded'".
 
@@ -543,6 +543,14 @@ You may want to use other tools besides fuff:
 | `/opt/useful/SecLists/Discovery/Web-Content/web-extensions.txt`           | Extensions Wordlist     |
 | `/opt/useful/SecLists/Discovery/DNS/subdomains-top1million-5000.txt`      | Domain Wordlist         |
 | `/opt/useful/SecLists/Discovery/Web-Content/burp-parameter-names.txt`     | Parameters Wordlist     |
+
+## Useful Wordlists
+
+These are the list of wordlists that have helped me the most:
+
+* /usr/share/seclists/Discovery/Web-Content/common.txt
+* /usr/share/seclists/Discovery/Web-Content/big.txt
+* /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt
 
 ## Fuzzing Cheatsheet
 
@@ -647,7 +655,7 @@ ffuf -w ids.txt:FUZZ -u http://admin.academy.htb:PORT/admin/admin.php -X POST -d
 
 ## Reference
 
-This page is **heavily **based on HackTheBox Academy Web Fuzzing:
+This page is **heavily** based on HackTheBox Academy Web Fuzzing:
 
 {% embed url="https://academy.hackthebox.eu/catalogue" %}
 

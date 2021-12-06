@@ -2,13 +2,17 @@
 
 ## Inspecting Operating System
 
-## Inspecting Certificate 
+## Inspecting Certificate&#x20;
 
 ## Inspecting Virtual Hosting
 
 ## HTTP Headers
 
 ### User-Agent
+
+
+
+#### ShellShock
 
 ### Response Headers
 
@@ -26,15 +30,17 @@
 
 ### Text Boxes
 
+### Search Bars
+
 ## DevTools
 
 ### Sources
 
-### Network 
+### Network&#x20;
 
-### Storage 
+### Storage&#x20;
 
-## Administration Consoles \| Control Panels
+## Administration Consoles | Control Panels
 
 ## Inspecting Sitemaps
 
@@ -42,21 +48,21 @@
 
 ## Inspecting URLs
 
-## Inspecting Database
+## Inspecting Databases
 
 ## Inspecting Frameworks
 
 ## Inspecting Software or Applications
 
-## Web Fuzzing \| Find Directories, Files, Subdomains, Virtual Hosting, Parameters, and Values
+## Web Fuzzing | Find Directories, Files, Subdomains, Virtual Hosting, Parameters, and Values
 
 Check out this page:
 
 {% embed url="https://wixnic.gitbook.io/hacknotes/web-security/web-fuzzing" %}
 
+## Sensitive Files
 
-
-
+Search **every** website and sub directory for interesting services or files containing potential usernames and/or passwords.
 
 
 
