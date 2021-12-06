@@ -56,7 +56,7 @@ You can find:
 
 ## Stack Overflow
 
-Stack Overflow is a website for developers to ask an answer questions related to coding/programming.
+Stack Overflow is a website for developers to ask and answer questions related to coding/programming.
 
 If we find information about an employer and we also found his/her account in stack overflow, we can see if which programming language the organization uses by the questions that the he/she ask or answers.
 
