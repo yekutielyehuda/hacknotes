@@ -17,3 +17,8 @@ Search on the internet to find the default credentials of a service or applicati
 default credentials of <service_name_here>
 <service_name_here> default credentials
 ```
+
+SecLists has a nice default credentials wordlists:
+
+{% embed url="https://github.com/danielmiessler/SecLists/blob/master/Passwords/Default-Credentials/default-passwords.csv" %}
+
