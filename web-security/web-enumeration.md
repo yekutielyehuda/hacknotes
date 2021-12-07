@@ -64,5 +64,15 @@ Check out this page:
 
 Search **every** website and sub directory for interesting services or files containing potential usernames and/or passwords.
 
+## Tools
+
+### nikto
+
+nikto is a good at finding stuff, it is especially useful when a sitemap is present, i.e, robots.txt:
+
+```
+nikto -h <IP>
+```
+
 
 
