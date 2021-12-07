@@ -1,6 +1,6 @@
 # PostgreSQL - 5432,5433
 
-## PostreSQL Version Enumeration
+## PostgreSQL Version Enumeration
 
 We can connect remotely to PSQL:
 
