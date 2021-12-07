@@ -68,6 +68,12 @@ Enumerate and store the output:
 wpscan -u http://10.10.10.88/webservices/wp/ --enumerate p,t,u | tee wpscan.log
 ```
 
+Helps identify issues on a Wordpress page:
+
+```
+wpscan --url http://10.10.140.124/wordpress/ -t 40 --detection-mode mixed --enumerate ap --plugins-detection aggressive 
+```
+
 ### Curl
 
 We can enumerate users with curl and if the HTTP status code from the response is 301 then it means that the user exists:
