@@ -491,4 +491,15 @@
 
 * [Cheat Engine](game-hacking/cheat-engine.md)
 * [Leak Handle Pointers](game-hacking/leak-handle-pointers.md)
-* [Using the Kernel](game-hacking/using-the-kernel.md)
+* [Kernel Interaction](game-hacking/kernel-interaction.md)
+* [Memory Scanner](game-hacking/memory-scanner.md)
+* [Modules and Sections](game-hacking/modules-and-sections.md)
+* [Hooks](game-hacking/hooks.md)
+* [Threads](game-hacking/threads.md)
+* [Named Pipes](game-hacking/named-pipes.md)
+* [Injectors](game-hacking/injectors.md)
+* [AntiCheat Frameworks](game-hacking/anticheat-frameworks.md)
+
+## Artificial Intelligence
+
+* [Evil AI](artificial-intelligence/evil-ai.md)
