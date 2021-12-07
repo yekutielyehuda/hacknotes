@@ -9,6 +9,11 @@
 
 * [Pentesting Methodology](methodology/pentesting-methodology.md)
 
+## Authentication
+
+* [Validating Credentials](authentication/validating-credentials.md)
+* [Bruteforce List](authentication/bruteforce-list.md)
+
 ## OSINT
 
 * [Passive Information Gathering](osint/passive-information-gathering.md)
