@@ -40,6 +40,7 @@ Authenticate to MSSQL with Windows Authentication:
 
 ```
 mssqlclient.py mssql-svc@<ip> -windows-auth
+mssqlclient.py -port 1435 sa:P@$$Word@<IP>
 ```
 
 ## Execute Shell Commands
