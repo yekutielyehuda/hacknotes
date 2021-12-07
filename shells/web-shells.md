@@ -67,7 +67,7 @@ Alternatively, we can use different functions like `shell_exec`:
 ?>
 ```
 
-In case we want to make it **multifunctional **, we can manage the variable provided by the user who makes the request, where for the case presented below, in addition to executing commands through the variable `fexec`, we create a new variable `fupload` to transfer files from our local machine to the remote machine in the working directory:
+In case we want to make it **multifunctional** , we can manage the variable provided by the user who makes the request, where for the case presented below, in addition to executing commands through the variable `fexec`, we create a new variable `fupload` to transfer files from our local machine to the remote machine in the working directory:
 
 ```php
 <?php
@@ -121,7 +121,7 @@ The web.config file plays an important role in storing IIS7 (and higher) setting
 
 In IIS7 (and higher), it is possible to do similar tricks by uploading or making a web.config file. A few of these tricks might even be applicable to IIS6 with some minor changes. The techniques below show some different web.config files that can be used to bypass protections around the file uploaders.
 
-#### Running web.config as an ASP file <a href="running-webconfig-as-an-asp-file" id="running-webconfig-as-an-asp-file"></a>
+#### Running web.config as an ASP file <a href="#running-webconfig-as-an-asp-file" id="running-webconfig-as-an-asp-file"></a>
 
 Sometimes IIS supports ASP files but it is not possible to upload any file with .ASP extension. In this case, it is possible to use a web.config file directly to run ASP classic codes:
 

@@ -2,7 +2,7 @@
 
 ## PowerShell Migrating Process
 
-This is a technique to migrate from a 32-bit process to a 64-bit one. It should be said that this procedure is important for the correct enumeration of the system because if it is included in a process that does not run under the architecture of the machine, then post-exploitation tools, will give a bunch of false positives. Knowing with what architecture we are dealing with both the operating system and the process level, we can do it via Powershell, obtaining **True **or **False **depending on whether it is true or not through the following queries.
+This is a technique to migrate from a 32-bit process to a 64-bit one. It should be said that this procedure is important for the correct enumeration of the system because if it is included in a process that does not run under the architecture of the machine, then post-exploitation tools, will give a bunch of false positives. Knowing with what architecture we are dealing with both the operating system and the process level, we can do it via Powershell, obtaining **True** or **False** depending on whether it is true or not through the following queries.
 
 Operating System Architecture
 

@@ -70,7 +70,7 @@ Inject a malicious PHP code:
 
 ### Fake Shell via Continous PHP Injection
 
-The following code enters in a while loop to execute the commands and we use **read **to parse the output:
+The following code enters in a while loop to execute the commands and we use **read** to parse the output:
 
 ```bash
 #!/bin/bash

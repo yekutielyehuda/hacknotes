@@ -10,7 +10,7 @@ The text above was extracted from [Wikipedia](https://en.wikipedia.org/wiki/Cert
 
 ### Request a Certificate
 
-This webpage will allow **us **to generate a certificate that we can use to authenticate as a user. There are two ways to get the two files we need, a key (.key) and a certificate (.crt or .cer, they are interchangeable).
+This webpage will allow **us** to generate a certificate that we can use to authenticate as a user. There are two ways to get the two files we need, a key (.key) and a certificate (.crt or .cer, they are interchangeable).
 
 ![](<../.gitbook/assets/image (9).png>)
 

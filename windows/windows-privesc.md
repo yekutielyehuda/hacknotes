@@ -41,7 +41,7 @@ Consider a user account to be a collection of preferences and settings tied to a
 
 ### Service Accounts
 
-In Windows, service accounts are used to operate services. Service accounts aren't allowed to log into Windows. The **SYSTEM **account is the default service account in Windows, and it has the most rights of any local account. The **NETWORK SERVICE** and **LOCAL SERVICE** are two other default service accounts.
+In Windows, service accounts are used to operate services. Service accounts aren't allowed to log into Windows. The **SYSTEM** account is the default service account in Windows, and it has the most rights of any local account. The **NETWORK SERVICE** and **LOCAL SERVICE** are two other default service accounts.
 
 ### Groups
 

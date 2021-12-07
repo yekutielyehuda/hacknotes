@@ -16,7 +16,7 @@ OLE incorporates many different concepts that all work toward the goal of seamle
     &#x20;Note
 
     Linking and embedding and in-place activation provide the main features of OLE visual editing.
-*   **Automation **allows one application to drive another application. The driving application is known as an automation client, and the application being driven is known as an automation server or automation component. For more information on automation, see the articles [Automation Clients](https://docs.microsoft.com/en-us/cpp/mfc/automation-clients?view=msvc-160) and [Automation Servers](https://docs.microsoft.com/en-us/cpp/mfc/automation-servers?view=msvc-160).
+*   **Automation** allows one application to drive another application. The driving application is known as an automation client, and the application being driven is known as an automation server or automation component. For more information on automation, see the articles [Automation Clients](https://docs.microsoft.com/en-us/cpp/mfc/automation-clients?view=msvc-160) and [Automation Servers](https://docs.microsoft.com/en-us/cpp/mfc/automation-servers?view=msvc-160).
 
     &#x20;Note
 
@@ -44,7 +44,7 @@ With OLE we can attach files, like malicious scripts.
 
 ### Microsoft Word
 
-In Microsoft Word, we can navigate to the** Insert Tab** and in the **Text Group** we can create an **Object**:
+In Microsoft Word, we can navigate to the **Insert Tab** and in the **Text Group** we can create an **Object**:
 
 ![Object Location](../.gitbook/assets/1858a433475a4f47b66b27852b88edf3.png)
 

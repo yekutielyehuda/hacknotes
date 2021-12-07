@@ -28,7 +28,7 @@ In order to exploit this vulnerability, you need to access some PHP files of the
 
 Then, in order to test this vulnerability, you could access for example `/index.php?-s` (note the `-s`) and the **source code of the application will appear in the response**.
 
-Then, in order to obtain **RCE **you can send this special query: `/?-d allow_url_include=1 -d auto_prepend_file=php://input` and the **PHP code **to be executed in the **body of the request.**
+Then, in order to obtain **RCE** you can send this special query: `/?-d allow_url_include=1 -d auto_prepend_file=php://input` and the **PHP code** to be executed in the **body of the request.**
 
 ****\
 **Example:**

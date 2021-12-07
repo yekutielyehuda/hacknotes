@@ -24,7 +24,7 @@ Autopsy is the premier end-to-end open-source digital forensics platform. Built 
 
 {% embed url="https://www.autopsy.com/" %}
 
-You may download **Autospy **here:
+You may download **Autospy** here:
 
 {% embed url="https://www.autopsy.com/download/" %}
 

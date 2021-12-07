@@ -50,7 +50,7 @@ Transfer-Encoding: chunked
 Date: Sun, 15 Aug 2021 01:28:24 GMT
 ```
 
-With _**whatweb **_we can identify multiple web technologies:
+With _**whatweb**_ we can identify multiple web technologies:
 
 ```bash
 ❯ whatweb -a 3 -v http://10.10.10.95:8080

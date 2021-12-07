@@ -11,7 +11,7 @@ I do **NOT** own every content of this book, some of the information here was co
 I'm just a tech who likes sharing, researching, pen-testing, playing CTFs, and pretty much everything that keeps me hooked for hours like skateboarding.
 
 * Bachelor's Degree in **Information Technology, Networks and Security**
-* I'm bilingual, I speak **Spanish **and **English**.
+* I'm bilingual, I speak **Spanish** and **English**.
 
 ## Hobbies
 

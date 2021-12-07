@@ -33,7 +33,7 @@ sqlplus <username>/<password>@<ip_address>/<SID> 'as sysdba';
 
 ## **SID Bruteforce**
 
-In order to use **oracle\_login **with **patator **you need to **install**:
+In order to use **oracle\_login** with **patator** you need to **install**:
 
 ```
 pip3 install cx_Oracle --upgrade
@@ -43,7 +43,7 @@ pip3 install cx_Oracle --upgrade
 
 Below are some of the default passwords associated with Oracle:
 
-* **DBSNMP/DBSNMP **— Intelligent Agent uses this to talk to the db server (its some work to change it)
+* **DBSNMP/DBSNMP** — Intelligent Agent uses this to talk to the db server (its some work to change it)
 * **SYS/CHANGE\_ON\_INSTALL** — Default sysdba account before and including Oracle v9, as of version 10g this has to be different!
 * **PCMS\_SYS/PCMS\_SYS** — Default x account
 * **WMSYS/WMSYS** — Default x account
@@ -54,10 +54,10 @@ Below are some of the default passwords associated with Oracle:
 
 Different tools offered **different user/pass lists** for oracle:
 
-* **oscan:** _/usr/share/oscanner/accounts.default _(169 lines)
-* **MSF-1:**_  from _admin/oracle/oracle\_login_  _/usr/share/metasploit-framework/data/wordlists/oracle\_default\_passwords.csv (598 lines)
-* **MSF-2:** _from scanner/oracle/oracle\_login_  _/usr/share/metasploit-framework/data/wordlists/oracle\_default\_userpass.txt _(568 lines)
-* **Nmap:**_ /usr/share/nmap/nselib/data/oracle-default-accounts.lst _(687 lines)
+* **oscan:** _/usr/share/oscanner/accounts.default_ (169 lines)
+* **MSF-1:**  _from_ admin/oracle/oracle\_login  __  /usr/share/metasploit-framework/data/wordlists/oracle\_default\_passwords.csv (598 lines)
+* **MSF-2:** _from scanner/oracle/oracle\_login_  _/usr/share/metasploit-framework/data/wordlists/oracle\_default\_userpass.txt_ (568 lines)
+* **Nmap:** _/usr/share/nmap/nselib/data/oracle-default-accounts.lst_ (687 lines)
 
 ## oscanner
 

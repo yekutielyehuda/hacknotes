@@ -320,7 +320,7 @@ Enumerating `.service` files in the host:
 find / -iname '*.service' 2>/dev/null
 ```
 
-You can create a shell with something like `ExecStart=/tmp/shell.sh `
+You can create a shell with something like `ExecStart=/tmp/shell.sh`&#x20;
 
 ### Writable service binaries
 
@@ -1522,9 +1522,9 @@ We are going to see an example with python since it is an error that already com
 
 ![](<../.gitbook/assets/image (29).png>)
 
-If we import the **sys **library and make a print of the path we see that in order of priorities the current directory is found first, so we can take advantage of that so that even if we do not have permissions in a _ _python script that you have created if we can import a library which we inject malicious code.
+If we import the **sys** library and make a print of the path we see that in order of priorities the current directory is found first, so we can take advantage of that so that even if we do not have permissions in a __ python script that you have created if we can import a library which we inject malicious code.
 
-Suppose we have the file ** example.py ** in which the following exists:
+Suppose we have the file **example.py** in which the following exists:
 
 `import hashlib`&#x20;
 
@@ -1548,9 +1548,9 @@ md5=hashlib.md5(word).hexdigest()
 print(md5)
 ```
 
-We have the file ** example.py ** that it imports from the hashlib library. As we have seen above, the ** PATH ** pulls the current directory from the job. It is the case that_ we do not have write permissions _on the file _ example.py _ but **we do **from the current working directory.
+We have the file **example.py** that it imports from the hashlib library. As we have seen above, the **PATH** pulls the current directory from the job. It is the case that _we do not have write permissions_ on the file _example.py_ but **we do** from the current working directory.
 
-We can create a file called _hashlib.py _ with the following content:
+We can create a file called _hashlib.py_ with the following content:
 
 ```python
 import os
@@ -1580,7 +1580,7 @@ touch __init__.py
 touch setup.py
 ```
 
-The file** \_\_init\_\_**.py will be empty and the code of the **setup.py** is the following:
+The file **\_\_init\_\_**.py will be empty and the code of the **setup.py** is the following:
 
 ```python
 import setuptools
@@ -1610,7 +1610,7 @@ setuptools.setup(
 )
 ```
 
-The idea here is that when the pypi server **executes **the **setup.py**, we want it to initiate a **reverse shell**.
+The idea here is that when the pypi server **executes** the **setup.py**, we want it to initiate a **reverse shell**.
 
 We configure our host to be able to send the package to the victim repository:
 

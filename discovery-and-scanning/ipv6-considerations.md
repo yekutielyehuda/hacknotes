@@ -44,7 +44,7 @@ There are no broadcast addresses in IPv6. Multicast addresses have superseded th
 
 – Fuzzy definition of “sites”&#x20;
 
-**Unique Local IPv6 Unicast Address **
+**Unique Local IPv6 Unicast Address**&#x20;
 
 – Addresses similar to the RFC 1918 (private address) in IPv4&#x20;
 
@@ -54,7 +54,7 @@ There are no broadcast addresses in IPv6. Multicast addresses have superseded th
 
 – FC00::/7
 
-**IPv6 Global Unicast Address **
+**IPv6 Global Unicast Address**&#x20;
 
 – Global Unicast Range: 0010 2000::/3 0011 3FFF:FFF:…:FFFF/3&#x20;
 

@@ -230,7 +230,7 @@ Get users that are part of a Machine's local Admin group
 Find-GPOComputerAdmin -ComputerName <ComputerName>
 ```
 
-#### Enum**erate **OUs:
+#### Enum**erate** OUs:
 
 ```
 Get-NetOU -FullData 

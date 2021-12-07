@@ -8,7 +8,7 @@
 
 **X-Powered-By:** (PHP,ASP.NET,JSP,JBoss,Others)&#x20;
 
-**Cookies: **(PHPSESSID=XXXX, ASPSESSIONIDYYYY=XXXX, JSESSION=XXXX)
+**Cookies:** (PHPSESSID=XXXX, ASPSESSIONIDYYYY=XXXX, JSESSION=XXXX)
 
 Enumerate headers with curl:
 

@@ -116,7 +116,7 @@ sudo nmap -sU -sV --version-intensity 0 -n 10.10.10.10
 
 ### Netcat Verify TCP/UDP Ports
 
-We can verify if a **TCP **port is really open with nc:
+We can verify if a **TCP** port is really open with nc:
 
 ```
 nc -nvv -w 1 -z IP 3389-3390
@@ -126,7 +126,7 @@ nc -nvv -w 1 -z IP 3389-3390
 -z = zero I/O mode (send no data, it is used for scanning)
 ```
 
-We can verify if a **UDP **port is really open with nc:
+We can verify if a **UDP** port is really open with nc:
 
 ```
 nc -nv -u -w 1 -z IP 3389-3390

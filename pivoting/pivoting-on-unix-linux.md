@@ -31,7 +31,7 @@ nmcli dev show
 
 ### Enumerating Network Interface Cards (NICs)
 
-First, we must enumerate the subnets that are on the operating system, we can do this with **ipconfig **or **ip **commands:
+First, we must enumerate the subnets that are on the operating system, we can do this with **ipconfig** or **ip** commands:
 
 ```
 ifconfig
