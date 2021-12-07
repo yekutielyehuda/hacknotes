@@ -554,6 +554,34 @@ These are the list of wordlists that have helped me the most:
 
 ## Fuzzing Cheatsheet
 
+### nikto
+
+Enumerate directories with nikto:
+
+```
+nikto -h <URL>
+```
+
+### feroxbuster
+
+It seems that feroxbuster is fine as hell:
+
+{% embed url="https://epi052.github.io/feroxbuster-docs/docs/compare" %}
+
+Enumerate directories:
+
+```
+./feroxbuster -u <URL> -w <WORDLIST> -x php,txt,zip
+```
+
+### dirsearch
+
+Enumerate directories:
+
+```
+python3 dirsearch.py -u <URL> -w <WORDLIST> -r -t 60 --full-url
+```
+
 ### wfuzz
 
 Common Flags:
@@ -595,6 +623,18 @@ Virtual Host Fuzzing:
 
 ```
 gobuster vhost -u http://sneakycorp.htb -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt
+```
+
+Enumerate directories on HTTP:
+
+```
+gobuster dir -u <URL> -w <WORDLIST> -s 200 -x txt,zip,php
+```
+
+Enumerate directories on HTTPS:
+
+```
+gobuster dir -u <URL> -w <WORDLIST> -s 200 -x txt,zip,php -k
 ```
 
 ### ffuf
