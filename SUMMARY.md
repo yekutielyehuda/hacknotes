@@ -12,7 +12,7 @@
 ## Authentication
 
 * [Validating Credentials](authentication/validating-credentials.md)
-* [Bruteforce List](authentication/bruteforce-list.md)
+* [Brute Force List](authentication/brute-force-list.md)
 * [Username Naming Convention Generators](authentication/username-naming-convention-generators.md)
 * [Password Generators](authentication/password-generators.md)
 
