@@ -490,3 +490,5 @@
 ## Game Hacking
 
 * [Cheat Engine](game-hacking/cheat-engine.md)
+* [Leak Handle Pointers](game-hacking/leak-handle-pointers.md)
+* [Using the Kernel](game-hacking/using-the-kernel.md)

