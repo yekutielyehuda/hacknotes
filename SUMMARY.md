@@ -409,7 +409,7 @@
 * [Shell-Fu](shells-fu/shell-fu.md)
 * [PowerShell-Fu](shells-fu/powershell-fu.md)
 * [8.3 Format](shells-fu/8.3-format.md)
-* [UTF-16LE to UTF-8](shells-fu/utf-16le-to-utf-8.md)
+* [Convert Files](shells-fu/utf-16le-to-utf-8.md)
 
 ## MISC
 
