@@ -421,6 +421,7 @@ In a reverse shell initiate a bash shell (choose one of the following, the idea 
 
 ```
 script /dev/null -c bash
+/usr/bin/script -qc /bin/bash /dev/null
 python -c 'import pty; pty.spawn("/bin/bash")'
 echo os.system('/bin/bash')
 /bin/bash -i
