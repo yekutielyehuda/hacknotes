@@ -6,6 +6,13 @@
 
 The text above was extracted from [Wikipedia](https://en.wikipedia.org/wiki/WordPress).
 
+## WordPress Locations
+
+These are the most commong wordpress locations:
+
+* /wp-admin
+* /directory\_name/wp-admin
+
 ## Enumerating WordPress
 
 WordPress Key Points:
@@ -31,7 +38,7 @@ Before starting a wpscan you should update it:
 wpscan --update
 ```
 
-To startup, we can use the “non-intrusive” default scan using only the`  --url  `parameter to determine the WordPress version installed and some other information about the installation including PHP version, potential vulnerabilities, and interesting files, such as robots.txt files which could contain interesting directory or file references
+To startup, we can use the “non-intrusive” default scan using only the `--url` parameter to determine the WordPress version installed and some other information about the installation including PHP version, potential vulnerabilities, and interesting files, such as robots.txt files which could contain interesting directory or file references
 
 ```
 wpscan --url http://target
@@ -91,7 +98,7 @@ plecost -i /usr/share/plecost/wp_plugin_list.txt http://target
 
 ### Enumerating Plugins
 
-SecLists has a good wordlist for fuzzing for plugins called` wp-plugins.fuzz.txt`
+SecLists has a good wordlist for fuzzing for plugins called `wp-plugins.fuzz.txt`
 
 ```
 wfuzz -c -t 200 --hc=404 -w wp-plugins.fuzz.txt http://10.10.10.88/webservices/wp/FUZZ
@@ -154,4 +161,6 @@ www-data
 
 ### Theme RCE
 
-WordPress > Appearance > Theme Editor > Theme Header
+WordPress > Appearance > Theme Editor > Theme Header then insert a webshell.
+
+![Appearance -> Theme Editor -> Twenty Twenty -> Theme Files -> 404.php](../../../.gitbook/assets/wordpress-twenty-twenty-404-php-webshell.png)

@@ -484,3 +484,7 @@
 
 * [IoT](internet-of-things/iot.md)
 * [Pwning IoT Devices](internet-of-things/pwning-iot-devices.md)
+
+## Game Hacking
+
+* [Cheat Engine](game-hacking/cheat-engine.md)
