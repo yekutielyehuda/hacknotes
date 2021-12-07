@@ -54,7 +54,8 @@
 
 ## Windows
 
-* [Windows Local Privilege Escalation](windows/windows-privesc.md)
+* [Windows Local Privilege Escalation](windows/windows-privesc/README.md)
+  * [UAC Bypass](windows/windows-privesc/uac-bypass.md)
 * [Windows Migrating Process](windows/windows-migrating-process.md)
 * [Pass-The-Hash](windows/pass-the-hash.md)
 * [Fix %PATH%](windows/fix-path.md)
@@ -88,15 +89,6 @@
 * [PHP CGI Exploitation](common-exploits/php-cgi-exploitation.md)
 * [Samba Symlink Directory Traversal](common-exploits/samba-symlink-directory-traversal.md)
 
-## Client-Side Attacks
-
-* [Phishing](client-side-attacks/phishing.md)
-* [CHM Files](client-side-attacks/chm-files.md)
-* [Macros](client-side-attacks/macros.md)
-* [OLE](client-side-attacks/ole.md)
-* [Microsoft Office Bypass Protections](client-side-attacks/microsoft-office-bypass-protections.md)
-* [Analyzing Documents](client-side-attacks/analyzing-documents.md)
-
 ## File Transfers
 
 * [File Transfers | Exfiltration](file-transfers/windows-to-nix.md)
@@ -110,6 +102,16 @@
 
 * [Pivoting in Windows](pivoting/pivoting-in-windows.md)
 * [Pivoting in Unix/Linux](pivoting/pivoting-on-unix-linux.md)
+
+## Client-Side Attacks
+
+* [Phishing](client-side-attacks/phishing.md)
+* [CHM](client-side-attacks/chm-files.md)
+* [HTA](client-side-attacks/hta.md)
+* [OLE](client-side-attacks/ole.md)
+* [Macros](client-side-attacks/macros.md)
+* [Microsoft Office Bypass Protections](client-side-attacks/microsoft-office-bypass-protections.md)
+* [Analyzing Documents](client-side-attacks/analyzing-documents.md)
 
 ## Active Directory
 
@@ -134,7 +136,10 @@
 * [Active Directory Domain Enumeration](active-directory/active-directory-domain-enumeration/README.md)
   * [BloodHound](active-directory/active-directory-domain-enumeration/bloodhound.md)
   * [itm4n](active-directory/active-directory-domain-enumeration/itm4n.md)
-* [Active Directory Lateral Movement](active-directory/active-directory-lateral-movement.md)
+* [Active Directory Lateral Movement](active-directory/active-directory-lateral-movement/README.md)
+  * [DCOM](active-directory/active-directory-lateral-movement/dcom.md)
+  * [Pass The Ticket](active-directory/active-directory-lateral-movement/pass-the-ticket.md)
+  * [Overpass The Hash](active-directory/active-directory-lateral-movement/overpass-the-hash.md)
 * [Active Directory Domain Privilege Escalation](active-directory/active-directory-domain-privilege-escalation.md)
 * [Active Directory Domain Persistence](active-directory/active-directory-domain-persistence.md)
 * [Active Directory Cross Forest Attacks](active-directory/active-directory-cross-forest-attacks.md)

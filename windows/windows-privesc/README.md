@@ -1127,15 +1127,15 @@ The Local Security Authority Subsystem Service (LSASS) is a process responsible 
 
 With local administrator rights on a host, open task manager, find lsass.exe, right-click and select “Create Dump File”
 
-![Task Manager -> Details -> lsass.exe](<../.gitbook/assets/image (24).png>)
+![Task Manager -> Details -> lsass.exe](<../../.gitbook/assets/image (24).png>)
 
 Create a dump file:
 
-![Create dump file](<../.gitbook/assets/image (23).png>)
+![Create dump file](<../../.gitbook/assets/image (23).png>)
 
 Then you will receive this message:
 
-![](<../.gitbook/assets/image (26).png>)
+![](<../../.gitbook/assets/image (26).png>)
 
 Mimikatz can then dump the plaintext login credentials:
 
