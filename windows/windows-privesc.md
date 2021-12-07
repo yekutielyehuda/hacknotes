@@ -624,13 +624,6 @@ More information here:
     > net start <service_name>
     ```
 
-
-7. If you can't start or restart the service but you can reboot the machine, then you should just restart the machine
-
-```
-shutdown.exe -r -f -t 1
-```
-
 **Valid executable path Discovery:**
 
 ```
