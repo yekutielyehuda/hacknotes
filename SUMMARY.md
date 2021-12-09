@@ -122,6 +122,7 @@
   * [Password Spraying](active-directory/active-directory-attacks-in-depth/password-spraying.md)
   * [LDAP Relay](active-directory/active-directory-attacks-in-depth/ldap-relay.md)
   * [LAPS Abuse](active-directory/active-directory-attacks-in-depth/laps-abuse.md)
+  * [Responder](active-directory/active-directory-attacks-in-depth/responder.md)
   * [Kerberoasting](active-directory/active-directory-attacks-in-depth/kerberoasting.md)
   * [Kerberos: Silver Ticket](active-directory/active-directory-attacks-in-depth/kerberos-silver-ticket.md)
   * [Kerberos: Golden Ticket](active-directory/active-directory-attacks-in-depth/kerberos-golden-ticket.md)
