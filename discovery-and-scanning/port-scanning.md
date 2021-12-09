@@ -62,7 +62,7 @@ ping -6 -c 1 dead:beef::0250:56ff:feb9:dbf3
 
 ### Nmap Recon Methodology
 
-After confirming that ICMP is enabled (if disabled use -Pn), I like to start up with an SYN Stealth scan on all ports scan with a high packet rate (the min-rate can be high for a testing environment, **not** for a production environment):
+After confirming that ICMP is enabled (if disabled use `-Pn`), I like to start up with an SYN Stealth scan on all ports scan with a high packet rate (the `--min-rate` argument can be high for a testing environment, **not** for a production environment). If you want to know why a port is open or closed, you can use the `--reason` option:
 
 ```
 nmap -sS -vvv -p- --open --min-rate 5000 -n -Pn -oG scans/nmap-alltcp 10.10.10.10
