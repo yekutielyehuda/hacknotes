@@ -550,6 +550,7 @@ These are the list of wordlists that have helped me the most:
 
 * /usr/share/seclists/Discovery/Web-Content/common.txt
 * /usr/share/seclists/Discovery/Web-Content/big.txt
+* /usr/share/seclists/Discovery/Web-Content/raft-large-files.txt
 * /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt
 
 ## Fuzzing Cheatsheet
