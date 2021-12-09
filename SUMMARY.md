@@ -116,6 +116,18 @@
 
 ## Active Directory
 
+* [AD Pentesting Tools](active-directory/ad-pentesting-tools/README.md)
+  * [BloodHound](active-directory/ad-pentesting-tools/bloodhound.md)
+  * [SharpHound](active-directory/ad-pentesting-tools/sharphound.md)
+  * [PowerShell Empire](active-directory/ad-pentesting-tools/powershell-empire.md)
+  * [Covenant](active-directory/ad-pentesting-tools/covenant.md)
+  * [Powerview](active-directory/ad-pentesting-tools/powerview.md)
+  * [Rubeus](active-directory/ad-pentesting-tools/rubeus.md)
+  * [Evil-WinRM](active-directory/ad-pentesting-tools/evil-winrm.md)
+  * [Responder](active-directory/ad-pentesting-tools/responder.md)
+  * [Crackmapexec](active-directory/ad-pentesting-tools/crackmapexec.md)
+  * [Mimikatz](active-directory/ad-pentesting-tools/mimikatz.md)
+  * [Impacket](active-directory/ad-pentesting-tools/impacket.md)
 * [Active Directory Attacks In-Depth](active-directory/active-directory-attacks-in-depth/README.md)
   * [Custom SSP](active-directory/active-directory-attacks-in-depth/custom-ssp.md)
   * [Skeleton Key Attack](active-directory/active-directory-attacks-in-depth/skeleton-key-attack.md)
