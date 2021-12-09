@@ -134,6 +134,12 @@ General Bruteforce with random-user-agent:
 wpscan --url http://target --usernames users.txt -P rockyou.txt random-user-agent
 ```
 
+### Author ID Bruteforce
+
+```
+wpscan --url http://10.10.185.115/blog/ -t 40 -e at,ap,u1-3000,m1-2000 --passwords /usr/share/wordlists/rockyou.txt
+```
+
 Simplified:
 
 ```
