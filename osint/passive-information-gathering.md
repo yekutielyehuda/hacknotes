@@ -20,6 +20,12 @@ Here is a list of websites or search engines that you can use to perform AI Faci
 
 {% embed url="https://tineye.com" %}
 
+## Emails Searching
+
+You can search for emails with this website:
+
+{% embed url="https://hunter.io" %}
+
 ## Whois Enumeration
 
 Whois is a TCP service focused tool that can be used to gather information about a domain name. This tool uses a database to provide this type of information.&#x20;
