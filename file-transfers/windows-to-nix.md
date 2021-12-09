@@ -399,6 +399,12 @@ xcopy \\<YOUR_IP>\<ShareName>\filename.exe
 
 ## Transfer via SCP
 
+Transfer with an SSH key:
+
+```
+scp -i <id_rsa> <FileToUpload> username@<IP>:/<Path>
+```
+
 Copy a file:
 
 ```
