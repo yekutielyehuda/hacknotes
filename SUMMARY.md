@@ -58,6 +58,7 @@
   * [UAC Bypass](windows/windows-privesc/uac-bypass.md)
 * [Windows Migrating Process](windows/windows-migrating-process.md)
 * [Pass-The-Hash](windows/pass-the-hash.md)
+* [Recycle Bin](windows/recycle-bin.md)
 * [Fix %PATH%](windows/fix-path.md)
 
 ## Mobile
