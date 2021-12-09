@@ -526,6 +526,12 @@ On the host that has the file that you want to send:
 nc -nv 192.168.1.2 4444 < /usr/inputfile.exe
 ```
 
+Alternatively, you can send it like this:
+
+```
+nc.exe -w 3 <IP> 4455 < inputfile.doc
+```
+
 ## Transfer via Powercat
 
 Send a file:
