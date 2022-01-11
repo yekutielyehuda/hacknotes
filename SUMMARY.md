@@ -40,7 +40,8 @@
 
 ## Discovery and Scanning
 
-* [Port Scanning](discovery-and-scanning/port-scanning.md)
+* [Port Scanning](discovery-and-scanning/port-scanning/README.md)
+  * [Port Scan Scripts](discovery-and-scanning/port-scanning/port-scan-scripts.md)
 * [Ping Sweeps](discovery-and-scanning/ping-sweeps.md)
 * [Firewalls](discovery-and-scanning/firewalls.md)
 * [Name Resolution](discovery-and-scanning/name-resolution.md)
