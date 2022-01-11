@@ -139,21 +139,6 @@ nc -nv -u -w 1 -z IP 3389-3390
 
 ### Nmap Extract Ports
 
-I have zsh function which extracts ports from a grep file, thanks to [S4vitar](https://www.youtube.com/channel/UCNHWpNqiM8yOQcHXtsluD7Q) for sharing this function.
-
-```bash
-xp4 () {
-	ports="$(cat $1 | grep -oP '\d{1,5}/open' | cut -d '/' -f 1 | tr '\n' ',' | sed s/,$//)"
-	ip_address="$(cat $1 | grep -oP '\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}' | sort -u | head -n 1)"
-	echo -e "[*] IP Address: $ip_address" >> xp4.tmp
-	echo -e "[*] Open ports: $ports\n" >> xp4.tmp
-	echo $ports | tr -d '\n' | xclip -sel clip
-	echo -e "[*] Ports copied to clipboard\n" >> xp4.tmp
-	cat xp4.tmp
-	rm xp4.tmp
-}
-```
-
 Alternatively, we can extract ports like this:
 
 ```
