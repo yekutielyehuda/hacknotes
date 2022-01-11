@@ -185,3 +185,12 @@ python3 odat.py externaltable -s <IP> -d <SID> -U "username" -P "password" --exe
 
 ```
 
+Generalized:
+
+```bash
+git clone https://github.com/quentinhardy/odat.git
+cd oda
+pip3 install python-libnmap
+pip3 install cx_oracle
+python3 odat.py all -s <IP> -p <PORT>
+```
