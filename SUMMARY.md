@@ -144,6 +144,7 @@
   * [Kerberos: Golden Ticket](active-directory/active-directory-attacks-in-depth/kerberos-golden-ticket.md)
   * [AS-REP Roasting](active-directory/active-directory-attacks-in-depth/as-rep-roasting.md)
   * [Pass The Ticket](active-directory/active-directory-attacks-in-depth/pass-the-ticket.md)
+  * [Overpass The Hash](active-directory/active-directory-attacks-in-depth/overpass-the-hash.md)
   * [Kerberos: Unconstrained Delegation](active-directory/active-directory-attacks-in-depth/kerberos-unconstrained-delegation.md)
   * [Kerberos: Constrained Delegation](active-directory/active-directory-attacks-in-depth/kerberos-constrained-delegation.md)
   * [DCShadow](active-directory/active-directory-attacks-in-depth/dcshadow.md)
