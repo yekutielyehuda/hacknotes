@@ -501,7 +501,7 @@ download filename
 
 ## Transfer via Socat
 
-In your attacker host:
+Sender:
 
 ```
 socat TCP4-LISTEN:443,fork file:file.txt
@@ -510,7 +510,7 @@ socat TCP4-LISTEN:443,fork file:file.txt
 * fork = create a child process once the connection is made, it allows multiple connections.
 * file: = specify the file to transfer
 
-In Windows execute this:
+Receiver:
 
 ```
 socat TCP4:192.168.1.2:443 file:file.txt,create
