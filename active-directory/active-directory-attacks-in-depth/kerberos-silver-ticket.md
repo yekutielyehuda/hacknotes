@@ -1,6 +1,8 @@
 # Kerberos: Silver Ticket
 
-#### 🎟️ Silver ticket (`mimikatz`)
+#### STILL EDITING
+
+#### Silver ticket (`mimikatz`)
 
 1. Dump the hash and security identifier (SID) of the targeted service account:
 

@@ -1,5 +1,7 @@
 # Kerberoasting
 
+#### STILL EDITING
+
 #### Kerberoasting
 
 > **Kerberoasting** allows a user to request a service ticket for any service with a registered **SPN** then use that ticket to crack the service password.

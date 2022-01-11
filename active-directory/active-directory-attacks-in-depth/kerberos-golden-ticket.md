@@ -1,6 +1,8 @@
 # Kerberos: Golden Ticket
 
-#### 🎫 Golden ticket (`mimikatz`)
+#### STILL EDITING
+
+#### Golden ticket (`mimikatz`)
 
 1. Dump the hash and security identifier (SID) of the Kerberos Ticket Granting Ticket (**krbtgt**) service account:
 
@@ -24,6 +26,6 @@ mimikatz # misc::cmd
 psexec.exe \\$REMOTE_MACHINE_HOSTNAME cmd.exe
 ```
 
-⚠️ OverPass the Hash with `PsExec` when using hostname, otherwise (IP) NTLM authentication would be blocked.
+OverPass the Hash with `PsExec` when using hostname, otherwise (IP) NTLM authentication would be blocked.
 
-➡️ [Golden Ticket - Mimikatz alternative (impacket)](https://gist.github.com/TarlogicSecurity/2f221924fef8c14a1d8e29f3cb5c5c4a#golden-ticket)
+&#x20;[Golden Ticket - Mimikatz alternative (impacket)](https://gist.github.com/TarlogicSecurity/2f221924fef8c14a1d8e29f3cb5c5c4a#golden-ticket)

@@ -1,5 +1,7 @@
 # Overpass The Hash
 
+#### STILL EDITING
+
 **Overpass the hash** (turn the NTLM hash into a Kerberos ticket and avoid the use of NTLM authentication):
 
 ```
