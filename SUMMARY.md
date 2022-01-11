@@ -166,6 +166,7 @@
   * [Dumping SAM](active-directory/credential-access-and-credential-dumping/dumping-sam.md)
   * [Dumping LSA Secrets](active-directory/credential-access-and-credential-dumping/dumping-lsa-secrets.md)
   * [Dumping mscash](active-directory/credential-access-and-credential-dumping/dumping-mscash.md)
+* [Active Directory Password Spray](active-directory/active-directory-password-spray.md)
 
 ## Cloud Security
 
