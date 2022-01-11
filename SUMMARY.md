@@ -60,6 +60,7 @@
 * [Pass-The-Hash](windows/pass-the-hash.md)
 * [Recycle Bin](windows/recycle-bin.md)
 * [Fix %PATH%](windows/fix-path.md)
+* [RunAs](windows/runas.md)
 
 ## Mobile
 
