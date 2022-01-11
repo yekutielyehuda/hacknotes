@@ -523,6 +523,16 @@ ________________________________________________
 
 We see that we get a hit right away.&#x20;
 
+## Fuzzing via Proxy
+
+Gobuster:
+
+```bash
+[HTTP_PROXY="socks5://127.0.0.1:1080/"] gobuster dir -u http://$IP -w /usr/share/dirb/wordlists/common.txt -o gobuster.txt
+```
+
+
+
 ## Web Fuzzing Tools
 
 You may want to use other tools besides fuff:
@@ -692,6 +702,20 @@ Value Fuzzing
 
 ```
 ffuf -w ids.txt:FUZZ -u http://admin.academy.htb:PORT/admin/admin.php -X POST -d 'id=FUZZ' -H 'Content-Type: application/x-www-form-urlencoded' -fs xxx
+```
+
+### dirb
+
+Page Fuzzing:
+
+```bash
+gobuster dir -u http://$IP -w /usr/share/dirb/wordlists/common.txt -x .<ext1>,.<ext2> -o gobuster.txt
+```
+
+Extension Fuzzing:
+
+```bash
+dirb http://$IP -X .<extension> -o dirb.txt
 ```
 
 ## Reference
