@@ -435,7 +435,8 @@
 
 ## Shells-Fu
 
-* [Shell-Fu](shells-fu/shell-fu.md)
+* [Shell-Fu](shells-fu/shell-fu/README.md)
+  * [Man Pages](shells-fu/shell-fu/man-pages.md)
 * [PowerShell-Fu](shells-fu/powershell-fu.md)
 * [8.3 Format](shells-fu/8.3-format.md)
 * [Convert Files](shells-fu/utf-16le-to-utf-8.md)
