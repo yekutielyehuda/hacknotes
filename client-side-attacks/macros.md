@@ -1,5 +1,9 @@
 # Macros
 
+### Macros
+
+We must save the containing document as either .docm or the older .doc format, which supports embedded macros, but we can't use the .docx format because it does not support them.
+
 ### Microsoft Word Macro Skeleton
 
 View -> Macros -> Macros in Document -> Name -> Create

