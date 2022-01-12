@@ -47,10 +47,12 @@
 * [Name Resolution](discovery-and-scanning/name-resolution.md)
 * [MAC to IPv6](discovery-and-scanning/mac-to-ipv6.md)
 * [IPv6 Considerations](discovery-and-scanning/ipv6-considerations.md)
+* [Vulnerability Scanning](discovery-and-scanning/vulnerability-scanning.md)
 
 ## Linux/Unix
 
 * [Linux/Unix Privilege Escalation](linux-unix/linux-privesc.md)
+* [Linux Enumeration](linux-unix/linux-enumeration.md)
 * [Linux/Unix Persistence](linux-unix/linux-unix-persistence.md)
 * [Linux/Unix Cover Your Tracks](linux-unix/linux-unix-cover-your-tracks.md)
 
@@ -58,6 +60,7 @@
 
 * [Windows Local Privilege Escalation](windows/windows-privesc/README.md)
   * [UAC Bypass](windows/windows-privesc/uac-bypass.md)
+* [Windows Enumeration](windows/windows-enumeration.md)
 * [Windows Migrating Process](windows/windows-migrating-process.md)
 * [Pass-The-Hash](windows/pass-the-hash.md)
 * [Recycle Bin](windows/recycle-bin.md)
