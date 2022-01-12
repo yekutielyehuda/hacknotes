@@ -196,6 +196,44 @@ ruby -run -e httpd . -p 9000
 
 ### Downloading/Uploading on HTTP
 
+#### wget
+
+The wget command, which we will use extensively, downloads files using the HTTP/HTTPS and FTP protocols. We can dowload a file with:
+
+```
+wget -O filename <URL>/filename
+```
+
+Option:
+
+* O: output/save the file
+
+#### curl
+
+curl is a tool to transfer data to or from a server using a host of protocols including IMAP/S, POP3/S, SCP, SFTP, SMB/S, SMTP/S, TELNET, TFTP, and others. We can download a file with:
+
+```
+curl -o filename <URI>/filename
+```
+
+Option:
+
+* o: output/save the file
+
+#### axel
+
+axel is a download accelerator that transfers a file from a FTP or HTTP server through multiple connections. We can download a file with:
+
+```
+axel -a -n 20 -o filename <URL>/filename
+```
+
+Options:
+
+* n: specify then number of multiple connections to use
+* a: concise progress indicator
+* o: output/save the file
+
 Download with PowerShell Invoke-WebRequest:
 
 ```
