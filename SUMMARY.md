@@ -9,6 +9,30 @@
 
 * [Pentesting Methodology](methodology/pentesting-methodology.md)
 
+## Red Teaming
+
+* [Red Team Infrastructure](red-teaming/red-team-infrastructure.md)
+* [Reconnaissance](red-teaming/reconnaissance.md)
+* [Initial Access / Foothold](red-teaming/initial-access-foothold.md)
+* [Code Execution](red-teaming/code-execution.md)
+* [Persistence](red-teaming/persistence.md)
+* [Stealthy Privilege Escalation](red-teaming/stealthy-privilege-escalation.md)
+* [Defense Evasion](red-teaming/defense-evasion.md)
+* [Credential Access](red-teaming/credential-access.md)
+* [Discovery](red-teaming/discovery.md)
+* [Lateral Movement](red-teaming/lateral-movement.md)
+* [Pivoting](red-teaming/pivoting.md)
+* [Collection](red-teaming/collection.md)
+* [Command and Control](red-teaming/command-and-control.md)
+* [Exfiltration](red-teaming/exfiltration.md)
+
+## C2 Frameworks
+
+* [PowerShell Empire](c2-frameworks/powershell-empire.md)
+* [Covenant](c2-frameworks/covenant.md)
+* [PoshC2](c2-frameworks/poshc2.md)
+* [Merlin](c2-frameworks/merlin.md)
+
 ## Authentication
 
 * [Validating Credentials](authentication/validating-credentials.md)
@@ -452,6 +476,7 @@
 * [Pentesting with Bash](programming/pentesting-with-bash.md)
 * [Pentesting with C#](programming/pentesting-with-c.md)
 * [Pentesting with C++](programming/pentesting-with-c++.md)
+* [Pentesting with C](programming/pentesting-with-c-1.md)
 * [Pentesting with PowerShell](programming/pentesting-with-powershell.md)
 * [Shellcoding with ASM](programming/shellcoding-with-asm.md)
 
