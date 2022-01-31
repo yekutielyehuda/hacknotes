@@ -556,7 +556,7 @@ reg save HKLM\SYSTEM c:\temp\system.hive
 
 ### **SID History Abuse**
 
-_What is this?: If we manage to compromise a child domain of a forest and _[_SID filtering_](https://www.itprotoday.com/windows-8/sid-filtering)_ isn't enabled (most of the times is not), we can abuse it to privilege escalate to Domain Administrator of the root domain of the forest. This is possible because of the _[_SID History_](https://www.itprotoday.com/windows-8/sid-history)_ field on a kerberos TGT ticket, that defines the "extra" security groups and privileges._
+_What is this?: If we manage to compromise a child domain of a forest and_ [_SID filtering_](https://www.itprotoday.com/windows-8/sid-filtering) _isn't enabled (most of the times is not), we can abuse it to privilege escalate to Domain Administrator of the root domain of the forest. This is possible because of the_ [_SID History_](https://www.itprotoday.com/windows-8/sid-history) _field on a kerberos TGT ticket, that defines the "extra" security groups and privileges._
 
 Exploitation example:
 

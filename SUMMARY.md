@@ -108,9 +108,9 @@
 * [Windows Enumeration](windows/windows-enumeration.md)
 * [Windows Migrating Process](windows/windows-migrating-process.md)
 * [Windows Essentials](windows/windows-essentials/README.md)
-  * [Recycle Bin](windows/windows-essentials/recycle-bin.md)
-  * [Fix %PATH%](windows/windows-essentials/fix-path.md)
-  * [RunAs](windows/windows-essentials/runas.md)
+  * [Recycle Bin](windows/recycle-bin.md)
+  * [Fix %PATH%](windows/fix-path.md)
+  * [RunAs](windows/runas.md)
 * [Windows Credentials](windows/windows-credentials.md)
 
 ## Mobile
@@ -120,7 +120,7 @@
 
 ## Bypass Defenses
 
-* [Bypassing AV](bypass-defenses/bypassing-av/README.md)
+* [Bypassing AV](bypass-av-ids-ips/bypassing-av.md)
   * [AMSI](bypass-defenses/bypassing-av/amsi.md)
   * [Cryptors](bypass-defenses/bypassing-av/cryptors.md)
   * [Packers](bypass-defenses/bypassing-av/packers.md)
@@ -177,13 +177,13 @@
 
 * [Phishing](client-side-attacks/phishing.md)
 * [Applications](client-side-attacks/applications/README.md)
-  * [HTA](client-side-attacks/applications/hta.md)
-  * [CHM](client-side-attacks/applications/chm-files.md)
+  * [HTA](client-side-attacks/hta.md)
+  * [CHM](client-side-attacks/chm-files.md)
 * [JScript Client](client-side-attacks/jscript-client.md)
 * [Microsoft Office](client-side-attacks/microsoft-office/README.md)
-  * [Protected View Bypass](client-side-attacks/microsoft-office/microsoft-office-bypass-protections.md)
-  * [Microsoft OLE](client-side-attacks/microsoft-office/ole.md)
-  * [Macros](client-side-attacks/microsoft-office/macros.md)
+  * [Protected View Bypass](client-side-attacks/microsoft-office-bypass-protections.md)
+  * [Microsoft OLE](client-side-attacks/ole.md)
+  * [Macros](client-side-attacks/macros.md)
 * [Analyzing Documents](client-side-attacks/analyzing-documents.md)
 
 ## Active Directory
@@ -230,8 +230,8 @@
   * [DCOM](active-directory/active-directory-lateral-movement/dcom.md)
   * [Pass The Ticket](active-directory/active-directory-lateral-movement/pass-the-ticket.md)
   * [Overpass The Hash](active-directory/active-directory-lateral-movement/overpass-the-hash.md)
-  * [Pass-The-Hash](active-directory/active-directory-lateral-movement/pass-the-hash.md)
-* [Active Directory Domain Privilege Escalation](active-directory/active-directory-domain-privilege-escalation/README.md)
+  * [Pass-The-Hash](windows/pass-the-hash.md)
+* [Active Directory Domain Privilege Escalation](active-directory/active-directory-domain-privilege-escalation.md)
   * [Constrained Delegation](active-directory/active-directory-domain-privilege-escalation/constrained-delegation.md)
   * [Unconstrained Delegation](active-directory/active-directory-domain-privilege-escalation/unconstrained-delegation.md)
   * [Active Directory Rights](active-directory/active-directory-domain-privilege-escalation/active-directory-rights.md)
@@ -476,6 +476,10 @@
 * [Cracking Protections](reversing/cracking-protections.md)
 * [Keygen & Protections](reversing/keygen-and-protections.md)
 * [Hex Editors](reversing/hex-editors.md)
+* [Patching](reversing/patching.md)
+* [Tracing](reversing/tracing.md)
+* [Threads](reversing/threads.md)
+* [Structured Exception Handling (SEH)](reversing/structured-exception-handling-seh.md)
 * [Sandboxing/Reversing](reversing/sandboxing-reversing.md)
 
 ## Exploit Development

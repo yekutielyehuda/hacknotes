@@ -1,4 +1,4 @@
-# CHM Files
+# CHM
 
 
 
@@ -16,13 +16,12 @@ In order to exploit this, we can create a new CHM file containing a UNC link, th
 </html>
 ```
 
-We will place the above code into instructions.html, and use the [HTML Help Workshop](http://www.helpgenerator.com/html_help_workshop.htm) on a Windows machine to compile the code. Download and install `htmlhelp.exe` .
+We will place the above code into instructions.html, and use the [HTML Help Workshop](http://www.helpgenerator.com/html\_help\_workshop.htm) on a Windows machine to compile the code. Download and install `htmlhelp.exe` .
 
 Listen with responder on our localhost:
 
-```text
+```
 python Responder.py -I tun0
 ```
 
 Wait for an admin to access the file and get the hash.
-
