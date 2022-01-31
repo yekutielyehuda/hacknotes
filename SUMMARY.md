@@ -99,6 +99,7 @@
 * [Linux Enumeration](linux-unix/linux-enumeration.md)
 * [Linux/Unix Persistence](linux-unix/linux-unix-persistence.md)
 * [Linux/Unix Cover Your Tracks](linux-unix/linux-unix-cover-your-tracks.md)
+* [Linux Lateral Movement](linux-unix/linux-lateral-movement.md)
 
 ## Windows
 
@@ -106,19 +107,37 @@
   * [UAC Bypass](windows/windows-privesc/uac-bypass.md)
 * [Windows Enumeration](windows/windows-enumeration.md)
 * [Windows Migrating Process](windows/windows-migrating-process.md)
-* [Pass-The-Hash](windows/pass-the-hash.md)
-* [Recycle Bin](windows/recycle-bin.md)
-* [Fix %PATH%](windows/fix-path.md)
-* [RunAs](windows/runas.md)
+* [Windows Essentials](windows/windows-essentials/README.md)
+  * [Recycle Bin](windows/windows-essentials/recycle-bin.md)
+  * [Fix %PATH%](windows/windows-essentials/fix-path.md)
+  * [RunAs](windows/windows-essentials/runas.md)
+* [Windows Credentials](windows/windows-credentials.md)
 
 ## Mobile
 
 * [Android](mobile/android.md)
 * [iOS](mobile/ios.md)
 
-## Bypass AV/IDS/IPS
+## Bypass Defenses
 
-* [Bypassing AV](bypass-av-ids-ips/bypassing-av.md)
+* [Bypassing AV](bypass-defenses/bypassing-av/README.md)
+  * [AMSI](bypass-defenses/bypassing-av/amsi.md)
+  * [Cryptors](bypass-defenses/bypassing-av/cryptors.md)
+  * [Packers](bypass-defenses/bypassing-av/packers.md)
+  * [Obfuscation](bypass-defenses/bypassing-av/obfuscation.md)
+  * [DLL Injection](bypass-defenses/bypassing-av/dll-injection/README.md)
+    * [Reflective DLL Injection](bypass-defenses/bypassing-av/dll-injection/reflective-dll-injection.md)
+  * [Inline Hooking](bypass-defenses/bypassing-av/inline-hooking.md)
+  * [Process Hollowing](bypass-defenses/bypassing-av/process-hollowing.md)
+  * [Memory Injection](bypass-defenses/bypassing-av/memory-injection.md)
+  * [Protectors](bypass-defenses/bypassing-av/protectors.md)
+  * [Patching](bypass-defenses/bypassing-av/patching.md)
+  * [Function Stomping](bypass-defenses/bypassing-av/function-stomping.md)
+* [Bypassing EDR](bypass-defenses/bypassing-edr.md)
+* [Bypassing IDS/IPS](bypass-defenses/bypassing-ids-ips.md)
+* [Bypassing UTMs](bypass-defenses/bypassing-utms.md)
+* [Bypassing Smart Card](bypass-defenses/bypassing-smart-card.md)
+* [Bypassing Network Filters](bypass-defenses/bypassing-network-filters.md)
 
 ## Exploitation
 
@@ -157,11 +176,14 @@
 ## Client-Side Attacks
 
 * [Phishing](client-side-attacks/phishing.md)
-* [CHM](client-side-attacks/chm-files.md)
-* [HTA](client-side-attacks/hta.md)
-* [OLE](client-side-attacks/ole.md)
-* [Macros](client-side-attacks/macros.md)
-* [Microsoft Office Bypass Protections](client-side-attacks/microsoft-office-bypass-protections.md)
+* [Applications](client-side-attacks/applications/README.md)
+  * [HTA](client-side-attacks/applications/hta.md)
+  * [CHM](client-side-attacks/applications/chm-files.md)
+* [JScript Client](client-side-attacks/jscript-client.md)
+* [Microsoft Office](client-side-attacks/microsoft-office/README.md)
+  * [Protected View Bypass](client-side-attacks/microsoft-office/microsoft-office-bypass-protections.md)
+  * [Microsoft OLE](client-side-attacks/microsoft-office/ole.md)
+  * [Macros](client-side-attacks/microsoft-office/macros.md)
 * [Analyzing Documents](client-side-attacks/analyzing-documents.md)
 
 ## Active Directory
@@ -195,6 +217,7 @@
   * [Overpass The Hash](active-directory/active-directory-attacks-in-depth/overpass-the-hash.md)
   * [Kerberos: Unconstrained Delegation](active-directory/active-directory-attacks-in-depth/kerberos-unconstrained-delegation.md)
   * [Kerberos: Constrained Delegation](active-directory/active-directory-attacks-in-depth/kerberos-constrained-delegation.md)
+  * [Kerberos: Resource-Based Constrained Delegation](active-directory/active-directory-attacks-in-depth/kerberos-resource-based-constrained-delegation.md)
   * [DCShadow](active-directory/active-directory-attacks-in-depth/dcshadow.md)
   * [DSRM](active-directory/active-directory-attacks-in-depth/dsrm.md)
   * [DnsAdmins](active-directory/active-directory-attacks-in-depth/dnsadmins.md)
@@ -207,9 +230,14 @@
   * [DCOM](active-directory/active-directory-lateral-movement/dcom.md)
   * [Pass The Ticket](active-directory/active-directory-lateral-movement/pass-the-ticket.md)
   * [Overpass The Hash](active-directory/active-directory-lateral-movement/overpass-the-hash.md)
-* [Active Directory Domain Privilege Escalation](active-directory/active-directory-domain-privilege-escalation.md)
+  * [Pass-The-Hash](active-directory/active-directory-lateral-movement/pass-the-hash.md)
+* [Active Directory Domain Privilege Escalation](active-directory/active-directory-domain-privilege-escalation/README.md)
+  * [Constrained Delegation](active-directory/active-directory-domain-privilege-escalation/constrained-delegation.md)
+  * [Unconstrained Delegation](active-directory/active-directory-domain-privilege-escalation/unconstrained-delegation.md)
+  * [Active Directory Rights](active-directory/active-directory-domain-privilege-escalation/active-directory-rights.md)
 * [Active Directory Domain Persistence](active-directory/active-directory-domain-persistence.md)
 * [Active Directory Cross Forest Attacks](active-directory/active-directory-cross-forest-attacks.md)
+* [Active Directory Password Spray](active-directory/active-directory-password-spray.md)
 * [Credential Access & Credential Dumping](active-directory/credential-access-and-credential-dumping/README.md)
   * [Dumping with VssAdmin Shadow Copy](active-directory/credential-access-and-credential-dumping/dumping-with-vssadmin-shadow-copy.md)
   * [Dumping with Mimikatz](active-directory/credential-access-and-credential-dumping/mimikatz.md)
@@ -217,7 +245,6 @@
   * [Dumping SAM](active-directory/credential-access-and-credential-dumping/dumping-sam.md)
   * [Dumping LSA Secrets](active-directory/credential-access-and-credential-dumping/dumping-lsa-secrets.md)
   * [Dumping mscash](active-directory/credential-access-and-credential-dumping/dumping-mscash.md)
-* [Active Directory Password Spray](active-directory/active-directory-password-spray.md)
 
 ## Cloud Security
 

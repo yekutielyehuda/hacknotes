@@ -1,4 +1,4 @@
-# OLE
+# Microsoft OLE
 
 ## Object Linking and Embedding (OLE)
 
@@ -46,11 +46,11 @@ With OLE we can attach files, like malicious scripts.
 
 In Microsoft Word, we can navigate to the **Insert Tab** and in the **Text Group** we can create an **Object**:
 
-![Object Location](../.gitbook/assets/1858a433475a4f47b66b27852b88edf3.png)
+![Object Location](../../.gitbook/assets/1858a433475a4f47b66b27852b88edf3.png)
 
 We can select a malicious file from the **Browse** button, choose an icon, and add a caption name:
 
-![Change Icon and Browse](../.gitbook/assets/5498c1e4254f443aab4ef804861d207c.png)
+![Change Icon and Browse](../../.gitbook/assets/5498c1e4254f443aab4ef804861d207c.png)
 
 Then we can follow these steps:
 
