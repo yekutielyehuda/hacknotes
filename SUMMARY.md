@@ -529,10 +529,6 @@
 * [8.3 Format](shells-fu/8.3-format.md)
 * [Convert Files](shells-fu/utf-16le-to-utf-8.md)
 
-## MISC
-
-* [Regular Expressions](misc/regular-expressions.md)
-
 ## Programming
 
 * [Pentesting with Python3](programming/pentesting-with-python3.md)
