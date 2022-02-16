@@ -3,7 +3,6 @@
 * [HackNotes](README.md)
 * [About the author](about-the-author.md)
 * [Donate](donate.md)
-* [Courses](courses.md)
 
 ## Methodology
 
@@ -152,6 +151,7 @@
 
 ## Common Exploits
 
+* [Log4J](common-exploits/log4j.md)
 * [EternalBlue](common-exploits/eternalblue.md)
 * [ShellShock](common-exploits/shellshock.md)
 * [Heartbleed](common-exploits/heartbleed.md)
@@ -621,4 +621,12 @@
 
 ## Artificial Intelligence
 
-* [Evil AI](artificial-intelligence/evil-ai.md)
+* [Malicious-AI](artificial-intelligence/evil-ai.md)
+* [Robotics](artificial-intelligence/robotics.md)
+* [Adaptive and Evasive](artificial-intelligence/adaptive-and-evasive.md)
+
+## Industrial Control Systems SCADA
+
+* [PLC](industrial-control-systems-scada/plc.md)
+* [DNP3](industrial-control-systems-scada/dnp3.md)
+* [Modbus](industrial-control-systems-scada/modbus.md)
