@@ -65,6 +65,22 @@
 * [Search for Information](osint/search-for-information.md)
 * [Finding Information](osint/finding-information.md)
 * [Dorks](osint/dorks.md)
+* [Search Engines](osint/search-engines.md)
+* [Mapping and Geo-Spatial Intelligence (GEOINT)](osint/mapping-and-geo-spatial-intelligence-geoint.md)
+* [Social Media Intelligence (SOCMINT)](osint/social-media-intelligence-socmint.md)
+* [Imagery Intelligence (IMINT)](osint/imagery-intelligence-imint.md)
+* [Orbital Intelligence (ORBINT)](osint/orbital-intelligence-orbint.md)
+* [Financial Intelligence (FININT)](osint/financial-intelligence-finint.md)
+* [Vehicle and Transportation Intelligence (VATINT)](osint/vehicle-and-transportation-intelligence-vatint.md)
+* [Digital Network Intelligence (DNINT)](osint/digital-network-intelligence-dnint.md)
+* [Signals Intelligence (SIGINT)](osint/signals-intelligence-sigint.md)
+* [People Investigations](osint/people-investigations.md)
+* [Email Addresses](osint/email-addresses.md)
+* [Phone Numbers](osint/phone-numbers.md)
+* [Usernames](osint/usernames.md)
+* [Real Estate](osint/real-estate.md)
+* [Content Creators](osint/content-creators.md)
+* [Gaming](osint/gaming.md)
 
 ## Shells
 
