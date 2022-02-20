@@ -92,6 +92,14 @@
 * [IPv6 Considerations](discovery-and-scanning/ipv6-considerations.md)
 * [Vulnerability Scanning](discovery-and-scanning/vulnerability-scanning.md)
 
+## Social Engineering
+
+* [Baiting](social-engineering/baiting.md)
+* [Scareware](social-engineering/scareware.md)
+* [Pretexting](social-engineering/pretexting.md)
+* [Phishing](social-engineering/phishing.md)
+* [Vishing](social-engineering/vishing.md)
+
 ## Linux/Unix
 
 * [Linux/Unix Privilege Escalation](linux-unix/linux-privesc.md)
@@ -450,6 +458,10 @@
 * [Web Cache Poisoning](web-security/web-cache-poisoning.md)
 * [Reverse Tab Nabbing](web-security/reverse-tab-nabbing.md)
 
+## Bug Bounty
+
+* [Bug Bounty Reporting](bug-bounty/bug-bounty-reporting.md)
+
 ## Forensics
 
 * [Data Acquisition](forensics/data-acquisition.md)
@@ -557,12 +569,12 @@
 * [APT Emulation](threat-emulation/untitled.md)
 * [Cobalt Strike](threat-emulation/cobalt-strike.md)
 
-## Security Operations & Monitoring
+## Threat Hunting
 
-* [ELK](security-operations-and-monitoring/untitled.md)
-* [HELK](security-operations-and-monitoring/helk.md)
-* [Splunk](security-operations-and-monitoring/splunk.md)
-* [FireEye](security-operations-and-monitoring/fireeye.md)
+* [ELK](threat-hunting/untitled.md)
+* [HELK](threat-hunting/helk.md)
+* [Splunk](threat-hunting/splunk.md)
+* [FireEye](threat-hunting/fireeye.md)
 
 ## Malware Analysis
 
@@ -621,8 +633,32 @@
 * [Robotics](artificial-intelligence/robotics.md)
 * [Adaptive and Evasive](artificial-intelligence/adaptive-and-evasive.md)
 
-## Industrial Control Systems SCADA
+## Industrial Control Systems
 
-* [PLC](industrial-control-systems-scada/plc.md)
-* [DNP3](industrial-control-systems-scada/dnp3.md)
-* [Modbus](industrial-control-systems-scada/modbus.md)
+* [PLC](industrial-control-systems/plc.md)
+* [DNP3](industrial-control-systems/dnp3.md)
+* [Modbus](industrial-control-systems/modbus.md)
+
+## Hardware Security
+
+* [Hardware Security Module](hardware-security/hardware-security-module.md)
+* [System on Chip (SoC)](hardware-security/system-on-chip-soc.md)
+* [RFID Security](hardware-security/rfid-security.md)
+
+## Blockchain Security
+
+* [Blockchain Vulnerabilities](blockchain-security/blockchain-vulnerabilities.md)
+* [Cryptocurrency](blockchain-security/cryptocurrency.md)
+
+## Physical Attacks
+
+* [KIOSKs Escapes](physical-attacks/kiosks-escapes.md)
+* [BIOS and UEFI](physical-attacks/bios-and-uefi.md)
+* [RAM](physical-attacks/ram.md)
+* [Live CD/USB](physical-attacks/live-cd-usb.md)
+* [Bypass Encryption](physical-attacks/bypass-encryption.md)
+
+## Camera Security
+
+* [Webcam Spy](camera-security/webcam-spy.md)
+* [CCTV Spy](camera-security/cctv-spy.md)
