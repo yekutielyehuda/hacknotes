@@ -6,14 +6,14 @@ description: >-
 
 # HackNotes
 
-![](.gitbook/assets/wixnic-ico.png)
+![](.gitbook/assets/Github-Logo.png)
 
 This book contains information about most of the things that I have encountered, researched, learned, and practiced. This book was created with the intention to share knowledge on pen-testing and red teaming.
 
 {% hint style="danger" %}
 **Warning:**
 
-HackNotes was created by [@wixnic](https://twitter.com/wixnic).
+HackNotes was created by [@nozerobit](https://twitter.com/nozerobit).
 
 This GitBook is constantly being updated so expect some changes.
 {% endhint %}
@@ -24,9 +24,5 @@ This GitBook is constantly being updated so expect some changes.
 * Not all the notes are from me. There are resources to the original authors.
 * Some of the commands in the notes must be altered or edited to work.
 {% endhint %}
-
-## Contact
-
-You can contact me on [Twitter](https://twitter.com/wixnic).
 
 ****
