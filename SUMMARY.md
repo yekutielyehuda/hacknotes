@@ -2,7 +2,6 @@
 
 * [HackNotes](README.md)
 * [About the author](about-the-author.md)
-* [Donate](donate.md)
 
 ## Methodology
 
