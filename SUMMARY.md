@@ -2,6 +2,7 @@
 
 * [HackNotes](README.md)
 * [About the author](about-the-author.md)
+* [Contributors](contributors.md)
 
 ## Methodology
 
