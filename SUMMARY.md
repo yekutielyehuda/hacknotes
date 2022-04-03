@@ -115,6 +115,7 @@
 * [Pretexting](social-engineering/pretexting.md)
 * [Phishing](social-engineering/phishing.md)
 * [Vishing](social-engineering/vishing.md)
+* [Email Delivery](social-engineering/email-delivery.md)
 
 ## Linux/Unix
 
