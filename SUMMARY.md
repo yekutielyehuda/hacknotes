@@ -270,6 +270,7 @@
   * [Dumping SAM](active-directory/credential-access-and-credential-dumping/dumping-sam.md)
   * [Dumping LSA Secrets](active-directory/credential-access-and-credential-dumping/dumping-lsa-secrets.md)
   * [Dumping mscash](active-directory/credential-access-and-credential-dumping/dumping-mscash.md)
+* [WSUS](active-directory/wsus.md)
 
 ## Cloud Security
 
@@ -355,6 +356,7 @@
 * [EthernetIP - 44818](services/ethernetip-44818.md)
 * [BACNet - 47808](services/bacnet-47808.md)
 * [Hadoop - 50030,50060,50070,50075,50090](services/hadoop-50030-50060-50070-50075-50090.md)
+* [Microsoft Exchange Server](services/microsoft-exchange-server.md)
 
 ## Web Security
 
@@ -650,11 +652,11 @@
 * [Robotics](artificial-intelligence/robotics.md)
 * [Adaptive and Evasive](artificial-intelligence/adaptive-and-evasive.md)
 
-## Industrial Control Systems
+## Industrial Control Systems (SCADA/ICS)
 
-* [PLC](industrial-control-systems/plc.md)
-* [DNP3](industrial-control-systems/dnp3.md)
-* [Modbus](industrial-control-systems/modbus.md)
+* [PLC](industrial-control-systems-scada-ics/plc.md)
+* [DNP3](industrial-control-systems-scada-ics/dnp3.md)
+* [Modbus](industrial-control-systems-scada-ics/modbus.md)
 
 ## Hardware Security
 
@@ -679,3 +681,13 @@
 
 * [Webcam Spy](camera-security/webcam-spy.md)
 * [CCTV Spy](camera-security/cctv-spy.md)
+
+## Software Defined Radio
+
+* [SDR](software-defined-radio/sdr.md)
+* [SDR Hardware Tools](software-defined-radio/sdr-hardware-tools.md)
+* [Sniffing](software-defined-radio/sniffing.md)
+* [Replay](software-defined-radio/replay.md)
+* [Signal Hijacking](software-defined-radio/signal-hijacking.md)
+* [Signal Deception](software-defined-radio/signal-deception.md)
+* [Denial of Service](software-defined-radio/denial-of-service.md)
