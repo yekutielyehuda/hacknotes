@@ -10,9 +10,17 @@
 
 ## Red Teaming
 
-* [Red Team Infrastructure](red-teaming/red-team-infrastructure.md)
-* [Reconnaissance](red-teaming/reconnaissance.md)
-* [Initial Access / Foothold](red-teaming/initial-access-foothold.md)
+* [Red Team Infrastructure](red-teaming/red-team-infrastructure/README.md)
+  * [C2 Frameworks](https://nozerobit.gitbook.io/hacknotes/c2-frameworks)
+  * [HTTP Forwarders / Relays](red-teaming/red-team-infrastructure/http-forwarders-relays.md)
+  * [SMTP Forwarders / Relays](red-teaming/red-team-infrastructure/smtp-forwarders-relays.md)
+* [Reconnaissance](red-teaming/reconnaissance/README.md)
+  * [Network Services](https://nozerobit.gitbook.io/hacknotes/services/)
+  * [Passive Information Gathering](https://nozerobit.gitbook.io/hacknotes/osint/)
+* [Initial Access / Foothold](red-teaming/initial-access-foothold/README.md)
+  * [Social Engineering](https://nozerobit.gitbook.io/hacknotes/social-engineering/)
+  * [OWA](red-teaming/initial-access-foothold/owa.md)
+  * [Client Side Attacks](https://nozerobit.gitbook.io/hacknotes/client-side-attacks/)
 * [Code Execution](red-teaming/code-execution.md)
 * [Persistence](red-teaming/persistence.md)
 * [Stealthy Privilege Escalation](red-teaming/stealthy-privilege-escalation.md)
@@ -51,6 +59,7 @@
 * [Covenant](c2-frameworks/covenant.md)
 * [PoshC2](c2-frameworks/poshc2.md)
 * [Merlin](c2-frameworks/merlin.md)
+* [Cobalt Strike](c2-frameworks/cobalt-strike.md)
 
 ## Authentication
 
