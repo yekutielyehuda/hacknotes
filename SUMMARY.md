@@ -280,6 +280,7 @@
   * [Dumping LSA Secrets](active-directory/credential-access-and-credential-dumping/dumping-lsa-secrets.md)
   * [Dumping mscash](active-directory/credential-access-and-credential-dumping/dumping-mscash.md)
 * [WSUS](active-directory/wsus.md)
+* [Active Directory Authentication](active-directory/active-directory-authentication.md)
 
 ## Cloud Security
 

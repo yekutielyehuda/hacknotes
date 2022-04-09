@@ -6,6 +6,65 @@ When enumerating an AD server from a client make sure the user you are logged in
 
 ## Active Directory Enumeration
 
+### Users / Groups / Computers
+
+We should look for users with high-priveleges across the domain e.g. Domain Admins or Derivative Local Admins and look for custom groups.
+
+```powershell
+# get all users in the domain
+cmd> net user /domain
+cmd> net user [username] /domain
+
+# get all groups in the domain
+cmd> net group /domain
+cmd> net group [groupname] /domain
+
+# get all computers in domain
+cmd> net view
+cmd> net view /domain
+
+# get resources/shares of specified computer
+cmd> net view \\[computer_name] /domain
+```
+
+Domain Controller hostname (PdcRoleOwner):
+
+```powershell
+PS> [System.DirectoryServices.ActiveDirectory.Domain]::GetCurrentDomain()
+```
+
+### Service Principal Names (AD Service Accounts)
+
+A SPN is a unique name for a service on a host, used to associate with an Active Directory service account. We can enumerate SPNs to obtain the IP address and port number of apps running on servers integrated with Active Directory. Query the Domain Controller in search of SPNs.
+
+SPN Examples
+
+* `CIFS/MYCOMPUTER$` - file share access.
+* `LDAP/MYCOMPUTER$` - querying AD info via. LDAP.
+* `HTTP/MYCOMPUTER$` - Web services such as IIS.
+* `MSSQLSvc/MYCOMPUTER$` - MSSQL
+
+Tip: Perform `nslookup` of the service hostname -> see if there is an entrypoint here.
+
+Automated SPN enumeration scripts:
+
+```powershell
+# Kerberoast: https://github.com/nidem/kerberoast/blob/master/GetUserSPNs.ps1
+PS> .\GetUserSPNs.ps1
+
+# Powershell Empire: https://github.com/compwiz32/PowerShell/blob/master/Get-SPN.ps1
+PS> .\Get-SPN.ps1
+```
+
+Enumerate Logged-in users and active user sessions:
+
+```powershell
+PS> Set-ExecutionPolicy Unrestricted
+PS> Import-Module .\PowerView.ps1
+PS> Get-NetLoggedon -ComputerName [computer_name]    # enum logged-in users
+PS> Get-NetSession -ComputerName [domain_controller] # enum active user sessions
+```
+
 ### BloodHound
 
 When we have to enumerate an Active Directory environment we should use the correct collector:
