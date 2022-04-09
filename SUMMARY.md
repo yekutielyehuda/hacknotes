@@ -265,6 +265,7 @@
   * [Pass The Ticket](active-directory/active-directory-lateral-movement/pass-the-ticket.md)
   * [Overpass The Hash](active-directory/active-directory-lateral-movement/overpass-the-hash.md)
   * [Pass-The-Hash](windows/pass-the-hash.md)
+  * [Silver Ticket](active-directory/active-directory-lateral-movement/silver-ticket.md)
 * [Active Directory Domain Privilege Escalation](active-directory/active-directory-domain-privilege-escalation.md)
   * [Constrained Delegation](active-directory/active-directory-domain-privilege-escalation/constrained-delegation.md)
   * [Unconstrained Delegation](active-directory/active-directory-domain-privilege-escalation/unconstrained-delegation.md)
