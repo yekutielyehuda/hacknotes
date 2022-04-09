@@ -273,6 +273,7 @@
 * [Active Directory Domain Persistence](active-directory/active-directory-domain-persistence.md)
 * [Active Directory Cross Forest Attacks](active-directory/active-directory-cross-forest-attacks.md)
 * [Active Directory Password Spray](active-directory/active-directory-password-spray.md)
+* [Active Directory Authentication](active-directory/active-directory-authentication.md)
 * [Credential Access & Credential Dumping](active-directory/credential-access-and-credential-dumping/README.md)
   * [Dumping with VssAdmin Shadow Copy](active-directory/credential-access-and-credential-dumping/dumping-with-vssadmin-shadow-copy.md)
   * [Dumping with Mimikatz](active-directory/credential-access-and-credential-dumping/mimikatz.md)
@@ -280,8 +281,8 @@
   * [Dumping SAM](active-directory/credential-access-and-credential-dumping/dumping-sam.md)
   * [Dumping LSA Secrets](active-directory/credential-access-and-credential-dumping/dumping-lsa-secrets.md)
   * [Dumping mscash](active-directory/credential-access-and-credential-dumping/dumping-mscash.md)
+* [Cracking AD Hashes](active-directory/cracking-ad-hashes.md)
 * [WSUS](active-directory/wsus.md)
-* [Active Directory Authentication](active-directory/active-directory-authentication.md)
 
 ## Cloud Security
 
