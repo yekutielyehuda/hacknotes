@@ -2,7 +2,41 @@
 
 ## Windows Privilege Escalation
 
-Our ultimate goal is to escalate from a low privileged user to a user that runs as an Administrator or the SYSTEM user. Privilege escalation may not always be based on a single misconfiguration, but rather on your ability to conceptualize and integrate many misconfigurations. Many privilege escalations vectors might be considered access control violations. User authorization and access control are inextricably related. Understanding how Windows manages permissions is critical when focusing on privilege escalations in Windows.
+![Windows Security Model](../../.gitbook/assets/windows-01.png)
+
+The windows security model focuses on three important components:
+
+* Resources
+* Kernel
+* Process
+
+Each resource has a security descriptor and a security descriptor is composed of the following:
+
+* Owner
+* Group
+* ACLs
+
+The above describes who can and who cannot access the resource. Each process uses an access token. These access tokens define the user, as well as the user’s groups, privileges, and a logon SID (Security Identifier) that identifies the current logon session.
+
+The Security Reference Monitor (SRM) performs the following checks:
+
+* Integrity Level
+* Owner
+* ACLs
+
+In Windows there are multiple paths that we can take in order to elevate our privileges, these are the main paths:
+
+1. Non-Admin Medium Integrity Level (No Password) -> Non-Admin Medium Integrity Level (Password)
+2. Admin Medium Integrity Level (No Password) -> Admin Medium Integrity Level (Password)
+3. Non-Admin Medium Integrity Level -> Admin Medium Integrity Level
+4. Admin Medium Integrity Level -> Admin High Integrity Level
+5. Admin High Integrity Level -> System System Integrity Level
+6. Non-Admin Medium Integrity Level -> System System Integrity Level
+7. Non-Admin Medium Integrity Level -> Non-Admin High Integrity Level
+
+For more information, read this article that I made:
+
+{% embed url="https://nozerobit.github.io/windows-privesc-prerequisites" %}
 
 ## Preparation & Finding Tools
 
@@ -32,126 +66,6 @@ C:\Users\your_user\AppData\Local\Temp
 # Find writable directories
 dir /a-r-d /s /b C:\
 ```
-
-## General Concepts
-
-### User Accounts
-
-Consider a user account to be a collection of preferences and settings tied to a single identity. During the operating system installation, the local “Administrator” account is created by default. Depending on the version of Windows, there may be other default user accounts.
-
-### Service Accounts
-
-In Windows, service accounts are used to operate services. Service accounts aren't allowed to log into Windows. The **SYSTEM** account is the default service account in Windows, and it has the most rights of any local account. The **NETWORK SERVICE** and **LOCAL SERVICE** are two other default service accounts.
-
-### Groups
-
-Users can be members of numerous groups, and groups can have multiple members. Groups make it easy to govern who has access to what resources.&#x20;
-
-Regular groups have a set of members, for example:
-
-* Administrators&#x20;
-* Users&#x20;
-
-Pseudo groups have a dynamic membership list that varies based on certain interactions, for example:
-
-* &#x20;Authenticated Users
-
-### Objects
-
-These are the main objects of the Windows Operating System:
-
-* User object
-* Contact object
-* Printer object
-* Computer object
-* Shared folder
-* Group
-* Organizational Unit
-* Domain
-* Domain controller
-* Site objects
-* Bulletin
-* Foreign security principals
-
-#### **User object**
-
-A user object in AD represents a real user who is part of an organization’s AD network.  It is a leaf object, which means it can’t contain other AD objects within itself. The user may be an employee of the organization such as a manager, HR person, or an IT administrator who generally has elevated permissions over other users. A user object is a security principal, which means that it would have a security identifier (SID) apart from a global unique identifier (GUID). A user object in AD has attributes that contain information such as canonical names. first name, middle name, last name, login credentials telephone number, the manager who he or she reports to, address, who their subordinates are, and more.
-
-#### **Contact object**
-
-A contact object in AD represents a real contact person who is not a part of the organization but is associated with it. For example, an organization’s supplier or vendor is not a part of the organization but is still a contact person. It is a leaf object, which means it can’t contain other AD objects within itself. A contact object in AD is not a security principal, and so it only has a GUID. A contact object in AD has attributes that contain information such as their name, email address telephone number, and more. These contact objects would usually not require access to the Ad network. They are just a type of AD object that is used to reference the contact person’s information, as a contact card.
-
-#### **Printer object**
-
-A printer object in AD is a pointer that points towards a real printer in the AD network.  It is a leaf object, which means it can’t contain other AD objects within itself.A printer object is not a security principal, and so it only has a GUID. A printer object in AD has attributes that contain information like the printer’s name, driver name, color mode, port number, and more.
-
-#### **Computer object**
-
-A computer object in AD represents a computer that is part of an organization’s AD network. The user may belong to any of the employees in the organization. It is a leaf object, which means it can’t contain other AD objects within itself. A computer object in AD is also a security principal, similar to the user object. So, computers also have SIDs apart from GUIDs. A computer object in AD has attributes that contain information such as computer name, computer name (pre-Windows 2000), its unique ID, DNS name, role, description, location, who the computer is managed by, the operating system version it is running on, and more.
-
-#### **Shared folder**
-
-A shared folder object in AD is a pointer that points towards the shared folder on the computer the folder is stored. A shared folder is a folder that is shared between members of the AD network, and only those members can view the contents of the folder, while other members will be denied access. It is a leaf object, which means it can’t contain other AD objects within itself. A shared folder object in AD is not a security principal, and so it only has a GUID. A shared folder object in AD has attributes that contain information such as the folder’s name, location, access privileges, and more.
-
-#### **Group**
-
-A group object in AD is an object that can contain other AD objects such as other groups, users, and computers, Hence, a group object is a container object. A group object in AD is a security principal too, similar to the user and computer objects. So, group objects also have SIDs apart from GUIDs. A group object is used to share permissions to member AD objects within the group. A group object in AD has attributes that contain information such as the group name, member objects in the group, and more.
-
-#### **Organizational Unit**
-
-An organizational unit (OU) in AD is an object that can contain other AD objects such as other groups, users, and computers, Hence, an OU is also a container object like groups. An OU in AD is a security principal too, similar to a user, computer, and group objects. So, OUs also have SIDs apart from GUIDs. An OU is used to delegate roles to member AD objects within the group. An OU in AD has attributes that contain information such as its name, member objects in the OU, and more.
-
-#### **Domain**
-
-A domain in AD is a structural component of the AD network. Domains contain AD objects such as users, printers, computers, and contacts, which may be organized into OUs and groups. Each domain has its own database, and also its own set of defined policies that are applied to all the AD objects within the domain.
-
-#### **Domain controller**
-
-A domain controller (DC) object in AD references a server that acts as a domain controller for the domain in which it is placed. The DC maintains the policies, authenticates AD users, and is also takes care of roles that all DCs in a domain should perform.
-
-#### **Site objects**
-
-Site objects in AD are objects that are implemented in the Active Directory network to manage and facilitate the process of replication.
-
-#### **Bulletin**
-
-Builtin objects, like groups and OUs, are contained objects. Builtin contains local groups that are predefined during the creation of the AD network.
-
-#### **Foreign security principals**
-
-Foreign security principal objects are container objects. These objects show the trust relationships that a domain has with other domains in the particular AD network.
-
-The text above was extracted from here:
-
-{% embed url="https://www.windows-active-directory.com/active-directory-objects-list.html" %}
-
-### ACL / ACE
-
-In Windows, there are multiple objects:&#x20;
-
-* Files / Directories&#x20;
-* Registry Entries&#x20;
-* Services&#x20;
-* Others
-
-The access control list for a resource determines whether a user or group has permission to perform a specific action on it (ACL). The resource's access control list decides whether or not a person or group has authorization to perform a given action on it (ACL).
-
-There are zero or more access control items in each ACL (ACEs). Each ACE establishes a link between a principal (such as a user or a group) and a specific access privilege.
-
-### Integrity Levels
-
-All protected items from Windows Vista have an integrity level assigned to them. The default integrity label for most user and system files and registry keys on the system is "medium." The only exception is a set of particular directories and files that can be written to using Internet Explorer 7's Low Integrity mode. Most processes run by normal users (even those initiated by a user in the administrators' group) are labeled with medium integrity, while most services are labeled with System integrity. A high-integrity label protects the root directory. It's worth noting that a process with a lower integrity level can't write to a higher-integrity object.
-
-Integrities:
-
-* **Untrusted** – processes that are logged on anonymously are automatically designated as Untrusted. Example: Chrome
-* **Low** – When interacting with the Internet, the Low integrity level is utilized by default. All files and processes connected with Internet Explorer are assigned the Low integrity level as long as it is running in its default configuration, Protected Mode. The Low integrity level is also allocated by default to some folders, such as the Temporary Internet Folder.
-* **Medium** – The most common context in which most items will run is medium. The Medium integrity level is assigned to standard users, and any item not specifically specified with a lower or higher integrity level is assigned to Medium by default. Not that a member of the Administrators group will employ medium integrity levels by default.
-* **High** – Administrators are given a high level of integrity. Administrators can interact with and edit things with Medium or Low integrity levels, but they can't communicate with or modify objects with a High integrity level, which normal users can't do. "Run as Administrator" is an example.
-* **System** – The System Integrity level is reserved for the system, as the name implies. The System integrity level is assigned to the Windows kernel and core services. Being higher than Administrators High Integrity level safeguards these fundamental functions from being harmed or compromised by Administrators. Services are an example.
-* **Installer** – The Installer integrity level is the greatest of all integrity levels and is a special situation. Objects with the Installer integrity level can remove all other objects because it is equivalent to or higher than all other WIC integrity levels.
-
-You can enumerate your current integrity level using `whoami /groups`
 
 ### Local Group Administrator
 
