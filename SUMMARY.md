@@ -491,6 +491,7 @@
 * [Race Condition](web-security/race-condition.md)
 * [Web Cache Poisoning](web-security/web-cache-poisoning.md)
 * [Reverse Tab Nabbing](web-security/reverse-tab-nabbing.md)
+* [Web Payloads](web-security/web-payloads.md)
 
 ## Bug Bounty
 
