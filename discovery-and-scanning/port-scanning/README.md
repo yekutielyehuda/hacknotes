@@ -112,7 +112,12 @@ During a UDP scan (-Su) -sV will send protocol-specific probes, also known as nm
 
 ```
 sudo nmap -sU -sV --version-intensity 0 -n 10.10.10.10
+sudo nmap -sU -p- --min-rate 5000 --max-retries 1 10.10.10.74
+sudo nmap -p- -sU --max-retries 1 --open -oG nmap/UDP-scan
+sudo nmap -sU --max-retries 1 --open -oG nmap/UDP-scan
 ```
+
+Since UDP scanning is unreliable is a good idea to add `--max-retries` to avoid false negatives.
 
 ### Netcat Verify TCP/UDP Ports
 
