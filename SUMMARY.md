@@ -116,6 +116,9 @@
 * [MAC to IPv6](discovery-and-scanning/mac-to-ipv6.md)
 * [IPv6 Considerations](discovery-and-scanning/ipv6-considerations.md)
 * [Vulnerability Scanning](discovery-and-scanning/vulnerability-scanning.md)
+* [Network Analysis](discovery-and-scanning/network-analysis.md)
+* [ARP Scanning](discovery-and-scanning/arp-scanning.md)
+* [Host Discovery](discovery-and-scanning/host-discovery.md)
 
 ## Social Engineering
 
