@@ -42,6 +42,7 @@ To startup, we can use the “non-intrusive” default scan using only the `--ur
 
 ```
 wpscan --url http://target
+wpscan --url http://$target -e p,t,u --detection-mode aggressive > wpscan.log
 ```
 
 Enumerate users:
@@ -54,6 +55,12 @@ Enumerate plugins:
 
 ```
 wpscan --url http://target --enumerate p
+```
+
+Scan for vulnerable plugins with an API token:
+
+```bash
+wpscan -e vp --plugins-detection aggressive --api-token API_KEY --url http://172.31.1.8
 ```
 
 Enumerate credentails with random-user-agent header:
