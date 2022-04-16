@@ -2,23 +2,7 @@
 
 _Ajp13 protocol is packet-oriented TCP protocol, by default this service runs on port 8009. AJP13 protocol is a binary format, which is intended for better performance over the HTTP protocol running over TCP port 8080_.
 
-You'll probably see this running alongside Apache Tomcat.
-
-### Enumeration <a href="#nmap" id="nmap"></a>
-
-We can enumerate this with nmap:
-
-```bash
-nmap -sV --script ajp-auth,ajp-headers,ajp-methods,ajp-request -n -p 8009 <ip>
-```
-
-### AJP Bruteforce
-
-We can use `ajp-brute` to bruteforce AJP:
-
-```bash
-ajp-brute
-```
+You'll propably see this running alongside with Apache Tomcat.
 
 ### GhostCat - **CVE-2020-10487**
 

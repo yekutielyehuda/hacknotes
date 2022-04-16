@@ -4,33 +4,31 @@
 
 A simple IKE scan can be as follows:
 
-```
+```text
 ike-scan <IP>
-ikescan -A <IP>
-ikescan -M <IP>
 ```
 
 Troubleshoot with strace:
 
-```
+```text
 strace ike-scan <IP>
 ```
 
 Check if there's another process using the port 500 with:
 
-```
+```text
 lsof -i:500
 ```
 
 Normally, charon could be running, kill the process:
 
-```
+```text
 pkill charon
 ```
 
 Scan IKE and save the output:
 
-```
+```text
 ike-scan <IP> -M | tee output
 ```
 
@@ -40,13 +38,13 @@ ike-scan <IP> -M | tee output
 
 We can install strongswan using APT:
 
-```
+```text
 apt install strongswan
 ```
 
 The configuration file are the following:
 
-```
+```text
 cat /etc/ipsec.secrets
 cat /etc/ipsec.conf
 ```
@@ -55,7 +53,7 @@ cat /etc/ipsec.conf
 
 The ipsec.conf file may look like the following in order to connect to IPsec:
 
-```
+```text
 conn wixnic
     ike=3des-sha1-mod1024
     esp=3des-sha1
@@ -70,13 +68,15 @@ conn wixnic
 
 Then restart IPsec to apply the changes with:
 
-```
+```text
 ipsec restart
 ```
 
 Next, connect to the target:
 
-```
+```text
 ipsec up wixnic
 ```
+
+
 

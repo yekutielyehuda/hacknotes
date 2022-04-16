@@ -8,7 +8,6 @@ We can use droopescan:
 
 ```bash
 droopescan scan drupal -u http://10.10.10.102
-droopescan scan drupal http://$target -t 32
 ```
 
 ### Drupal RCE
