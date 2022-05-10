@@ -6,9 +6,11 @@ description: >-
 
 # HackNotes
 
-![](.gitbook/assets/Github-Logo.png)
+<p align="center">
+  <img src=".gitbook/assets/Github-Logo.png" />
+</p>
 
-This book contains information about most of the things that I have encountered, researched, learned, and practiced. This book was created with the intention to share knowledge on pen-testing and red teaming.
+This book contains information about most of the things that I have encountered, researched, learned, and practiced. This book was created with the intention to share knowledge on pen-testing, red teaming, and blue-teaming.
 
 {% hint style="danger" %}
 **Warning:**
