@@ -8,51 +8,6 @@
 
 * [Pentesting Methodology](methodology/pentesting-methodology.md)
 
-## Red Teaming
-
-* [Red Team Infrastructure](red-teaming/red-team-infrastructure/README.md)
-  * [C2 Frameworks](https://nozerobit.gitbook.io/hacknotes/c2-frameworks)
-  * [HTTP Forwarders / Relays](red-teaming/red-team-infrastructure/http-forwarders-relays.md)
-  * [SMTP Forwarders / Relays](red-teaming/red-team-infrastructure/smtp-forwarders-relays.md)
-* [Reconnaissance](red-teaming/reconnaissance/README.md)
-  * [Network Services](https://nozerobit.gitbook.io/hacknotes/services/)
-  * [Passive Information Gathering](https://nozerobit.gitbook.io/hacknotes/osint/)
-* [Initial Access / Foothold](red-teaming/initial-access-foothold/README.md)
-  * [Social Engineering](https://nozerobit.gitbook.io/hacknotes/social-engineering/)
-  * [OWA](red-teaming/initial-access-foothold/owa.md)
-  * [Client Side Attacks](https://nozerobit.gitbook.io/hacknotes/client-side-attacks/)
-* [Code Execution](red-teaming/code-execution.md)
-* [Persistence](red-teaming/persistence.md)
-* [Stealthy Privilege Escalation](red-teaming/stealthy-privilege-escalation.md)
-* [Defense Evasion](red-teaming/defense-evasion.md)
-* [Credential Access](red-teaming/credential-access.md)
-* [Discovery](red-teaming/discovery.md)
-* [Lateral Movement](red-teaming/lateral-movement.md)
-* [Pivoting](red-teaming/pivoting.md)
-* [Collection](red-teaming/collection.md)
-* [Command and Control](red-teaming/command-and-control.md)
-* [Exfiltration](red-teaming/exfiltration.md)
-
-## Blue Teaming
-
-* [Application Hardening](blue-teaming/application-hardening.md)
-* [Credential Hardening](blue-teaming/credential-hardening.md)
-* [Message Hardening](blue-teaming/message-hardening.md)
-* [Platform Hardening](blue-teaming/platform-hardening.md)
-* [File Analysis](blue-teaming/file-analysis.md)
-* [Identifier Analysis](blue-teaming/identifier-analysis.md)
-* [Message Analysis](blue-teaming/message-analysis.md)
-* [Network Traffic Analysis](blue-teaming/network-traffic-analysis.md)
-* [Platform Monitoring](blue-teaming/platform-monitoring.md)
-* [Process Analysis](blue-teaming/process-analysis.md)
-* [User Behavior Analysis](blue-teaming/user-behavior-analysis.md)
-* [Execution Isolation](blue-teaming/execution-isolation.md)
-* [Network Isolation](blue-teaming/network-isolation.md)
-* [Decoy Environment](blue-teaming/decoy-environment.md)
-* [Decoy Object](blue-teaming/decoy-object.md)
-* [Credential Eviction](blue-teaming/credential-eviction.md)
-* [Process Eviction](blue-teaming/process-eviction.md)
-
 ## C2 Frameworks
 
 * [PowerShell Empire](c2-frameworks/powershell-empire.md)
@@ -594,19 +549,19 @@
 
 ## Incident Response
 
-* [Packet Analysis](incident-response/untitled.md)
+* [Packet Analysis](incident-response/packet-analysis.md)
 * [Events & Logs](incident-response/events-and-logs.md)
 * [APTs](incident-response/apts.md)
 * [SIEM](incident-response/siem.md)
 
 ## Threat Emulation
 
-* [APT Emulation](threat-emulation/untitled.md)
+* [APT Emulation](threat-emulation/apt-emulation.md)
 * [Cobalt Strike](threat-emulation/cobalt-strike.md)
 
 ## Threat Hunting
 
-* [ELK](threat-hunting/untitled.md)
+* [ELK](threat-hunting/elk.md)
 * [HELK](threat-hunting/helk.md)
 * [Splunk](threat-hunting/splunk.md)
 * [FireEye](threat-hunting/fireeye.md)
@@ -637,7 +592,7 @@
 
 ## Vulnerability Research
 
-* [Vulnerabilities](vulnerability-research/untitled.md)
+* [Vulnerabilities](vulnerability-research/vulnerabilities.md)
 
 ## Security Research
 
@@ -707,6 +662,51 @@
 * [Signal Hijacking](software-defined-radio/signal-hijacking.md)
 * [Signal Deception](software-defined-radio/signal-deception.md)
 * [Denial of Service](software-defined-radio/denial-of-service.md)
+
+## Red Teaming
+
+* [Red Team Infrastructure](red-teaming/red-team-infrastructure/README.md)
+  * [C2 Frameworks](https://nozerobit.gitbook.io/hacknotes/c2-frameworks)
+  * [HTTP Forwarders / Relays](red-teaming/red-team-infrastructure/http-forwarders-relays.md)
+  * [SMTP Forwarders / Relays](red-teaming/red-team-infrastructure/smtp-forwarders-relays.md)
+* [Reconnaissance](red-teaming/reconnaissance/README.md)
+  * [Network Services](https://nozerobit.gitbook.io/hacknotes/services/)
+  * [Passive Information Gathering](https://nozerobit.gitbook.io/hacknotes/osint/)
+* [Initial Access / Foothold](red-teaming/initial-access-foothold/README.md)
+  * [Social Engineering](https://nozerobit.gitbook.io/hacknotes/social-engineering/)
+  * [OWA](red-teaming/initial-access-foothold/owa.md)
+  * [Client Side Attacks](https://nozerobit.gitbook.io/hacknotes/client-side-attacks/)
+* [Code Execution](red-teaming/code-execution.md)
+* [Persistence](red-teaming/persistence.md)
+* [Stealthy Privilege Escalation](red-teaming/stealthy-privilege-escalation.md)
+* [Defense Evasion](red-teaming/defense-evasion.md)
+* [Credential Access](red-teaming/credential-access.md)
+* [Discovery](red-teaming/discovery.md)
+* [Lateral Movement](red-teaming/lateral-movement.md)
+* [Pivoting](red-teaming/pivoting.md)
+* [Collection](red-teaming/collection.md)
+* [Command and Control](red-teaming/command-and-control.md)
+* [Exfiltration](red-teaming/exfiltration.md)
+
+## Blue Teaming
+
+* [Application Hardening](blue-teaming/application-hardening.md)
+* [Credential Hardening](blue-teaming/credential-hardening.md)
+* [Message Hardening](blue-teaming/message-hardening.md)
+* [Platform Hardening](blue-teaming/platform-hardening.md)
+* [File Analysis](blue-teaming/file-analysis.md)
+* [Identifier Analysis](blue-teaming/identifier-analysis.md)
+* [Message Analysis](blue-teaming/message-analysis.md)
+* [Network Traffic Analysis](blue-teaming/network-traffic-analysis.md)
+* [Platform Monitoring](blue-teaming/platform-monitoring.md)
+* [Process Analysis](blue-teaming/process-analysis.md)
+* [User Behavior Analysis](blue-teaming/user-behavior-analysis.md)
+* [Execution Isolation](blue-teaming/execution-isolation.md)
+* [Network Isolation](blue-teaming/network-isolation.md)
+* [Decoy Environment](blue-teaming/decoy-environment.md)
+* [Decoy Object](blue-teaming/decoy-object.md)
+* [Credential Eviction](blue-teaming/credential-eviction.md)
+* [Process Eviction](blue-teaming/process-eviction.md)
 
 ## Wireless Security
 

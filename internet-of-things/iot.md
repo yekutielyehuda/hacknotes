@@ -4,11 +4,8 @@ The Internet of Things (IoT) refers to physical devices equipped with sensors, c
 
 In the consumer market, IoT technology is most closely associated with products that support the concept of the "smart home," such as lighting fixtures, thermostats, home security systems, cameras, and other home appliances that can be controlled by devices associated with that ecosystem, such as smartphones and smart speakers.
 
-However, a number of concerns have been raised about the risks associated with the growth of IoT technologies and products, particularly in the areas of privacy and security, and as a result, industry and government efforts to address these concerns have begun, including the development of international and local standards, guidelines, and regulatory frameworks.
+However, a number of concerns have been raised about the risks associated with the growth of IoT technologies and products, particularly in the areas of privacy and security, and as a result, industry, and government efforts to address these concerns have begun, including the development of international and local standards, guidelines, and regulatory frameworks.
 
-There is a-lot of more details to cover regarding IoT:
+There are a-lot of more details to cover regarding IoT:
 
-https://en.wikipedia.org/wiki/Internet_of_things
-
-
-
+{% embed url="https://en.wikipedia.org/wiki/Internet_of_things" %}

@@ -6,32 +6,31 @@ Modbus is popular in industrial environments because it is openly published and 
 
 The information above was extracted from Wikipedia:
 
-https://en.wikipedia.org/wiki/Modbus
+{% embed url="https://en.wikipedia.org/wiki/Modbus" %}
 
 ## Modbus Basics
 
 Modbus describes the messaging communication dialog and is able to communicate over several physical media devices such as the following:
 
-- RS-232 (OLDER and SHORTER DISTANCES)
-- RS-485 (NEWER and LONGER DISTANCES)
-- RS-422
-- Ethernet
+* RS-232 (OLDER and SHORTER DISTANCES)
+* RS-485 (NEWER and LONGER DISTANCES)
+* RS-422
+* Ethernet
 
 Modbus usually has the following networks models:
 
-- Point-to-Point Network
-- Multidrop Network
+* Point-to-Point Network
+* Multidrop Network
 
 Es an example, Modbus enables devices on a network that measures temperature and humidity to communicate its results to a supervisory computer or PLC.
 
 Modbus is supported by the ports:
 
-- Ethernet
-- Serial
-- Modbus RTU
-- Modbus ASCII
-- Modbus TCP/IP
-- Modbus Plus
+* Ethernet
+* Serial
+* Modbus RTU
+* Modbus ASCII
+* Modbus TCP/IP
+* Modbus Plus
 
 Additonally, Modicon published the Modbus communication interface for a multidrop network based on the master/slave architecture.
-

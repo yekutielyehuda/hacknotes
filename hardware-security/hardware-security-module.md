@@ -4,5 +4,4 @@ A hardware security module (HSM) is a physical computing device that safeguards 
 
 The information above was extracted from Wikipedia:
 
-https://en.wikipedia.org/wiki/Hardware_security_module
-
+{% embed url="https://en.wikipedia.org/wiki/Hardware_security_module" %}
