@@ -4,10 +4,6 @@
 * [About the author](about-the-author.md)
 * [Contributors](contributors.md)
 
-## Methodology
-
-* [Pentesting Methodology](methodology/pentesting-methodology.md)
-
 ## C2 Frameworks
 
 * [PowerShell Empire](c2-frameworks/powershell-empire.md)
@@ -15,6 +11,21 @@
 * [PoshC2](c2-frameworks/poshc2.md)
 * [Merlin](c2-frameworks/merlin.md)
 * [Cobalt Strike](c2-frameworks/cobalt-strike.md)
+
+## Shells
+
+* [Windows Shells](shells/windows-shells.md)
+* [Unix/Linux Shells](shells/unix-linux-shells.md)
+* [Web Shells](shells/web-shells.md)
+* [Rlwrap](shells/netcat-tips.md)
+* [Msfvenom](shells/msfvenom.md)
+* [Testing Connection](shells/testing-connection.md)
+* [Troubleshooting Shells](shells/troubleshooting-shells.md)
+
+## Escapes
+
+* [Bypass Constraint Language in PowerShell](escapes/bypass-constraint-language-in-a-powershell.md)
+* [Escaping Restricted Shells](escapes/escaping-restricted-shells.md)
 
 ## Authentication
 
@@ -45,21 +56,6 @@
 * [Real Estate](osint/real-estate.md)
 * [Content Creators](osint/content-creators.md)
 * [Gaming](osint/gaming.md)
-
-## Shells
-
-* [Windows Shells](shells/windows-shells.md)
-* [Unix/Linux Shells](shells/unix-linux-shells.md)
-* [Web Shells](shells/web-shells.md)
-* [Rlwrap](shells/netcat-tips.md)
-* [Msfvenom](shells/msfvenom.md)
-* [Testing Connection](shells/testing-connection.md)
-* [Troubleshooting Shells](shells/troubleshooting-shells.md)
-
-## Escapes
-
-* [Bypass Constraint Language in PowerShell](escapes/bypass-constraint-language-in-a-powershell.md)
-* [Escaping Restricted Shells](escapes/escaping-restricted-shells.md)
 
 ## Discovery and Scanning
 
@@ -546,21 +542,19 @@
 
 * [Packet Analysis](incident-response/packet-analysis.md)
 * [Events & Logs](incident-response/events-and-logs.md)
-* [APTs](incident-response/apts.md)
 * [SIEM](incident-response/siem.md)
 
 ## Threat Emulation
 
 * [APT Emulation](threat-emulation/apt-emulation.md)
-* [Cobalt Strike](threat-emulation/cobalt-strike.md)
 
 ## Threat Hunting
 
 * [Common Technologies](threat-hunting/common-technologies/README.md)
-  * [HELK](threat-hunting/common-technologies/helk.md)
-  * [Splunk](threat-hunting/common-technologies/splunk.md)
-  * [FireEye](threat-hunting/common-technologies/fireeye.md)
-  * [ELK](threat-hunting/common-technologies/elk.md)
+  * [HELK](threat-hunting/helk.md)
+  * [Splunk](threat-hunting/splunk.md)
+  * [FireEye](threat-hunting/fireeye.md)
+  * [ELK](threat-hunting/elk.md)
 
 ## Malware Analysis
 
@@ -588,25 +582,12 @@
 
 ## Vulnerability Research
 
-* [Vulnerability Research](vulnerability-research/vulnerability-research.md)
+* [Vulnerability Research](vulnerability-research/vulnerabilities.md)
 
 ## Internet-of-Things
 
 * [IoT](internet-of-things/iot.md)
 * [Pwning IoT Devices](internet-of-things/pwning-iot-devices.md)
-
-## Game Hacking
-
-* [Cheat Engine](game-hacking/cheat-engine.md)
-* [Leak Handle Pointers](game-hacking/leak-handle-pointers.md)
-* [Kernel Interaction](game-hacking/kernel-interaction.md)
-* [Memory Scanner](game-hacking/memory-scanner.md)
-* [Modules and Sections](game-hacking/modules-and-sections.md)
-* [Hooks](game-hacking/hooks.md)
-* [Threads](game-hacking/threads.md)
-* [Named Pipes](game-hacking/named-pipes.md)
-* [Injectors](game-hacking/injectors.md)
-* [AntiCheat Frameworks](game-hacking/anticheat-frameworks.md)
 
 ## Artificial Intelligence
 
