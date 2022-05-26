@@ -542,11 +542,6 @@
 * [Pentesting with PowerShell](programming/pentesting-with-powershell.md)
 * [Shellcoding with ASM](programming/shellcoding-with-asm.md)
 
-## Swiss Army Knife Tools
-
-* [CrackMapExec](swiss-army-knife-tools/crackmapexec.md)
-* [SWAKS](swiss-army-knife-tools/swaks.md)
-
 ## Incident Response
 
 * [Packet Analysis](incident-response/packet-analysis.md)
@@ -561,10 +556,11 @@
 
 ## Threat Hunting
 
-* [ELK](threat-hunting/elk.md)
-* [HELK](threat-hunting/helk.md)
-* [Splunk](threat-hunting/splunk.md)
-* [FireEye](threat-hunting/fireeye.md)
+* [Common Technologies](threat-hunting/common-technologies/README.md)
+  * [HELK](threat-hunting/common-technologies/helk.md)
+  * [Splunk](threat-hunting/common-technologies/splunk.md)
+  * [FireEye](threat-hunting/common-technologies/fireeye.md)
+  * [ELK](threat-hunting/common-technologies/elk.md)
 
 ## Malware Analysis
 
@@ -592,12 +588,7 @@
 
 ## Vulnerability Research
 
-* [Vulnerabilities](vulnerability-research/vulnerabilities.md)
-
-## Security Research
-
-* [Fuzzing](security-research/fuzzing.md)
-* [Analyzing Bugs](security-research/analyzing-bugs.md)
+* [Vulnerability Research](vulnerability-research/vulnerability-research.md)
 
 ## Internet-of-Things
 
@@ -657,8 +648,8 @@
 
 * [SDR](software-defined-radio/sdr.md)
 * [SDR Hardware Tools](software-defined-radio/sdr-hardware-tools.md)
-* [Sniffing](software-defined-radio/sniffing.md)
-* [Replay](software-defined-radio/replay.md)
+* [SDR Sniffing](software-defined-radio/sniffing.md)
+* [Signal Replay](software-defined-radio/replay.md)
 * [Signal Hijacking](software-defined-radio/signal-hijacking.md)
 * [Signal Deception](software-defined-radio/signal-deception.md)
 * [Denial of Service](software-defined-radio/denial-of-service.md)

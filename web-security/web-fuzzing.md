@@ -74,7 +74,7 @@ wixnic@htb[/htb]$ ffuf -w /opt/useful/SecLists/Discovery/Web-Content/web-extensi
 
 We must first indicate which file that extension will be at the end of before we begin fuzzing!
 
-We can always use two wordlists, each with its own unique keyword, and then fuzz both with `FUZZEXT`.&#x20;
+We can always use two wordlists, each with its own unique keyword, and then fuzz both with `FUZZEXT`.
 
 The `index.*` is a file that we can always locate on most websites, so we'll use it as our file and add fuzz extensions to it.
 
@@ -158,11 +158,11 @@ Some websites may contain a large tree of sub-directories, such as /login/user/c
 
 With the -recursion flag in **ffuf**, we may enable recursive scanning and specify the depth with the -recursion-depth parameter. Only the main directories and their direct sub-directories will be fuzzed if we use `-recursion-depth 1`. It will not fuzz any sub-sub-directories discovered, such as `/login/user`, for pages.
 
-We can define our extension with **-e  **_****_**  .php** while utilizing recursion in ffuf.
+We can define our extension with **-e **_**\*\*\*\***_** .php** while utilizing recursion in ffuf.
 
 _Note: we can still use `.php` as our page extension, as these extensions are usually site-wide._
 
-Finally, we will also add the flag `-v` to output the full URLs.&#x20;
+Finally, we will also add the flag `-v` to output the full URLs.
 
 ### Recursive Scanning
 
@@ -212,7 +212,7 @@ ________________________________________________
 <...SNIP...>
 ```
 
-As we can see, the scan took far longer this time, sending about six times as many requests, and the wordlist nearly doubled in size once with `.php` and once without.&#x20;
+As we can see, the scan took far longer this time, sending about six times as many requests, and the wordlist nearly doubled in size once with `.php` and once without.
 
 Despite this, we were able to obtain a significant number of results, including all of the ones we had previously recognized, all with a single command.
 
@@ -449,7 +449,7 @@ We do get a hit back, with this information we can try to visit the page and add
 
 ### POST Request Fuzzing
 
-The key distinction between POST and GET requests is that POST requests do not include the URL and cannot be appended after a `?` sign.&#x20;
+The key distinction between POST and GET requests is that POST requests do not include the URL and cannot be appended after a `?` sign.
 
 The data field in an HTTP request is used to pass POST requests. We may use the `-d` flag with ffuf to fuzz the data field. To send POST requests, we must also include `-X POST`.
 
@@ -487,7 +487,7 @@ id                      [Status: xxx, Size: xxx, Words: xxx, Lines: xxx]
 <...SNIP...>
 ```
 
-As we can see this time, we got a couple of hits, the same one we got when fuzzing `GET` and another parameter, which is `id`.&#x20;
+As we can see this time, we got a couple of hits, the same one we got when fuzzing `GET` and another parameter, which is `id`.
 
 ## Value Fuzzing
 
@@ -521,7 +521,7 @@ ________________________________________________
 <...SNIP...>                      [Status: xxx, Size: xxx, Words: xxx, Lines: xxx]
 ```
 
-We see that we get a hit right away.&#x20;
+We see that we get a hit right away.
 
 ## Fuzzing via Proxy
 
@@ -530,8 +530,6 @@ Gobuster:
 ```bash
 [HTTP_PROXY="socks5://127.0.0.1:1080/"] gobuster dir -u http://$IP -w /usr/share/dirb/wordlists/common.txt -o gobuster.txt
 ```
-
-
 
 ## Web Fuzzing Tools
 
@@ -723,6 +721,3 @@ dirb http://$IP -X .<extension> -o dirb.txt
 This page is **heavily** based on HackTheBox Academy Web Fuzzing:
 
 {% embed url="https://academy.hackthebox.eu/catalogue" %}
-
-
-
