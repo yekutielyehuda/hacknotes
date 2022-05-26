@@ -4,6 +4,15 @@
 
 
 
+### Dynamic Runtime Analysis
+
+Dynamic Analysis is a technique for analyzing software's behavior while it runs. This encompasses not only analysis but also the equipment itself. Some of these actions do not require a detailed examination for security assessment.
+
+We can perform dynamic analysis by using debuggers such as the following:
+
+- **Android Debug Monitor (ADT)**
+- **Dalvik Debug Monitor Server (DDMS)**: The Dalvik Debug Monitor Server (DDMS) is a debugging tool that provides port-forwarding services, device screen capture, thread and heap information, logcat, process, and radio state information, incoming call and SMS spoofing, location data spoofing, and more. 
+
 ### ADB - Android Debug Bridge
 
 Android Debug Bridge \(adb\) is a versatile command-line tool that lets you communicate with a device. The adb command facilitates a variety of device actions, such as installing and debugging apps, and it provides access to a Unix shell that you can use to run a variety of commands on a device. It is a client-server program that includes three components:
