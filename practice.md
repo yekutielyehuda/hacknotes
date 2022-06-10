@@ -1,70 +1,78 @@
-# CTFs
+# Practice
 
-- https://ctftime.org/
-- https://www.picoctf.org/
-- https://nationalcyberleague.org/
+These are some sites that are good for practicing and developing new skills:
 
-# Cryptography
+## CTFs
 
-- https://cryptopals.com/
-- https://cryptohack.org/
+* [https://ctftime.org/](https://ctftime.org/) &#x20;
+* [https://www.picoctf.org/](https://www.picoctf.org/)
+* [https://nationalcyberleague.org](https://nationalcyberleague.org/)
 
-# Docker
+## Blue Team Exercises
 
-- https://notsosecure.com/vulnerable-docker-vm/
+* [https://blueteamlabs.online/](https://blueteamlabs.online/)
 
-# GCP Security
+## Cryptography
 
-- https://thunder-ctf.cloud/
+* [https://cryptopals.com/](https://cryptopals.com/)
+* [https://cryptohack.org/](https://cryptohack.org/)
 
-# Powershell
+## Docker
 
-- https://www.underthewire.tech
+* [https://notsosecure.com/vulnerable-docker-vm](https://notsosecure.com/vulnerable-docker-vm)
 
-# Programming
+## GCP Security
 
-- https://github.com/donnemartin/interactive-coding-challenges
-- https://www.topcoder.com/
-- https://www.codewars.com/
-- https://leetcode.com/
+* [https://thunder-ctf.cloud/](https://thunder-ctf.cloud/)
 
-# Vulnerable Machines 
+## Powershell
 
-- https://www.hackthebox.eu/
-- https://www.vulnhub.com/
-- https://www.cyberseclabs.co.uk/
+* [https://underthewire.tech/](https://underthewire.tech/)
 
-# Reversing Challenges
+## Programming
 
-- https://challenges.re/
-- http://reversing.kr/
+* [https://github.com/donnemartin/interactive-coding-challenges](https://github.com/donnemartin/interactive-coding-challenges)
+* [https://www.topcoder.com/](https://www.topcoder.com/)
+* [https://www.codewars.com/](https://www.codewars.com/)
+* [https://leetcode.com/](https://leetcode.com/)
 
-# Software Cracking
+## Vulnerable Machines
 
-- https://crackmes.one/
+* [https://www.hackthebox.eu/](https://www.hackthebox.com/)
+* [https://www.vulnhub.com/](https://www.vulnhub.com/)
+* [https://www.cyberseclabs.co.uk/](https://www.cyberseclabs.co.uk/)
 
-# Binary Exploitation
+## Reversing Challenges
 
-- http://pwnable.kr/
-- http://exploit.education/
-- https://ropemporium.com/
-- https://github.com/shellphish/how2heap
-- https://pwn.college/
+* [https://challenges.re/](https://challenges.re/)
+* [http://reversing.kr/](http://reversing.kr/)
 
-# Linux System Administrator
+## Software Cracking
 
-- https://github.com/trimstray/test-your-sysadmin-skills
+* [https://crackmes.one/](https://crackmes.one/)
 
-# Practice Web Security
+## Binary Exploitation
 
-- https://portswigger.net/web-security
-- https://ctfchallenge.co.uk
-- https://pentesterlab.com/exercises
-- https://ctf.hacker101.com/
+* http://pwnable.kr/
+* http://exploit.education/
+* https://ropemporium.com/
+* https://github.com/shellphish/how2heap
+* https://pwn.college/
 
-# AWS Security
+## Linux System Administrator
 
-- http://flaws.cloud/
-- http://flaws2.cloud/
-- https://github.com/RhinoSecurityLabs/cloudgoat
-- https://github.com/nccgroup/sadcloud
+* https://github.com/trimstray/test-your-sysadmin-skills
+
+## Web Security
+
+* https://portswigger.net/web-security
+* https://ctfchallenge.co.uk
+* https://pentesterlab.com/exercises
+* https://ctf.hacker101.com/
+
+## AWS Security
+
+* http://flaws.cloud/
+* http://flaws2.cloud/
+* https://github.com/RhinoSecurityLabs/cloudgoat
+* https://github.com/nccgroup/sadcloud

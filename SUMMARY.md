@@ -2,6 +2,7 @@
 
 * [HackNotes](README.md)
 * [About the author](about-the-author.md)
+* [Practice](practice.md)
 * [Contributors](contributors.md)
 
 ## C2 Frameworks
