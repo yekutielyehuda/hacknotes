@@ -4,9 +4,23 @@
 
 ## Inspecting Certificate&#x20;
 
+
+
 ## Inspecting Virtual Hosting
 
+A SSL/TLS certificate may reveal a virtual host in under the following:
+
+- Subject Name
+- Common Name
+
 ## HTTP Headers
+
+The HTTP Headers can reveal sensitive information and/or they could be vulnerable. It is also recommended to do some research on each header including it's version.
+
+A few headers that we can **almost** always use to enumerate the service and application are the following:
+
+- Server: Reveals the HTTP service
+- X-Powered-By: Reveals the application framework
 
 ### User-Agent
 

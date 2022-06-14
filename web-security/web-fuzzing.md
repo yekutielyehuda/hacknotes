@@ -559,7 +559,13 @@ These are the list of wordlists that have helped me the most:
 * /usr/share/seclists/Discovery/Web-Content/common.txt
 * /usr/share/seclists/Discovery/Web-Content/big.txt
 * /usr/share/seclists/Discovery/Web-Content/raft-large-files.txt
+* /usr/share/seclists/Discovery/Web-Content/raft-medium-directories-lowercase.txt 
 * /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt
+
+Technology specific wordlists:
+
+* /usr/share/seclists/Discovery/Web-Content/IIS.fuzz.txt 
+
 
 ## Fuzzing Cheatsheet
 
@@ -618,6 +624,7 @@ Virtual Host Fuzzing (hide responses with --hw / hide words):
 ```
 wfuzz -c -t 200 --hc=404 --hw=12 -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -H "Host: FUZZ.sneakycorp.htb" http://10.10.10.197
 wfuzz -c -t 200 --hc=404 --hw=28,73 -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -H "Host: FUZZ.localhost.com http://loalhost.com
+wfuzz -u http://object.htb -H 'Host: FUZZ.object.htb' -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-5000.txt --hh 29932
 ```
 
 GET Request Parameter Fuzzing (hide responses with --hw / hide words):

