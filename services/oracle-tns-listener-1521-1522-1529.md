@@ -144,6 +144,28 @@ sqlplus64
 python3 odat.py --help
 ```
 
+### Identify SIDs
+
+We can attempt to identify SIDs:
+
+```bash
+odat sidguesser -s 10.10.10.82
+```
+
+Alternatively, we can use metasploits sid_brute:
+
+```
+msf auxiliary(admin/oracle/sid_brute) > run
+
+[*] 10.10.10.82:1521 - Starting brute force on 10.10.10.82, using sids from /usr/share/metasploit-framework/data/wordlists/sid.txt...
+[+] 10.10.10.82:1521 - 10.10.10.82:1521 Found SID 'XE'
+[+] 10.10.10.82:1521 - 10.10.10.82:1521 Found SID 'PLSExtProc'
+[+] 10.10.10.82:1521 - 10.10.10.82:1521 Found SID 'CLRExtProc'
+[+] 10.10.10.82:1521 - 10.10.10.82:1521 Found SID ''
+[*] 10.10.10.82:1521 - Done with brute force...
+[*] Auxiliary module execution completed
+```
+
 ### Find Valid Credentials
 
 You can do SID guessing attack with the following command:

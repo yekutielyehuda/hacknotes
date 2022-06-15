@@ -16,3 +16,7 @@ If the JWT is encrypted with a signature but we can modify the signature then we
 openssl genrsa -out privKey.key 2048
 ```
 
+### Deserialization Exploits
+
+It is possible to have remote code execution with deserialization as seen [here](https://opsecx.com/index.php/2017/02/08/exploiting-node-js-deserialization-bug-for-remote-code-execution/).
+
