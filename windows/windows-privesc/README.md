@@ -280,7 +280,7 @@ Get-ChildItem "C:\Program Files" -Recurse | Get-ACL | ?{$_.AccessToString -match
 * \-Recurse = recursive search
 * AccessToString -match = properties specified
 
- Alternatively, we can use `accesschk.exe` from SysternalsSuite:
+ Alternatively, we can use `accesschk.exe` from SysternalsSuite:
 
 ```
 accesschk.exe -uws "Everyone" "C:\Program Files"
@@ -290,7 +290,7 @@ accesschk.exe -uws "Everyone" "C:\Program Files"
 * \-w = write access permissions
 * \-s = recursive search
 
- 
+ 
 
 ## Drivers and Kernel Vulnerabilities
 
@@ -329,7 +329,7 @@ Get-WmiObject Win32_PnPSignedDriver | Select-Object DeviceName, DriverVersion, M
 
 * Win32\_PnPSignedDriver = provide digital signature information about the driver
 
- 
+ 
 
 ## High Integrity to System
 
@@ -1406,7 +1406,7 @@ Flags Explained:
 
 {% embed url="https://wixnic.gitbook.io/hacknotes/port-redirection-and-tunneling/port-redirection" %}
 
-###  Shares
+###  Shares
 
 ### Firewall Rules
 
@@ -1432,7 +1432,7 @@ netsh advfirewall firewall show rule name=all
 * Protocol = Any/Secific?
 * Action = Allow/Deny?
 
- PowerShell One-Liner for allowing an inbound port:
+ PowerShell One-Liner for allowing an inbound port:
 
 ```
 $user = 'minion\administrator'; $pw = '1234test'; $secpw = ConvertTo-SecureString $pw - AsPlainText -Force; $cred = New-Object \
@@ -1674,6 +1674,10 @@ python3 mremoteng_decrypt.py -s CIPHER
 {% embed url="https://github.com/haseebT/mRemoteNG-Decrypt/blob/master/mremoteng_decrypt.py" %}
 
 ### Groups.xml
+
+When a new Group Policy Preference (GPP) is generated, an XML file with the configuration data, including any passwords associated with the GPP, is created in the SYSVOL share. Before storing the password as cpassword, Microsoft AES encrypts it for protection. But then Microsoft made the [key public on MSDN](https://msdn.microsoft.com/en-us/library/2c15cbf0-f086-4c74-8b70-1f2fa45dd4be.aspx).
+
+In 2014, Microsoft released a patch that made it impossible for administrators to enter passwords into GPP.
 
 We can use GPP decrypt to get the password:
 

@@ -10,6 +10,12 @@ We can use droopescan:
 droopescan scan drupal -u http://10.10.10.102
 ```
 
+Alternatively, we can use [drupalgeddon2.rb](https://github.com/dreadlocked/Drupalgeddon2) to enumerate and perform a vulnerability scan:
+
+```
+ruby drupalgeddon2.rb http://10.10.10.102/
+```
+
 ### Drupal RCE
 
 First: Modules -> Enable PHP filter&#x20;

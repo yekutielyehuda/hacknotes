@@ -1325,6 +1325,12 @@ Enumerate capabilities in general with:
 getcap -r / 2>/dev/null
 ```
 
+Alternatively, we can enumerate with find:
+
+```bash
+find / -exec getcap {} \; 2>/dev/null
+```
+
 ### Capabilities Privilege Escalation
 
 {% embed url="https://www.hackingarticles.in/linux-privilege-escalation-using-capabilities/" %}

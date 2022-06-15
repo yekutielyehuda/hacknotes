@@ -47,5 +47,17 @@ openssl x509 -req -in filename.csr -CA <target>.cert -CAKey <target>.key -CAcrea
 openssl pkcs12 -export -out filename.pfx -inkey filename.key -in filename.pem -certfile filename.cert
 ```
 
+## Encrypted File
 
+We can decrypt an encrypted file with bruteforcing using bash:
+
+```bash
+cat /usr/share/wordlists/rockyou.txt | while read pass; do openssl enc -d -a -AES-256-CBC -in .drupal.txt.enc -k $pass > devnull 2>&1; if [[ $? -eq 0 ]]; then echo "Password: $pass"; exit; fi; done;
+```
+
+Alternatively, we can use [openssl-bruteforce](https://github.com/HrushikeshK/openssl-bruteforce):
+
+```bash
+python openssl-bruteforce/brute.py /usr/share/wordlists/rockyou.txt  openssl-bruteforce/ciphers.txt .drupal.txt.enc 2> /dev/null
+```
 

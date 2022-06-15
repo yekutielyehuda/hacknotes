@@ -43,3 +43,14 @@ If an application requires that the user-supplied filename must end with an expe
 
 `filename=../../../etc/passwd%00.png`
 
+## Curl for Directory Traversal
+
+Curl will correct routes with directory traversal and remove the `../` by default. We can get what we're searching for if we use the `—path-as-is` flag. The following is taken from the man pages:
+
+> Man Page: When using `–path-as-is` Curl will ignore any `/../` or `/./` sequences in the specified URL path. Curl will normally squash or merge them according to standards, but with this option enabled, we can tell it not to do it.
+
+```bash
+curl --path-as-is http://10.10.10.10:4433/../../../../etc/lsb-release
+```
+
+
