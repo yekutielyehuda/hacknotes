@@ -1,5 +1,7 @@
 # Web Fuzzing
 
+Tip: Don't stick to one (1) tool, try to use multiple ones.
+
 ## Directory Fuzzing
 
 We should be able to use ffuf to locate website directories now that we grasp the notion of Web Fuzzing and know our wordlist.
@@ -523,7 +525,7 @@ ________________________________________________
 
 We see that we get a hit right away.
 
-## Fuzzing via Proxy
+# Fuzzing via Proxy
 
 Gobuster:
 
@@ -531,7 +533,7 @@ Gobuster:
 [HTTP_PROXY="socks5://127.0.0.1:1080/"] gobuster dir -u http://$IP -w /usr/share/dirb/wordlists/common.txt -o gobuster.txt
 ```
 
-## Web Fuzzing Tools
+# Web Fuzzing Tools
 
 You may want to use other tools besides fuff:
 
@@ -543,7 +545,7 @@ You may want to use other tools besides fuff:
 
 {% embed url="https://wfuzz.readthedocs.io/en/latest/user/installation.html" %}
 
-## Common Wordlists
+# Common Wordlists
 
 | **Command**                                                               | **Description**         |
 | ------------------------------------------------------------------------- | ----------------------- |
@@ -567,9 +569,9 @@ Technology specific wordlists:
 * /usr/share/seclists/Discovery/Web-Content/IIS.fuzz.txt 
 
 
-## Fuzzing Cheatsheet
+# Fuzzing Cheatsheet
 
-### nikto
+## nikto
 
 Enumerate directories with nikto:
 
@@ -577,7 +579,7 @@ Enumerate directories with nikto:
 nikto -h <URL>
 ```
 
-### feroxbuster
+## feroxbuster
 
 It seems that feroxbuster is fine as hell:
 
@@ -589,7 +591,7 @@ Enumerate directories:
 ./feroxbuster -u <URL> -w <WORDLIST> -x php,txt,zip
 ```
 
-### dirsearch
+## dirsearch
 
 Enumerate directories:
 
@@ -597,7 +599,7 @@ Enumerate directories:
 python3 dirsearch.py -u <URL> -w <WORDLIST> -r -t 60 --full-url
 ```
 
-### wfuzz
+## wfuzz
 
 Common Flags:
 
@@ -633,7 +635,7 @@ GET Request Parameter Fuzzing (hide responses with --hw / hide words):
 wfuzz -c -t 200 --hc=404 --hw=0 -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt http://sec03.rentahacker.htb/shell.php?FUZZ=whoami
 ```
 
-### gobuster
+## gobuster
 
 Virtual Host Fuzzing:
 
@@ -653,7 +655,7 @@ Enumerate directories on HTTPS:
 gobuster dir -u <URL> -w <WORDLIST> -s 200 -x txt,zip,php -k
 ```
 
-### ffuf
+## ffuf
 
 Directory Fuzzing
 
@@ -709,7 +711,7 @@ Value Fuzzing
 ffuf -w ids.txt:FUZZ -u http://admin.academy.htb:PORT/admin/admin.php -X POST -d 'id=FUZZ' -H 'Content-Type: application/x-www-form-urlencoded' -fs xxx
 ```
 
-### dirb
+## dirb
 
 Page Fuzzing:
 
@@ -723,7 +725,7 @@ Extension Fuzzing:
 dirb http://$IP -X .<extension> -o dirb.txt
 ```
 
-## Reference
+# Reference
 
 This page is **heavily** based on HackTheBox Academy Web Fuzzing:
 

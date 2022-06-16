@@ -1,5 +1,15 @@
 # ManageEngine
 
+Information about ManageEngine can be found in their [website](https://www.manageengine.com/products/service-desk/).
+
+## Default Accounts
+
+The default accounts are:
+
+- administrator / administrator
+- guest / guest
+
+
 ### ManageEngine Applications Manager
 
 If the target application has what are called 'Actions' which allows certain scripts and files to be executed when a certain parameter is met. To take advantage of this first we can head to **Admin > Upload Files / Binaries** to upload a `cmd` command or any malicious code.

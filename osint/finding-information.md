@@ -4,7 +4,7 @@
 
 Before reading this page I recommend that you take a look at the search for information page, which I have written some advice there:
 
-{% embed url="https://wixnic.gitbook.io/hacknotes/osint/search-for-information" %}
+{% embed url="https://nozerobit.gitbook.io/hacknotes/osint/search-for-information" %}
 
 Let's say that maybe you are not sure what you can do with a service, function, web, just something that you haven't heard of... maybe you have to do some research on it. We'll refer to this as `<topic>` the thing that we need to find information on.
 

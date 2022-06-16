@@ -1404,7 +1404,7 @@ Flags Explained:
 * n = display address and port in numerical form
 * o = display the owner PID of each connection
 
-{% embed url="https://wixnic.gitbook.io/hacknotes/port-redirection-and-tunneling/port-redirection" %}
+{% embed url="https://nozerobit.gitbook.io/hacknotes/port-redirection-and-tunneling/port-redirection" %}
 
 ###  Shares
 

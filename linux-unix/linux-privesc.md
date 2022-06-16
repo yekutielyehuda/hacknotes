@@ -93,11 +93,11 @@ gcc -o <name> <filename.c>
 
 Alternatively, if a reverse shell is preferred, msfvenom can be used to generate an executable (.elf) file:
 
-{% embed url="https://wixnic.gitbook.io/hacknotes/shells/msfvenom" %}
+{% embed url="https://nozerobit.gitbook.io/hacknotes/shells/msfvenom" %}
 
 Otherwise, you may manually add shells to a file:
 
-{% embed url="https://wixnic.gitbook.io/hacknotes/shells/unix-linux-shells" %}
+{% embed url="https://nozerobit.gitbook.io/hacknotes/shells/unix-linux-shells" %}
 
 ## System Information
 
@@ -1163,7 +1163,7 @@ A list of directories where the shell should look for applications is stored in 
 
 If software tries to run another program, the name of that application is almost certainly stored as a string in the executable file. We can perform inspect the binaries.&#x20;
 
-{% embed url="https://wixnic.gitbook.io/hacknotes/reversing/inspecting-binaries" %}
+{% embed url="https://nozerobit.gitbook.io/hacknotes/reversing/inspecting-binaries" %}
 
 Running strings against a file:
 
@@ -1544,7 +1544,7 @@ lxc exec mycontainer /bin/sh
 
 A root process may be tied to a port listening only on localhost. If an attack cannot be launched locally on the target machine for some reason, the port can be forwarded to your local machine:
 
-{% embed url="https://wixnic.gitbook.io/hacknotes/port-redirection-and-tunneling/port-redirection" %}
+{% embed url="https://nozerobit.gitbook.io/hacknotes/port-redirection-and-tunneling/port-redirection" %}
 
 ## Misc
 

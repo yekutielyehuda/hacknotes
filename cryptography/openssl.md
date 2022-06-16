@@ -127,3 +127,60 @@ Microsoft Windows [Version 10.0.14393]
 c:\windows\system32\inetsrv>
 ```
 
+# Client Certificate
+
+The information below is from [0xdf HTB Fortune writeup](https://0xdf.gitlab.io/2019/08/03/htb-fortune.html#create-client-certificate)
+
+We can generate a client certificate by using the CA cert and key:
+
+```sh
+root@kali# openssl genrsa -out filename.key 2048
+Generating RSA private key, 2048 bit long modulus (2 primes)
+................+++++
+.....................................................+++++
+```
+
+`genrsa` is used to create a 2048 bit key.
+
+Next, we値l use that key to create a certificate signing request (csr). This request will have all the information about us and it will be asscoaited with the key. We can use the `req` command to request a new csr by receiving the key and the name of the file to output:
+
+```sh
+root@kali# openssl req -new -key filename.key -out filename.csr
+You are about to be asked to enter information that will be incorporated
+into your certificate request.
+What you are about to enter is what is called a Distinguished Name or a DN.
+There are quite a few fields but you can leave some blank
+For some fields there will be a default value,
+If you enter '.', the field will be left blank.
+-----
+Country Name (2 letter code) [AU]:US
+State or Province Name (full name) [Some-State]:  
+Locality Name (eg, city) []:
+Organization Name (eg, company) [Internet Widgits Pty Ltd]:Fortune
+Organizational Unit Name (eg, section) []:Fortune
+Common Name (e.g. server FQDN or YOUR name) []:0xdf
+Email Address []:
+
+Please enter the following 'extra' attributes
+to be sent with your certificate request
+A challenge password []:
+An optional company name []:
+```
+
+Next, we値l use the `x509` command to create the signed client certificate. We値l need to provide the csr, the CA certificate, and the CA key. We could create a new serial with the `-CAcreateserial` option, as well as specifying the output file, and the number of days it will be valid:
+
+```sh
+root@kali# openssl x509 -req -in filename.csr -CA intermediate.cert.pem -CAkey intermediate.key.pem -CAcreateserial -out filename.pem -days 1024
+Signature ok
+subject=C = US, ST = Some-State, O = Fortune, OU = Fortune, CN = 0xdf
+Getting CA Private Key
+```
+
+Finally, we値l use the `pkcs12` command to combine the new client key and client certificate into a pfx file format that Firefox can import:
+
+```sh
+root@kali# openssl pkcs12 -export -out filename.pfx -inkey filename.key -in filename.pem -certfile intermediate.cert.pem 
+Enter Export Password:
+Verifying - Enter Export Password:
+```
+

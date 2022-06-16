@@ -2,7 +2,7 @@
 
 ## ShellShock
 
-{% embed url="https://wixnic.gitbook.io/hacknotes/common-exploits/shellshock" %}
+{% embed url="https://nozerobit.gitbook.io/hacknotes/common-exploits/shellshock" %}
 
 {% embed url="https://github.com/erinzm/shellshocker" %}
 
@@ -20,7 +20,7 @@ python shellshocker.py http://10.10.10.10/cgi-bin/admin.cgi
 
 ## Old PHP + CGI = RCE (CVE-2012-1823, CVE-2012-2311)
 
-{% embed url="https://wixnic.gitbook.io/hacknotes/common-exploits/php-cgi-exploitation" %}
+{% embed url="https://nozerobit.gitbook.io/hacknotes/common-exploits/php-cgi-exploitation" %}
 
 Basically if cgi is active and php is "old" (<5.3.12 / < 5.4.2) you can execute code.\
 In order to exploit this vulnerability, you need to access some PHP files of the web server without sending parameters (especially without sending the character "=").\
